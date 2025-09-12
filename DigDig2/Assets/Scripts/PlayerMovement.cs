@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -59,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.linearVelocityX = rb.linearVelocityX * Mathf.Sqrt(2);
             rb.linearVelocityY = rb.linearVelocityY * Mathf.Sqrt(2);
+            Debug.Log("moving diagonally");
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && !sprinting || Input.GetKeyDown(KeyCode.RightShift) && !sprinting)
