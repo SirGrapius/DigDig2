@@ -59,8 +59,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (rb.linearVelocityX != 0 && rb.linearVelocityY != 0)
         {
-            rb.linearVelocityX = rb.linearVelocityX * Mathf.Sqrt(2);
-            rb.linearVelocityY = rb.linearVelocityY * Mathf.Sqrt(2);
+            rb.linearVelocityX = currentSpeed * Time.deltaTime / Mathf.Sqrt(2);
+            rb.linearVelocityY = currentSpeed * Time.deltaTime / Mathf.Sqrt(2);
             Debug.Log("moving diagonally");
         }
 
