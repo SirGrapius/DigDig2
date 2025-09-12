@@ -59,9 +59,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (rb.linearVelocityX != 0 && rb.linearVelocityY != 0)
         {
-            rb.linearVelocityX = currentSpeed * Time.deltaTime / Mathf.Sqrt(2);
-            rb.linearVelocityY = currentSpeed * Time.deltaTime / Mathf.Sqrt(2);
-            Debug.Log("moving diagonally");
+            rb.linearVelocityX = rb.linearVelocityX * Time.deltaTime / Mathf.Sqrt(2);
+            rb.linearVelocityY = rb.linearVelocityY * Time.deltaTime / Mathf.Sqrt(2);
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && !sprinting || Input.GetKeyDown(KeyCode.RightShift) && !sprinting)
