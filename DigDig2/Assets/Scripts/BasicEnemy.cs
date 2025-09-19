@@ -15,8 +15,12 @@ public class BasicEnemy : MonoBehaviour
     private GameObject closestPlant;
     private float closestPlantDist;
 
+    [Header("ChildStuff")]
+    [SerializeField] Transform frontCollider;   
+
     void Update()
     {
+        RotateFrontCollider();
         FindClosestPlant();
 
         mainTargetDist = Mathf.Infinity;
@@ -68,6 +72,18 @@ public class BasicEnemy : MonoBehaviour
     void MoveTowardsTarget(Vector2 targetPos)
     {
         transform.position = Vector2.MoveTowards(transform.position, targetPos, movementSpeed * Time.deltaTime);
+    }
+
+    void RotateFrontCollider()
+    {
+        if(frontCollider != null || mainTarget != null)
+        {
+            Vector2 direction = (mainTarget.transform.position - transform.position).normalized;
+
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+            frontCollider.rotation = Quaternion.Euler(0,0,angle - 90f);
+         }
     }
 
     private void OnDrawGizmosSelected()
