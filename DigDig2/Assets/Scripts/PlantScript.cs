@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlantScript : MonoBehaviour
 {
+    [SerializeField] GameObject daddy;
     Vector2 targetPos;
     [SerializeField] GameObject[] enemies;
     float time;
@@ -38,5 +39,10 @@ public class PlantScript : MonoBehaviour
             }
         }
         return enemies[0];
+    }
+
+    void Decay()
+    {
+        Destroy(daddy); 
     }
 }
