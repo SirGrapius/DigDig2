@@ -6,7 +6,7 @@ public class PlantScript : MonoBehaviour
     Vector2 targetPos;
     [SerializeField] GameObject[] enemies;
     float time;
-    [SerializeField] float attackFrequency;
+    [SerializeField] int hp;
         
     void Update()
     {
@@ -40,8 +40,16 @@ public class PlantScript : MonoBehaviour
         }
         return enemies[0];
     }
+    public void Damage(int damageValue)
+    {
+        hp -= damageValue;
+        if (hp <= 0)
+        {
+            Decay();
+        }
+    }
 
-    public void Decay()
+    void Decay()
     {
         Destroy(daddy); 
     }
