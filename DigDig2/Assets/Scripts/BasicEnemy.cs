@@ -3,57 +3,79 @@ using static UnityEngine.GraphicsBuffer;
 
 public class BasicEnemy : MonoBehaviour
 {
+    [Header("Stats")]
     [SerializeField] int health = 5;
-    [SerializeField] int movementSpeed = 1;
-    [SerializeField] GameObject mainTarget;
-    [SerializeField] GameObject closestTarget;
-    [SerializeField] GameObject[] plants;
-    private Rigidbody2D rb;
-    private bool isAttacking = false;
+    [SerializeField] float movementSpeed = 2f;
+    [SerializeField] float detectRange = 5f;
+    [SerializeField] float attackRange = 1.5f;
 
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
+    [Header("Targets")]
+    [SerializeField] GameObject mainTarget;
+    private float mainTargetDist;
+    private GameObject closestPlant;
+    private float closestPlantDist;
 
     void Update()
     {
-        if(isAttacking)
+        FindClosestPlant();
+
+        mainTargetDist = Mathf.Infinity;
+        if(mainTarget != null)
         {
-            AttackPhase();
+            mainTargetDist = Vector2.Distance(transform.position, mainTarget.transform.position);
+        }
+
+        if(mainTarget != null && mainTargetDist <= attackRange)
+        {
+
+        }
+        else if(closestPlant != null && closestPlantDist <= attackRange)
+        {
+
+        }
+        else if(closestPlant != null && closestPlantDist <= detectRange && closestPlantDist < mainTargetDist) 
+        {
+            MoveTowardsTarget(closestPlant.transform.position);
         }
         else
         {
-            MovePhase();
+            if(mainTarget != null)
+            {
+                MoveTowardsTarget(mainTarget.transform.position);
+            }
         }
     }
 
-    void MovePhase()
+    void FindClosestPlant()
     {
-        if (mainTarget != null)
+        GameObject[] plants = GameObject.FindGameObjectsWithTag("Plant");
+
+        closestPlant = null;
+        closestPlantDist = Mathf.Infinity;
+
+        foreach (var plant in plants)
         {
-            transform.position = Vector2.MoveTowards(transform.position, mainTarget.transform.position, movementSpeed * Time.deltaTime);
-
-            transform.up = mainTarget.transform.position - transform.position;
-
-            plants = GameObject.FindGameObjectsWithTag("plant");
-
-
+            if(plants == null) continue;
+            float dist = Vector2.Distance(transform.position, plant.transform.position);
+            if(dist < closestPlantDist)
+            {
+                closestPlant = plant;
+                closestPlantDist = dist;
+            }
         }
     }
 
-    void AttackPhase()
+    void MoveTowardsTarget(Vector2 targetPos)
     {
-
+        transform.position = Vector2.MoveTowards(transform.position, targetPos, movementSpeed * Time.deltaTime);
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, detectRange);
 
-
-
-    // Walk phase, walk towards barn and detect plants infront of it and around, if detected enter attack phase by switching attacking bool on.
-
-    // In attack phase, check if there are plants within attack range infront, if there is attack, if theres not,
-    // move towards closest plant within detect range, and if there is no plants within detect range, switch bool is attacking off.
-    // After eating a plant, switch the bool "Bloodlust" to true, where it only detects plants infront of it now in AttackPhase and MovePhase
-
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
 }
