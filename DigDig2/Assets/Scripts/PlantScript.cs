@@ -6,6 +6,7 @@ public class PlantScript : MonoBehaviour
     Vector2 targetPos;
     [SerializeField] GameObject[] enemies;
     float time;
+    [SerializeField] float attackFrequency;
     [SerializeField] int hp;
         
     void Update()
