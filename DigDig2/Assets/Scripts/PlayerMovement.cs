@@ -23,6 +23,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] bool attacking;
     [SerializeField] bool chargingAttack;
 
+    [Header("Tool Settings")]
+    [SerializeField] bool usingHoe;
+    [SerializeField] bool usingCan;
+    [SerializeField] bool usingShovel;
+
+
     [Header("Audio")]
     // audio controller script here
     [SerializeField] AudioSource walkSource;
@@ -68,11 +74,22 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && !onCooldown) //attack when not on cooldown
+        if (Input.GetKeyDown(KeyCode.Space)) //use your current tool
         {
-            chargingAttack = true;
+            if (usingShovel && !onCooldown) //if you're holding the shovel charge attack
+            {
+                chargingAttack = true;
+            }
+            if (usingCan) //if you're holding the watering can
+            {
+                //do something
+            }
+            if (usingHoe) //if you're using the hoe
+            {
+                //do something
+            }
         }
-        if (Input.GetKeyUp(KeyCode.Space) && chargingAttack)
+        if (Input.GetKeyUp(KeyCode.Space) && chargingAttack) //unleash attack upon letting go of space
         {
             chargingAttack = false;
             attacking = true;
