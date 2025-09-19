@@ -410,7 +410,7 @@ GameObject:
   - component: {fileID: 1253396487}
   - component: {fileID: 1253396486}
   m_Layer: 0
-  m_Name: Plantable soil
+  m_Name: Inventory Slots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -445,11 +445,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileScript
   myTilemap: {fileID: 1253396489}
   myCollider: {fileID: 1253396487}
-  myCamera: {fileID: 0}
-  myTilePosition: {x: 0, y: 0, z: 0}
   myTile: {fileID: 11400000, guid: cdf027c7ccb020542b29a6aeda0ff8bf, type: 2}
+  myCamera: {fileID: 0}
+  myTilePositionInt: {x: 0, y: 0, z: 0}
+  myTilePosition: {x: 0, y: 0, z: 0}
   tileSelectBorder: {fileID: 778467907}
-  SelectionTimer: 0
+  selectionTimer: 0
+  isInventory: 1
+  selectedInventoryTile: {fileID: 0}
+  selectedTool: 1
+  tilledSoil: {fileID: 0}
+  unTilledSoil: {fileID: 0}
+  myInventory: {fileID: 0}
 --- !u!19719996 &1253396487
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -565,8 +572,8 @@ Tilemap:
   - first: {x: -9, y: -4, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -594,11 +601,15 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 4
+  - m_RefCount: 3
     m_Data: {fileID: 11400000, guid: cdf027c7ccb020542b29a6aeda0ff8bf, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: fce77e718c9291b47b2fc44aae8ed6da, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 4
+  - m_RefCount: 3
     m_Data: {fileID: 988081241892541550, guid: 8d4e5b07af5d0bc448949886d5db25d2, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: -606049868233311497, guid: c4c7eb772fda254499f97849e11f47d4, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 4
     m_Data:
@@ -852,15 +863,59 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: -4, y: 1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -3, y: 1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -2, y: 1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -1, y: 1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 8
     m_Data: {fileID: 11400000, guid: cdf027c7ccb020542b29a6aeda0ff8bf, type: 2}
+  - m_RefCount: 4
+    m_Data: {fileID: 11400000, guid: fce77e718c9291b47b2fc44aae8ed6da, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 8
     m_Data: {fileID: 988081241892541550, guid: 8d4e5b07af5d0bc448949886d5db25d2, type: 3}
+  - m_RefCount: 4
+    m_Data: {fileID: -606049868233311497, guid: c4c7eb772fda254499f97849e11f47d4, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 8
+  - m_RefCount: 12
     m_Data:
       e00: 1
       e01: 0
@@ -879,7 +934,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 8
+  - m_RefCount: 12
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -974,11 +1029,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileScript
   myTilemap: {fileID: 1931901383}
   myCollider: {fileID: 1931901382}
+  myTile: {fileID: 0}
   myCamera: {fileID: 0}
+  myTilePositionInt: {x: 0, y: 0, z: 0}
   myTilePosition: {x: 0, y: 0, z: 0}
-  myTile: {fileID: 11400000, guid: cdf027c7ccb020542b29a6aeda0ff8bf, type: 2}
   tileSelectBorder: {fileID: 778467907}
-  SelectionTimer: 0
+  selectionTimer: 0
+  isInventory: 0
+  selectedInventoryTile: {fileID: 0}
+  selectedTool: 1
+  tilledSoil: {fileID: 11400000, guid: fce77e718c9291b47b2fc44aae8ed6da, type: 2}
+  unTilledSoil: {fileID: 11400000, guid: cdf027c7ccb020542b29a6aeda0ff8bf, type: 2}
+  myInventory: {fileID: 1253396484}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
