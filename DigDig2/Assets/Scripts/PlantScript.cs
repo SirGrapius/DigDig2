@@ -41,7 +41,7 @@ public class PlantScript : MonoBehaviour
         return enemies[0];
     }
 
-    void Decay()
+    public void Decay()
     {
         Destroy(daddy); 
     }
