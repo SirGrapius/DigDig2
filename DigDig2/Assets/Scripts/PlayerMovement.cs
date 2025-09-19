@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float cooldown = 1;
     [SerializeField] bool onCooldown;
     [SerializeField] bool attacking;
+    [SerializeField] bool chargingAttack;
 
     [Header("Audio")]
     // audio controller script here
@@ -69,6 +70,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && !onCooldown) //attack when not on cooldown
         {
+            chargingAttack = true;
+        }
+        if (Input.GetKeyUp(KeyCode.Space) && chargingAttack)
+        {
+            chargingAttack = false;
             attacking = true;
             StartCoroutine(CooldownDuration());
         }
