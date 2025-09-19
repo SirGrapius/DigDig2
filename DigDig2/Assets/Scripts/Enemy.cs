@@ -97,8 +97,8 @@ public class Enemy : MonoBehaviour
     void AttackClosestPlant()
     {
         if (closestPlant == null) return;
-
-       
+        
+        
     }
 
     private void OnDrawGizmosSelected()
