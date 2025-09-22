@@ -3,7 +3,7 @@ using UnityEngine.Tilemaps;
 
 public class TileScript : MonoBehaviour
 {
-    [SerializeField] Tilemap myTilemap;
+    public Tilemap myTilemap;
     [SerializeField] TilemapCollider2D myCollider;
     [SerializeField] Tile myTile;
     [SerializeField] Camera myCamera;
@@ -18,7 +18,7 @@ public class TileScript : MonoBehaviour
     // 1 = hoe
     // 2 = watering can
     // 3 = shovel
-    [SerializeField] Tile tilledSoil;
+    public Tile tilledSoil;
     [SerializeField] Tile unTilledSoil;
     [SerializeField] GameObject myInventory;
 
@@ -70,10 +70,7 @@ public class TileScript : MonoBehaviour
         // selecting a tile to change
         if (!isInventory)
         {
-            myTilePosition = myCamera.ScreenToWorldPoint(Input.mousePosition);
-            myTilePosition /= transform.localScale.x;
-            myTilePositionInt = Vector3Int.FloorToInt(myTilePosition);
-            myTilePositionInt.z = 0;
+            myTilePositionInt = CheckTile();
             tileSelectBorder.position = myTilePositionInt;
             selectionTimer = 0.1f;
             myTile = myTilemap.GetTile<Tile>(myTilePositionInt);
@@ -84,10 +81,7 @@ public class TileScript : MonoBehaviour
         // selecting a tile from the isInventory
         if (isInventory)
         {
-            myTilePosition = myCamera.ScreenToWorldPoint(Input.mousePosition);
-            myTilePosition /= transform.localScale.x;
-            myTilePositionInt = Vector3Int.FloorToInt(myTilePosition);
-            myTilePositionInt.z = 0;
+            myTilePositionInt = CheckTile();
             selectedInventoryTile = myTilemap.GetTile<Tile>(myTilePositionInt);
         }
         // using a tool or seed on a tile
@@ -95,22 +89,24 @@ public class TileScript : MonoBehaviour
         {
             if (myTile == tilledSoil)
             {
-                myTilePosition = myCamera.ScreenToWorldPoint(Input.mousePosition);
-                myTilePosition /= transform.localScale.x;
-                myTilePositionInt = Vector3Int.FloorToInt(myTilePosition);
-                myTilePositionInt.z = 0;
+                myTilePositionInt = CheckTile();
                 selectedInventoryTile = myInventory.GetComponent<TileScript>().selectedInventoryTile;
                 myTilemap.SetTile(myTilePositionInt, selectedInventoryTile);
             }
             else if (selectedTool == 1 && myTile == unTilledSoil)
             {
-                myTilePosition = myCamera.ScreenToWorldPoint(Input.mousePosition);
-                myTilePosition /= transform.localScale.x;
-                myTilePositionInt = Vector3Int.FloorToInt(myTilePosition);
-                myTilePositionInt.z = 0;
+                myTilePositionInt = CheckTile();
                 selectedInventoryTile = myInventory.GetComponent<TileScript>().selectedInventoryTile;
                 myTilemap.SetTile(myTilePositionInt, tilledSoil);
             } 
         }
+    }
+    public Vector3Int CheckTile()
+    {
+        Vector3 tilePosition = myCamera.ScreenToWorldPoint(Input.mousePosition);
+        tilePosition /= transform.localScale.x;
+        Vector3Int tilePositionInt = Vector3Int.FloorToInt(tilePosition);
+        tilePositionInt.z = 0;
+        return tilePositionInt;
     }
 }
