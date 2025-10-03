@@ -3,7 +3,7 @@ using UnityEngine.Tilemaps;
 
 public class TileScript : MonoBehaviour
 {
-    [SerializeField] Tilemap myTilemap;
+    public Tilemap myTilemap;
     [SerializeField] TilemapCollider2D myCollider;
     [SerializeField] Tile myTile;
     [SerializeField] Camera myCamera;
@@ -18,9 +18,11 @@ public class TileScript : MonoBehaviour
     // 1 = hoe
     // 2 = watering can
     // 3 = shovel
-    [SerializeField] Tile tilledSoil;
+    public Tile tilledSoil;
     [SerializeField] Tile unTilledSoil;
     [SerializeField] GameObject myInventory;
+    [SerializeField] float useTimer;
+    [SerializeField] float useTimerMax;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -62,7 +64,10 @@ public class TileScript : MonoBehaviour
                 selectedTool = 1;
             }
         }
-
+        if (Input.GetMouseButtonUp(0))
+        {
+            useTimer = 0;
+        }
     }
 
     private void OnMouseOver()
@@ -70,24 +75,22 @@ public class TileScript : MonoBehaviour
         // selecting a tile to change
         if (!isInventory)
         {
-            myTilePosition = myCamera.ScreenToWorldPoint(Input.mousePosition);
-            myTilePosition /= transform.localScale.x;
-            myTilePositionInt = Vector3Int.FloorToInt(myTilePosition);
-            myTilePositionInt.z = 0;
+            myTilePositionInt = CheckTile();
             tileSelectBorder.position = myTilePositionInt;
             selectionTimer = 0.1f;
-            myTile = myTilemap.GetTile<Tile>(myTilePositionInt);
+            if (myTile != myTilemap.GetTile<Tile>(myTilePositionInt))
+            {
+                useTimer = 0;
+                myTile = myTilemap.GetTile<Tile>(myTilePositionInt);
+            }
         }
     }
-    private void OnMouseDown()
+    private void OnMouseDrag()
     {
         // selecting a tile from the isInventory
         if (isInventory)
         {
-            myTilePosition = myCamera.ScreenToWorldPoint(Input.mousePosition);
-            myTilePosition /= transform.localScale.x;
-            myTilePositionInt = Vector3Int.FloorToInt(myTilePosition);
-            myTilePositionInt.z = 0;
+            myTilePositionInt = CheckTile();
             selectedInventoryTile = myTilemap.GetTile<Tile>(myTilePositionInt);
         }
         // using a tool or seed on a tile
@@ -95,22 +98,49 @@ public class TileScript : MonoBehaviour
         {
             if (myTile == tilledSoil)
             {
-                myTilePosition = myCamera.ScreenToWorldPoint(Input.mousePosition);
-                myTilePosition /= transform.localScale.x;
-                myTilePositionInt = Vector3Int.FloorToInt(myTilePosition);
-                myTilePositionInt.z = 0;
-                selectedInventoryTile = myInventory.GetComponent<TileScript>().selectedInventoryTile;
-                myTilemap.SetTile(myTilePositionInt, selectedInventoryTile);
+                if (useTimer == 0)
+                {
+                    myTilePositionInt = CheckTile();
+                    useTimer += Time.deltaTime;                
+                }
+                else if (useTimer < useTimerMax && useTimer > 0)
+                {
+                    useTimer += Time.deltaTime;
+                }
+                if (useTimer > useTimerMax)
+                {
+                    selectedInventoryTile = myInventory.GetComponent<TileScript>().selectedInventoryTile;
+                    myTilemap.SetTile(myTilePositionInt, selectedInventoryTile);
+                    useTimer = 0;
+                }
             }
             else if (selectedTool == 1 && myTile == unTilledSoil)
             {
-                myTilePosition = myCamera.ScreenToWorldPoint(Input.mousePosition);
-                myTilePosition /= transform.localScale.x;
-                myTilePositionInt = Vector3Int.FloorToInt(myTilePosition);
-                myTilePositionInt.z = 0;
-                selectedInventoryTile = myInventory.GetComponent<TileScript>().selectedInventoryTile;
-                myTilemap.SetTile(myTilePositionInt, tilledSoil);
-            } 
+
+                if (useTimer == 0)
+                {
+                    myTilePositionInt = CheckTile();
+                    useTimer += Time.deltaTime;
+                }
+                else if (useTimer < useTimerMax && useTimer > 0)
+                {
+                    useTimer += Time.deltaTime;
+                }
+                if (useTimer > useTimerMax)
+                {
+                    selectedInventoryTile = myInventory.GetComponent<TileScript>().selectedInventoryTile;
+                    myTilemap.SetTile(myTilePositionInt, tilledSoil);
+                    useTimer = 0;
+                }
+            }
         }
+    }
+    public Vector3Int CheckTile()
+    {
+        Vector3 tilePosition = myCamera.ScreenToWorldPoint(Input.mousePosition);
+        tilePosition /= transform.localScale.x;
+        Vector3Int tilePositionInt = Vector3Int.FloorToInt(tilePosition);
+        tilePositionInt.z = 0;
+        return tilePositionInt;
     }
 }
