@@ -52,7 +52,6 @@ public class PlantScript : MonoBehaviour
 
     void Decay()
     {
-
         daddy.transform.parent.GetComponent<TileScript>().myTilemap.SetTile(daddy.transform.parent.GetComponent<TileScript>().CheckTile(), daddy.transform.parent.GetComponent<TileScript>().tilledSoil);
         Destroy(daddy); 
     }

@@ -21,6 +21,8 @@ public class TileScript : MonoBehaviour
     public Tile tilledSoil;
     [SerializeField] Tile unTilledSoil;
     [SerializeField] GameObject myInventory;
+    [SerializeField] float useTimer;
+    [SerializeField] float useTimerMax;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -62,7 +64,10 @@ public class TileScript : MonoBehaviour
                 selectedTool = 1;
             }
         }
-
+        if (Input.GetMouseButtonUp(0))
+        {
+            useTimer = 0;
+        }
     }
 
     private void OnMouseOver()
@@ -73,10 +78,14 @@ public class TileScript : MonoBehaviour
             myTilePositionInt = CheckTile();
             tileSelectBorder.position = myTilePositionInt;
             selectionTimer = 0.1f;
-            myTile = myTilemap.GetTile<Tile>(myTilePositionInt);
+            if (myTile != myTilemap.GetTile<Tile>(myTilePositionInt))
+            {
+                useTimer = 0;
+                myTile = myTilemap.GetTile<Tile>(myTilePositionInt);
+            }
         }
     }
-    private void OnMouseDown()
+    private void OnMouseDrag()
     {
         // selecting a tile from the isInventory
         if (isInventory)
@@ -89,16 +98,41 @@ public class TileScript : MonoBehaviour
         {
             if (myTile == tilledSoil)
             {
-                myTilePositionInt = CheckTile();
-                selectedInventoryTile = myInventory.GetComponent<TileScript>().selectedInventoryTile;
-                myTilemap.SetTile(myTilePositionInt, selectedInventoryTile);
+                if (useTimer == 0)
+                {
+                    myTilePositionInt = CheckTile();
+                    useTimer += Time.deltaTime;                
+                }
+                else if (useTimer < useTimerMax && useTimer > 0)
+                {
+                    useTimer += Time.deltaTime;
+                }
+                if (useTimer > useTimerMax)
+                {
+                    selectedInventoryTile = myInventory.GetComponent<TileScript>().selectedInventoryTile;
+                    myTilemap.SetTile(myTilePositionInt, selectedInventoryTile);
+                    useTimer = 0;
+                }
             }
             else if (selectedTool == 1 && myTile == unTilledSoil)
             {
-                myTilePositionInt = CheckTile();
-                selectedInventoryTile = myInventory.GetComponent<TileScript>().selectedInventoryTile;
-                myTilemap.SetTile(myTilePositionInt, tilledSoil);
-            } 
+
+                if (useTimer == 0)
+                {
+                    myTilePositionInt = CheckTile();
+                    useTimer += Time.deltaTime;
+                }
+                else if (useTimer < useTimerMax && useTimer > 0)
+                {
+                    useTimer += Time.deltaTime;
+                }
+                if (useTimer > useTimerMax)
+                {
+                    selectedInventoryTile = myInventory.GetComponent<TileScript>().selectedInventoryTile;
+                    myTilemap.SetTile(myTilePositionInt, tilledSoil);
+                    useTimer = 0;
+                }
+            }
         }
     }
     public Vector3Int CheckTile()

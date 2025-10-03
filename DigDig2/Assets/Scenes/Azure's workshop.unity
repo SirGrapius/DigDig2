@@ -463,6 +463,8 @@ MonoBehaviour:
   tilledSoil: {fileID: 0}
   unTilledSoil: {fileID: 0}
   myInventory: {fileID: 0}
+  useTimer: 0
+  useTimerMax: 0
 --- !u!19719996 &1253396487
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -1185,6 +1187,8 @@ MonoBehaviour:
   tilledSoil: {fileID: 11400000, guid: fce77e718c9291b47b2fc44aae8ed6da, type: 2}
   unTilledSoil: {fileID: 11400000, guid: cdf027c7ccb020542b29a6aeda0ff8bf, type: 2}
   myInventory: {fileID: 1253396484}
+  useTimer: 0
+  useTimerMax: 0.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
