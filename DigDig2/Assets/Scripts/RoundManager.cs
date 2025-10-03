@@ -101,13 +101,13 @@ public class RoundManager : MonoBehaviour
                     {
                         RectTransform laneRect = lanes[whatLane].GetComponent<RectTransform>();
                         laneRect.GetWorldCorners(v);
-                        //left
+                        //upleft
                         //v[0] =
-                        //left
+                        //upright
                         //v[1] =
-                        //left
+                        //downleft
                         //v[2] =
-                        //left
+                        //downright
                         //v[3] =
 
                         break;
