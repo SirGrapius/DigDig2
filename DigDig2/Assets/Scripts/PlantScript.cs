@@ -8,24 +8,39 @@ public class PlantScript : MonoBehaviour
     float time;
     [SerializeField] float attackFrequency;
     [SerializeField] int hp;
-        
+    [SerializeField] Animator myAnimator;
+    [SerializeField] AnimationClip attackAnim;
+    bool ready;
+
     void Update()
     {
-        time += Time.deltaTime;
+        
+        if (!ready)
+        {
+            time += Time.deltaTime;
+        }
         if (time >= attackFrequency)
         {
-            time = 0;
-            if (Attack() != null)
+            ready = true;
+            if (Target() != null)
             {
-                targetPos = Attack().transform.position;
-                targetPos.x = targetPos.x - transform.position.x;
-                targetPos.y = targetPos.y - transform.position.y;
+                time += Time.deltaTime;
+                myAnimator.SetBool("Attack", true);
+                if (time >= attackFrequency + attackAnim.length)
+                {
+                    ready = false;
+                    time -= attackFrequency + attackAnim.length;
+                    targetPos = Target().transform.position;
+                    targetPos.x = targetPos.x - transform.position.x;
+                    targetPos.y = targetPos.y - transform.position.y;
+                    myAnimator.SetBool("Attack", false);
+                }
             }
         }
         transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg);
     }
 
-    GameObject Attack()
+    GameObject Target()
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         if (enemies.Length > 0)

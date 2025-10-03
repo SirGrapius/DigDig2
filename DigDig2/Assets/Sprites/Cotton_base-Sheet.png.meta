@@ -1,16 +1,67 @@
 fileFormatVersion: 2
-guid: bf7e64cac355a9f4982f59d3b05c9411
+guid: 48b95a8c15558fa4a8094bd31de4e8e8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5475991817021384018
-    second: Cotton_arm-Sheet_0
+      213: 2134252706927307247
+    second: Cotton_base-Sheet_0
   - first:
-      213: 3445946700375870139
-    second: Cotton_arm-Sheet_1
+      213: 1409977935346423602
+    second: Cotton_base-Sheet_1
   - first:
-      213: -2974565735052661697
-    second: Cotton_arm-Sheet_2
+      213: -3116855627444485207
+    second: Cotton_base-Sheet_2
+  - first:
+      213: -4057533627485450628
+    second: Cotton_base-Sheet_3
+  - first:
+      213: 3497237632657552265
+    second: Cotton_base-Sheet_4
+  - first:
+      213: -562605955855376410
+    second: Cotton_base-Sheet_5
+  - first:
+      213: 7693941343427144079
+    second: Cotton_base-Sheet_6
+  - first:
+      213: 125695828230920594
+    second: Cotton_base-Sheet_7
+  - first:
+      213: 2603155995643348432
+    second: Cotton_base-Sheet_8
+  - first:
+      213: -14619839594755678
+    second: Cotton_base-Sheet_9
+  - first:
+      213: -7557913728192805896
+    second: Cotton_base-Sheet_10
+  - first:
+      213: -3221444704013948828
+    second: Cotton_base-Sheet_11
+  - first:
+      213: -5262671762321061719
+    second: Cotton_base-Sheet_12
+  - first:
+      213: -4848487270008631116
+    second: Cotton_base-Sheet_13
+  - first:
+      213: 2914064436967999258
+    second: Cotton_base-Sheet_14
+  - first:
+      213: 2183440701218047645
+    second: Cotton_base-Sheet_15
+  - first:
+      213: -781571664983297719
+    second: Cotton_base-Sheet_16
+  - first:
+      213: -7508682861238536706
+    second: Cotton_base-Sheet_17
+  - first:
+      213: 679933664454514109
+    second: Cotton_base-Sheet_18
+  - first:
+      213: -5202518244075759235
+    second: Cotton_base-Sheet_19
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -43,7 +94,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -57,7 +108,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -106,67 +157,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cotton_arm-Sheet_0
+      name: Cotton_base-Sheet_0
       rect:
         serializedVersion: 2
-        x: 74
-        y: 79
-        width: 62
-        height: 52
+        x: 0
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 25561866b81aefb40800000000000000
-      internalID: 5475991817021384018
+      spriteID: fe9615977836e9d10800000000000000
+      internalID: 2134252706927307247
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cotton_arm-Sheet_1
+      name: Cotton_base-Sheet_1
       rect:
         serializedVersion: 2
-        x: 234
-        y: 44
-        width: 62
-        height: 47
+        x: 160
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bba45de344672df20800000000000000
-      internalID: 3445946700375870139
+      spriteID: 2375679367f319310800000000000000
+      internalID: 1409977935346423602
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cotton_arm-Sheet_2
+      name: Cotton_base-Sheet_2
       rect:
         serializedVersion: 2
-        x: 349
-        y: 79
-        width: 57
-        height: 67
+        x: 320
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f3c2321593838b6d0800000000000000
-      internalID: -2974565735052661697
+      spriteID: 9a38ef51254beb4d0800000000000000
+      internalID: -3116855627444485207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cotton_base-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7e078dd9aeb0b7c0800000000000000
+      internalID: -4057533627485450628
       vertices: []
       indices: 
       edges: []
@@ -175,7 +248,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 1bcb122955b97724abbb23681e9c16a6
     internalID: 0
     vertices: []
     indices: 
@@ -183,11 +256,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":1.0},"gridSpriteSize":{"x":160.0,"y":160.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Cotton_arm-Sheet_0: 5475991817021384018
-      Cotton_arm-Sheet_1: 3445946700375870139
-      Cotton_arm-Sheet_2: -2974565735052661697
+      Cotton_base-Sheet_0: 2134252706927307247
+      Cotton_base-Sheet_1: 1409977935346423602
+      Cotton_base-Sheet_2: -3116855627444485207
+      Cotton_base-Sheet_3: -4057533627485450628
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

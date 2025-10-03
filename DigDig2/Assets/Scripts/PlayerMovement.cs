@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
     Vector2 playerInput;
 
-    [Header("Attack Settings")]
+    [Header("Target Settings")]
     [SerializeField] float damage = 2.5f;
     [SerializeField] BoxCollider2D hitbox;
     [SerializeField] float cooldown = 1;
