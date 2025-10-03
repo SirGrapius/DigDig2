@@ -2,9 +2,20 @@ using UnityEngine;
 
 public class CottonParticle : MonoBehaviour
 {
-    float Speed;
+    [SerializeField] float Speed;
+    Vector2 target;
+    ClosestEnemy getTarget;
+    void Awake()
+    {
+        getTarget = GetComponent<ClosestEnemy>();
+
+    }
+    void Start()
+    {
+        target = getTarget.Target().transform.position;
+    }
     void Update()
     {
-        transform.position = transform.position;
+        transform.position = Vector2.MoveTowards(transform.position, target, Speed * Time.deltaTime);
     }
 }
