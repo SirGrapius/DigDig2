@@ -7,7 +7,7 @@ public class CottonScript : MonoBehaviour
     float time;
     [SerializeField] float attackFrequency;
     [SerializeField] Animator myAnimator;
-    [SerializeField] Animator baseAnimator;
+    [SerializeField] public Animator baseAnimator;
     [SerializeField] AnimationClip attackAnim;
     [SerializeField] AnimationClip growAnim;
     bool ready;
