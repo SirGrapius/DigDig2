@@ -1,3 +1,6 @@
+using System.Collections;
+using TMPro;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class RoundManager : MonoBehaviour
@@ -10,13 +13,21 @@ public class RoundManager : MonoBehaviour
     [SerializeField] float maxRoundTime = 300;
 
     [Header("Lane Settings")]
-    [SerializeField] GameObject[] lanes;
+    [SerializeField] GameObject[] lanes; //0 = bottom, 1 = right, 2 = top, 3 = left
     [SerializeField] bool[] isLaneOpen;
 
     [Header("Enemy Settings")]
     [SerializeField] int numberOfEnemies;
     [SerializeField] int enemyPoints;
     [SerializeField] GameObject[] enemyPrefabs;
+    bool generatingPoints;
+    bool spawningEnemy;
+
+    [Header("Text Settings")]
+    [SerializeField] TextMeshProUGUI myText;
+    [SerializeField] float fadeDuration;
+    [SerializeField] float textDuration;
+
 
     void Start()
     {
@@ -24,12 +35,13 @@ public class RoundManager : MonoBehaviour
         bool rightLaneOpen = isLaneOpen[0];
         bool leftLaneOpen = isLaneOpen[1];
         bool upLaneOpen = isLaneOpen[2];
+        generatingPoints = false;
     }
 
 
     void Update()
     {
-        if (time < maxRoundTime) //change time to Time.deltaTime
+        if (time < maxRoundTime) //changes time to Time.deltaTime
         {
             time += Time.deltaTime;
         }
@@ -37,15 +49,19 @@ public class RoundManager : MonoBehaviour
         {
             EndDay();
         }
-        if (time == 60 || time == 120 || time == 180 || time == 240) //generate enemy points every minute
+        if (( (60 <= time && time < 61) || (120 <= time && time < 121) || (180 <= time && time < 181) || (240 <= time && time < 241)) && !generatingPoints) //generate enemy points every minute
         {
-            enemyPoints = Mathf.RoundToInt(day * ((day * Mathf.Pow(2, day / 2)) / 100)+1);
+            StartCoroutine(TextFadeCoroutine(new Color(myText.color.r,myText.color.g,myText.color.b,0),new Color(myText.color.r,myText.color.g,myText.color.b,1), "A Wave of Beasts is Coming, Prepare Yourself!"));
+            StartCoroutine(GenerateEnemyPoints());
         }
 
-        if (enemyPoints >= 0)
+        if (enemyPoints > 0 && !spawningEnemy)
         {
-            SpawnEnemies();
+            spawningEnemy = true;
+            StartCoroutine(SpawnEnemies());
         }
+
+        numberOfEnemies = Mathf.RoundToInt(GameObject.FindGameObjectsWithTag("Enemy").Length);
     }
 
     void OpenNewLane()
@@ -66,13 +82,56 @@ public class RoundManager : MonoBehaviour
         }
     }
 
-    void SpawnEnemies()
+
+    IEnumerator TextFadeCoroutine(Color startColor, Color targetColor, string textText)
+    {
+        float elapsedTime = 0;
+        float elapsedPercentage = 0;
+        myText.text = textText;
+        while (elapsedPercentage < 1)
+        {
+            elapsedPercentage = elapsedTime / fadeDuration;
+            myText.color = Color.Lerp(startColor, targetColor, elapsedPercentage);
+
+            yield return null;
+            elapsedTime += Time.deltaTime;
+        }
+        yield return new WaitForSeconds(fadeDuration);
+        yield return new WaitForSeconds(textDuration);
+        StartCoroutine(TextFadeOutCoroutine(targetColor, startColor));
+    }
+    IEnumerator TextFadeOutCoroutine(Color startColor, Color targetColor)
+    {
+        float elapsedTime = 0;
+        float elapsedPercentage = 0;
+        while (elapsedPercentage < 1)
+        {
+            elapsedPercentage = elapsedTime / fadeDuration;
+            myText.color = Color.Lerp(startColor, targetColor, elapsedPercentage);
+
+            yield return null;
+            elapsedTime += Time.deltaTime;
+        }
+        yield return new WaitForSeconds(fadeDuration);
+    }
+
+
+    IEnumerator GenerateEnemyPoints()
+    {
+        generatingPoints = true;
+        enemyPoints = Mathf.RoundToInt(day * ((day * Mathf.Pow(2, day / 2)) / 100) + 1);
+        yield return new WaitForSeconds(2);
+        generatingPoints = false;
+        yield return null;
+    }
+
+    IEnumerator SpawnEnemies()
     {
         int whatEnemy;
         int whatLane;
         float maxLane = 0;
 
-        Vector3[] v = new Vector3[3];
+        Vector3[] v = new Vector3[4];
 
         if (!isLaneOpen[0])
         {
@@ -86,45 +145,33 @@ public class RoundManager : MonoBehaviour
         {
             maxLane = 2;
         }
-        else
+        else if (isLaneOpen[2])
         {
             maxLane = 3;
         }
-
-            for (int i = 0; i < enemyPoints; i++)
+        for (int i = 0; i < enemyPoints; i++) //spawns an amount of enemy equal to the amount of enemy points
+        {
+            yield return new WaitForSeconds(Random.Range(1, 4));
+            whatLane = Mathf.RoundToInt(Random.Range(0, maxLane)); //decides what lane the enemy will spawn on
+            whatEnemy = Mathf.RoundToInt(Random.Range(0, 2));
+            BoxCollider2D laneCollider = lanes[whatLane].GetComponent<BoxCollider2D>();
+            float topSide = laneCollider.size.y + lanes[whatLane].transform.position.y;
+            float bottomSide = -laneCollider.size.y + lanes[whatLane].transform.position.y;
+            float rightSide = laneCollider.size.x + lanes[whatLane].transform.position.x;
+            float leftSide = -laneCollider.size.x + lanes[whatLane].transform.position.x;
+            Vector3 spawnPos = new Vector3(Random.Range(leftSide, rightSide), Random.Range(bottomSide, topSide), 0);
+            if (day < 3)
             {
-                whatLane = Mathf.RoundToInt(Random.Range(0, maxLane));
-                whatEnemy = Mathf.RoundToInt(Random.Range(0, 2));
-                switch (whatLane)
-                {
-                    case 0: //down
-                    {
-                        RectTransform laneRect = lanes[whatLane].GetComponent<RectTransform>();
-                        laneRect.GetWorldCorners(v);
-                        //upleft
-                        //v[0] =
-                        //upright
-                        //v[1] =
-                        //downleft
-                        //v[2] =
-                        //downright
-                        //v[3] =
-
-                        break;
-                    }
-
-
-                }
-
-                if (day < 3)
-                {
-                    Instantiate(enemyPrefabs[0], lanes[whatLane].transform);
-                }
-                else
-                {
-                    Instantiate(enemyPrefabs[whatEnemy], lanes[whatLane].transform);
-                }
+                Instantiate(enemyPrefabs[0], spawnPos, Quaternion.identity);
             }
+            else
+            {
+                Instantiate(enemyPrefabs[whatEnemy], spawnPos, Quaternion.identity);
+            }
+        }
+        enemyPoints = 0;
+        spawningEnemy = false;
+        yield return null;
     }
 
 
