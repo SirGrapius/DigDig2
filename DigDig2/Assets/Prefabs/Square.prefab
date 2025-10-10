@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7538703735128971600}
   - component: {fileID: 3247231788149898496}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4328185523340668}
   - component: {fileID: 5899832665033984898}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RotationPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,9 +136,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlantScript
   daddy: {fileID: 8495913010246796608}
-  enemies: []
   attackFrequency: 0
   hp: 0
+  myAnimator: {fileID: 0}
+  attackAnim: {fileID: 0}
 --- !u!1 &6899398132976983841
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,7 +151,7 @@ GameObject:
   - component: {fileID: 1808486421055248082}
   - component: {fileID: 1895002142252219022}
   - component: {fileID: 7585556059168892396}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,7 +267,7 @@ GameObject:
   - component: {fileID: 7532182400030938674}
   - component: {fileID: 6765443855941341142}
   - component: {fileID: 8865439386366426737}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Square
   m_TagString: Plant
   m_Icon: {fileID: 0}
@@ -384,7 +385,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0.125}
     oldSize: {x: 2.5, y: 2.5}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
