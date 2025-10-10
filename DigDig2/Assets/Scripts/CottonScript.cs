@@ -1,13 +1,11 @@
 using UnityEngine;
 
-public class PlantScript : MonoBehaviour
+public class CottonScript : MonoBehaviour
 {
     ClosestEnemy targeting;
-    [SerializeField] GameObject daddy;
     Vector2 targetPos;
     float time;
     [SerializeField] float attackFrequency;
-    [SerializeField] int hp;
     [SerializeField] Animator myAnimator;
     [SerializeField] AnimationClip attackAnim;
     bool ready;
@@ -35,28 +33,12 @@ public class PlantScript : MonoBehaviour
                     ready = false;
                     time -= attackFrequency + attackAnim.length;
                     targetPos = targeting.Target().transform.position;
-                    targetPos.x = targetPos.x - transform.position.x;
-                    targetPos.y = targetPos.y - transform.position.y;
+                    targetPos.x -= transform.position.x;
+                    targetPos.y -= transform.position.y;
                     myAnimator.SetBool("Attack", false);
                 }
             }
         }
         transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg);
-    }
-
-    
-    public void Damage(int damageValue)
-    {
-        hp -= damageValue;
-        if (hp <= 0)
-        {
-            Decay();
-        }
-    }
-
-    void Decay()
-    {
-        daddy.transform.parent.GetComponent<TileScript>().myTilemap.SetTile(daddy.transform.parent.GetComponent<TileScript>().CheckTile(), daddy.transform.parent.GetComponent<TileScript>().tilledSoil);
-        Destroy(daddy); 
     }
 }
