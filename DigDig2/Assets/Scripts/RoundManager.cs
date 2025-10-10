@@ -20,6 +20,7 @@ public class RoundManager : MonoBehaviour
     [SerializeField] int numberOfEnemies;
     [SerializeField] int enemyPoints;
     [SerializeField] GameObject[] enemyPrefabs;
+    [SerializeField] GameObject bossPrefab;
     bool generatingPoints;
     bool spawningEnemy;
 
@@ -27,7 +28,6 @@ public class RoundManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI myText;
     [SerializeField] float fadeDuration;
     [SerializeField] float textDuration;
-
 
     void Start()
     {
@@ -37,7 +37,6 @@ public class RoundManager : MonoBehaviour
         bool upLaneOpen = isLaneOpen[2];
         generatingPoints = false;
     }
-
 
     void Update()
     {
@@ -49,10 +48,17 @@ public class RoundManager : MonoBehaviour
         {
             EndDay();
         }
-        if (( (60 <= time && time < 61) || (120 <= time && time < 121) || (180 <= time && time < 181) || (240 <= time && time < 241)) && !generatingPoints) //generate enemy points every minute
+        if (( (60 <= time && time < 61) || (120 <= time && time < 121) || (180 <= time && time < 181) || (240 <= time && time < 241 && day != 10)) && !generatingPoints) //generate enemy points every minute
         {
             StartCoroutine(TextFadeCoroutine(new Color(myText.color.r,myText.color.g,myText.color.b,0),new Color(myText.color.r,myText.color.g,myText.color.b,1), "A Wave of Beasts is Coming, Prepare Yourself!"));
             StartCoroutine(GenerateEnemyPoints());
+        }
+
+        if ((240 <= time && time < 241) && day >= 10) //creates special text and spawns a boss on the final wave on all days including and follow the tenth
+        {
+            StartCoroutine(TextFadeCoroutine(new Color(myText.color.r, myText.color.g, myText.color.b, 0), new Color(myText.color.r, myText.color.g, myText.color.b, 1), "A Terrifying Foe Approaches From Below! A Massive Wave of Beasts is Coming!"));
+            StartCoroutine(GenerateEnemyPoints());
+            Instantiate(bossPrefab, lanes[0].transform.position, Quaternion.identity);
         }
 
         if (enemyPoints > 0 && !spawningEnemy)
@@ -66,22 +72,29 @@ public class RoundManager : MonoBehaviour
 
     void OpenNewLane()
     {
-        if (day == 3)
+        if (day == 3) //opens the right lane on the third day
         {
             isLaneOpen[0] = true;
+            StartCoroutine(TextFadeCoroutine(new Color(myText.color.r, myText.color.g, myText.color.b, 0), new Color(myText.color.r, myText.color.g, myText.color.b, 1), "The Beasts Have Opened a New Path, They Can Come From The Right Side Now..."));
         }
-
-        if (day == 5)
+        
+        if (day == 5) //opens the top lane on the fifth day
         {
             isLaneOpen[1] = true;
+            StartCoroutine(TextFadeCoroutine(new Color(myText.color.r, myText.color.g, myText.color.b, 0), new Color(myText.color.r, myText.color.g, myText.color.b, 1), "The Beasts Have Opened a New Path, They Can Come From The Top Side Now..."));
         }
 
-        if (day == 7)
+        if (day == 7) //opens the left lane on the seventh day
         {
             isLaneOpen[2] = true;
+            StartCoroutine(TextFadeCoroutine(new Color(myText.color.r, myText.color.g, myText.color.b, 0), new Color(myText.color.r, myText.color.g, myText.color.b, 1), "The Beasts Have Opened a New Path, They Can Come From The Left Side Now..."));
+        }
+
+        if (day == 10) //special text warning of the boss on the tenth day
+        {
+            StartCoroutine(TextFadeCoroutine(new Color(myText.color.r, myText.color.g, myText.color.b, 0), new Color(myText.color.r, myText.color.g, myText.color.b, 1), "The Ground Rumbles, Something Terrifying is Coming Today!"));
         }
     }
-
 
     IEnumerator TextFadeCoroutine(Color startColor, Color targetColor, string textText)
     {
@@ -114,7 +127,6 @@ public class RoundManager : MonoBehaviour
         }
         yield return new WaitForSeconds(fadeDuration);
     }
-
 
     IEnumerator GenerateEnemyPoints()
     {
@@ -153,7 +165,7 @@ public class RoundManager : MonoBehaviour
         {
             yield return new WaitForSeconds(Random.Range(1, 4));
             whatLane = Mathf.RoundToInt(Random.Range(0, maxLane)); //decides what lane the enemy will spawn on
-            whatEnemy = Mathf.RoundToInt(Random.Range(0, 2));
+            whatEnemy = Mathf.RoundToInt(Random.Range(0, 2)); //decides what enemy to spawn
             BoxCollider2D laneCollider = lanes[whatLane].GetComponent<BoxCollider2D>();
             float topSide = laneCollider.size.y + lanes[whatLane].transform.position.y;
             float bottomSide = -laneCollider.size.y + lanes[whatLane].transform.position.y;
@@ -174,11 +186,10 @@ public class RoundManager : MonoBehaviour
         yield return null;
     }
 
-
-
     void EndDay()
     {
         day++;
+        OpenNewLane();
         time = 0;
     }
 }
