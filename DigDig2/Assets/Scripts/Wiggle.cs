@@ -12,7 +12,7 @@ public class Wiggle : MonoBehaviour
     }
     void Update()
     {
-        time += Time.deltaTime * 0.1f;
+        time += Time.deltaTime;
         if (time >= wiggleTime.length/2)
         {
             transform.position = WigglePos + origin;

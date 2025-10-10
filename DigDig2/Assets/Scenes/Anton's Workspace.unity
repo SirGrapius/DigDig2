@@ -834,7 +834,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Wiggle
   WigglePos: {x: 0, y: -0.15625}
-  wiggleTime: {fileID: 7400000, guid: 3c6cb2a23852607448ed3f1adae9da68, type: 2}
+  wiggleTime: {fileID: 7400000, guid: a263fa507ea2c8146a96c5aa9bd8a756, type: 2}
 --- !u!1 &1967474949
 GameObject:
   m_ObjectHideFlags: 0
@@ -953,6 +953,10 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2934945628274298477, guid: 72f2c7a596b034a4ab7fd959f586b81a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1409977935346423602, guid: 48b95a8c15558fa4a8094bd31de4e8e8, type: 3}
     - target: {fileID: 2934945628274298477, guid: 72f2c7a596b034a4ab7fd959f586b81a, type: 3}
       propertyPath: m_Enabled
       value: 1
