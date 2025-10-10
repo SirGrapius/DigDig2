@@ -34,7 +34,7 @@ public class RoundManager : MonoBehaviour
 
     void Update()
     {
-        if (time < maxRoundTime) //change time to Time.deltaTime
+        if (time < maxRoundTime) //changes time to Time.deltaTime
         {
             time += Time.deltaTime;
         }
