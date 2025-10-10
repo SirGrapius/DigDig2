@@ -1,5 +1,6 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Enemy : MonoBehaviour
 {
@@ -9,8 +10,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] float detectRange = 5f;
     [SerializeField] float attackRange = 1.5f;
     [SerializeField] bool bloodlust = false;
+    [SerializeField] bool isAttacking = false;
+    private int currentDirection = -1; 
 
     [SerializeField] CircleCollider2D mainCollider;
+    [SerializeField] Animator animator;
 
     [Header("Targets")]
     [SerializeField] GameObject mainTarget;
@@ -29,26 +33,35 @@ public class Enemy : MonoBehaviour
     {
         RotateFrontCollider();
         FindClosestPlant();
+        CallAnimations();
 
         if (mainCollider != null) { mainCollider.radius = detectRange; }
         mainTargetDist = mainTarget ? Vector2.Distance(transform.position, mainTarget.transform.position) : Mathf.Infinity;
 
         if (mainTarget != null && mainTargetDist <= attackRange)
         {
+            isAttacking = true;
+
             // Attack maintarget
         }
         else if (closestPlant != null && closestPlantDist <= attackRange)
         {
+            isAttacking = true;
+
             AttackClosestPlant();
         }
         else if (closestPlant != null && closestPlantDist <= detectRange && closestPlantDist < mainTargetDist)
         {
+            isAttacking = false;
+
             MoveTowardsTarget(closestPlant.transform.position);
         }
         else
         {
             if (mainTarget != null)
             {
+                isAttacking = false;
+
                 MoveTowardsTarget(mainTarget.transform.position);
             }
         }
@@ -79,6 +92,38 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    void CallAnimations()
+    {
+        if (closestPlant == null) return;
+
+        // Make this target main target if closest plant = null or is not detected. 
+
+        Vector2 direction = (closestPlant.transform.position - transform.position).normalized;
+
+        int newDirectionIndex;
+
+        if (isAttacking! && Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        {
+            newDirectionIndex = direction.x > 0 ? 1 : 3; 
+        }
+        else if(isAttacking!)
+        {
+            newDirectionIndex = direction.y > 0 ? 0 : 2;
+        }
+        else
+        {
+            newDirectionIndex = 4;
+        }
+
+        if (newDirectionIndex != currentDirection)
+        {
+            currentDirection = newDirectionIndex;
+            Debug.Log(currentDirection);
+            animator.SetInteger("Direction", currentDirection);
+        }
+    }
+
+
     void MoveTowardsTarget(Vector2 targetPos)
     {
         transform.position = Vector2.MoveTowards(transform.position, targetPos, movementSpeed * Time.deltaTime);
@@ -98,7 +143,7 @@ public class Enemy : MonoBehaviour
     {
         if (closestPlant == null) return;
         
-        
+        // Call damage method on selected plant
     }
 
     private void OnDrawGizmosSelected()
