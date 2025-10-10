@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
@@ -22,6 +23,12 @@ public class RoundManager : MonoBehaviour
     bool generatingPoints;
     bool spawningEnemy;
 
+    [Header("Text Settings")]
+    [SerializeField] TextMeshProUGUI myText;
+    [SerializeField] float fadeDuration;
+    [SerializeField] float textDuration;
+
+
     void Start()
     {
         day = 1;
@@ -42,8 +49,9 @@ public class RoundManager : MonoBehaviour
         {
             EndDay();
         }
-        if (((0 <= time && time < 1) || (60 <= time && time < 61) || (120 <= time && time < 121) || (180 <= time && time < 181) || (240 <= time && time < 241)) && !generatingPoints) //generate enemy points every minute
+        if (( (60 <= time && time < 61) || (120 <= time && time < 121) || (180 <= time && time < 181) || (240 <= time && time < 241)) && !generatingPoints) //generate enemy points every minute
         {
+            StartCoroutine(TextFadeCoroutine(new Color(myText.color.r,myText.color.g,myText.color.b,0),new Color(myText.color.r,myText.color.g,myText.color.b,1), "A Wave of Beasts is Coming, Prepare Yourself!"));
             StartCoroutine(GenerateEnemyPoints());
         }
 
@@ -73,6 +81,40 @@ public class RoundManager : MonoBehaviour
             isLaneOpen[2] = true;
         }
     }
+
+
+    IEnumerator TextFadeCoroutine(Color startColor, Color targetColor, string textText)
+    {
+        float elapsedTime = 0;
+        float elapsedPercentage = 0;
+        myText.text = textText;
+        while (elapsedPercentage < 1)
+        {
+            elapsedPercentage = elapsedTime / fadeDuration;
+            myText.color = Color.Lerp(startColor, targetColor, elapsedPercentage);
+
+            yield return null;
+            elapsedTime += Time.deltaTime;
+        }
+        yield return new WaitForSeconds(fadeDuration);
+        yield return new WaitForSeconds(textDuration);
+        StartCoroutine(TextFadeOutCoroutine(targetColor, startColor));
+    }
+    IEnumerator TextFadeOutCoroutine(Color startColor, Color targetColor)
+    {
+        float elapsedTime = 0;
+        float elapsedPercentage = 0;
+        while (elapsedPercentage < 1)
+        {
+            elapsedPercentage = elapsedTime / fadeDuration;
+            myText.color = Color.Lerp(startColor, targetColor, elapsedPercentage);
+
+            yield return null;
+            elapsedTime += Time.deltaTime;
+        }
+        yield return new WaitForSeconds(fadeDuration);
+    }
+
 
     IEnumerator GenerateEnemyPoints()
     {
