@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PlantScript : MonoBehaviour
 {
+    ClosestEnemy targeting;
     [SerializeField] GameObject daddy;
     Vector2 targetPos;
-    [SerializeField] GameObject[] enemies;
     float time;
     [SerializeField] float attackFrequency;
     [SerializeField] int hp;
@@ -12,9 +12,13 @@ public class PlantScript : MonoBehaviour
     [SerializeField] AnimationClip attackAnim;
     bool ready;
 
+    void Awake()
+    {
+        targeting = GetComponent<ClosestEnemy>();
+    }
+
     void Update()
     {
-        
         if (!ready)
         {
             time += Time.deltaTime;
@@ -22,7 +26,7 @@ public class PlantScript : MonoBehaviour
         if (time >= attackFrequency)
         {
             ready = true;
-            if (Target() != null)
+            if (targeting.Target() != null)
             {
                 time += Time.deltaTime;
                 myAnimator.SetBool("Attack", true);
@@ -30,7 +34,7 @@ public class PlantScript : MonoBehaviour
                 {
                     ready = false;
                     time -= attackFrequency + attackAnim.length;
-                    targetPos = Target().transform.position;
+                    targetPos = targeting.Target().transform.position;
                     targetPos.x = targetPos.x - transform.position.x;
                     targetPos.y = targetPos.y - transform.position.y;
                     myAnimator.SetBool("Attack", false);
@@ -40,28 +44,7 @@ public class PlantScript : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg);
     }
 
-    GameObject Target()
-    {
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        if (enemies.Length > 0)
-        {
-            for (int i = 0; i < enemies.Length; i++)
-            {
-                Vector2 v0 = enemies[0].transform.position;
-                v0.x -= transform.position.x;
-                v0.y -= transform.position.y;
-                Vector2 v = enemies[i].transform.position;
-                v.x -= transform.position.x;
-                v.y -= transform.position.y;
-                if (v.sqrMagnitude < v0.sqrMagnitude)
-                {
-                    enemies[0] = enemies[i];
-                }
-            }
-            return enemies[0];
-        }
-        return null;
-    }
+    
     public void Damage(int damageValue)
     {
         hp -= damageValue;
