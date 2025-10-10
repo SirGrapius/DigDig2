@@ -33,8 +33,8 @@ public class CottonScript : MonoBehaviour
                     ready = false;
                     time -= attackFrequency + attackAnim.length;
                     targetPos = targeting.Target().transform.position;
-                    targetPos.x = targetPos.x - transform.position.x;
-                    targetPos.y = targetPos.y - transform.position.y;
+                    targetPos.x -= transform.position.x;
+                    targetPos.y -= transform.position.y;
                     myAnimator.SetBool("Attack", false);
                 }
             }
