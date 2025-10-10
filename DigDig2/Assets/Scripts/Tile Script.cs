@@ -76,7 +76,7 @@ public class TileScript : MonoBehaviour
         if (!isInventory)
         {
             myTilePositionInt = CheckTile();
-            tileSelectBorder.position = myTilePositionInt;
+            tileSelectBorder.position = myTilePositionInt * (int)transform.parent.GetComponent<Grid>().cellSize.x;
             selectionTimer = 0.1f;
             if (myTile != myTilemap.GetTile<Tile>(myTilePositionInt))
             {
@@ -138,7 +138,7 @@ public class TileScript : MonoBehaviour
     public Vector3Int CheckTile()
     {
         Vector3 tilePosition = myCamera.ScreenToWorldPoint(Input.mousePosition);
-        tilePosition /= transform.localScale.x;
+        tilePosition /= transform.parent.GetComponent<Grid>().cellSize.x * transform.localScale.x;
         Vector3Int tilePositionInt = Vector3Int.FloorToInt(tilePosition);
         tilePositionInt.z = 0;
         return tilePositionInt;

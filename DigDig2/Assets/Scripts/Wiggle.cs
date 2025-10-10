@@ -12,6 +12,7 @@ public class Wiggle : MonoBehaviour
     }
     void Update()
     {
+
         time += Time.deltaTime;
         if (time >= wiggleTime.length/2)
         {
