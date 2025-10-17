@@ -5,7 +5,7 @@ using static UnityEngine.GraphicsBuffer;
 public class Enemy : MonoBehaviour
 {
     [Header("Stats")]
-    [SerializeField] int health = 5;
+    [SerializeField] int hp = 5;
     [SerializeField] float movementSpeed = 2f;
     [SerializeField] float detectRange = 5f;
     [SerializeField] float attackRange = 1.5f;
@@ -205,5 +205,19 @@ public class Enemy : MonoBehaviour
         {
             frontColliderPlants.Remove(other.gameObject);
         }
+    }
+
+    public void Damage(int damageValue)
+    {
+        hp -= damageValue;
+        if (hp <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
     }
 }
