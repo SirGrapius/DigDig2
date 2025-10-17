@@ -7,38 +7,56 @@ public class CottonScript : MonoBehaviour
     float time;
     [SerializeField] float attackFrequency;
     [SerializeField] Animator myAnimator;
+    [SerializeField] public Animator baseAnimator;
     [SerializeField] AnimationClip attackAnim;
+    [SerializeField] AnimationClip growAnim;
     bool ready;
+    bool growing;
 
     void Awake()
     {
         targeting = GetComponent<ClosestEnemy>();
+        growing = true;
     }
 
     void Update()
     {
-        if (!ready)
+        if (growing)
         {
             time += Time.deltaTime;
         }
-        if (time >= attackFrequency)
+        if (time >= growAnim.length)
         {
-            ready = true;
-            if (targeting.Target() != null)
+            baseAnimator.SetBool("Adult", true);
+            time = 0;
+            growing = false;
+        }
+
+        if (baseAnimator.GetBool("Adult"))
+        {
+            if (!ready)
             {
                 time += Time.deltaTime;
-                myAnimator.SetBool("Attack", true);
-                if (time >= attackFrequency + attackAnim.length)
+            }
+            if (time >= attackFrequency)
+            {
+                ready = true;
+                if (targeting.Target() != null)
                 {
-                    ready = false;
-                    time -= attackFrequency + attackAnim.length;
-                    targetPos = targeting.Target().transform.position;
-                    targetPos.x -= transform.position.x;
-                    targetPos.y -= transform.position.y;
-                    myAnimator.SetBool("Attack", false);
+                    time += Time.deltaTime;
+                    myAnimator.SetBool("Attack", true);
+                    if (time >= attackFrequency + attackAnim.length)
+                    {
+                        ready = false;
+                        time -= attackFrequency + attackAnim.length;
+                        targetPos = targeting.Target().transform.position;
+                        targetPos.x -= transform.position.x;
+                        targetPos.y -= transform.position.y;
+                        myAnimator.SetBool("Attack", false);
+                    }
                 }
             }
+            transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg);
         }
-        transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg);
     }
 }

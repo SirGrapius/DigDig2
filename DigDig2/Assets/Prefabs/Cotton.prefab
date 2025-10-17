@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7538703735128971600}
   - component: {fileID: 3247231788149898496}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlantScript
   attackFrequency: 1
   myAnimator: {fileID: 7585556059168892396}
+  baseAnimator: {fileID: 8865439386366426737}
   attackAnim: {fileID: 7400000, guid: 908d6c7d1f4b2624baef91a5578c2aa3, type: 2}
+  growAnim: {fileID: 7400000, guid: 6da8e6348efb96d459fc99508a3688d6, type: 2}
 --- !u!114 &7010418909444613086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,6 +283,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Wiggle
   WigglePos: {x: 0, y: -0.15625}
   wiggleTime: {fileID: 7400000, guid: a263fa507ea2c8146a96c5aa9bd8a756, type: 2}
+  top: {fileID: 5899832665033984898}
 --- !u!1 &8495913010246796608
 GameObject:
   m_ObjectHideFlags: 0
