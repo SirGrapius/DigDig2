@@ -24,9 +24,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] bool chargingAttack;
 
     [Header("Tool Settings")]
-    [SerializeField] bool usingHoe;
-    [SerializeField] bool usingCan;
-    [SerializeField] bool usingShovel;
+    [SerializeField] TileScript inventory;
 
 
     [Header("Audio")]
@@ -82,11 +80,11 @@ public class PlayerMovement : MonoBehaviour
             }
             if (usingCan) //if you're holding the watering can
             {
-                //do something
+                attacking = true;
             }
             if (usingHoe) //if you're using the hoe
             {
-                //do something
+                attacking = true;
             }
         }
         if (Input.GetKeyUp(KeyCode.Space) && chargingAttack) //unleash attack upon letting go of space
