@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 2714046168167833582}
   - component: {fileID: 7206875081165226953}
   - component: {fileID: 1548529780756979407}
+  - component: {fileID: 1310158651308162461}
   - component: {fileID: 7597524563141409593}
   m_Layer: 0
   m_Name: Enemy
@@ -220,6 +221,28 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 2.5
+--- !u!95 &1310158651308162461
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8747119926708553890}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dd458f68be8f5a34c96f6e753739c482, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &7597524563141409593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,12 +255,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b82dc670e322c7944be865abd8dd8841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PerformanceFriendlyBasicEnemy
-  health: 5
+  hp: 5
   movementSpeed: 2
   detectRange: 2.5
   attackRange: 1
   bloodlust: 0
+  isAttacking: 0
+  attackCooldown: 4
   mainCollider: {fileID: 1548529780756979407}
+  animator: {fileID: 1310158651308162461}
   mainTarget: {fileID: 0}
   frontColliderTransform: {fileID: 6704705294099058074}
   frontCollider: {fileID: 6194016403738622880}
