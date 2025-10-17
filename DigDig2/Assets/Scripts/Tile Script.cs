@@ -14,14 +14,14 @@ public class TileScript : MonoBehaviour
     [SerializeField] float selectionTimer;
 
     [Header("Planting and Inventory")]
-    [SerializeField] bool isInventory;
+    public bool isInventory;
     [SerializeField] Tile selectedInventoryTile;
     public int selectedTool;
     // 1 = hoe
     // 2 = watering can
     // 3 = shovel
     public Tile tilledSoil;
-    [SerializeField] Tile unTilledSoil;
+    public Tile unTilledSoil;
     [SerializeField] GameObject myInventory;
     [SerializeField] float useTimer;
     [SerializeField] float useTimerMax;
