@@ -3,6 +3,7 @@ using UnityEngine.Tilemaps;
 
 public class TileScript : MonoBehaviour
 {
+    [Header("Variables for selecting tiles")]
     public Tilemap myTilemap;
     [SerializeField] TilemapCollider2D myCollider;
     [SerializeField] Tile myTile;
@@ -12,6 +13,7 @@ public class TileScript : MonoBehaviour
     [SerializeField] Transform tileSelectBorder;
     [SerializeField] float selectionTimer;
 
+    [Header("Planting and Inventory")]
     [SerializeField] bool isInventory;
     [SerializeField] Tile selectedInventoryTile;
     public int selectedTool;
@@ -36,6 +38,28 @@ public class TileScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isInventory)
+        {
+            switch (selectedTool)
+            {
+                case 1:
+                    myInventory.transform.parent.GetChild(1).gameObject.SetActive(true);
+                    myInventory.transform.parent.GetChild(2).gameObject.SetActive(false);
+                    myInventory.transform.parent.GetChild(3).gameObject.SetActive(false);
+                    break;
+                case 2:
+                    myInventory.transform.parent.GetChild(1).gameObject.SetActive(false);
+                    myInventory.transform.parent.GetChild(2).gameObject.SetActive(true);
+                    myInventory.transform.parent.GetChild(3).gameObject.SetActive(false);
+                    break;
+                case 3:
+                    myInventory.transform.parent.GetChild(1).gameObject.SetActive(false);
+                    myInventory.transform.parent.GetChild(2).gameObject.SetActive(false);
+                    myInventory.transform.parent.GetChild(3).gameObject.SetActive(true);
+                    break;
+            }
+        }
+
         // making it so that the border disapears if the timer ends
         selectionTimer -= Time.deltaTime;
         if (selectionTimer <= 0 && !isInventory)
