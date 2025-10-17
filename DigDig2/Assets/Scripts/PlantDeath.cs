@@ -16,7 +16,7 @@ public class PlantDeath : MonoBehaviour
 
     public void Decay()
     {
-        daddy.transform.parent.GetComponent<TileScript>().myTilemap.SetTile(daddy.transform.parent.GetComponent<TileScript>().CheckTile(), daddy.transform.parent.GetComponent<TileScript>().tilledSoil);
+        daddy.transform.parent.GetComponent<TileScript>().myTilemap.SetTile(Vector3Int.FloorToInt(daddy.transform.position / daddy.transform.parent.GetComponent<Grid>().cellSize.x * transform.localScale.x), daddy.transform.parent.GetComponent<TileScript>().tilledSoil);
         Destroy(daddy);
     }
 }
