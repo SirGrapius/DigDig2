@@ -13,10 +13,9 @@ public class PlantDeath : MonoBehaviour
             Decay();
         }
     }
-
     public void Decay()
     {
-        daddy.transform.parent.GetComponent<TileScript>().myTilemap.SetTile(Vector3Int.FloorToInt(daddy.transform.position / daddy.transform.parent.GetComponent<Grid>().cellSize.x * transform.localScale.x), daddy.transform.parent.GetComponent<TileScript>().tilledSoil);
+        daddy.transform.parent.GetComponent<TileScript>().myTilemap.SetTile(Vector3Int.FloorToInt(transform.position / transform.parent.parent.GetComponent<Grid>().cellSize.x * transform.localScale.x), transform.parent.GetComponent<TileScript>().unTilledSoil);
         Destroy(daddy);
     }
 }
