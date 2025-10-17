@@ -5,13 +5,16 @@ using static UnityEngine.GraphicsBuffer;
 public class Enemy : MonoBehaviour
 {
     [Header("Stats")]
-    [SerializeField] int health = 5;
+    [SerializeField] int hp = 5;
     [SerializeField] float movementSpeed = 2f;
     [SerializeField] float detectRange = 5f;
     [SerializeField] float attackRange = 1.5f;
     [SerializeField] bool bloodlust = false;
     [SerializeField] bool isAttacking = false;
-    private int currentDirection = -1; 
+    [SerializeField] float attackCooldown = 4f; 
+    private float attackTimer;
+    private int currentDirection = -1;
+    private Vector2 direction;
 
     [SerializeField] CircleCollider2D mainCollider;
     [SerializeField] Animator animator;
@@ -35,7 +38,13 @@ public class Enemy : MonoBehaviour
         FindClosestPlant();
         CallAnimations();
 
-        if (mainCollider != null) { mainCollider.radius = detectRange; }
+        attackTimer -= Time.deltaTime;
+
+        if (mainCollider != null)
+        {
+            mainCollider.radius = detectRange;
+        }
+
         mainTargetDist = mainTarget ? Vector2.Distance(transform.position, mainTarget.transform.position) : Mathf.Infinity;
 
         if (mainTarget != null && mainTargetDist <= attackRange)
@@ -48,7 +57,11 @@ public class Enemy : MonoBehaviour
         {
             isAttacking = true;
 
-            AttackClosestPlant();
+            if (attackTimer <= 0f)
+            {
+                AttackClosestPlant();
+                attackTimer = attackCooldown;
+            }
         }
         else if (closestPlant != null && closestPlantDist <= detectRange && closestPlantDist < mainTargetDist)
         {
@@ -94,19 +107,22 @@ public class Enemy : MonoBehaviour
 
     void CallAnimations()
     {
-        if (closestPlant == null) return;
+        if(closestPlant != null)
+        {
+            direction = (closestPlant.transform.position - transform.position).normalized;
+        }
+        else
+        {
+            direction = (mainTarget.transform.position - transform.position).normalized;
+        }
 
-        // Make this target main target if closest plant = null or is not detected. 
+            int newDirectionIndex;
 
-        Vector2 direction = (closestPlant.transform.position - transform.position).normalized;
-
-        int newDirectionIndex;
-
-        if (isAttacking! && Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        if (isAttacking == false && Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
         {
             newDirectionIndex = direction.x > 0 ? 1 : 3; 
         }
-        else if(isAttacking!)
+        else if(isAttacking == false)
         {
             newDirectionIndex = direction.y > 0 ? 0 : 2;
         }
@@ -122,7 +138,6 @@ public class Enemy : MonoBehaviour
             animator.SetInteger("Direction", currentDirection);
         }
     }
-
 
     void MoveTowardsTarget(Vector2 targetPos)
     {
@@ -142,8 +157,17 @@ public class Enemy : MonoBehaviour
     void AttackClosestPlant()
     {
         if (closestPlant == null) return;
-        
-        // Call damage method on selected plant
+
+        PlantDeath plantScript = closestPlant.GetComponent<PlantDeath>();
+
+        if (plantScript != null)
+        {
+            plantScript.Damage(1);
+        }
+        else
+        {
+            Debug.LogWarning("No PlantDeath script found");
+        }
     }
 
     private void OnDrawGizmosSelected()
@@ -181,5 +205,19 @@ public class Enemy : MonoBehaviour
         {
             frontColliderPlants.Remove(other.gameObject);
         }
+    }
+
+    public void Damage(int damageValue)
+    {
+        hp -= damageValue;
+        if (hp <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
     }
 }

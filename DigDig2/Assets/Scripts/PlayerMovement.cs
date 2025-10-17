@@ -24,9 +24,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] bool chargingAttack;
 
     [Header("Tool Settings")]
-    [SerializeField] bool usingHoe;
-    [SerializeField] bool usingCan;
-    [SerializeField] bool usingShovel;
+    [SerializeField] TileScript inventory;
 
 
     [Header("Audio")]
@@ -76,17 +74,17 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space)) //use your current tool
         {
-            if (usingShovel && !onCooldown) //if you're holding the shovel charge attack
+            if (inventory.selectedTool == 3 && !onCooldown) //if you're holding the shovel charge attack
             {
                 chargingAttack = true;
             }
-            if (usingCan) //if you're holding the watering can
+            if (inventory.selectedTool == 2) //if you're holding the watering can
             {
-                //do something
+                attacking = true;
             }
-            if (usingHoe) //if you're using the hoe
+            if (inventory.selectedTool == 1) //if you're using the hoe
             {
-                //do something
+                attacking = true;
             }
         }
         if (Input.GetKeyUp(KeyCode.Space) && chargingAttack) //unleash attack upon letting go of space
@@ -123,22 +121,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy" && usingShovel && attacking) //check if you're attacking and there's an enemy in your hitbox and do damage.
+        if (collision.gameObject.tag == "Enemy" && inventory.selectedTool == 3 && attacking) //check if you're attacking and there's an enemy in your hitbox and do damage.
         {
             //EnemyController enemyScript = enemy.GetComponent<EnemyController>();
             //enemyScript.HP -= damage;
             Debug.Log("bam, boom, wop");
             attacking = false;
-        }
-        if (collision.gameObject.tag == "Plant" && usingCan && attacking)
-        {
-            CottonScript plantScript = collision.gameObject.GetComponent<CottonScript>();
-            //reference to plant script where it enables a watered bool
-        }
-        if (collision.gameObject.tag == "Plant" && usingHoe && attacking)
-        {
-            CottonScript plantScript = collision.gameObject.GetComponent<CottonScript>();
-            //if (plantScript.tilled != true) {plantScript.tilled = true;}
         }
     }
 

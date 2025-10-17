@@ -14,7 +14,7 @@ public class TileScript : MonoBehaviour
 
     [SerializeField] bool isInventory;
     [SerializeField] Tile selectedInventoryTile;
-    [SerializeField] int selectedTool;
+    public int selectedTool;
     // 1 = hoe
     // 2 = watering can
     // 3 = shovel
