@@ -174,7 +174,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -5512172602125349811, guid: 0f6796343be188c41b0cf3721ee115fc, type: 3}
   m_Color: {r: 0.32650888, g: 0.2014159, b: 0.9559748, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -261,10 +261,9 @@ MonoBehaviour:
   attackRange: 1
   bloodlust: 0
   isAttacking: 0
-  attackCooldown: 4
+  attackCooldown: 2.5
   mainCollider: {fileID: 1548529780756979407}
   animator: {fileID: 1310158651308162461}
-  mainTarget: {fileID: 0}
   frontColliderTransform: {fileID: 6704705294099058074}
   frontCollider: {fileID: 6194016403738622880}
   nearbyPlants: []
