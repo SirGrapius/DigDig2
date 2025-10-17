@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlantDeath : MonoBehaviour
 {
     [SerializeField] GameObject daddy;
-    int hp;
+    [SerializeField] int hp;
 
     public void Damage(int damageValue)
     {

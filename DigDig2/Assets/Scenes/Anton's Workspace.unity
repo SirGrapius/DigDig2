@@ -119,17 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &115609870 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5899832665033984898, guid: 72f2c7a596b034a4ab7fd959f586b81a, type: 3}
-  m_PrefabInstance: {fileID: 2145813646}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d1154363e5c854cbcdabab610d021e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlantScript
 --- !u!1 &695014168
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,11 +349,6 @@ Transform:
 --- !u!4 &910627654 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4479180882360130531, guid: 72f2c7a596b034a4ab7fd959f586b81a, type: 3}
-  m_PrefabInstance: {fileID: 2145813646}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &910627655 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 8865439386366426737, guid: 72f2c7a596b034a4ab7fd959f586b81a, type: 3}
   m_PrefabInstance: {fileID: 2145813646}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &918819546
@@ -947,24 +931,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5899832665033984898, guid: 72f2c7a596b034a4ab7fd959f586b81a, type: 3}
-      propertyPath: growAnim
-      value: 
-      objectReference: {fileID: 7400000, guid: 6da8e6348efb96d459fc99508a3688d6, type: 2}
-    - target: {fileID: 5899832665033984898, guid: 72f2c7a596b034a4ab7fd959f586b81a, type: 3}
-      propertyPath: baseAnimator
-      value: 
-      objectReference: {fileID: 910627655}
-    - target: {fileID: 6048803574622191328, guid: 72f2c7a596b034a4ab7fd959f586b81a, type: 3}
-      propertyPath: top
-      value: 
-      objectReference: {fileID: 115609870}
     - target: {fileID: 8495913010246796608, guid: 72f2c7a596b034a4ab7fd959f586b81a, type: 3}
       propertyPath: m_Name
       value: Cotton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2481215213617570499, guid: 72f2c7a596b034a4ab7fd959f586b81a, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72f2c7a596b034a4ab7fd959f586b81a, type: 3}

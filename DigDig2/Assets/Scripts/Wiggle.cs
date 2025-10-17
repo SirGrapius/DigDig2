@@ -7,7 +7,8 @@ public class Wiggle : MonoBehaviour
     [SerializeField] AnimationClip wiggleTime;
     [SerializeField] CottonScript top;
     float time;
-    private void Awake()
+
+    public void OriginPoint()
     {
         origin = transform.position;
     }

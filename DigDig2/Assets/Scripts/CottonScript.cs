@@ -3,6 +3,8 @@ using UnityEngine;
 public class CottonScript : MonoBehaviour
 {
     ClosestEnemy targeting;
+    [SerializeField] Wiggle animMoving;
+    [SerializeField] GameObject Attack;
     Vector2 targetPos;
     float time;
     [SerializeField] float attackFrequency;
@@ -10,6 +12,7 @@ public class CottonScript : MonoBehaviour
     [SerializeField] public Animator baseAnimator;
     [SerializeField] AnimationClip attackAnim;
     [SerializeField] AnimationClip growAnim;
+    [SerializeField] Transform Base;
     bool ready;
     bool growing;
 
@@ -25,11 +28,12 @@ public class CottonScript : MonoBehaviour
         {
             time += Time.deltaTime;
         }
-        if (time >= growAnim.length)
+        if (growing && time >= growAnim.length)
         {
             baseAnimator.SetBool("Adult", true);
             time = 0;
             growing = false;
+            animMoving.OriginPoint();
         }
 
         if (baseAnimator.GetBool("Adult"))
@@ -52,7 +56,18 @@ public class CottonScript : MonoBehaviour
                         targetPos = targeting.Target().transform.position;
                         targetPos.x -= transform.position.x;
                         targetPos.y -= transform.position.y;
+                        switch (targetPos.x)
+                        {
+                            case > 0:
+                                Base.localScale = new Vector3(-1, 1, 1);
+                                break;
+                            case < 0:
+                                Base.localScale = Vector3.one;
+                                break;
+
+                        }
                         myAnimator.SetBool("Attack", false);
+                        Instantiate(Attack, transform.position, Quaternion.identity);
                     }
                 }
             }

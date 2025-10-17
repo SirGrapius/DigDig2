@@ -3,6 +3,7 @@ using UnityEngine;
 public class CottonParticle : MonoBehaviour
 {
     [SerializeField] float Speed;
+    Vector2 origin;
     Vector2 target;
     ClosestEnemy getTarget;
     void Awake()
@@ -13,6 +14,7 @@ public class CottonParticle : MonoBehaviour
     void Start()
     {
         target = getTarget.Target().transform.position;
+        origin = transform.position;
     }
     void Update()
     {
