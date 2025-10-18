@@ -20,7 +20,7 @@ public class CottonParticle : MonoBehaviour
     }
     void Update()
     {
-        transform.position += Vector3.MoveTowards(origin, target, speed * Time.deltaTime) - origin;
+        transform.position += Vector3.Normalize(Vector3.Lerp(origin, target, 1) - origin) * speed * Time.deltaTime;
         time += Time.deltaTime;
         if (time >= lifespan)
         {
