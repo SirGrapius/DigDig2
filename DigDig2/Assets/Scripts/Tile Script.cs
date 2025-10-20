@@ -25,6 +25,9 @@ public class TileScript : MonoBehaviour
     [SerializeField] GameObject myInventory;
     [SerializeField] float useTimer;
     [SerializeField] float useTimerMax;
+    [SerializeField] GameObject pickedUpPlant;
+    [SerializeField] Tile pickedUpPlantType;
+    [SerializeField] Vector3 pickedUpPlantPosition;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -59,7 +62,10 @@ public class TileScript : MonoBehaviour
                     break;
             }
         }
-
+        if (pickedUpPlant != null)
+        {
+            pickedUpPlant.transform.position = myCamera.ScreenToWorldPoint(Input.mousePosition);
+        }
         // making it so that the border disapears if the timer ends
         selectionTimer -= Time.deltaTime;
         if (selectionTimer <= 0 && !isInventory)
@@ -133,9 +139,22 @@ public class TileScript : MonoBehaviour
                 }
                 if (useTimer > useTimerMax)
                 {
-                    selectedInventoryTile = myInventory.GetComponent<TileScript>().selectedInventoryTile;
-                    myTilemap.SetTile(myTilePositionInt, selectedInventoryTile);
-                    useTimer = 0;
+                    if (pickedUpPlant == null)
+                    {
+                        selectedInventoryTile = myInventory.GetComponent<TileScript>().selectedInventoryTile;
+                        myTilemap.SetTile(myTilePositionInt, selectedInventoryTile);
+                        useTimer = 0;
+                    }
+                    else
+                    {
+                        selectedInventoryTile = myInventory.GetComponent<TileScript>().selectedInventoryTile;
+                        myTilemap.SetTile(myTilePositionInt, pickedUpPlantType);
+                        Destroy(transform.GetChild(transform.childCount - 1).gameObject);
+                        pickedUpPlantPosition = CheckTile() * (int)transform.parent.GetComponent<Grid>().cellSize.x + new Vector3Int(1, 1, 0);
+                        pickedUpPlant.transform.position = pickedUpPlantPosition;
+                        pickedUpPlant = null;
+                        useTimer = 0;
+                    }
                 }
             }
             else if (selectedTool == 1 && myTile == unTilledSoil)
@@ -159,6 +178,35 @@ public class TileScript : MonoBehaviour
             }
         }
     }
+    private void OnMouseDown()
+    {
+        if (selectedTool == 3 && pickedUpPlant == null)
+        {
+            for (int i = 0; i < (transform.childCount); i++)
+            {
+                Debug.Log(transform.GetChild(i).transform.position + " " + CheckTile() * (int)transform.parent.GetComponent<Grid>().cellSize.x + new Vector3Int(1, 1, 0));
+                if (transform.GetChild(i).transform.position == CheckTile()
+                    * (int)transform.parent.GetComponent<Grid>().cellSize.x
+                    + new Vector3Int(1, 1, 0)
+                    && pickedUpPlant == null)
+                {
+                    pickedUpPlant = Instantiate(transform.GetChild(i).gameObject);
+                    pickedUpPlant.transform.parent = transform;
+                    pickedUpPlantType = myTilemap.GetTile<Tile>(CheckTile());
+                    Debug.Log((CheckTile()));
+                    myTilemap.SetTile(CheckTile(), tilledSoil);
+                    
+                    if (transform.GetChild(i).transform.position == CheckTile()
+                    * (int)transform.parent.GetComponent<Grid>().cellSize.x
+                    + new Vector3Int(1, 1, 0))
+                    {
+                        Destroy(transform.GetChild(i).gameObject);
+                    }
+                }
+            }
+        }
+    }
+
     public Vector3Int CheckTile()
     {
         Vector3 tilePosition = myCamera.ScreenToWorldPoint(Input.mousePosition);
