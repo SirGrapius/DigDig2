@@ -135,7 +135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &71514994
 Transform:
   m_ObjectHideFlags: 0
@@ -225,7 +225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &205339425
 Transform:
   m_ObjectHideFlags: 0
@@ -409,7 +409,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &979571308
 Transform:
   m_ObjectHideFlags: 0
@@ -729,6 +729,9 @@ MonoBehaviour:
   myInventory: {fileID: 0}
   useTimer: 0
   useTimerMax: 0
+  pickedUpPlant: {fileID: 0}
+  pickedUpPlantType: {fileID: 0}
+  pickedUpPlantPosition: {x: 0, y: 0, z: 0}
 --- !u!19719996 &1253396487
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -991,9 +994,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1253396485}
+  - {fileID: 71514994}
   - {fileID: 205339425}
   - {fileID: 979571308}
-  - {fileID: 71514994}
   m_Father: {fileID: 1210856289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &1685598963
@@ -1400,6 +1403,9 @@ MonoBehaviour:
   myInventory: {fileID: 1253396484}
   useTimer: 0
   useTimerMax: 0.5
+  pickedUpPlant: {fileID: 0}
+  pickedUpPlantType: {fileID: 0}
+  pickedUpPlantPosition: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
