@@ -10,12 +10,10 @@ public class ClosestEnemy : MonoBehaviour
         {
             for (int i = 0; i < enemies.Length; i++)
             {
-                Vector2 v0 = enemies[0].transform.position;
-                v0.x -= transform.position.x;
-                v0.y -= transform.position.y;
-                Vector2 v = enemies[i].transform.position;
-                v.x -= transform.position.x;
-                v.y -= transform.position.y;
+                Vector3 v0 = enemies[0].transform.position;
+                v0 -= transform.position;
+                Vector3 v = enemies[i].transform.position;
+                v -= transform.position;
                 if (v.sqrMagnitude < v0.sqrMagnitude)
                 {
                     enemies[0] = enemies[i];

@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float attackRange = 1.5f;
     [SerializeField] bool bloodlust = false;
     [SerializeField] bool isAttacking = false;
-    [SerializeField] float attackCooldown = 4f; 
+    [SerializeField] float attackCooldown = 3f; 
     private float attackTimer;
     private int currentDirection = -1;
     private Vector2 direction;
@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] Animator animator;
 
     [Header("Targets")]
-    [SerializeField] GameObject mainTarget;
+    private GameObject mainTarget;
     private float mainTargetDist;
     private GameObject closestPlant;
     private float closestPlantDist;
@@ -31,6 +31,12 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] List<GameObject> nearbyPlants = new List<GameObject>();
     [SerializeField] List<GameObject> frontColliderPlants = new List<GameObject>();
+
+
+    private void Start()
+    {
+        mainTarget = GameObject.FindGameObjectWithTag("mainTarget");
+    }
 
     void Update()
     {
@@ -134,7 +140,6 @@ public class Enemy : MonoBehaviour
         if (newDirectionIndex != currentDirection)
         {
             currentDirection = newDirectionIndex;
-            Debug.Log(currentDirection);
             animator.SetInteger("Direction", currentDirection);
         }
     }

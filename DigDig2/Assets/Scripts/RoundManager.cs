@@ -21,6 +21,7 @@ public class RoundManager : MonoBehaviour
     [SerializeField] int enemyPoints;
     [SerializeField] GameObject[] enemyPrefabs;
     [SerializeField] GameObject bossPrefab;
+    [SerializeField] float waveModifier;
     bool generatingPoints;
     bool spawningEnemy;
 
@@ -51,6 +52,7 @@ public class RoundManager : MonoBehaviour
         if (( (60 <= time && time < 61) || (120 <= time && time < 121) || (180 <= time && time < 181) || (240 <= time && time < 241 && day != 10)) && !generatingPoints) //generate enemy points every minute
         {
             StartCoroutine(TextFadeCoroutine(new Color(myText.color.r,myText.color.g,myText.color.b,0),new Color(myText.color.r,myText.color.g,myText.color.b,1), "A Wave of Beasts is Coming, Prepare Yourself!"));
+            waveModifier++;
             StartCoroutine(GenerateEnemyPoints());
         }
 
@@ -131,7 +133,7 @@ public class RoundManager : MonoBehaviour
     IEnumerator GenerateEnemyPoints()
     {
         generatingPoints = true;
-        enemyPoints = Mathf.RoundToInt(day * ((day * Mathf.Pow(2, day / 2)) / 100) + 1);
+        enemyPoints = Mathf.RoundToInt((day * (day * Mathf.Pow(2, day / 2) / 10) + day + waveModifier) * (1 + (waveModifier/10)))-1;
         yield return new WaitForSeconds(2);
         generatingPoints = false;
         yield return null;
@@ -172,7 +174,7 @@ public class RoundManager : MonoBehaviour
             float rightSide = laneCollider.size.x + lanes[whatLane].transform.position.x;
             float leftSide = -laneCollider.size.x + lanes[whatLane].transform.position.x;
             Vector3 spawnPos = new Vector3(Random.Range(leftSide, rightSide), Random.Range(bottomSide, topSide), 0);
-            if (day < 3)
+            if (day < 10)
             {
                 Instantiate(enemyPrefabs[0], spawnPos, Quaternion.identity);
             }
@@ -189,6 +191,7 @@ public class RoundManager : MonoBehaviour
     void EndDay()
     {
         day++;
+        waveModifier = 0;
         OpenNewLane();
         time = 0;
     }

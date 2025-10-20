@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class CottonParticle : MonoBehaviour
 {
-    [SerializeField] float Speed;
-    Vector2 origin;
-    Vector2 target;
+    [SerializeField] float speed;
+    [SerializeField] float lifespan = 5;
+    float time;
+    Vector3 origin;
+    Vector3 target;
     ClosestEnemy getTarget;
     void Awake()
     {
@@ -18,6 +20,11 @@ public class CottonParticle : MonoBehaviour
     }
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, target, Speed * Time.deltaTime);
+        transform.position += Vector3.Normalize(target - origin) * speed * Time.deltaTime;
+        time += Time.deltaTime;
+        if (time >= lifespan)
+        {
+            Destroy(gameObject);
+        }
     }
 }

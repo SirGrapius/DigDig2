@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3070243134995748040}
   m_Layer: 0
   m_Name: RoundHandler
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,6 +58,7 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 8747119926708553890, guid: 25f29ba933c1bb34289318be31152e25, type: 3}
   bossPrefab: {fileID: 0}
+  waveModifier: 0
   myText: {fileID: 0}
   fadeDuration: 3
   textDuration: 5
