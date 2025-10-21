@@ -6,17 +6,17 @@ public class CottonScript : MonoBehaviour
     [SerializeField] Wiggle animMoving;
     [SerializeField] GameObject Attack;
     Vector2 targetPos;
-    [SerializeField] float time;
+    public float time;
     [SerializeField] float stage1 = 30;
     [SerializeField] float stage2 = 60;
     [SerializeField] float stage3 = 90;
     [SerializeField] float attackFrequency;
     [SerializeField] Animator myAnimator;
-    [SerializeField] public Animator baseAnimator;
+    public Animator baseAnimator;
     [SerializeField] AnimationClip attackAnim;
     [SerializeField] Transform Base;
     bool ready;
-    bool growing;
+    public bool growing;
 
     void Awake()
     {
@@ -29,21 +29,21 @@ public class CottonScript : MonoBehaviour
         if (growing)
         {
             time += Time.deltaTime;
-        }
-        if (growing && time >= stage1)
-        {
-            baseAnimator.SetBool("Young", true);    
-        }
-        if (growing && time >= stage2)
-        {
-            baseAnimator.SetBool("Teen", true);
-        }
-        if (growing && time >= stage3)
-        {
-            baseAnimator.SetBool("Adult", true);
-            time = 0;
-            growing = false;
-            animMoving.OriginPoint();
+            if (time >= stage3)
+            {
+                baseAnimator.SetBool("Adult", true);
+                time = 0;
+                growing = false;
+                animMoving.OriginPoint();
+            }
+            else if (time >= stage2)
+            {
+                baseAnimator.SetBool("Teen", true);
+            }
+            else if (time >= stage1)
+            {
+                baseAnimator.SetBool("Young", true);
+            }
         }
 
         if (!growing)
