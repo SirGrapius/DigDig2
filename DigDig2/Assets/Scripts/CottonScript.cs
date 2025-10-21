@@ -17,6 +17,8 @@ public class CottonScript : MonoBehaviour
     [SerializeField] Transform Base;
     public bool ready;
     public bool growing;
+    public float waterAmount;
+    public float waterLoss;
 
     void Awake()
     {
@@ -28,7 +30,11 @@ public class CottonScript : MonoBehaviour
     {
         if (growing)
         {
-            time += Time.deltaTime;
+            time += Time.deltaTime * waterAmount;
+            if (waterAmount > 1)
+            {
+                waterAmount -= waterLoss * Time.deltaTime;
+            }
             if (time >= stage3)
             {
                 baseAnimator.SetBool("Adult", true);
