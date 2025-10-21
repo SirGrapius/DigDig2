@@ -119,63 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &376080502
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6052966136856338167, guid: 338414cc6333f304ab34600a61c5957f, type: 3}
-      propertyPath: m_Name
-      value: CottonParticle
-      objectReference: {fileID: 0}
-    - target: {fileID: 8242755065759746417, guid: 338414cc6333f304ab34600a61c5957f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 4.39001
-      objectReference: {fileID: 0}
-    - target: {fileID: 8242755065759746417, guid: 338414cc6333f304ab34600a61c5957f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.34
-      objectReference: {fileID: 0}
-    - target: {fileID: 8242755065759746417, guid: 338414cc6333f304ab34600a61c5957f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8242755065759746417, guid: 338414cc6333f304ab34600a61c5957f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8242755065759746417, guid: 338414cc6333f304ab34600a61c5957f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8242755065759746417, guid: 338414cc6333f304ab34600a61c5957f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8242755065759746417, guid: 338414cc6333f304ab34600a61c5957f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8242755065759746417, guid: 338414cc6333f304ab34600a61c5957f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8242755065759746417, guid: 338414cc6333f304ab34600a61c5957f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8242755065759746417, guid: 338414cc6333f304ab34600a61c5957f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 338414cc6333f304ab34600a61c5957f, type: 3}
 --- !u!1 &695014168
 GameObject:
   m_ObjectHideFlags: 0
@@ -948,6 +891,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 918819547}
     m_Modifications:
+    - target: {fileID: 2934945628274298477, guid: 72f2c7a596b034a4ab7fd959f586b81a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2678782030098918825, guid: 886cd8056dc0e1549bbbbb32672a5c99, type: 3}
     - target: {fileID: 4479180882360130531, guid: 72f2c7a596b034a4ab7fd959f586b81a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.5
@@ -988,6 +935,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5899832665033984898, guid: 72f2c7a596b034a4ab7fd959f586b81a, type: 3}
+      propertyPath: attackFrequency
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8495913010246796608, guid: 72f2c7a596b034a4ab7fd959f586b81a, type: 3}
       propertyPath: m_Name
       value: Cotton
@@ -1007,5 +958,4 @@ SceneRoots:
   - {fileID: 941215595}
   - {fileID: 1229584196}
   - {fileID: 1385354133}
-  - {fileID: 376080502}
   - {fileID: 1364917448}
