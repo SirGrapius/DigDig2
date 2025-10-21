@@ -56,7 +56,10 @@ MonoBehaviour:
   baseAnimator: {fileID: 8865439386366426737}
   attackAnim: {fileID: 7400000, guid: 908d6c7d1f4b2624baef91a5578c2aa3, type: 2}
   Base: {fileID: 4479180882360130531}
+  ready: 0
   growing: 1
+  waterAmount: 1
+  waterLoss: 0
 --- !u!114 &7010418909444613086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,7 +286,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_Sprite: {fileID: 1409977935346423602, guid: 48b95a8c15558fa4a8094bd31de4e8e8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
