@@ -15,7 +15,7 @@ public class CottonScript : MonoBehaviour
     public Animator baseAnimator;
     [SerializeField] AnimationClip attackAnim;
     [SerializeField] Transform Base;
-    bool ready;
+    public bool ready;
     public bool growing;
 
     void Awake()

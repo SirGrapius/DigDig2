@@ -732,6 +732,7 @@ MonoBehaviour:
   pickedUpPlant: {fileID: 0}
   pickedUpPlantType: {fileID: 0}
   pickedUpPlantPosition: {x: 0, y: 0, z: 0}
+  WateringCanEffect: 0
 --- !u!19719996 &1253396487
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -1406,6 +1407,7 @@ MonoBehaviour:
   pickedUpPlant: {fileID: 0}
   pickedUpPlantType: {fileID: 0}
   pickedUpPlantPosition: {x: 0, y: 0, z: 0}
+  WateringCanEffect: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
