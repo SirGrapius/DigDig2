@@ -17,7 +17,7 @@ public class CottonScript : MonoBehaviour
     [SerializeField] Transform Base;
     public bool ready;
     public bool growing;
-    public float waterAmount;
+    public float waterAmount = 1;
     public float waterLoss;
 
     void Awake()
