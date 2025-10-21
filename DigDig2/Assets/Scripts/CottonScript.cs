@@ -6,15 +6,15 @@ public class CottonScript : MonoBehaviour
     [SerializeField] Wiggle animMoving;
     [SerializeField] GameObject Attack;
     Vector2 targetPos;
-    float time;
+    public float time;
     [SerializeField] float attackFrequency;
     [SerializeField] Animator myAnimator;
     [SerializeField] public Animator baseAnimator;
     [SerializeField] AnimationClip attackAnim;
     [SerializeField] AnimationClip growAnim;
     [SerializeField] Transform Base;
-    bool ready;
-    bool growing;
+    public bool ready;
+    public bool growing;
 
     void Awake()
     {

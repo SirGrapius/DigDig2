@@ -152,6 +152,7 @@ public class TileScript : MonoBehaviour
                         Destroy(transform.GetChild(transform.childCount - 1).gameObject);
                         pickedUpPlantPosition = CheckTile() * (int)transform.parent.GetComponent<Grid>().cellSize.x + new Vector3Int(1, 1, 0);
                         pickedUpPlant.transform.position = pickedUpPlantPosition;
+                        pickedUpPlant.transform.GetChild(0).GetChild(0).GetComponent<CottonScript>().growing = true;
                         pickedUpPlant = null;
                         useTimer = 0;
                     }
@@ -184,7 +185,6 @@ public class TileScript : MonoBehaviour
         {
             for (int i = 0; i < (transform.childCount); i++)
             {
-                Debug.Log(transform.GetChild(i).transform.position + " " + CheckTile() * (int)transform.parent.GetComponent<Grid>().cellSize.x + new Vector3Int(1, 1, 0));
                 if (transform.GetChild(i).transform.position == CheckTile()
                     * (int)transform.parent.GetComponent<Grid>().cellSize.x
                     + new Vector3Int(1, 1, 0)
@@ -192,13 +192,21 @@ public class TileScript : MonoBehaviour
                 {
                     pickedUpPlant = Instantiate(transform.GetChild(i).gameObject);
                     pickedUpPlant.transform.parent = transform;
+
+                    pickedUpPlant.transform.GetChild(0).GetChild(0).GetComponent<CottonScript>().time
+                     = transform.GetChild(i).GetChild(0).GetChild(0).gameObject.GetComponent<CottonScript>().time;
+
+                    pickedUpPlant.transform.GetChild(0).GetChild(0).GetComponent<CottonScript>().growing
+                     = false;
+
                     pickedUpPlantType = myTilemap.GetTile<Tile>(CheckTile());
-                    Debug.Log((CheckTile()));
+                    Debug.Log(pickedUpPlant.transform.position);
                     myTilemap.SetTile(CheckTile(), tilledSoil);
-                    
+                    pickedUpPlant.transform.position += Vector3.one;
+
                     if (transform.GetChild(i).transform.position == CheckTile()
                     * (int)transform.parent.GetComponent<Grid>().cellSize.x
-                    + new Vector3Int(1, 1, 0))
+                    + new Vector3Int(1, 1, 0) && transform.GetChild(i) != pickedUpPlant)
                     {
                         Destroy(transform.GetChild(i).gameObject);
                     }
