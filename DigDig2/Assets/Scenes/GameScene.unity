@@ -1136,7 +1136,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 200
   m_Sprite: {fileID: 171126638824584893, guid: 4a7cbdb57aec3d64195f29f616b1fde4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1488,31 +1488,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3555575249437600807, guid: c5684a12af0e8ca4f9efd58a088e8b3d, type: 3}
-      propertyPath: hitbox
+      propertyPath: inventory
       value: 
-      objectReference: {fileID: 1487522588}
+      objectReference: {fileID: 1986980023}
     - target: {fileID: 7539446204207598589, guid: c5684a12af0e8ca4f9efd58a088e8b3d, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7539446204207598589, guid: c5684a12af0e8ca4f9efd58a088e8b3d, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7583093471538436204, guid: c5684a12af0e8ca4f9efd58a088e8b3d, type: 3}
-      propertyPath: m_Constraints
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5684a12af0e8ca4f9efd58a088e8b3d, type: 3}
---- !u!61 &1487522588 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 6622105905127003688, guid: c5684a12af0e8ca4f9efd58a088e8b3d, type: 3}
-  m_PrefabInstance: {fileID: 1487522587}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1672791723
 GameObject:
   m_ObjectHideFlags: 0
@@ -8771,7 +8758,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 200
   m_Sprite: {fileID: 8367391705746795088, guid: 3f1491aee72948e449f9e59a9a329328, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -9198,7 +9185,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 200
   m_Sprite: {fileID: -8456573214605861338, guid: 3498dd3392a014f48be8ef71e63aca9a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
