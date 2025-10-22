@@ -129,7 +129,7 @@ public class TileScript : MonoBehaviour
         // selecting a tile from the isInventory
         if (isInventory)
         {
-            myTilePositionInt = CheckTile();
+            myTilePositionInt = Vector3Int.FloorToInt(CheckInventoryTile());
             selectedInventoryTile = myTilemap.GetTile<Tile>(myTilePositionInt);
         }
         // using a tool or plant on a tile
@@ -211,8 +211,8 @@ public class TileScript : MonoBehaviour
                         if (transform.GetChild(i).transform.position == CheckTile()
                             * (int)transform.parent.GetComponent<Grid>().cellSize.x
                             + new Vector3Int(1, 1, 0))
-                        {
-                            transform.GetChild(i).GetChild(0).GetChild(0).gameObject.GetComponent<CottonScript>().time += WateringCanEffect;
+                        { 
+                            transform.GetChild(i).GetChild(0).GetChild(0).gameObject.GetComponent<CottonScript>().waterAmount = WateringCanEffect;
                         }
                     }
                     useTimer = 0;
@@ -263,6 +263,14 @@ public class TileScript : MonoBehaviour
     public Vector3Int CheckTile()
     {
         Vector3 tilePosition = myCamera.ScreenToWorldPoint(Input.mousePosition);
+        tilePosition /= transform.parent.GetComponent<Grid>().cellSize.x * transform.localScale.x;
+        Vector3Int tilePositionInt = Vector3Int.FloorToInt(tilePosition);
+        tilePositionInt.z = 0;
+        return tilePositionInt;
+    }
+    public Vector3Int CheckInventoryTile()
+    {
+        Vector3 tilePosition = myCamera.ScreenToWorldPoint(Input.mousePosition) - new Vector3(transform.parent.parent.position.x, transform.parent.parent.position.y, 0);
         tilePosition /= transform.parent.GetComponent<Grid>().cellSize.x * transform.localScale.x;
         Vector3Int tilePositionInt = Vector3Int.FloorToInt(tilePosition);
         tilePositionInt.z = 0;
