@@ -19,6 +19,7 @@ public class CottonScript : MonoBehaviour
     public bool growing;
     public float waterAmount = 1;
     public float waterLoss;
+    [SerializeField] float maxRange = 20;
 
     void Awake()
     {
@@ -61,7 +62,7 @@ public class CottonScript : MonoBehaviour
             if (time >= attackFrequency)
             {
                 ready = true;
-                if (targeting.Target() != null)
+                if (targeting.Target(maxRange) != null)
                 {
                     time += Time.deltaTime;
                     myAnimator.SetBool("Attack", true);
@@ -69,7 +70,7 @@ public class CottonScript : MonoBehaviour
                     {
                         ready = false;
                         time -= attackFrequency + attackAnim.length;
-                        targetPos = targeting.Target().transform.position;
+                        targetPos = targeting.Target(maxRange).transform.position;
                         targetPos.x -= transform.position.x;
                         targetPos.y -= transform.position.y;
                         switch (targetPos.x)

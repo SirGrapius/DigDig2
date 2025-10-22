@@ -108,6 +108,7 @@ MonoBehaviour:
   speed: 5
   lifespan: 5
   damageValue: 1
+  maxRange: 20
 --- !u!114 &5627121384795626317
 MonoBehaviour:
   m_ObjectHideFlags: 0

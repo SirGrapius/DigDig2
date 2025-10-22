@@ -9,6 +9,8 @@ public class CottonParticle : MonoBehaviour
     Vector3 origin;
     Vector3 target;
     ClosestEnemy getTarget;
+    [SerializeField] float maxRange = 20;
+
     void Awake()
     {
         getTarget = GetComponent<ClosestEnemy>();
@@ -16,7 +18,7 @@ public class CottonParticle : MonoBehaviour
     }
     void Start()
     {
-        target = getTarget.Target().transform.position;
+        target = getTarget.Target(maxRange).transform.position;
         origin = transform.position;
     }
     void Update()
