@@ -237,8 +237,8 @@ public class TileScript : MonoBehaviour
                     pickedUpPlant = Instantiate(transform.GetChild(i).gameObject);
                     pickedUpPlant.transform.parent = transform;
 
-                    pickedUpPlant.transform.GetChild(0).GetChild(0).GetComponent<CottonScript>().time
-                     = transform.GetChild(i).GetChild(0).GetChild(0).gameObject.GetComponent<CottonScript>().time;
+                    pickedUpPlant.transform.GetChild(0).GetChild(0).GetComponent<CottonScript>().growthTimer
+                     = transform.GetChild(i).GetChild(0).GetChild(0).gameObject.GetComponent<CottonScript>().growthTimer;
 
                     pickedUpPlant.transform.GetChild(0).GetChild(0).GetComponent<CottonScript>().growing
                      = false;

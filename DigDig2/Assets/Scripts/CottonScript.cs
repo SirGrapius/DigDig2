@@ -6,7 +6,8 @@ public class CottonScript : MonoBehaviour
     [SerializeField] Wiggle animMoving;
     [SerializeField] GameObject Attack;
     Vector2 targetPos;
-    public float time;
+    public float growthTimer;
+    float attackTimer;
     [SerializeField] float stage1 = 30;
     [SerializeField] float stage2 = 60;
     [SerializeField] float stage3 = 90;
@@ -31,23 +32,23 @@ public class CottonScript : MonoBehaviour
     {
         if (growing)
         {
-            time += Time.deltaTime * waterAmount;
+            growthTimer += Time.deltaTime * waterAmount;
             if (waterAmount > 1)
             {
                 waterAmount -= waterLoss * Time.deltaTime;
             }
-            if (time >= stage3)
+            if (growthTimer >= stage3)
             {
                 baseAnimator.SetBool("Adult", true);
-                time = 0;
+                growthTimer = 0;
                 growing = false;
                 animMoving.OriginPoint();
             }
-            else if (time >= stage2)
+            else if (growthTimer >= stage2)
             {
                 baseAnimator.SetBool("Teen", true);
             }
-            else if (time >= stage1)
+            else if (growthTimer >= stage1)
             {
                 baseAnimator.SetBool("Young", true);
             }
@@ -57,19 +58,19 @@ public class CottonScript : MonoBehaviour
         {
             if (!ready)
             {
-                time += Time.deltaTime;
+                attackTimer += Time.deltaTime;
             }
-            if (time >= attackFrequency)
+            if (attackTimer >= attackFrequency)
             {
                 ready = true;
                 if (targeting.Target(maxRange) != null)
                 {
-                    time += Time.deltaTime;
+                    attackTimer += Time.deltaTime;
                     myAnimator.SetBool("Attack", true);
-                    if (time >= attackFrequency + attackAnim.length)
+                    if (attackTimer >= attackFrequency + attackAnim.length)
                     {
                         ready = false;
-                        time -= attackFrequency + attackAnim.length;
+                        attackTimer -= attackFrequency + attackAnim.length;
                         targetPos = targeting.Target(maxRange).transform.position;
                         targetPos.x -= transform.position.x;
                         targetPos.y -= transform.position.y;
