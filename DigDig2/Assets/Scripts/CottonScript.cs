@@ -6,8 +6,7 @@ public class CottonScript : MonoBehaviour
     [SerializeField] Wiggle animMoving;
     [SerializeField] GameObject Attack;
     Vector2 targetPos;
-    public float growthTimer;
-    [SerializeField] float attackTimer;
+    public float time;
     [SerializeField] float stage1 = 30;
     [SerializeField] float stage2 = 60;
     [SerializeField] float stage3 = 90;
@@ -16,10 +15,11 @@ public class CottonScript : MonoBehaviour
     public Animator baseAnimator;
     [SerializeField] AnimationClip attackAnim;
     [SerializeField] Transform Base;
-    bool ready;
+    public bool ready;
     public bool growing;
     public float waterAmount = 1;
     public float waterLoss;
+    [SerializeField] float maxRange = 20;
 
     void Awake()
     {
@@ -31,23 +31,23 @@ public class CottonScript : MonoBehaviour
     {
         if (growing)
         {
-            growthTimer += Time.deltaTime * waterAmount;
+            time += Time.deltaTime * waterAmount;
             if (waterAmount > 1)
             {
                 waterAmount -= waterLoss * Time.deltaTime;
             }
-            if (growthTimer >= stage3)
+            if (time >= stage3)
             {
                 baseAnimator.SetBool("Adult", true);
-                growthTimer = 0;
+                time = 0;
                 growing = false;
                 animMoving.OriginPoint();
             }
-            else if (growthTimer >= stage2)
+            else if (time >= stage2)
             {
                 baseAnimator.SetBool("Teen", true);
             }
-            else if (growthTimer >= stage1)
+            else if (time >= stage1)
             {
                 baseAnimator.SetBool("Young", true);
             }
@@ -57,20 +57,20 @@ public class CottonScript : MonoBehaviour
         {
             if (!ready)
             {
-                attackTimer += Time.deltaTime;
+                time += Time.deltaTime;
             }
-            if (attackTimer >= attackFrequency)
+            if (time >= attackFrequency)
             {
                 ready = true;
-                if (targeting.Target() != null)
+                if (targeting.Target(maxRange) != null)
                 {
-                    attackTimer += Time.deltaTime;
+                    time += Time.deltaTime;
                     myAnimator.SetBool("Attack", true);
-                    if (attackTimer >= attackFrequency + attackAnim.length)
+                    if (time >= attackFrequency + attackAnim.length)
                     {
                         ready = false;
-                        attackTimer -= attackFrequency + attackAnim.length;
-                        targetPos = targeting.Target().transform.position;
+                        time -= attackFrequency + attackAnim.length;
+                        targetPos = targeting.Target(maxRange).transform.position;
                         targetPos.x -= transform.position.x;
                         targetPos.y -= transform.position.y;
                         switch (targetPos.x)
