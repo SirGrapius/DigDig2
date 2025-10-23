@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2763977109123387731}
   - component: {fileID: 1124581116544742098}
   - component: {fileID: 5627121384795626317}
+  - component: {fileID: 595655558202904575}
   m_Layer: 0
   m_Name: CottonParticle
   m_TagString: Untagged
@@ -104,7 +105,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f53f54ffb462d74988e2516500ce893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CottonParticle
-  Speed: 5
+  speed: 5
+  lifespan: 5
+  damageValue: 1
+  maxRange: 20
 --- !u!114 &5627121384795626317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,3 +122,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClosestEnemy
   enemies: []
+--- !u!58 &595655558202904575
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6052966136856338167}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.5

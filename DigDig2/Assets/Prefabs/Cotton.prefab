@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4328185523340668}
   - component: {fileID: 5899832665033984898}
   - component: {fileID: 7010418909444613086}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RotationPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,12 +47,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlantScript
   animMoving: {fileID: 6048803574622191328}
   Attack: {fileID: 6052966136856338167, guid: 338414cc6333f304ab34600a61c5957f, type: 3}
-  attackFrequency: 1
+  growthTimer: 0
+  attackTimer: 0
+  stage1: 30
+  stage2: 60
+  stage3: 90
+  attackFrequency: 2
   myAnimator: {fileID: 7585556059168892396}
   baseAnimator: {fileID: 8865439386366426737}
   attackAnim: {fileID: 7400000, guid: 908d6c7d1f4b2624baef91a5578c2aa3, type: 2}
-  growAnim: {fileID: 7400000, guid: 6da8e6348efb96d459fc99508a3688d6, type: 2}
   Base: {fileID: 4479180882360130531}
+  growing: 1
+  waterAmount: 1
+  waterLoss: 1
 --- !u!114 &7010418909444613086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,7 +85,7 @@ GameObject:
   - component: {fileID: 1895002142252219022}
   - component: {fileID: 7585556059168892396}
   - component: {fileID: 6048803574622191328}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +217,7 @@ GameObject:
   - component: {fileID: 6765443855941341142}
   - component: {fileID: 8865439386366426737}
   - component: {fileID: -5153899466286299918}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cotton
   m_TagString: Plant
   m_Icon: {fileID: 0}
@@ -279,7 +286,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_Sprite: {fileID: 1409977935346423602, guid: 48b95a8c15558fa4a8094bd31de4e8e8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
