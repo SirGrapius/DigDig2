@@ -1,6 +1,5 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class Enemy : MonoBehaviour
 {
@@ -16,8 +15,13 @@ public class Enemy : MonoBehaviour
     private int currentDirection = -1;
     private Vector2 direction;
 
-    [SerializeField] CircleCollider2D mainCollider;
+    [Header("Components")]
+    [SerializeField] CircleCollider2D detectCollider;
     [SerializeField] Animator animator;
+    [SerializeField] Transform frontColliderTransform;
+    [SerializeField] BoxCollider2D frontCollider;
+
+    BoxCollider2D mainTargetCollider;
 
     [Header("Targets")]
     private GameObject mainTarget;
@@ -26,16 +30,13 @@ public class Enemy : MonoBehaviour
     private float closestPlantDist;
 
     [Header("ChildStuff")]
-    [SerializeField] Transform frontColliderTransform;
-    [SerializeField] BoxCollider2D frontCollider;
-
     [SerializeField] List<GameObject> nearbyPlants = new List<GameObject>();
     [SerializeField] List<GameObject> frontColliderPlants = new List<GameObject>();
-
 
     private void Start()
     {
         mainTarget = GameObject.FindGameObjectWithTag("mainTarget");
+        mainTargetCollider = mainTarget.GetComponent<BoxCollider2D>();
     }
 
     void Update()
@@ -46,12 +47,13 @@ public class Enemy : MonoBehaviour
 
         attackTimer -= Time.deltaTime;
 
-        if (mainCollider != null)
+        if (detectCollider != null)
         {
-            mainCollider.radius = detectRange;
+            detectCollider.radius = detectRange;
         }
 
-        mainTargetDist = mainTarget ? Vector2.Distance(transform.position, mainTarget.transform.position) : Mathf.Infinity;
+        Vector2 closestPoint = mainTargetCollider.ClosestPoint(transform.position);
+        float mainTargetDist = Vector2.Distance(transform.position, closestPoint);
 
         if (mainTarget != null && mainTargetDist <= attackRange)
         {
@@ -113,7 +115,7 @@ public class Enemy : MonoBehaviour
 
     void CallAnimations()
     {
-        if(closestPlant != null)
+        if(closestPlant != null && closestPlantDist <= detectRange)
         {
             direction = (closestPlant.transform.position - transform.position).normalized;
         }
@@ -122,7 +124,7 @@ public class Enemy : MonoBehaviour
             direction = (mainTarget.transform.position - transform.position).normalized;
         }
 
-            int newDirectionIndex;
+        int newDirectionIndex;
 
         if (isAttacking == false && Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
         {
@@ -179,23 +181,22 @@ public class Enemy : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, detectRange);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void OnChildTriggerEnter(Collider2D other)
     {
         if (other.CompareTag("Plant") && !nearbyPlants.Contains(other.gameObject))
-        {
             nearbyPlants.Add(other.gameObject);
-        }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    public void OnChildTriggerExit(Collider2D other)
     {
         if (other.CompareTag("Plant"))
-        {
             nearbyPlants.Remove(other.gameObject);
-        }
     }
+
     public void GetFrontColliderEntries(Collider2D other)
     {
         if (other.CompareTag("Plant") && !frontColliderPlants.Contains(other.gameObject))
