@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -59,7 +60,11 @@ public class Enemy : MonoBehaviour
         {
             isAttacking = true;
 
-            // Attack maintarget
+            if (attackTimer <= 0f)
+            {
+                AttackMainTarget();
+                attackTimer = attackCooldown;
+            }
         }
         else if (closestPlant != null && closestPlantDist <= attackRange)
         {
@@ -160,6 +165,27 @@ public class Enemy : MonoBehaviour
             frontColliderTransform.rotation = Quaternion.Euler(0, 0, angle - 90f);
         }
     }
+
+    void AttackMainTarget()
+    {
+        // Replace BarnScript with the correct script name for the barn/base/mainTarget, and then remove the /* and */
+
+        /*
+        if (mainTarget == null) return;
+
+        BarnScript mainTargetScript = mainTarget.GetComponent<BarnScript>();
+
+        if (mainTargetScript != null)
+        {
+            mainTargetScript.Damage(1);
+        }
+        else
+        {
+            Debug.LogWarning("No BarnScript found on mainTarget");
+        }
+        */ 
+    }
+
 
     void AttackClosestPlant()
     {

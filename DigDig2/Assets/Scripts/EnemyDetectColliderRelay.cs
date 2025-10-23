@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class EnemyChildColliderRelay : MonoBehaviour
+public class EnemyDetectColliderRelay : MonoBehaviour
 {
-    [SerializeField] private Enemy parentEnemy; // reference to your main enemy script
+    [SerializeField] private Enemy parentEnemy; 
 
     private void OnTriggerEnter2D(Collider2D other)
     {
