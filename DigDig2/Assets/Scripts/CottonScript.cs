@@ -40,7 +40,6 @@ public class CottonScript : MonoBehaviour
             if (growthTimer >= stage3)
             {
                 baseAnimator.SetBool("Adult", true);
-                growthTimer = 0;
                 growing = false;
                 animMoving.OriginPoint();
             }
