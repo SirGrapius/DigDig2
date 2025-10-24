@@ -136,7 +136,7 @@ public class TileScript : MonoBehaviour
         if (!isInventory)
         {
             // if you can plant a seed or picked up plant you will
-            if (myTile == tilledSoil)
+            if (myTile == tilledSoil || pickedUpPlant != null)
             {
                 if (useTimer == 0)
                 {
