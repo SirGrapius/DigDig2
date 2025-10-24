@@ -20,8 +20,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] BoxCollider2D hitbox;
     [SerializeField] float cooldown = 1;
     [SerializeField] bool onCooldown;
-    [SerializeField] bool attacking;
+    [SerializeField] bool usingTool;
     [SerializeField] bool chargingAttack;
+    [SerializeField] Enemy currentEnemy;
 
     [Header("Tool Settings")]
     [SerializeField] TileScript inventory;
@@ -80,18 +81,22 @@ public class PlayerMovement : MonoBehaviour
             }
             if (inventory.selectedTool == 2) //if you're holding the watering can
             {
-                attacking = true;
+                usingTool = true;
             }
             if (inventory.selectedTool == 1) //if you're using the hoe
             {
-                attacking = true;
+                usingTool = true;
             }
         }
         if (Input.GetKeyUp(KeyCode.Space) && chargingAttack) //unleash attack upon letting go of space
         {
-            chargingAttack = false;
-            attacking = true;
-            StartCoroutine(CooldownDuration());
+            usingTool = false;
+            if (chargingAttack)
+            {
+                chargingAttack = false;
+                currentEnemy.Damage(1);
+                StartCoroutine(CooldownDuration());
+            }
         }
 
         if (rb.linearVelocityX != 0 && rb.linearVelocityY != 0) //reduce velocity when moving diagonally for more realistic movement
@@ -121,12 +126,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy" && inventory.selectedTool == 3 && attacking) //check if you're attacking and there's an enemy in your hitbox and do damage.
+        if (collision.gameObject.tag == "Enemy" && inventory.selectedTool == 3) //check if you're attacking and there's an enemy in your hitbox and do damage.
         {
-            //EnemyController enemyScript = enemy.GetComponent<EnemyController>();
-            //enemyScript.HP -= damage;
+            currentEnemy = collision.gameObject.GetComponent<Enemy>();
             Debug.Log("bam, boom, wop");
-            attacking = false;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy" && collision.gameObject.GetComponent<Enemy>() == currentEnemy)
+        {
+            currentEnemy = null;
         }
     }
 
