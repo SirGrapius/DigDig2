@@ -136,7 +136,7 @@ public class TileScript : MonoBehaviour
         if (!isInventory)
         {
             // if you can plant a seed or picked up plant you will
-            if (myTile == tilledSoil)
+            if (myTile == tilledSoil || pickedUpPlant != null)
             {
                 if (useTimer == 0)
                 {
@@ -274,7 +274,7 @@ public class TileScript : MonoBehaviour
     public Vector3Int CheckInventoryTile()
     {
         Vector3 tilePosition = myCamera.ScreenToWorldPoint(Input.mousePosition) - new Vector3(transform.parent.parent.position.x, transform.parent.parent.position.y, 0);
-        tilePosition /= transform.parent.GetComponent<Grid>().cellSize.x * transform.localScale.x;
+        tilePosition /= transform.parent.GetComponent<Grid>().cellSize.x / transform.localScale.x;
         Vector3Int tilePositionInt = Vector3Int.FloorToInt(tilePosition);
         tilePositionInt.z = 0;
         return tilePositionInt;
