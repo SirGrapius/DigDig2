@@ -931,6 +931,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5899832665033984898, guid: 72f2c7a596b034a4ab7fd959f586b81a, type: 3}
+      propertyPath: waterLoss
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5899832665033984898, guid: 72f2c7a596b034a4ab7fd959f586b81a, type: 3}
+      propertyPath: waterAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5899832665033984898, guid: 72f2c7a596b034a4ab7fd959f586b81a, type: 3}
+      propertyPath: waterAmountMin
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8495913010246796608, guid: 72f2c7a596b034a4ab7fd959f586b81a, type: 3}
       propertyPath: m_Name
       value: Cotton
