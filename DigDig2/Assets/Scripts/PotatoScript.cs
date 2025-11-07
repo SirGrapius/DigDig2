@@ -8,5 +8,4 @@ public class PotatoScript : MonoBehaviour
     {
         Life = GetComponent<PlantDeath>();
     }
-    
 }

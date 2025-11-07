@@ -17,7 +17,6 @@ public class PlantDeath : MonoBehaviour
         {
             Decay();
         }
-        
     }
     public void Decay()
     {
@@ -35,7 +34,5 @@ public class PlantDeath : MonoBehaviour
         {
             time += Time.deltaTime;
         }
-        
     }
-    
 }
