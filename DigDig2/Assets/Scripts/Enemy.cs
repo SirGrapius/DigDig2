@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] float detectRange = 5f;
     [SerializeField] float attackRange = 1.5f;
     [SerializeField] bool bloodlust = false;
+    [SerializeField] int bloodlustCharges = 0;
+    [SerializeField] int neededBloodlustCharges = 2;
     [SerializeField] bool isAttacking = false;
     [SerializeField] float attackCooldown = 3f;
     [SerializeField] int attackDamage = 1;
@@ -24,6 +26,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] BoxCollider2D frontCollider;
 
     BoxCollider2D mainTargetCollider;
+    private GameObject gameController;
 
     [Header("Targets")]
     private GameObject mainTarget;
@@ -37,7 +40,8 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        mainTarget = GameObject.FindGameObjectWithTag("mainTarget");
+        mainTarget = GameObject.FindGameObjectWithTag("MainTarget");
+        gameController = GameObject.FindGameObjectWithTag("GameController");
         mainTargetCollider = mainTarget.GetComponent<BoxCollider2D>();
     }
 
@@ -169,24 +173,8 @@ public class Enemy : MonoBehaviour
 
     void AttackMainTarget()
     {
-        // Replace BarnScript with the correct script name for the barn/base/mainTarget, and then remove the /* and */
-
-        /*
-        if (mainTarget == null) return;
-
-        BarnScript mainTargetScript = mainTarget.GetComponent<BarnScript>();
-
-        if (mainTargetScript != null)
-        {
-            mainTargetScript.Damage(1);
-        }
-        else
-        {
-            Debug.LogWarning("No BarnScript found on mainTarget");
-        }
-        */ 
+        // gameController.GetComponent<RoundManager>().Damage(attackDamage);
     }
-
 
     void AttackClosestPlant()
     {
@@ -207,6 +195,18 @@ public class Enemy : MonoBehaviour
         else
         {
             Debug.LogWarning("No PlantDeath script found");
+        }
+
+        if (plantScript.decaying)
+        {
+            if (bloodlust) return;
+
+            bloodlustCharges += 1;
+
+            if (bloodlustCharges >= neededBloodlustCharges)
+            {
+                bloodlust = true;
+            }
         }
     }
 
