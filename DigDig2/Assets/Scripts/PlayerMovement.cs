@@ -126,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy" && inventory.selectedTool == 3) //check if you're attacking and there's an enemy in your hitbox and do damage.
+        if (collision.CompareTag("Enemy") && inventory.selectedTool == 3) //check if you're attacking and there's an enemy in your hitbox and do damage.
         {
             currentEnemy = collision.gameObject.GetComponent<Enemy>();
             Debug.Log("bam, boom, wop");
@@ -135,7 +135,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy" && collision.gameObject.GetComponent<Enemy>() == currentEnemy)
+        if (collision.CompareTag("Enemy") && collision.gameObject.GetComponent<Enemy>() == currentEnemy)
         {
             currentEnemy = null;
         }
