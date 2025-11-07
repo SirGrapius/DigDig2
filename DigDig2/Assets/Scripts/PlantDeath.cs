@@ -7,6 +7,8 @@ public class PlantDeath : MonoBehaviour
     [SerializeField] AnimationClip deathAnim;
     [SerializeField] Animator myAnimator;
     [SerializeField] int hp;
+    [SerializeField] bool takeDmgEffect;
+    public bool effectTrigger;
     float time;
 
     public void Damage(int damageValue)
@@ -15,6 +17,10 @@ public class PlantDeath : MonoBehaviour
         if (hp <= 0)
         {
             Decay();
+        }
+        if (takeDmgEffect)
+        {
+            TookDamage();
         }
     }
     public void Decay()
@@ -33,5 +39,13 @@ public class PlantDeath : MonoBehaviour
         {
             time += Time.deltaTime;
         }
+        if (effectTrigger)
+        {
+            effectTrigger = false;
+        }
+    }
+    void TookDamage()
+    {
+        effectTrigger = true;
     }
 }
