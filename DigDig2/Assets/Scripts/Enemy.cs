@@ -11,7 +11,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] float attackRange = 1.5f;
     [SerializeField] bool bloodlust = false;
     [SerializeField] bool isAttacking = false;
-    [SerializeField] float attackCooldown = 3f; 
+    [SerializeField] float attackCooldown = 3f;
+    [SerializeField] int attackDamage = 1;
     private float attackTimer;
     private int currentDirection = -1;
     private Vector2 direction;
@@ -193,9 +194,15 @@ public class Enemy : MonoBehaviour
 
         PlantDeath plantScript = closestPlant.GetComponent<PlantDeath>();
 
-        if (plantScript != null)
+        if (plantScript != null && closestPlant.GetComponent<PotatoScript>() != null)
         {
-            plantScript.Damage(1);
+            plantScript.Damage(attackDamage);
+
+            Damage(closestPlant.GetComponent<PotatoScript>().damageValue);
+        }
+        else if (plantScript != null)
+        {
+            plantScript.Damage(attackDamage);
         }
         else
         {

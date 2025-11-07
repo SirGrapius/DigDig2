@@ -6,8 +6,11 @@ public class CottonScript : MonoBehaviour
     [SerializeField] Wiggle animMoving;
     [SerializeField] GameObject Attack;
     Vector2 targetPos;
-    public float growthTimer;
     float attackTimer;
+    public float growthTimer;
+    public float waterAmount = 1;
+    public float waterAmountMin = 1;
+    public float waterLoss = 1;
     [SerializeField] float stage1 = 30;
     [SerializeField] float stage2 = 60;
     [SerializeField] float stage3 = 90;
@@ -18,8 +21,7 @@ public class CottonScript : MonoBehaviour
     [SerializeField] Transform Base;
     public bool ready;
     public bool growing;
-    public float waterAmount = 1;
-    public float waterLoss;
+    
     [SerializeField] float maxRange = 20;
 
     void Awake()
@@ -28,18 +30,29 @@ public class CottonScript : MonoBehaviour
         growing = true;
     }
 
+    void Start()
+    {
+        Base.gameObject.tag = "GrowingPlant";
+    }
+
     void Update()
     {
         if (growing)
         {
-            growthTimer += Time.deltaTime * waterAmount;
-            if (waterAmount > 1)
+            if (waterAmount > waterAmountMin)
             {
                 waterAmount -= waterLoss * Time.deltaTime;
             }
+            if (waterAmount < waterAmountMin)
+            {
+                waterAmount = waterAmountMin;
+            }
+            growthTimer += Time.deltaTime * waterAmount;
+            
             if (growthTimer >= stage3)
             {
                 baseAnimator.SetBool("Adult", true);
+                Base.gameObject.tag = "Plant";
                 growing = false;
                 animMoving.OriginPoint();
             }
@@ -51,6 +64,7 @@ public class CottonScript : MonoBehaviour
             {
                 baseAnimator.SetBool("Young", true);
             }
+            
         }
 
         if (!growing)
@@ -88,7 +102,6 @@ public class CottonScript : MonoBehaviour
                     }
                 }
             }
-            transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg);
         }
     }
 }
