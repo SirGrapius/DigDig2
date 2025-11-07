@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 41472054}
   m_Layer: 0
   m_Name: Barn
-  m_TagString: mainTarget
+  m_TagString: MainTarget
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

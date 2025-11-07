@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        mainTarget = GameObject.FindGameObjectWithTag("mainTarget");
+        mainTarget = GameObject.FindGameObjectWithTag("MainTarget");
         mainTargetCollider = mainTarget.GetComponent<BoxCollider2D>();
     }
 
