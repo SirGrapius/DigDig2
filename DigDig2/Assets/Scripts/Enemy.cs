@@ -193,7 +193,11 @@ public class Enemy : MonoBehaviour
 
         PlantDeath plantScript = closestPlant.GetComponent<PlantDeath>();
 
-        if (plantScript != null)
+        if (plantScript != null && closestPlant.GetComponent<PotatoScript> != null)
+        {
+
+        }
+        else if (plantScript != null)
         {
             plantScript.Damage(1);
         }
