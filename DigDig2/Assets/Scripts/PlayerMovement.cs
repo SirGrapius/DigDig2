@@ -26,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Tool Settings")]
     [SerializeField] TileScript inventory;
+    [SerializeField] float maxShovelCharge;
+    [SerializeField] float currentShovelCharge;
 
 
     [Header("Audio")]
@@ -88,13 +90,20 @@ public class PlayerMovement : MonoBehaviour
                 usingTool = true;
             }
         }
-        if (Input.GetKeyUp(KeyCode.Space) && chargingAttack) //unleash attack upon letting go of space
+
+        if (chargingAttack && currentShovelCharge < maxShovelCharge) //if charging attack, count time charging
+        {
+            currentShovelCharge += Time.deltaTime;
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space) && chargingAttack && currentEnemy != null) //unleash attack upon letting go of space
         {
             usingTool = false;
             if (chargingAttack)
             {
                 chargingAttack = false;
-                currentEnemy.Damage(1);
+                currentEnemy.Damage(Mathf.RoundToInt(damage * ((1 + currentShovelCharge)/0.75f)));
+                currentShovelCharge = 0;
                 StartCoroutine(CooldownDuration());
             }
         }

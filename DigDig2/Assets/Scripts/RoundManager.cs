@@ -11,6 +11,10 @@ public class RoundManager : MonoBehaviour
     [SerializeField] float time;
     [SerializeField] float maxRoundTime = 300;
 
+    [Header("House Settings")]
+    [SerializeField] GameObject houseObject;
+    [SerializeField] int houseHealth = 100;
+
     [Header("Lane Settings")]
     [SerializeField] GameObject[] lanes; //0 = bottom, 1 = right, 2 = top, 3 = left
     [SerializeField] bool[] isLaneOpen;
@@ -28,6 +32,11 @@ public class RoundManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI myText;
     [SerializeField] float fadeDuration;
     [SerializeField] float textDuration;
+
+    private void Awake()
+    {
+        houseObject = GameObject.FindGameObjectWithTag("mainTarget");
+    }
 
     void Start()
     {
