@@ -140,9 +140,6 @@ TextureImporter:
   - first:
       213: -5125497113330431593
     second: Chili-Sheet_45
-  - first:
-      213: 7410172956154727709
-    second: Chili-Sheet_46
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -242,11 +239,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 480
         width: 160
         height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.21875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -264,11 +261,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 160
-        y: 0
+        y: 480
         width: 160
         height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.21875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -285,12 +282,12 @@ TextureImporter:
       name: Chili-Sheet_2
       rect:
         serializedVersion: 2
-        x: 320
-        y: 0
+        x: 319
+        y: 479
         width: 160
         height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.21875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -308,18 +305,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 480
-        y: 0
+        y: 480
         width: 160
         height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.21875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: e490fcb80b5069547a2f1e5414cc0519
+      spriteID: 0806def2ae403f240800000000000000
       internalID: 4824205029716877440
       vertices: []
       indices: 
@@ -330,18 +327,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 640
-        y: 0
+        y: 480
         width: 160
         height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.21875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: ec9006adaf29cdf45a0e1f95c4871507
+      spriteID: 075b3e81f728fc5b0800000000000000
       internalID: -5345910750275455632
       vertices: []
       indices: 
@@ -351,19 +348,19 @@ TextureImporter:
       name: Chili-Sheet_5
       rect:
         serializedVersion: 2
-        x: 800
-        y: 0
+        x: 0
+        y: 320
         width: 160
         height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.21875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 4c0df4329eadeab438cf56184d03aec3
+      spriteID: 8c9a9b7408c2e8af0800000000000000
       internalID: -392327188063868472
       vertices: []
       indices: 
@@ -373,19 +370,19 @@ TextureImporter:
       name: Chili-Sheet_6
       rect:
         serializedVersion: 2
-        x: 960
-        y: 0
+        x: 160
+        y: 320
         width: 160
         height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.21875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 799aaea6379963243bc55f3986ff555b
+      spriteID: 9822a766fb0ef5bc0800000000000000
       internalID: -3792065248560012663
       vertices: []
       indices: 
@@ -395,19 +392,19 @@ TextureImporter:
       name: Chili-Sheet_7
       rect:
         serializedVersion: 2
-        x: 1120
-        y: 0
+        x: 320
+        y: 320
         width: 160
         height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.21875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 2dfd5957a4b75804c8211845402cbfa1
+      spriteID: 5effa8bc041c76ad0800000000000000
       internalID: -2708984166803111963
       vertices: []
       indices: 
@@ -417,19 +414,19 @@ TextureImporter:
       name: Chili-Sheet_8
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 0
+        x: 480
+        y: 321
         width: 160
         height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.21875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: cf7a9faf95aa4cb4391d0abb311be401
+      spriteID: 99bfb1284031449b0800000000000000
       internalID: -5096927968192889959
       vertices: []
       indices: 
@@ -439,19 +436,19 @@ TextureImporter:
       name: Chili-Sheet_9
       rect:
         serializedVersion: 2
-        x: 1440
-        y: 0
+        x: 640
+        y: 320
         width: 160
         height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.21875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 0ff2714259f7cc340abcf44a37ae6727
+      spriteID: ab78f4dec15a77440800000000000000
       internalID: 4933593460466747322
       vertices: []
       indices: 
@@ -461,19 +458,19 @@ TextureImporter:
       name: Chili-Sheet_10
       rect:
         serializedVersion: 2
-        x: 1600
-        y: 0
+        x: 0
+        y: 160
         width: 160
         height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.21875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 9fcd585863638074a83cb6b6cc4c8a46
+      spriteID: 5e33a0e585dca9e00800000000000000
       internalID: 1052379242362975205
       vertices: []
       indices: 
@@ -483,19 +480,19 @@ TextureImporter:
       name: Chili-Sheet_11
       rect:
         serializedVersion: 2
-        x: 1760
-        y: 0
+        x: 160
+        y: 160
         width: 160
         height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.21875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 2fae0258ae1bf9d4883a7246b320bb35
+      spriteID: 920e480f399037f90800000000000000
       internalID: -6957206468357201879
       vertices: []
       indices: 
@@ -505,19 +502,19 @@ TextureImporter:
       name: Chili-Sheet_12
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 0
+        x: 320
+        y: 160
         width: 160
         height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.21875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 27b9f3b6d0ec0ef4b9ec78ebcdd73a5b
+      spriteID: 6baf415b10eef9b00800000000000000
       internalID: 837649746814630582
       vertices: []
       indices: 
@@ -527,19 +524,19 @@ TextureImporter:
       name: Chili-Sheet_13
       rect:
         serializedVersion: 2
-        x: 2080
-        y: 0
+        x: 640
+        y: 160
         width: 160
         height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.21875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: a4075d3f29ead184ba4a63e594fadf0f
+      spriteID: dcc54872ef030b8c0800000000000000
       internalID: -3985631802080076595
       vertices: []
       indices: 
@@ -549,19 +546,19 @@ TextureImporter:
       name: Chili-Sheet_14
       rect:
         serializedVersion: 2
-        x: 2400
+        x: 0
         y: 0
         width: 160
         height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.21875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: bd09d9b0129cfc34b8bdfb3a591e41f6
+      spriteID: 7d6aa3b516d5aea70800000000000000
       internalID: 8856994289901283031
       vertices: []
       indices: 
@@ -571,19 +568,19 @@ TextureImporter:
       name: Chili-Sheet_15
       rect:
         serializedVersion: 2
-        x: 2560
+        x: 160
         y: 0
         width: 160
         height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.21875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 1a6bf1149c776f94792ad14f4b27944a
+      spriteID: b264f6dee3b959ae0800000000000000
       internalID: -1543156602730756565
       vertices: []
       indices: 
@@ -593,42 +590,20 @@ TextureImporter:
       name: Chili-Sheet_16
       rect:
         serializedVersion: 2
-        x: 2720
+        x: 320
         y: 0
         width: 160
         height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.21875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 409f5511cad6965469c67face3e5541b
+      spriteID: 5adaaeac69e257470800000000000000
       internalID: 8391664705859136933
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Chili-Sheet_17
-      rect:
-        serializedVersion: 2
-        x: 2880
-        y: 0
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d4b9d9f98076b9f4dae36eac7c11f8d4
-      internalID: 2276285829352594595
       vertices: []
       indices: 
       edges: []
@@ -637,7 +612,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 4d99ad30685a075498fdd18f60bf055c
+    spriteID: 66edbab667b930341a51726edb12ffb1
     internalID: 0
     vertices: []
     indices: 
@@ -658,7 +633,6 @@ TextureImporter:
       Chili-Sheet_14: 8856994289901283031
       Chili-Sheet_15: -1543156602730756565
       Chili-Sheet_16: 8391664705859136933
-      Chili-Sheet_17: 2276285829352594595
       Chili-Sheet_2: -450222398031409708
       Chili-Sheet_3: 4824205029716877440
       Chili-Sheet_4: -5345910750275455632
