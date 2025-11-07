@@ -257,7 +257,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 3722860951053882730, guid: 8009badc985af1e4283ce19229fd089f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -356,6 +356,7 @@ MonoBehaviour:
   bloodlust: 0
   isAttacking: 0
   attackCooldown: 2.5
+  attackDamage: 1
   detectCollider: {fileID: 2192622558226609957}
   animator: {fileID: 1310158651308162461}
   frontColliderTransform: {fileID: 6704705294099058074}

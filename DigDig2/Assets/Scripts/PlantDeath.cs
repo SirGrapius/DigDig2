@@ -7,6 +7,7 @@ public class PlantDeath : MonoBehaviour
     [SerializeField] AnimationClip deathAnim;
     [SerializeField] Animator myAnimator;
     [SerializeField] int hp;
+    public bool decaying;
     
     float time;
 
@@ -23,6 +24,7 @@ public class PlantDeath : MonoBehaviour
         daddy.transform.parent.GetComponent<TileScript>().myTilemap.SetTile(Vector3Int.FloorToInt(transform.position / transform.parent.parent.GetComponent<Grid>().cellSize.x * transform.localScale.x), transform.parent.GetComponent<TileScript>().unTilledSoil);
         myAnimator.SetBool("Death", true);
         Destroy(child);
+        decaying = true;
         if (time >= deathAnim.length)
         {
             Destroy(daddy);
