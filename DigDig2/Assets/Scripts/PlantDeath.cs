@@ -3,7 +3,13 @@ using UnityEngine;
 public class PlantDeath : MonoBehaviour
 {
     [SerializeField] GameObject daddy;
+    [SerializeField] GameObject child;
+    [SerializeField] AnimationClip deathAnim;
+    [SerializeField] Animator myAnimator;
     [SerializeField] int hp;
+    [SerializeField] bool takeDmgEffect;
+    public bool effectTrigger;
+    float time;
 
     public void Damage(int damageValue)
     {
@@ -12,10 +18,34 @@ public class PlantDeath : MonoBehaviour
         {
             Decay();
         }
+        if (takeDmgEffect)
+        {
+            TookDamage();
+        }
     }
     public void Decay()
     {
         daddy.transform.parent.GetComponent<TileScript>().myTilemap.SetTile(Vector3Int.FloorToInt(transform.position / transform.parent.parent.GetComponent<Grid>().cellSize.x * transform.localScale.x), transform.parent.GetComponent<TileScript>().unTilledSoil);
-        Destroy(daddy);
+        myAnimator.SetBool("Death", true);
+        Destroy(child);
+        if (time >= deathAnim.length)
+        {
+            Destroy(daddy);
+        }
+    }
+    void Update()
+    {
+        if (myAnimator.GetBool("Death"))
+        {
+            time += Time.deltaTime;
+        }
+        if (effectTrigger)
+        {
+            effectTrigger = false;
+        }
+    }
+    void TookDamage()
+    {
+        effectTrigger = true;
     }
 }

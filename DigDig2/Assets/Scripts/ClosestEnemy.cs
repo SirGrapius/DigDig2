@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ClosestEnemy : MonoBehaviour
 {
-    [SerializeField] GameObject[] enemies;
+    GameObject[] enemies;
     public GameObject Target(float maxRange)
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
