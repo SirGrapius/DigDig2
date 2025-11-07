@@ -386,9 +386,12 @@ MonoBehaviour:
   hitbox: {fileID: 6622105905127003688}
   cooldown: 1
   onCooldown: 0
-  attacking: 0
+  usingTool: 0
   chargingAttack: 0
+  currentEnemy: {fileID: 0}
   inventory: {fileID: 0}
+  maxShovelCharge: 3
+  currentShovelCharge: 0
   walkSource: {fileID: 0}
   animator: {fileID: 0}
   rb: {fileID: 0}
