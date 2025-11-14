@@ -13,6 +13,8 @@ public class SceneLoader : MonoBehaviour
 
     [SerializeField] List<AudioClip> audioList;
 
+    [SerializeField] GameObject pauseMenu;
+
 
     void Awake()
     {
@@ -38,13 +40,13 @@ public class SceneLoader : MonoBehaviour
 
             case "Options":
                 {
-                    StartCoroutine(LoadScene("Options"));
+                    //brings up a menu
                     break;
                 }
 
             case "MainMenu":
                 {
-                    StartCoroutine(LoadScene("AwesomeSauceMenu"));
+                    StartCoroutine(LoadScene("MainMenu"));
                     break;
                 }
 
@@ -53,6 +55,13 @@ public class SceneLoader : MonoBehaviour
                     source.clip = audioList[0];
                     source.Play();
                     StartCoroutine(QuitGame());
+                    break;
+                }
+            case "Resume":
+                {
+                    pauseMenu.transform.position = new Vector3(10000, 10000, 0);
+                    //unpause paused objects
+                    screenFader.FadeCoroutine(new Color(255, 255, 255, 0.5f), new Color(255, 255, 255, 0), 0.25f);
                     break;
                 }
         }
@@ -68,6 +77,15 @@ public class SceneLoader : MonoBehaviour
 
 
         SceneManager.LoadScene(sceneName);
+    }
+
+    public IEnumerator PauseGame()
+    {
+        screenFader.FadeCoroutine(new Color(255, 255, 255, 0), new Color(255, 255, 255, 0.5f), 0.25f);
+        pauseMenu.transform.position = canvas.transform.position;
+        yield return new WaitForSeconds(0.1f);
+        //figure out how to pause everything other than scene loader and canvas
+        yield return null;
     }
 
     IEnumerator QuitGame()

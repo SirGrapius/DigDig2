@@ -38,11 +38,14 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] Rigidbody2D rb;
 
+    [SerializeField] SceneLoader sceneLoader;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponentInParent<Animator>();
         currentSpeed = baseSpeed;
+        sceneLoader = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneLoader>();
     }
     void Update()
     {
@@ -106,6 +109,11 @@ public class PlayerMovement : MonoBehaviour
                 currentShovelCharge = 0;
                 StartCoroutine(CooldownDuration());
             }
+        }
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            StartCoroutine(sceneLoader.PauseGame());
         }
 
         if (rb.linearVelocityX != 0 && rb.linearVelocityY != 0) //reduce velocity when moving diagonally for more realistic movement

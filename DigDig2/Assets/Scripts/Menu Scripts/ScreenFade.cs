@@ -32,7 +32,7 @@ public class ScreenFade : MonoBehaviour
 
     }
 
-    private IEnumerator FadeCoroutine(Color startColor, Color targetColor, float duration)
+    public IEnumerator FadeCoroutine(Color startColor, Color targetColor, float duration)
     {
         float elapsedTime = 0;
         float elapsedPercentage = 0;

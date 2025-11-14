@@ -440,6 +440,30 @@ PrefabInstance:
       propertyPath: m_text
       value: Quit
       objectReference: {fileID: 0}
+    - target: {fileID: 5439349366789049773, guid: c72de59e833bd844bb67c742260316a5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439349366789049773, guid: c72de59e833bd844bb67c742260316a5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8601472795076484475}
+    - target: {fileID: 5439349366789049773, guid: c72de59e833bd844bb67c742260316a5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: WhatButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439349366789049773, guid: c72de59e833bd844bb67c742260316a5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SceneLoader, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439349366789049773, guid: c72de59e833bd844bb67c742260316a5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Quit
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439349366789049773, guid: c72de59e833bd844bb67c742260316a5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7457858762857522420, guid: c72de59e833bd844bb67c742260316a5, type: 3}
       propertyPath: m_Name
       value: QuitButton
@@ -578,6 +602,30 @@ PrefabInstance:
       propertyPath: m_text
       value: Play
       objectReference: {fileID: 0}
+    - target: {fileID: 2485528742674988699, guid: e65cb7a49b2c5944cad36625b88d526a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485528742674988699, guid: e65cb7a49b2c5944cad36625b88d526a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8601472795076484475}
+    - target: {fileID: 2485528742674988699, guid: e65cb7a49b2c5944cad36625b88d526a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: WhatButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485528742674988699, guid: e65cb7a49b2c5944cad36625b88d526a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SceneLoader, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485528742674988699, guid: e65cb7a49b2c5944cad36625b88d526a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485528742674988699, guid: e65cb7a49b2c5944cad36625b88d526a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2531790164336258874, guid: e65cb7a49b2c5944cad36625b88d526a, type: 3}
       propertyPath: m_Name
       value: PlayButton
@@ -691,6 +739,30 @@ PrefabInstance:
       propertyPath: m_text
       value: Settings
       objectReference: {fileID: 0}
+    - target: {fileID: 5439349366789049773, guid: c72de59e833bd844bb67c742260316a5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439349366789049773, guid: c72de59e833bd844bb67c742260316a5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8601472795076484475}
+    - target: {fileID: 5439349366789049773, guid: c72de59e833bd844bb67c742260316a5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: WhatButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439349366789049773, guid: c72de59e833bd844bb67c742260316a5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SceneLoader, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439349366789049773, guid: c72de59e833bd844bb67c742260316a5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Options
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439349366789049773, guid: c72de59e833bd844bb67c742260316a5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7457858762857522420, guid: c72de59e833bd844bb67c742260316a5, type: 3}
       propertyPath: m_Name
       value: SettingsButton
@@ -770,6 +842,17 @@ PrefabInstance:
       addedObject: {fileID: 1963750833}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3224b728a788e24aaa548415b23dccd, type: 3}
+--- !u!114 &8601472795076484475 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1435545811506645058, guid: c3224b728a788e24aaa548415b23dccd, type: 3}
+  m_PrefabInstance: {fileID: 8601472795076484474}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b89fe50ae9b397d4bbe15e25b25a3b7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneLoader
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
