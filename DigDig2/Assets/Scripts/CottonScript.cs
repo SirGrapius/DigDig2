@@ -64,7 +64,6 @@ public class CottonScript : MonoBehaviour
             {
                 baseAnimator.SetBool("Young", true);
             }
-            
         }
 
         if (!growing)
