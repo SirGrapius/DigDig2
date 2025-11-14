@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ButtonInflation : MonoBehaviour
@@ -42,5 +43,17 @@ public class ButtonInflation : MonoBehaviour
     public void MouseExit()
     {
         inflate = false;
+    }
+    public void MouseClicked()
+    {
+        StartCoroutine(ButtonClicked());
+    }
+
+    IEnumerator ButtonClicked()
+    {
+        myTransform.localScale = Vector2.Lerp(enterSize, myTransform.localScale, Mathf.Pow(0.5f, Time.deltaTime * lerpAmount));
+        yield return new WaitForSeconds(0.1f);
+        myTransform.localScale = Vector2.Lerp(originalSize, myTransform.localScale, Mathf.Pow(0.5f, Time.deltaTime * lerpAmount));
+        yield return null;
     }
 }

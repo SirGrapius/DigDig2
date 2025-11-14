@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 86465730818148860}
   m_Layer: 0
   m_Name: SceneManager 1
-  m_TagString: Untagged
+  m_TagString: SceneManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,6 +140,8 @@ MonoBehaviour:
   source: {fileID: 0}
   screenFader: {fileID: 0}
   audioList: []
+  pauseMenu: {fileID: 0}
+  currentPauseMenu: {fileID: 0}
 --- !u!82 &86465730818148860
 AudioSource:
   m_ObjectHideFlags: 0
