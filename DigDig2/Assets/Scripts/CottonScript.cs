@@ -75,7 +75,8 @@ public class CottonScript : MonoBehaviour
             if (attackTimer >= attackFrequency)
             {
                 ready = true;
-                if (targeting.Target(maxRange) != null)
+                GameObject[] enemiesInRange = targeting.Target(maxRange, 1);
+                if (enemiesInRange != null)
                 {
                     attackTimer += Time.deltaTime;
                     myAnimator.SetBool("Attack", true);
@@ -83,7 +84,7 @@ public class CottonScript : MonoBehaviour
                     {
                         ready = false;
                         attackTimer -= attackFrequency + attackAnim.length;
-                        targetPos = targeting.Target(maxRange).transform.position;
+                        targetPos = enemiesInRange[0].transform.position;
                         targetPos.x -= transform.position.x;
                         targetPos.y -= transform.position.y;
                         switch (targetPos.x)

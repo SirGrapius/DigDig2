@@ -1,40 +1,43 @@
+using System.Linq;
 using UnityEngine;
 
 public class ClosestEnemy : MonoBehaviour
 {
     GameObject[] enemies;
-    public GameObject Target(float maxRange)
+    
+    public GameObject[] Target(float maxRange, int minTargets)
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        if (enemies.Length > 0)
+        GameObject[] enemiesInRange = enemies;
+        int counter = 0;
+        for (int i = 0; i < enemies.Length; i++)
         {
-            for (int i = 0; i < enemies.Length; i++)
+            if (enemies[i].transform.position.sqrMagnitude < maxRange*maxRange)
             {
-                Vector3 v0;
-                if (enemies[0] != null)
+                enemiesInRange[counter] = enemies[i];
+                counter++;
+            }
+        }
+        enemies = enemiesInRange[..counter];
+        if (enemies.Length < minTargets)
+        {
+            return null;
+        }
+        GameObject temp;
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            for (int j = 0; j < enemies.Length; j++)
+            {
+                Vector3 v0 = enemies[j].transform.position - transform.position;
+                Vector3 v1 = enemies[i].transform.position - transform.position;
+                if (v0.sqrMagnitude > v1.sqrMagnitude)
                 {
-                    v0 = enemies[0].transform.position - transform.position;
-                }
-                else
-                {
-                    v0 = enemies[i].transform.position - transform.position;
-                }
-                Vector3 v = enemies[i].transform.position - transform.position;
-                if (v.sqrMagnitude > maxRange * maxRange)
-                {
-                    enemies[i] = null;
-                }
-                else if (v.sqrMagnitude < v0.sqrMagnitude && enemies[0] != null)
-                {
-                    enemies[0] = enemies[i];
-                }
-                else if (v.sqrMagnitude == v0.sqrMagnitude)
-                {
-                    enemies[0] = enemies[i];
+                    temp = enemies[j];
+                    enemies[j] = enemies[i];
+                    enemies[i] = temp;
                 }
             }
-            return enemies[0];
         }
-        return null;
+        return enemies;
     }
 }

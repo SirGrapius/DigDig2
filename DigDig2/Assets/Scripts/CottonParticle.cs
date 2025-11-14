@@ -18,7 +18,7 @@ public class CottonParticle : MonoBehaviour
     }
     void Start()
     {
-        target = getTarget.Target(maxRange).transform.position;
+        target = getTarget.Target(maxRange, 1)[0].transform.position;
         origin = transform.position;
     }
     void Update()
