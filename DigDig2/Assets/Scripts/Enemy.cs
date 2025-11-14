@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem.Android.LowLevel;
 
 public class Enemy : MonoBehaviour
 {
@@ -15,9 +16,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] bool isAttacking = false;
     [SerializeField] float attackCooldown = 3f;
     [SerializeField] int attackDamage = 1;
-    private float attackTimer;
-    private int currentDirection = -1;
-    private Vector2 direction;
+    float attackTimer;
+    int currentDirection = -1;
+    Vector2 direction;
 
     [Header("Components")]
     [SerializeField] CircleCollider2D detectCollider;
@@ -26,13 +27,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] BoxCollider2D frontCollider;
 
     BoxCollider2D mainTargetCollider;
-    private GameObject gameController;
+    RoundManager roundManagerScript;
 
     [Header("Targets")]
-    private GameObject mainTarget;
-    private float mainTargetDist;
-    private GameObject closestPlant;
-    private float closestPlantDist;
+    GameObject mainTarget;
+    float mainTargetDist;
+    GameObject closestPlant;
+    float closestPlantDist;
 
     [Header("ChildStuff")]
     [SerializeField] List<GameObject> nearbyPlants = new List<GameObject>();
@@ -41,8 +42,9 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         mainTarget = GameObject.FindGameObjectWithTag("MainTarget");
-        gameController = GameObject.FindGameObjectWithTag("GameController");
+        roundManagerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<RoundManager>();
         mainTargetCollider = mainTarget.GetComponent<BoxCollider2D>();
+
     }
 
     void Update()
@@ -173,7 +175,7 @@ public class Enemy : MonoBehaviour
 
     void AttackMainTarget()
     {
-        // gameController.GetComponent<RoundManager>().Damage(attackDamage);
+        roundManagerScript.houseHealth -= attackDamage;
     }
 
     void AttackClosestPlant()

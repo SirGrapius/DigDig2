@@ -35,7 +35,7 @@ public class RoundManager : MonoBehaviour
 
     private void Awake()
     {
-        houseObject = GameObject.FindGameObjectWithTag("mainTarget");
+        houseObject = GameObject.FindGameObjectWithTag("MainTarget");
     }
 
     void Start()
