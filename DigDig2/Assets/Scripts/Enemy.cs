@@ -1,48 +1,53 @@
 ﻿using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem.Android.LowLevel;
 
 public class Enemy : MonoBehaviour
 {
     [Header("Stats")]
     [SerializeField] int hp = 5;
+    [SerializeField] int attackDamage = 1;
+    [SerializeField] int bloodlustCharges = 0;
+    [SerializeField] int neededBloodlustCharges = 2;
     [SerializeField] float movementSpeed = 2f;
+    [SerializeField] float attackCooldown = 3f;
     [SerializeField] float detectRange = 5f;
     [SerializeField] float attackRange = 1.5f;
     [SerializeField] bool bloodlust = false;
-    [SerializeField] int bloodlustCharges = 0;
-    [SerializeField] int neededBloodlustCharges = 2;
     [SerializeField] bool isAttacking = false;
-    [SerializeField] float attackCooldown = 3f;
-    [SerializeField] int attackDamage = 1;
-    private float attackTimer;
-    private int currentDirection = -1;
-    private Vector2 direction;
 
-    [Header("Components")]
+    int currentDirection = -1;
+    float closestPlantDist;
+    float mainTargetDist;
+    float attackTimer;
+    
+    Vector2 direction;
+
+
+    [Header("References")]
     [SerializeField] CircleCollider2D detectCollider;
     [SerializeField] Animator animator;
     [SerializeField] Transform frontColliderTransform;
     [SerializeField] BoxCollider2D frontCollider;
 
     BoxCollider2D mainTargetCollider;
-    private GameObject gameController;
+    RoundManager roundManagerScript;
+    GameObject closestPlant;
+    GameObject mainTarget;
 
-    [Header("Targets")]
-    private GameObject mainTarget;
-    private float mainTargetDist;
-    private GameObject closestPlant;
-    private float closestPlantDist;
 
-    [Header("ChildStuff")]
+    [Header("Lists")]
     [SerializeField] List<GameObject> nearbyPlants = new List<GameObject>();
     [SerializeField] List<GameObject> frontColliderPlants = new List<GameObject>();
+
 
     private void Start()
     {
         mainTarget = GameObject.FindGameObjectWithTag("MainTarget");
-        gameController = GameObject.FindGameObjectWithTag("GameController");
         mainTargetCollider = mainTarget.GetComponent<BoxCollider2D>();
+
+        roundManagerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<RoundManager>(); // add nullcheck
     }
 
     void Update()
@@ -53,15 +58,15 @@ public class Enemy : MonoBehaviour
 
         attackTimer -= Time.deltaTime;
 
-        if (detectCollider != null)
+        if (detectCollider != null) 
         {
-            detectCollider.radius = detectRange;
+            detectCollider.radius = detectRange; // Set collider on child object to the size of this scripts variable
         }
 
-        Vector2 closestPoint = mainTargetCollider.ClosestPoint(transform.position);
-        float mainTargetDist = Vector2.Distance(transform.position, closestPoint);
+        Vector2 closestPoint = mainTargetCollider.ClosestPoint(transform.position); // Calculates the closest point on the houses collider relative to the enemy
+        float mainTargetDist = Vector2.Distance(transform.position, closestPoint);  // Calculates the distance between the enemy and the house colliders closest point
 
-        if (mainTarget != null && mainTargetDist <= attackRange)
+        if (mainTarget != null && mainTargetDist <= attackRange) // If the house colliders closest point is within attack range, attack the house
         {
             isAttacking = true;
 
@@ -71,7 +76,7 @@ public class Enemy : MonoBehaviour
                 attackTimer = attackCooldown;
             }
         }
-        else if (closestPlant != null && closestPlantDist <= attackRange)
+        else if (closestPlant != null && closestPlantDist <= attackRange) // Else if the closest plant is within attack range, attack that plant
         {
             isAttacking = true;
 
@@ -81,7 +86,7 @@ public class Enemy : MonoBehaviour
                 attackTimer = attackCooldown;
             }
         }
-        else if (closestPlant != null && closestPlantDist <= detectRange && closestPlantDist < mainTargetDist)
+        else if (closestPlant != null && closestPlantDist <= detectRange && closestPlantDist < mainTargetDist) // Else if the closest plant is within detect range and closer than the house, move towards that plant
         {
             isAttacking = false;
 
@@ -89,7 +94,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            if (mainTarget != null)
+            if (mainTarget != null) // Else move towards the house
             {
                 isAttacking = false;
 
@@ -98,7 +103,18 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void FindClosestPlant()
+    #region DetectionLogic
+    void RotateFrontCollider() // Rotates the front collider to always face the house
+    {
+        if (frontColliderTransform != null && mainTarget != null)
+        {
+            Vector2 direction = (mainTarget.transform.position - transform.position).normalized;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            frontColliderTransform.rotation = Quaternion.Euler(0, 0, angle - 90f);
+        }
+    }
+
+    void FindClosestPlant() // Finds the closest plant out of those in the nearbyPlants list
     {
         closestPlant = null;
         closestPlantDist = Mathf.Infinity;
@@ -122,6 +138,35 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+
+    public void OnChildTriggerEnter(Collider2D other) // Adds any plants within a childs collider to a list
+    {
+        if (other.CompareTag("Plant") && !nearbyPlants.Contains(other.gameObject))
+            nearbyPlants.Add(other.gameObject);
+    }
+
+    public void OnChildTriggerExit(Collider2D other)
+    {
+        if (other.CompareTag("Plant"))
+            nearbyPlants.Remove(other.gameObject);
+    }
+
+    public void GetFrontColliderEntries(Collider2D other) // Adds any plants within another childs collider to a list using that childs script aswell as this
+    {
+        if (other.CompareTag("Plant") && !frontColliderPlants.Contains(other.gameObject))
+        {
+            frontColliderPlants.Add(other.gameObject);
+        }
+    }
+
+    public void GetFrontColliderExits(Collider2D other)
+    {
+        if (other.CompareTag("Plant"))
+        {
+            frontColliderPlants.Remove(other.gameObject);
+        }
+    }
+    #endregion DetectLogic
 
     void CallAnimations()
     {
@@ -161,19 +206,10 @@ public class Enemy : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, targetPos, movementSpeed * Time.deltaTime);
     }
 
-    void RotateFrontCollider()
-    {
-        if (frontColliderTransform != null && mainTarget != null)
-        {
-            Vector2 direction = (mainTarget.transform.position - transform.position).normalized;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            frontColliderTransform.rotation = Quaternion.Euler(0, 0, angle - 90f);
-        }
-    }
-
+    #region AttackLogic
     void AttackMainTarget()
     {
-        // gameController.GetComponent<RoundManager>().Damage(attackDamage);
+        roundManagerScript.houseHealth -= attackDamage;
     }
 
     void AttackClosestPlant()
@@ -209,6 +245,7 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+    #endregion AttackLogic
 
     private void OnDrawGizmosSelected()
     {
@@ -216,34 +253,6 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, attackRange);
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, detectRange);
-    }
-
-    public void OnChildTriggerEnter(Collider2D other)
-    {
-        if (other.CompareTag("Plant") && !nearbyPlants.Contains(other.gameObject))
-            nearbyPlants.Add(other.gameObject);
-    }
-
-    public void OnChildTriggerExit(Collider2D other)
-    {
-        if (other.CompareTag("Plant"))
-            nearbyPlants.Remove(other.gameObject);
-    }
-
-    public void GetFrontColliderEntries(Collider2D other)
-    {
-        if (other.CompareTag("Plant") && !frontColliderPlants.Contains(other.gameObject))
-        {
-            frontColliderPlants.Add(other.gameObject);
-        }
-    }
-
-    public void GetFrontColliderExits(Collider2D other)
-    {
-        if (other.CompareTag("Plant"))
-        {
-            frontColliderPlants.Remove(other.gameObject);
-        }
     }
 
     public void Damage(int damageValue)

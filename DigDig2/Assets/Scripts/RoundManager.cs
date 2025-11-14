@@ -13,7 +13,7 @@ public class RoundManager : MonoBehaviour
 
     [Header("House Settings")]
     [SerializeField] GameObject houseObject;
-    [SerializeField] int houseHealth = 100;
+    public int houseHealth = 100;
 
     [Header("Lane Settings")]
     [SerializeField] GameObject[] lanes; //0 = bottom, 1 = right, 2 = top, 3 = left
@@ -35,7 +35,7 @@ public class RoundManager : MonoBehaviour
 
     private void Awake()
     {
-        houseObject = GameObject.FindGameObjectWithTag("mainTarget");
+        houseObject = GameObject.FindGameObjectWithTag("MainTarget");
     }
 
     void Start()
