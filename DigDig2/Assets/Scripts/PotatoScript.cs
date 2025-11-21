@@ -49,4 +49,12 @@ public class PotatoScript : MonoBehaviour
             }
         }
     }
+    public void BecomeBaby()
+    {
+        baseAnimator.SetBool("Child", false);
+        baseAnimator.SetBool("Young", false);
+        baseAnimator.SetBool("Adult", false);
+        growing = true;
+        growthTimer = 0;
+    }
 }

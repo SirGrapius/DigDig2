@@ -437,11 +437,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 640
-        y: 320
+        y: 319
         width: 160
         height: 160
       alignment: 9
-      pivot: {x: 0.5, y: 0.21875}
+      pivot: {x: 0.5, y: 0.38125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -604,28 +604,6 @@ TextureImporter:
       bones: []
       spriteID: 5adaaeac69e257470800000000000000
       internalID: 8391664705859136933
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Chili-Sheet_17
-      rect:
-        serializedVersion: 2
-        x: 551
-        y: 191
-        width: 31
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0bae9a2429a4fee459b49ee2ade09fea
-      internalID: 65867513
       vertices: []
       indices: 
       edges: []

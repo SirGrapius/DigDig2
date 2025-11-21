@@ -4,7 +4,7 @@ public class Chiliscript : MonoBehaviour
 {
     ClosestEnemy targeting;
     public Animator baseAnimator;
-    float maxRange = 4;
+    [SerializeField] float maxRange = 4;
     public bool growing;
     public float growthTimer;
     public float waterAmount = 1;
@@ -13,10 +13,13 @@ public class Chiliscript : MonoBehaviour
     [SerializeField] float stage1 = 30;
     [SerializeField] float stage2 = 60;
     [SerializeField] float stage3 = 90;
+    [SerializeField] int damageValue = 10;
+    [SerializeField] int minTargets = 5;
     private void Awake()
     {
         baseAnimator = GetComponent<Animator>();
         targeting = GetComponent<ClosestEnemy>();
+        growing = true;
     }
     void Update()
     {
@@ -49,11 +52,23 @@ public class Chiliscript : MonoBehaviour
         }
         if (!growing)
         {
-            GameObject[] enemiesInRange = targeting.Target(maxRange, 5);
+            GameObject[] enemiesInRange = targeting.Target(maxRange, minTargets);
             if (enemiesInRange != null)
             {
-                Debug.Log("NUKE!"); //Kaboom
+                baseAnimator.SetBool("Attack", true);
+                for (int i = 0; i < enemiesInRange.Length; i++)
+                {
+                    enemiesInRange[i].GetComponent<Enemy>().Damage(damageValue);
+                }
             }
         }
+    }
+    public void BecomeBaby()
+    {
+        baseAnimator.SetBool("Child", false);
+        baseAnimator.SetBool("Young", false);
+        baseAnimator.SetBool("Adult", false);
+        growing = true;
+        growthTimer = 0;
     }
 }

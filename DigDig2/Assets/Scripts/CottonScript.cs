@@ -58,11 +58,11 @@ public class CottonScript : MonoBehaviour
             }
             else if (growthTimer >= stage2)
             {
-                baseAnimator.SetBool("Teen", true);
+                baseAnimator.SetBool("Young", true);
             }
             else if (growthTimer >= stage1)
             {
-                baseAnimator.SetBool("Young", true);
+                baseAnimator.SetBool("Child", true);
             }
         }
 
@@ -103,5 +103,13 @@ public class CottonScript : MonoBehaviour
                 }
             }
         }
+    }
+    public void BecomeBaby()
+    {
+        baseAnimator.SetBool("Child", false);
+        baseAnimator.SetBool("Young", false);
+        baseAnimator.SetBool("Adult", false);
+        growing = true;
+        growthTimer = 0;
     }
 }
