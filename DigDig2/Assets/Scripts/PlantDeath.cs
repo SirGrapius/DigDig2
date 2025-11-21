@@ -10,6 +10,7 @@ public class PlantDeath : MonoBehaviour
     public bool decaying;
     
     float time;
+    public RuleTile tileUnderneath;
 
     public void Damage(int damageValue)
     {
