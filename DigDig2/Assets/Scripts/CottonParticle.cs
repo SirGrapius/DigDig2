@@ -38,4 +38,8 @@ public class CottonParticle : MonoBehaviour
             other.GetComponent<Enemy>().Damage(damageValue);
         }
     }
+    private void OnGameStateChanged(GameState newGameState)
+    {
+        enabled = newGameState == GameState.Gameplay;
+    }
 }

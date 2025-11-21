@@ -71,4 +71,8 @@ public class Chiliscript : MonoBehaviour
         growing = true;
         growthTimer = 0;
     }
+    private void OnGameStateChanged(GameState newGameState)
+    {
+        enabled = newGameState == GameState.Gameplay;
+    }
 }

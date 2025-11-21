@@ -40,4 +40,8 @@ public class PlantDeath : MonoBehaviour
             time += Time.deltaTime;
         }
     }
+    private void OnGameStateChanged(GameState newGameState)
+    {
+        enabled = newGameState == GameState.Gameplay;
+    }
 }

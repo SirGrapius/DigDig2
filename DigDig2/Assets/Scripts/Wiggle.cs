@@ -29,4 +29,8 @@ public class Wiggle : MonoBehaviour
             }
         }
     }
+    private void OnGameStateChanged(GameState newGameState)
+    {
+        enabled = newGameState == GameState.Gameplay;
+    }
 }
