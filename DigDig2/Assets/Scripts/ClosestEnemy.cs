@@ -1,4 +1,3 @@
-using System.Linq;
 using UnityEngine;
 
 public class ClosestEnemy : MonoBehaviour
@@ -12,7 +11,8 @@ public class ClosestEnemy : MonoBehaviour
         int counter = 0;
         for (int i = 0; i < enemies.Length; i++)
         {
-            if (enemies[i].transform.position.sqrMagnitude < maxRange*maxRange)
+            Vector3 centered = enemies[i].transform.position - transform.position;
+            if (centered.sqrMagnitude < maxRange * maxRange)
             {
                 enemiesInRange[counter] = enemies[i];
                 counter++;
@@ -26,7 +26,7 @@ public class ClosestEnemy : MonoBehaviour
         GameObject temp;
         for (int i = 0; i < enemies.Length; i++)
         {
-            for (int j = 0; j < enemies.Length; j++)
+            for (int j = 0; j < i; j++)
             {
                 Vector3 v0 = enemies[j].transform.position - transform.position;
                 Vector3 v1 = enemies[i].transform.position - transform.position;
