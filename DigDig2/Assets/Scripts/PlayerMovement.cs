@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Tool Settings")]
     [SerializeField] TileScript inventory;
-
+    [SerializeField] int moneyAmount;
 
     [Header("Audio")]
     // audio controller script here

@@ -48,7 +48,6 @@ MonoBehaviour:
   animMoving: {fileID: 6048803574622191328}
   Attack: {fileID: 6052966136856338167, guid: 338414cc6333f304ab34600a61c5957f, type: 3}
   growthTimer: 0
-  attackTimer: 0
   stage1: 30
   stage2: 60
   stage3: 90
@@ -57,9 +56,14 @@ MonoBehaviour:
   baseAnimator: {fileID: 8865439386366426737}
   attackAnim: {fileID: 7400000, guid: 908d6c7d1f4b2624baef91a5578c2aa3, type: 2}
   Base: {fileID: 4479180882360130531}
+  ready: 0
   growing: 1
   waterAmount: 1
   waterLoss: 1
+  maxRange: 20
+  isInInventory: 0
+  maxSellValue: 75
+  sellValue: 0
 --- !u!114 &7010418909444613086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,3 +411,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlantDeath
   daddy: {fileID: 8495913010246796608}
   hp: 3
+  tileUnderneath: {fileID: 0}

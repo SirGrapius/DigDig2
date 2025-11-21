@@ -22,10 +22,15 @@ public class CottonScript : MonoBehaviour
     public float waterLoss;
     [SerializeField] float maxRange = 20;
 
+    public bool isInInventory;
+    public float maxSellValue;
+    public float sellValue;
+
     void Awake()
     {
         targeting = GetComponent<ClosestEnemy>();
         growing = true;
+        sellValue = maxSellValue;
     }
 
     void Update()
@@ -53,8 +58,9 @@ public class CottonScript : MonoBehaviour
             }
         }
 
-        if (!growing)
+        if (!growing && !isInInventory)
         {
+            sellValue -= maxSellValue * 0.01f * Time.deltaTime;
             if (!ready)
             {
                 attackTimer += Time.deltaTime;
