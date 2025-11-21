@@ -1,11 +1,15 @@
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class PlantDeath : MonoBehaviour
 {
     [SerializeField] GameObject daddy;
+    [SerializeField] GameObject child;
+    [SerializeField] AnimationClip deathAnim;
+    [SerializeField] Animator myAnimator;
     [SerializeField] int hp;
-    public RuleTile tileUnderneath;
+    public bool decaying;
+    
+    float time;
 
     public void Damage(int damageValue)
     {
@@ -17,7 +21,27 @@ public class PlantDeath : MonoBehaviour
     }
     public void Decay()
     {
-        daddy.transform.parent.GetComponent<TileScript>().myTilemap.SetTile(Vector3Int.FloorToInt(transform.position / transform.parent.parent.GetComponent<Grid>().cellSize.x * transform.localScale.x), tileUnderneath);
-        Destroy(daddy);
+        daddy.transform.parent.GetComponent<TileScript>().myTilemap.SetTile(Vector3Int.FloorToInt(transform.position / transform.parent.parent.GetComponent<Grid>().cellSize.x * transform.localScale.x), transform.parent.GetComponent<TileScript>().unTilledSoil);
+        myAnimator.SetBool("Death", true);
+        decaying = true;
+        if (child != null)
+        {
+            Destroy(child);
+        }   
+        if (time >= deathAnim.length)
+        {
+            Destroy(daddy);
+        }
+    }
+    void Update()
+    {
+        if (myAnimator.GetBool("Death"))
+        {
+            time += Time.deltaTime;
+        }
+    }
+    private void OnGameStateChanged(GameState newGameState)
+    {
+        enabled = newGameState == GameState.Gameplay;
     }
 }

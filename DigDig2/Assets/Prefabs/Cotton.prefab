@@ -48,6 +48,9 @@ MonoBehaviour:
   animMoving: {fileID: 6048803574622191328}
   Attack: {fileID: 6052966136856338167, guid: 338414cc6333f304ab34600a61c5957f, type: 3}
   growthTimer: 0
+  waterAmount: 1
+  waterAmountMin: 1
+  waterLoss: 1
   stage1: 30
   stage2: 60
   stage3: 90
@@ -58,12 +61,7 @@ MonoBehaviour:
   Base: {fileID: 4479180882360130531}
   ready: 0
   growing: 1
-  waterAmount: 1
-  waterLoss: 1
   maxRange: 20
-  isInInventory: 0
-  maxSellValue: 75
-  sellValue: 0
 --- !u!114 &7010418909444613086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,7 +74,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04ffcc87a84dec4c90db78f0f127bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClosestEnemy
-  enemies: []
 --- !u!1 &6899398132976983841
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,5 +407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlantDeath
   daddy: {fileID: 8495913010246796608}
+  child: {fileID: 6899398132976983841}
+  deathAnim: {fileID: 7400000, guid: 870f8d703e533c544b8a33f4e0ef054c, type: 2}
+  myAnimator: {fileID: 8865439386366426737}
   hp: 3
-  tileUnderneath: {fileID: 0}

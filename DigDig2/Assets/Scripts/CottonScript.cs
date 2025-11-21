@@ -6,8 +6,11 @@ public class CottonScript : MonoBehaviour
     [SerializeField] Wiggle animMoving;
     [SerializeField] GameObject Attack;
     Vector2 targetPos;
-    public float growthTimer;
     float attackTimer;
+    public float growthTimer;
+    public float waterAmount = 1;
+    public float waterAmountMin = 1;
+    public float waterLoss = 1;
     [SerializeField] float stage1 = 30;
     [SerializeField] float stage2 = 60;
     [SerializeField] float stage3 = 90;
@@ -18,8 +21,7 @@ public class CottonScript : MonoBehaviour
     [SerializeField] Transform Base;
     public bool ready;
     public bool growing;
-    public float waterAmount = 1;
-    public float waterLoss;
+    
     [SerializeField] float maxRange = 20;
 
     public bool isInInventory;
@@ -33,28 +35,39 @@ public class CottonScript : MonoBehaviour
         sellValue = maxSellValue;
     }
 
+    void Start()
+    {
+        Base.gameObject.tag = "GrowingPlant";
+    }
+
     void Update()
     {
         if (growing)
         {
-            growthTimer += Time.deltaTime * waterAmount;
-            if (waterAmount > 1)
+            if (waterAmount > waterAmountMin)
             {
                 waterAmount -= waterLoss * Time.deltaTime;
             }
+            if (waterAmount < waterAmountMin)
+            {
+                waterAmount = waterAmountMin;
+            }
+            growthTimer += Time.deltaTime * waterAmount;
+            
             if (growthTimer >= stage3)
             {
                 baseAnimator.SetBool("Adult", true);
+                Base.gameObject.tag = "Plant";
                 growing = false;
                 animMoving.OriginPoint();
             }
             else if (growthTimer >= stage2)
             {
-                baseAnimator.SetBool("Teen", true);
+                baseAnimator.SetBool("Young", true);
             }
             else if (growthTimer >= stage1)
             {
-                baseAnimator.SetBool("Young", true);
+                baseAnimator.SetBool("Child", true);
             }
         }
 
@@ -68,7 +81,8 @@ public class CottonScript : MonoBehaviour
             if (attackTimer >= attackFrequency)
             {
                 ready = true;
-                if (targeting.Target(maxRange) != null)
+                GameObject[] enemiesInRange = targeting.Target(maxRange, 1);
+                if (enemiesInRange != null)
                 {
                     attackTimer += Time.deltaTime;
                     myAnimator.SetBool("Attack", true);
@@ -76,7 +90,7 @@ public class CottonScript : MonoBehaviour
                     {
                         ready = false;
                         attackTimer -= attackFrequency + attackAnim.length;
-                        targetPos = targeting.Target(maxRange).transform.position;
+                        targetPos = enemiesInRange[0].transform.position;
                         targetPos.x -= transform.position.x;
                         targetPos.y -= transform.position.y;
                         switch (targetPos.x)
@@ -94,7 +108,18 @@ public class CottonScript : MonoBehaviour
                     }
                 }
             }
-            transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg);
         }
+    }
+    public void BecomeBaby()
+    {
+        baseAnimator.SetBool("Child", false);
+        baseAnimator.SetBool("Young", false);
+        baseAnimator.SetBool("Adult", false);
+        growing = true;
+        growthTimer = 0;
+    }
+    private void OnGameStateChanged(GameState newGameState)
+    {
+        enabled = newGameState == GameState.Gameplay;
     }
 }

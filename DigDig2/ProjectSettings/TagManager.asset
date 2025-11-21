@@ -6,7 +6,11 @@ TagManager:
   tags:
   - Plant
   - Enemy
+  - GrowingPlant
+  - FlyingEnemy
+  - MainTarget
   - mainTarget
+  - SceneManager
   layers:
   - Default
   - TransparentFX
@@ -41,6 +45,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Under TMP
+    uniqueID: 2279672499
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

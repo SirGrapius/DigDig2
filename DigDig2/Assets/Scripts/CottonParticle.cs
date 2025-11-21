@@ -18,12 +18,12 @@ public class CottonParticle : MonoBehaviour
     }
     void Start()
     {
-        target = getTarget.Target(maxRange).transform.position;
+        target = getTarget.Target(maxRange, 1)[0].transform.position;
         origin = transform.position;
     }
     void Update()
     {
-        transform.position += Vector3.Normalize(target - origin) * speed * Time.deltaTime;
+        transform.position += speed * Time.deltaTime * Vector3.Normalize(target - origin);
         time += Time.deltaTime;
         if (time >= lifespan)
         {
@@ -37,5 +37,9 @@ public class CottonParticle : MonoBehaviour
             Destroy(gameObject);
             other.GetComponent<Enemy>().Damage(damageValue);
         }
+    }
+    private void OnGameStateChanged(GameState newGameState)
+    {
+        enabled = newGameState == GameState.Gameplay;
     }
 }

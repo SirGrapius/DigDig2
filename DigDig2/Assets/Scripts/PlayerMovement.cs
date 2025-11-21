@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] bool isMoving;
     [SerializeField] float baseSpeed = 5;
-    [SerializeField] float currentSpeed;
+    [SerializeField] public float currentSpeed;
     [SerializeField] bool sprinting;
 
     Vector2 playerInput;
@@ -26,7 +26,9 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Tool Settings")]
     [SerializeField] TileScript inventory;
-    [SerializeField] int moneyAmount;
+    [SerializeField] float maxShovelCharge;
+    [SerializeField] float currentShovelCharge;
+
 
     [Header("Audio")]
     // audio controller script here
@@ -35,13 +37,26 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Animator animator;
 
     [SerializeField] Rigidbody2D rb;
+    [SerializeField] GameStateManager gsManager;
+
+    private void Awake()
+    {
+        gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
+    }
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponentInParent<Animator>();
         currentSpeed = baseSpeed;
+        gsManager.OnGameStateChange += OnGameStateChanged;
     }
+
+    void OnDestroy()
+    {
+        gsManager.OnGameStateChange -= OnGameStateChanged;
+    }
+
     void Update()
     {
         playerInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")); //if player presses a movement key the player will move
@@ -88,13 +103,20 @@ public class PlayerMovement : MonoBehaviour
                 usingTool = true;
             }
         }
-        if (Input.GetKeyUp(KeyCode.Space) && chargingAttack) //unleash attack upon letting go of space
+
+        if (chargingAttack && currentShovelCharge < maxShovelCharge) //if charging attack, count time charging
+        {
+            currentShovelCharge += Time.deltaTime;
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space) && chargingAttack && currentEnemy != null) //unleash attack upon letting go of space
         {
             usingTool = false;
             if (chargingAttack)
             {
                 chargingAttack = false;
-                currentEnemy.Damage(1);
+                currentEnemy.Damage(Mathf.RoundToInt(damage * ((1 + currentShovelCharge)/0.75f)));
+                currentShovelCharge = 0;
                 StartCoroutine(CooldownDuration());
             }
         }
@@ -126,7 +148,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy" && inventory.selectedTool == 3) //check if you're attacking and there's an enemy in your hitbox and do damage.
+        if (collision.CompareTag("Enemy") && inventory.selectedTool == 3) //check if you're attacking and there's an enemy in your hitbox and do damage.
         {
             currentEnemy = collision.gameObject.GetComponent<Enemy>();
             Debug.Log("bam, boom, wop");
@@ -135,7 +157,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy" && collision.gameObject.GetComponent<Enemy>() == currentEnemy)
+        if (collision.CompareTag("Enemy") && collision.gameObject.GetComponent<Enemy>() == currentEnemy)
         {
             currentEnemy = null;
         }
@@ -155,5 +177,10 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.linearVelocityX = playerInput.x * currentSpeed;
         rb.linearVelocityY = playerInput.y * currentSpeed;
+    }
+
+    private void OnGameStateChanged(GameState newGameState)
+    {
+        enabled = newGameState == GameState.Gameplay;
     }
 }
