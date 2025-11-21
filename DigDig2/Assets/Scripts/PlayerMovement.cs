@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] bool isMoving;
     [SerializeField] float baseSpeed = 5;
-    [SerializeField] float currentSpeed;
+    [SerializeField] public float currentSpeed;
     [SerializeField] bool sprinting;
 
     Vector2 playerInput;
@@ -37,16 +37,26 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Animator animator;
 
     [SerializeField] Rigidbody2D rb;
+    [SerializeField] GameStateManager gsManager;
 
-    [SerializeField] SceneLoader sceneLoader;
+    private void Awake()
+    {
+        gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
+    }
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponentInParent<Animator>();
         currentSpeed = baseSpeed;
-        sceneLoader = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneLoader>();
+        gsManager.OnGameStateChange += OnGameStateChanged;
     }
+
+    void OnDestroy()
+    {
+        gsManager.OnGameStateChange -= OnGameStateChanged;
+    }
+
     void Update()
     {
         playerInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")); //if player presses a movement key the player will move
@@ -111,11 +121,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            StartCoroutine(sceneLoader.PauseGame());
-        }
-
         if (rb.linearVelocityX != 0 && rb.linearVelocityY != 0) //reduce velocity when moving diagonally for more realistic movement
         {
             rb.linearVelocityX = rb.linearVelocityX * Time.deltaTime / Mathf.Sqrt(2);
@@ -172,5 +177,10 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.linearVelocityX = playerInput.x * currentSpeed;
         rb.linearVelocityY = playerInput.y * currentSpeed;
+    }
+
+    private void OnGameStateChanged(GameState newGameState)
+    {
+        enabled = newGameState == GameState.Gameplay;
     }
 }

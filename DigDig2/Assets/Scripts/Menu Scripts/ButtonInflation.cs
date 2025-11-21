@@ -6,6 +6,8 @@ public class ButtonInflation : MonoBehaviour
     [SerializeField] bool inflate;
     [SerializeField] float lerpAmount;
     [SerializeField] AudioClip myClip;
+    [SerializeField] SceneLoader sceneLoader;
+    [SerializeField] string whatButton;
 
     [SerializeField] AudioSource source;
     [SerializeField] Vector2 enterSize;
@@ -20,6 +22,7 @@ public class ButtonInflation : MonoBehaviour
         originalSize = myTransform.localScale;
         source = GetComponentInParent<AudioSource>();
         source.clip = myClip;
+        sceneLoader = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneLoader>();
     }
 
 
@@ -35,25 +38,30 @@ public class ButtonInflation : MonoBehaviour
         }
     }
 
-    public void MouseEnter()
+    private void OnMouseEnter()
     {
+        Debug.Log("mouseover");
         inflate = true;
         source.Play();
     }
-    public void MouseExit()
+    private void OnMouseExit()
     {
+        Debug.Log("mouseexit");
         inflate = false;
     }
-    public void MouseClicked()
+    private void OnMouseDown()
     {
+        Debug.Log("mouseclick");
         StartCoroutine(ButtonClicked());
     }
 
     IEnumerator ButtonClicked()
     {
         myTransform.localScale = Vector2.Lerp(enterSize, myTransform.localScale, Mathf.Pow(0.5f, Time.deltaTime * lerpAmount));
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
         myTransform.localScale = Vector2.Lerp(originalSize, myTransform.localScale, Mathf.Pow(0.5f, Time.deltaTime * lerpAmount));
+        yield return new WaitForSeconds(0.1f);
+        sceneLoader.WhatButton(whatButton);
         yield return null;
     }
 }
