@@ -31,6 +31,7 @@ public class Enemy : MonoBehaviour
 
     BoxCollider2D mainTargetCollider;
     RoundManager roundManagerScript;
+    GameStateManager gsManager;
     GameObject closestPlant;
     GameObject mainTarget;
 
@@ -39,6 +40,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] List<GameObject> nearbyPlants = new List<GameObject>();
     [SerializeField] List<GameObject> frontColliderPlants = new List<GameObject>();
 
+    private void Awake()
+    {
+        gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
+    }
 
     private void Start()
     {
@@ -46,6 +51,12 @@ public class Enemy : MonoBehaviour
         mainTargetCollider = mainTarget.GetComponent<BoxCollider2D>();
 
         roundManagerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<RoundManager>(); // add nullcheck
+        gsManager.OnGameStateChange += OnGameStateChanged;
+    }
+
+    void OnDestroy()
+    {
+        gsManager.OnGameStateChange -= OnGameStateChanged;
     }
 
     void Update()
