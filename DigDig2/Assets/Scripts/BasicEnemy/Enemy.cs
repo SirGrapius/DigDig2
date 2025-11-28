@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem.Android.LowLevel;
 
 public class Enemy : MonoBehaviour
 {
@@ -166,7 +164,7 @@ public class Enemy : MonoBehaviour
             frontColliderPlants.Remove(other.gameObject);
         }
     }
-    #endregion DetectLogic
+    #endregion DetectionLogic
 
     void CallAnimations()
     {
@@ -267,5 +265,10 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
+    }
+
+    private void OnGameStateChanged(GameState newGameState)
+    {
+        enabled = newGameState == GameState.Gameplay;
     }
 }
