@@ -48,13 +48,16 @@ public class Chiliscript : MonoBehaviour
             if (growthTimer >= stage3)
             {
                 baseAnimator.SetBool("Adult", true);
+                baseAnimator.SetBool("Young", true);
+                baseAnimator.SetBool("Child", true);
                 gameObject.tag = "Plant";
                 growing = false;
             }
             else if (growthTimer >= stage2)
             {
                 baseAnimator.SetBool("Young", true);
-            }
+                baseAnimator.SetBool("Child", true);
+                            }
             else if (growthTimer >= stage1)
             {
                 baseAnimator.SetBool("Child", true);

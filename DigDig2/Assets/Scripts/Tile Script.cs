@@ -6,6 +6,7 @@ public class TileScript : MonoBehaviour
     [Header("Variables for selecting tiles")]
     public Tilemap myTilemap;
     public Tilemap plantTiles;
+    public Tilemap grassTiles;
     [SerializeField] TilemapCollider2D myCollider;
     [SerializeField] RuleTile myRuleTile;
     [SerializeField] Tile myTile;
@@ -23,7 +24,8 @@ public class TileScript : MonoBehaviour
     // 2 = watering can
     // 3 = shovel
     public RuleTile tilledSoil;
-    public RuleTile unTilledSoil;
+    public RuleTile unTilledSoil; 
+    public RuleTile grassSoil;
     [SerializeField] GameObject myInventory;
 
     [Header("Variables for use of Tools")]
@@ -164,8 +166,21 @@ public class TileScript : MonoBehaviour
                         selectedInventoryTile = myInventory.GetComponent<TileScript>().selectedInventoryTile;
                         plantTiles.SetTile(myTilePositionInt, selectedInventoryTile);
                         useTimer = 0;
+                        for (int i = 0; i < plantTiles.transform.childCount; i++)
+                        {
+                            // seeing if you are hovering over a plant and if so, getting the position of the plant
+                            if (plantTiles.transform.GetChild(i).transform.position == CheckTile()
+                                * (int)transform.parent.GetComponent<Grid>().cellSize.x
+                                + new Vector3Int(1, 1, 50)
+                                && pickedUpPlant == null)
+                            {
+                                // picking up the plant
+                                plantTiles.transform.GetChild(i).GetComponent<PlantDeath>().grassUnderneath
+                                    = grassTiles.GetTile<RuleTile>(CheckTile());
+                            }
+                            // using a picked up plant
+                        }
                     }
-                    // using a picked up plant
                     else
                     {
                         selectedInventoryTile = myInventory.GetComponent<TileScript>().selectedInventoryTile;
@@ -175,6 +190,8 @@ public class TileScript : MonoBehaviour
                         pickedUpPlant.transform.position = pickedUpPlantPosition;
                         pickedUpPlant.transform.GetChild(0).GetChild(0).GetComponent<CottonScript>().growing = true;
                         pickedUpPlant.GetComponent<PlantDeath>().tileUnderneath = myTilemap.GetTile<RuleTile>(myTilePositionInt);
+                        pickedUpPlant.GetComponent<PlantDeath>().grassUnderneath = grassTiles.GetTile<RuleTile>(CheckTile());
+                        grassTiles.SetTile(CheckTile(), grassSoil);
                         useTimer = 0;
                         pickedUpPlant = null;
                     }
@@ -261,6 +278,7 @@ public class TileScript : MonoBehaviour
                     {
                         myTilemap.SetTile(CheckTile(), tilledSoil);
                     }
+                    grassTiles.SetTile(CheckTile(), pickedUpPlant.GetComponent<PlantDeath>().grassUnderneath);
 
                     pickedUpPlant.transform.position += Vector3.one;
 
