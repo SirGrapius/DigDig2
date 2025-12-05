@@ -12,11 +12,20 @@ public class PotatoScript : MonoBehaviour
     [SerializeField] float stage2 = 60;
     [SerializeField] float stage3 = 90;
     public int damageValue = 1;
+
+    [SerializeField] GameStateManager gsManager;
+
     private void Awake()
     {
         baseAnimator = GetComponent<Animator>();    
         gameObject.tag = "GrowingPlant";
         growing = true;
+        gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
+    }
+
+    private void Start()
+    {
+        gsManager.OnGameStateChange += OnGameStateChanged;
     }
 
     void Update()
@@ -60,5 +69,9 @@ public class PotatoScript : MonoBehaviour
     private void OnGameStateChanged(GameState newGameState)
     {
         enabled = newGameState == GameState.Gameplay;
+    }
+    void OnDestroy()
+    {
+        gsManager.OnGameStateChange -= OnGameStateChanged;
     }
 }

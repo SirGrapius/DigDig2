@@ -11,16 +11,21 @@ public class CottonParticle : MonoBehaviour
     ClosestEnemy getTarget;
     [SerializeField] float maxRange = 20;
 
+    [SerializeField] GameStateManager gsManager;
+
     void Awake()
     {
         getTarget = GetComponent<ClosestEnemy>();
-
+        gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
     }
+
     void Start()
     {
         target = getTarget.Target(maxRange, 1)[0].transform.position;
         origin = transform.position;
+        gsManager.OnGameStateChange += OnGameStateChanged;
     }
+
     void Update()
     {
         transform.position += speed * Time.deltaTime * Vector3.Normalize(target - origin);
@@ -30,6 +35,7 @@ public class CottonParticle : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
@@ -38,8 +44,13 @@ public class CottonParticle : MonoBehaviour
             other.GetComponent<Enemy>().Damage(damageValue);
         }
     }
+
     private void OnGameStateChanged(GameState newGameState)
     {
         enabled = newGameState == GameState.Gameplay;
+    }
+    void OnDestroy()
+    {
+        gsManager.OnGameStateChange -= OnGameStateChanged;
     }
 }

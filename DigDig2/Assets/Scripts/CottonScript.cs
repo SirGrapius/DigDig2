@@ -28,16 +28,20 @@ public class CottonScript : MonoBehaviour
     public float maxSellValue;
     public float sellValue;
 
+    [SerializeField] GameStateManager gsManager;
+
     void Awake()
     {
         targeting = GetComponent<ClosestEnemy>();
         growing = true;
         sellValue = maxSellValue;
+        gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
     }
 
     void Start()
     {
         Base.gameObject.tag = "GrowingPlant";
+        gsManager.OnGameStateChange += OnGameStateChanged;
     }
 
     void Update()
@@ -121,5 +125,9 @@ public class CottonScript : MonoBehaviour
     private void OnGameStateChanged(GameState newGameState)
     {
         enabled = newGameState == GameState.Gameplay;
+    }
+    void OnDestroy()
+    {
+        gsManager.OnGameStateChange -= OnGameStateChanged;
     }
 }

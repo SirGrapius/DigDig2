@@ -15,12 +15,22 @@ public class Chiliscript : MonoBehaviour
     [SerializeField] float stage3 = 90;
     [SerializeField] int damageValue = 10;
     [SerializeField] int minTargets = 5;
+
+    [SerializeField] GameStateManager gsManager;
+
     private void Awake()
     {
         baseAnimator = GetComponent<Animator>();
         targeting = GetComponent<ClosestEnemy>();
         growing = true;
+        gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
     }
+
+    private void Start()
+    {
+        gsManager.OnGameStateChange += OnGameStateChanged;
+    }
+
     void Update()
     {
         if (growing)
@@ -63,6 +73,7 @@ public class Chiliscript : MonoBehaviour
             }
         }
     }
+
     public void BecomeBaby()
     {
         baseAnimator.SetBool("Child", false);
@@ -71,8 +82,14 @@ public class Chiliscript : MonoBehaviour
         growing = true;
         growthTimer = 0;
     }
+
     private void OnGameStateChanged(GameState newGameState)
     {
         enabled = newGameState == GameState.Gameplay;
+    }
+
+    void OnDestroy()
+    {
+        gsManager.OnGameStateChange -= OnGameStateChanged;
     }
 }
