@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ffafe251cbd61f1449b334565beb9649
+guid: dc3da12d447239b4aa8030ee71cbce1e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7213746670581844083
-    second: Tiled_0
+      213: -8854321842458517447
+    second: Tiled2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tiled_0
+      name: Tiled2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,14 +115,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d87ff488f9f93eb90800000000000000
-      internalID: -7213746670581844083
+      spriteID: 930274d42312f1580800000000000000
+      internalID: -8854321842458517447
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tiled_1
+      name: Tiled2_1
       rect:
         serializedVersion: 2
         x: 32
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4589a866efed584b8df26ab3ac91e69
-      internalID: 365305350
+      spriteID: 9f40c597df5a1ac4d9101e7712422099
+      internalID: 461878400
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tiled_2
+      name: Tiled2_2
       rect:
         serializedVersion: 2
         x: 64
@@ -159,14 +159,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: adbdaeb12dbb15741badb5ddf3940f37
-      internalID: -783424254
+      spriteID: 0124c2140053ee14fb6cd90aafa2a105
+      internalID: 1792314649
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tiled_3
+      name: Tiled2_3
       rect:
         serializedVersion: 2
         x: 0
@@ -181,14 +181,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f7160ab9da46f144a008929445b17be
-      internalID: 2066082327
+      spriteID: 66233b271315ad746a6ade27eefab0e6
+      internalID: 2110898271
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tiled_4
+      name: Tiled2_4
       rect:
         serializedVersion: 2
         x: 32
@@ -203,14 +203,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 829dfed969722214bb3e34fbcc3711dd
-      internalID: -2019494699
+      spriteID: 68cae03821b9f2144b720354e672e78d
+      internalID: 1081746134
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tiled_5
+      name: Tiled2_5
       rect:
         serializedVersion: 2
         x: 64
@@ -225,14 +225,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ea1e78b83d9b154292dbf8cc6821584
-      internalID: -1137908394
+      spriteID: 96c1674052e1b9a47b78e6c2c526219f
+      internalID: -2092541433
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tiled_6
+      name: Tiled2_6
       rect:
         serializedVersion: 2
         x: 0
@@ -247,14 +247,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ae71f50449144c4f864f009cdabebec
-      internalID: 645847636
+      spriteID: ddbf1438cbeba39498241e02d9708a26
+      internalID: 726717493
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tiled_7
+      name: Tiled2_7
       rect:
         serializedVersion: 2
         x: 32
@@ -269,14 +269,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9176bc85609e7f848af99406d4523ed7
-      internalID: 2014122830
+      spriteID: 45845d2815ab09647a231c3a1430f28b
+      internalID: -1135563009
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tiled_8
+      name: Tiled2_8
       rect:
         serializedVersion: 2
         x: 64
@@ -291,8 +291,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62c79651fc52b524a9d95ef211f0c947
-      internalID: 861395418
+      spriteID: 3595edbaa5b126b47841da8f31f1ef19
+      internalID: 270638501
       vertices: []
       indices: 
       edges: []
@@ -301,7 +301,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: f1197bc981c90054f99626ac5a003422
+    spriteID: 4a5d750528a245746931f7aec7494960
     internalID: 0
     vertices: []
     indices: 
@@ -311,17 +311,17 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":3.0,"y":3.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":3.0,"y":3.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":true,"isAlternate":false}'
     nameFileIdTable:
-      Tiled_0: -7213746670581844083
-      Tiled_1: 365305350
-      Tiled_2: -783424254
-      Tiled_3: 2066082327
-      Tiled_4: -2019494699
-      Tiled_5: -1137908394
-      Tiled_6: 645847636
-      Tiled_7: 2014122830
-      Tiled_8: 861395418
+      Tiled2_0: -8854321842458517447
+      Tiled2_1: 461878400
+      Tiled2_2: 1792314649
+      Tiled2_3: 2110898271
+      Tiled2_4: 1081746134
+      Tiled2_5: -2092541433
+      Tiled2_6: 726717493
+      Tiled2_7: -1135563009
+      Tiled2_8: 270638501
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
