@@ -37,6 +37,15 @@ public class SceneLoader : MonoBehaviour
 
             gsManager.SetState(newGameState);
         }
+
+        if (gsManager.CurrentGameState == GameState.Paused && !isPaused)
+        {
+            StartCoroutine(PauseGame());
+        }
+        if (gsManager.CurrentGameState == GameState.Gameplay && isPaused)
+        {
+            StartCoroutine(UnpauseGame());
+        }
     }
 
     public void WhatButton(string buttonName)
@@ -96,7 +105,6 @@ public class SceneLoader : MonoBehaviour
         pauseMenu.transform.position = canvas.transform.position;
         yield return new WaitForSeconds(0.1f);
         isPaused = true;
-        Time.timeScale = 0;
         yield return null;
     }
 

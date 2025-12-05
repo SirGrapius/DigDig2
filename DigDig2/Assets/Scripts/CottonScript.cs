@@ -61,6 +61,9 @@ public class CottonScript : MonoBehaviour
             if (growthTimer >= stage3)
             {
                 baseAnimator.SetBool("Adult", true);
+                baseAnimator.SetBool("Young", true);
+                baseAnimator.SetBool("Child", true);
+
                 Base.gameObject.tag = "Plant";
                 growing = false;
                 animMoving.OriginPoint();
@@ -68,6 +71,7 @@ public class CottonScript : MonoBehaviour
             else if (growthTimer >= stage2)
             {
                 baseAnimator.SetBool("Young", true);
+                baseAnimator.SetBool("Child", true);
             }
             else if (growthTimer >= stage1)
             {
@@ -119,6 +123,7 @@ public class CottonScript : MonoBehaviour
         baseAnimator.SetBool("Child", false);
         baseAnimator.SetBool("Young", false);
         baseAnimator.SetBool("Adult", false);
+        Base.gameObject.tag = "GrowingPlant";
         growing = true;
         growthTimer = 0;
     }
