@@ -13,6 +13,18 @@ public class PlantDeath : MonoBehaviour
     public RuleTile tileUnderneath;
     public RuleTile grassUnderneath;
 
+    [SerializeField] GameStateManager gsManager;
+
+    private void Awake()
+    {
+        gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
+    }
+
+    private void Start()
+    {
+        gsManager.OnGameStateChange += OnGameStateChanged;
+    }
+
     public void Damage(int damageValue)
     {
         hp -= damageValue;
@@ -47,5 +59,9 @@ public class PlantDeath : MonoBehaviour
     private void OnGameStateChanged(GameState newGameState)
     {
         enabled = newGameState == GameState.Gameplay;
+    }
+    void OnDestroy()
+    {
+        gsManager.OnGameStateChange -= OnGameStateChanged;
     }
 }

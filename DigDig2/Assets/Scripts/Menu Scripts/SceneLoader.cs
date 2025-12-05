@@ -37,6 +37,15 @@ public class SceneLoader : MonoBehaviour
 
             gsManager.SetState(newGameState);
         }
+
+        if (gsManager.CurrentGameState == GameState.Paused && !isPaused)
+        {
+            StartCoroutine(PauseGame());
+        }
+        if (gsManager.CurrentGameState == GameState.Gameplay && isPaused)
+        {
+            StartCoroutine(UnpauseGame());
+        }
     }
 
     public void WhatButton(string buttonName)
@@ -70,7 +79,7 @@ public class SceneLoader : MonoBehaviour
                 }
             case "Resume":
                 {
-                    pauseMenu.transform.position = new Vector3(10000, 10000, 0);
+                    pauseMenu.transform.position = new Vector3(30000, 30000, 0);
                     Time.timeScale = 1;
                     screenFader.FadeCoroutine(new Color(255, 255, 255, 0.5f), new Color(255, 255, 255, 0), 0.25f);
                     break;
@@ -96,7 +105,6 @@ public class SceneLoader : MonoBehaviour
         pauseMenu.transform.position = canvas.transform.position;
         yield return new WaitForSeconds(0.1f);
         isPaused = true;
-        Time.timeScale = 0;
         yield return null;
     }
 

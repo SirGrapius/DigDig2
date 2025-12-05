@@ -1045,7 +1045,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 8391664705859136933, guid: 31723fa73386bc34d8ad40d651e1b328, type: 3}
+  m_Sprite: {fileID: 1052379242362975205, guid: 31723fa73386bc34d8ad40d651e1b328, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1196,6 +1196,8 @@ MonoBehaviour:
   myAnimator: {fileID: 1297988516}
   hp: 0
   decaying: 0
+  tileUnderneath: {fileID: 0}
+  gsManager: {fileID: 0}
 --- !u!114 &1297988521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1220,6 +1222,7 @@ MonoBehaviour:
   stage3: 3
   damageValue: 10
   minTargets: 5
+  gsManager: {fileID: 0}
 --- !u!1 &1312917399
 GameObject:
   m_ObjectHideFlags: 0
@@ -1702,6 +1705,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2179709277255994445, guid: ed8dac187b3bac04cb44401920faf23d, type: 3}
+      propertyPath: child
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2810790540015573587, guid: ed8dac187b3bac04cb44401920faf23d, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
       value: 2.5

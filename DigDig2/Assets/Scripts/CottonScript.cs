@@ -28,16 +28,20 @@ public class CottonScript : MonoBehaviour
     public float maxSellValue;
     public float sellValue;
 
+    [SerializeField] GameStateManager gsManager;
+
     void Awake()
     {
         targeting = GetComponent<ClosestEnemy>();
         growing = true;
         sellValue = maxSellValue;
+        gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
     }
 
     void Start()
     {
         Base.gameObject.tag = "GrowingPlant";
+        gsManager.OnGameStateChange += OnGameStateChanged;
     }
 
     void Update()
@@ -57,6 +61,9 @@ public class CottonScript : MonoBehaviour
             if (growthTimer >= stage3)
             {
                 baseAnimator.SetBool("Adult", true);
+                baseAnimator.SetBool("Young", true);
+                baseAnimator.SetBool("Child", true);
+
                 Base.gameObject.tag = "Plant";
                 growing = false;
                 animMoving.OriginPoint();
@@ -64,6 +71,7 @@ public class CottonScript : MonoBehaviour
             else if (growthTimer >= stage2)
             {
                 baseAnimator.SetBool("Young", true);
+                baseAnimator.SetBool("Child", true);
             }
             else if (growthTimer >= stage1)
             {
@@ -115,11 +123,16 @@ public class CottonScript : MonoBehaviour
         baseAnimator.SetBool("Child", false);
         baseAnimator.SetBool("Young", false);
         baseAnimator.SetBool("Adult", false);
+        Base.gameObject.tag = "GrowingPlant";
         growing = true;
         growthTimer = 0;
     }
     private void OnGameStateChanged(GameState newGameState)
     {
         enabled = newGameState == GameState.Gameplay;
+    }
+    void OnDestroy()
+    {
+        gsManager.OnGameStateChange -= OnGameStateChanged;
     }
 }
