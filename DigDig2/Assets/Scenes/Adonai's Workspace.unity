@@ -369,8 +369,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1029711313}
   - component: {fileID: 1029711314}
+  - component: {fileID: 1029711315}
+  - component: {fileID: 1029711316}
   m_Layer: 0
-  m_Name: Square
+  m_Name: SliderHandle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -453,6 +455,75 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1029711315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029711312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed720f1f819ee5745b1e9f78e4f7bfe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AidsSlider
+  fillTransform: {fileID: 735877297}
+  backgroundObject: {fileID: 1394915586}
+  handleObject: {fileID: 1029711312}
+  scaler: {fileID: 0}
+  handleMax: 2
+  handleMin: -2
+  inflate: 0
+  enterSize: {x: 0, y: 0}
+  originalSize: {x: 0, y: 0}
+  lerpAmount: 5
+  beingDraged: 0
+--- !u!61 &1029711316
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029711312}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1001 &1129797068
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1080,6 +1151,10 @@ PrefabInstance:
     - target: {fileID: 3070243134995748040, guid: 1b421ef2a7f92814ebb24ec84918d831, type: 3}
       propertyPath: myText
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3070243134995748040, guid: 1b421ef2a7f92814ebb24ec84918d831, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3070243134995748040, guid: 1b421ef2a7f92814ebb24ec84918d831, type: 3}
       propertyPath: 'lanes.Array.data[0]'
