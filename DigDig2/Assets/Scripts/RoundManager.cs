@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RoundManager : MonoBehaviour
 {
+    [SerializeField] GameStateManager gsManager;
     //notes for enemy spawning
     //R × ((10×2^(R ÷ 2))÷100)+1 rounded out = enemy points
     [Header("Day Settings")]
@@ -36,6 +37,7 @@ public class RoundManager : MonoBehaviour
     private void Awake()
     {
         houseObject = GameObject.FindGameObjectWithTag("MainTarget");
+        gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
     }
 
     void Start()
@@ -45,6 +47,12 @@ public class RoundManager : MonoBehaviour
         bool leftLaneOpen = isLaneOpen[1];
         bool upLaneOpen = isLaneOpen[2];
         generatingPoints = false;
+        gsManager.OnGameStateChange += OnGameStateChanged;
+    }
+
+    void OnDestroy()
+    {
+        gsManager.OnGameStateChange -= OnGameStateChanged;
     }
 
     void Update()
@@ -202,5 +210,10 @@ public class RoundManager : MonoBehaviour
         waveModifier = 0;
         OpenNewLane();
         time = 0;
+    }
+
+    private void OnGameStateChanged(GameState newGameState)
+    {
+        enabled = newGameState == GameState.Gameplay;
     }
 }
