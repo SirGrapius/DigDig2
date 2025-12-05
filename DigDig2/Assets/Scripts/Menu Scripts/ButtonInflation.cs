@@ -40,18 +40,15 @@ public class ButtonInflation : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        Debug.Log("mouseover");
         inflate = true;
         source.Play();
     }
     private void OnMouseExit()
     {
-        Debug.Log("mouseexit");
         inflate = false;
     }
     private void OnMouseDown()
     {
-        Debug.Log("mouseclick");
         StartCoroutine(ButtonClicked());
     }
 
