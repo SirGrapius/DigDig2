@@ -11,7 +11,7 @@ public class CameraFollow : MonoBehaviour
 
     void Awake()
     {
-        gsManager = GetComponent<GameStateManager>();
+        gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
     }
 
     void Start()
