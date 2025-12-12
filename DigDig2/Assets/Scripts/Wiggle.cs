@@ -23,6 +23,7 @@ public class Wiggle : MonoBehaviour
     public void OriginPoint()
     {
         origin = transform.position;
+        time = 0;
     }
 
     void Update()

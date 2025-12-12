@@ -1,7 +1,10 @@
 using UnityEngine;
 
+
 public class CottonScript : MonoBehaviour
 {
+    [SerializeField] TargetingPrio targetType;
+
     ClosestEnemy targeting;
     [SerializeField] Wiggle animMoving;
     [SerializeField] GameObject Attack;
@@ -89,7 +92,7 @@ public class CottonScript : MonoBehaviour
             if (attackTimer >= attackFrequency)
             {
                 ready = true;
-                GameObject[] enemiesInRange = targeting.Target(maxRange, 1);
+                GameObject[] enemiesInRange = targeting.Target(maxRange, 1, targetType);
                 if (enemiesInRange != null)
                 {
                     attackTimer += Time.deltaTime;
@@ -112,10 +115,15 @@ public class CottonScript : MonoBehaviour
 
                         }
                         myAnimator.SetBool("Attack", false);
-                        Instantiate(Attack, transform.position, Quaternion.identity);
+                        GameObject projectile = Instantiate(Attack, transform.position, Quaternion.identity);
+                        projectile.GetComponent<CottonParticle>().Spawn(targetPos);
                     }
                 }
             }
+        }
+        if (!baseAnimator.GetBool("Adult"))
+        {
+            myAnimator.SetBool("Attack", false);
         }
     }
     public void BecomeBaby()
