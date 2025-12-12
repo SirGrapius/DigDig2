@@ -6,6 +6,7 @@ public class GameStateManager : MonoBehaviour
 
     public delegate void GameStateChangeHandler(GameState newGameState);
     public event GameStateChangeHandler OnGameStateChange;
+    public float heldMoneyAmount;
     void Start()
     {
         

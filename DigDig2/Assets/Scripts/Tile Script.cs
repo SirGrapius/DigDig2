@@ -168,17 +168,15 @@ public class TileScript : MonoBehaviour
                         useTimer = 0;
                         for (int i = 0; i < plantTiles.transform.childCount; i++)
                         {
-                            // seeing if you are hovering over a plant and if so, getting the position of the plant
+                            // getting the position of the plant
                             if (plantTiles.transform.GetChild(i).transform.position == CheckTile()
                                 * (int)transform.parent.GetComponent<Grid>().cellSize.x
                                 + new Vector3Int(1, 1, 50)
                                 && pickedUpPlant == null)
                             {
-                                // picking up the plant
                                 plantTiles.transform.GetChild(i).GetComponent<PlantDeath>().grassUnderneath
                                     = grassTiles.GetTile<RuleTile>(CheckTile());
                             }
-                            // using a picked up plant
                         }
                     }
                     else
