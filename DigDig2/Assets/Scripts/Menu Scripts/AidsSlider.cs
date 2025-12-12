@@ -1,25 +1,24 @@
-using System.Collections;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
-using UnityEngine.WSA;
+
 
 public class AidsSlider : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI text;
+    [SerializeField] Slider mySlider;
+    [SerializeField] string sliderText;
 
     void Start()
     {
-
+        mySlider = GetComponent<Slider>();
+        text = GetComponentInChildren<TextMeshProUGUI>();
     }
 
     
     void Update()
     {
-
+        text.text = sliderText + mySlider.value.ToString();
     }
 
 }

@@ -1,12 +1,11 @@
 using System.Collections;
 using TMPro;
+using Unity.XR.GoogleVr;
 using UnityEngine;
 
 public class RoundManager : MonoBehaviour
 {
     [SerializeField] GameStateManager gsManager;
-    //notes for enemy spawning
-    //R × ((10×2^(R ÷ 2))÷100)+1 rounded out = enemy points
     [Header("Day Settings")]
     [SerializeField] int day;
     [SerializeField] float time;
@@ -216,4 +215,23 @@ public class RoundManager : MonoBehaviour
     {
         enabled = newGameState == GameState.Gameplay;
     }
+
+    public void Save(ref RoundData data)
+    {
+        data.Day = day;
+        data.HouseHealth = houseHealth;
+    }
+
+    public void Load(RoundData data)
+    {
+        day = data.Day;
+        houseHealth = data.HouseHealth;
+    }
+}
+
+[System.Serializable]
+public struct RoundData
+{
+    public int Day;
+    public int HouseHealth;
 }
