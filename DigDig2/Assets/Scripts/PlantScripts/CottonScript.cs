@@ -104,7 +104,7 @@ public class CottonScript : MonoBehaviour
                     {
                         ready = false;
                         attackTimer -= attackFrequency + attackAnim.length;
-                        targetPos = enemiesInRange[0].transform.position;
+                        targetPos = enemiesInRange[0].transform.position - transform.position;
                         targetPos.x -= transform.position.x;
                         targetPos.y -= transform.position.y;
                         switch (targetPos.x)
