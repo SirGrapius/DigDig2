@@ -159,4 +159,8 @@ public class CottonScript : MonoBehaviour
         stunRoutine = null;
     }
 
+    void OnDestroy()
+    {
+        gsManager.OnGameStateChange -= OnGameStateChanged;
+    }
 }
