@@ -6,7 +6,8 @@ public class PlantDeath : MonoBehaviour
     [SerializeField] GameObject child;
     [SerializeField] AnimationClip deathAnim;
     [SerializeField] Animator myAnimator;
-    [SerializeField] int hp;
+    public int hp;
+    public int hpMax;
     public bool decaying;
     
     float time;
