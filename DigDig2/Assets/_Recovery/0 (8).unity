@@ -1789,8 +1789,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossEnemy
   relocateCooldown: 30
   relocateTimer: 30
-  attackCooldown: 12
-  attackTimer: 12
+  attackCooldown: 1
+  attackTimer: 1
   stunRadius: 3
   stunDuration: 3
   crowPrefab: {fileID: 5923951500463139431, guid: 48bb3adc11bf889408c0ca937e99eef2, type: 3}
