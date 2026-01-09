@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +8,8 @@ public class BossEnemy : MonoBehaviour
     [SerializeField] float relocateTimer = 30;
     [SerializeField] float attackCooldown = 12;
     [SerializeField] float attackTimer = 12;
-    [SerializeField] float stunRadius = 3;
+    [SerializeField] float stunRadius = 9;
+    [SerializeField] float stunDuration = 3f;
 
     private bool isTeleporting = false;
 
@@ -32,8 +34,8 @@ public class BossEnemy : MonoBehaviour
         {
             int roll = Random.Range(1, 11);
 
-            if (roll <= 5) StunAttack();
-            else if (roll <= 9) DeAgeAttack(); 
+            if (roll <= 7) StunAttack();
+            else if (roll <= 10) DeAgeAttack(); 
             else CrowAttack();
         }
         else
@@ -63,56 +65,59 @@ public class BossEnemy : MonoBehaviour
         {
             if (Vector3.Distance(center.position, p.transform.position) <= stunRadius)
             {
-                CottonScript script = p.GetComponent<CottonScript>(); // Add Stun function inside plant script
-                // if (script != null)
-                //    script.Stun();
+                CottonScript script = p.GetComponentInChildren<CottonScript>(); 
+                if (script != null) 
+                script.Stun(stunDuration);
             }
         }
 
         attackTimer = attackCooldown * 1f;
     }
 
-    private void DeAgeAttack()
+    private void DeAgeAttack() 
     {
-        GameObject[] plants = GameObject.FindGameObjectsWithTag("Plant");
-        if (plants.Length == 0) return;
+        List<GameObject> plants = new List<GameObject>(GameObject.FindGameObjectsWithTag("Plant"));
+        if (plants.Count == 0) return;
 
-        int count = Mathf.Min(5, plants.Length);
+        int count = Mathf.Min(5, plants.Count);
 
         for (int i = 0; i < count; i++)
         {
-            int randomIndex = Random.Range(0, plants.Length);
+            int randomIndex = Random.Range(0, plants.Count); 
             GameObject p = plants[randomIndex];
-            CottonScript script = p.GetComponentInChildren<CottonScript>();
+            CottonScript script = p.GetComponentInChildren<CottonScript>(); 
             if (script != null)
-                script.BecomeBaby();
+            script.BecomeBaby();
+            plants.Remove(p);
         }
 
-        attackTimer = attackCooldown * 1.2f;
+        attackTimer = attackCooldown * 1.4f;
     }
 
     private void CrowAttack()
     {
-        GameObject[] plants = GameObject.FindGameObjectsWithTag("Plant");
+        GameObject[] plants = GameObject.FindGameObjectsWithTag("GrowingPlant");
 
         foreach (GameObject p in plants)
         {
-            CottonScript script = p.GetComponent<CottonScript>();
-            if (script != null && script.baseAnimator.GetBool("Child"))
+            CottonScript script = p.GetComponentInChildren<CottonScript>();
+            if (script != null)
             {
-                GameObject crow = Instantiate(crowPrefab, transform.position, Quaternion.identity); // Make instantiated crow movetowards its selected plant, maybe in its own script, and when it arrives start eating animation
+                GameObject crow = Instantiate(crowPrefab, transform.position, Quaternion.identity); 
+                CrowProjectile crowScript = crow.GetComponent<CrowProjectile>();
+               
+                crowScript.targetplant = p.transform.position;
             }
         }
 
-        attackTimer = attackCooldown * 2f;
+        attackTimer = attackCooldown * 2f; 
     }
 
 
 
 
-    // De aging attack, 10 plants close together, stun attack, eating attack find all plants with time less than "" and instantiate a raven which uses movetowards. When hit by player dissapears, when arriving, if plant is stage 2/over a time, dissapear. If plant is young spends 1 second animatin, at the end if not attacked by player, eat plant and dissapear.
-    // When attackCooldown reaches 0 and if "relocating" = false, make a random.range between 1 and 10, 1-4 equals common attack, 5-8 uncommon attack and 9-10.
-    // After "relocate time" has passed, set relocate time to 0, and choose a random position within the lanes list except for current lane. 
+
+   // Add relocation, add finding all plant scripts, add boss and raven projectile animations/graphic, apply stun effect on plants hit
 }
 
 

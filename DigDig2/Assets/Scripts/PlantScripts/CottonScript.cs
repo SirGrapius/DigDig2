@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 
@@ -24,7 +25,9 @@ public class CottonScript : MonoBehaviour
     [SerializeField] Transform Base;
     public bool ready;
     public bool growing;
-    
+    [SerializeField] bool stunned = false;
+    private Coroutine stunRoutine;
+
     [SerializeField] float maxRange = 20;
 
     public bool isInInventory;
@@ -85,7 +88,7 @@ public class CottonScript : MonoBehaviour
         if (!growing && !isInInventory)
         {
             sellValue -= maxSellValue * 0.01f * Time.deltaTime;
-            if (!ready)
+            if (!ready & !stunned)
             {
                 attackTimer += Time.deltaTime;
             }
@@ -139,6 +142,23 @@ public class CottonScript : MonoBehaviour
     {
         enabled = newGameState == GameState.Gameplay;
     }
+
+    public void Stun(float stunDuration)
+    {
+        if (stunRoutine != null)
+            StopCoroutine(stunRoutine);
+
+        stunRoutine = StartCoroutine(StunTimer(stunDuration));
+    }
+
+    private IEnumerator StunTimer(float stunDuration)
+    {
+        stunned = true;
+        yield return new WaitForSeconds(stunDuration);
+        stunned = false;
+        stunRoutine = null;
+    }
+
     void OnDestroy()
     {
         gsManager.OnGameStateChange -= OnGameStateChanged;
