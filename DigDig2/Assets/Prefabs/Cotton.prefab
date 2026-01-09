@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 945380043195750095}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.77, y: 0.29, z: 0}
+  m_LocalPosition: {x: 0.014211059, y: 1.6115779, z: 0}
   m_LocalScale: {x: 1, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -101,6 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5230482569656137269}
   - component: {fileID: 8151756769996539655}
+  - component: {fileID: 4479526998733046175}
   m_Layer: 2
   m_Name: Square
   m_TagString: Untagged
@@ -181,6 +182,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4479526998733046175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100514085780682523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aa4d181c30119f43b8b362be9af8c7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlantHealthBar
+  HealthScript: {fileID: -5153899466286299918}
 --- !u!1 &5747944567935534073
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,6 +257,7 @@ MonoBehaviour:
   Base: {fileID: 4479180882360130531}
   ready: 0
   growing: 1
+  stunned: 0
   maxRange: 20
   isInInventory: 0
   maxSellValue: 0
