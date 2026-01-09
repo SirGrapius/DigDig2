@@ -4,7 +4,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [Header("Stats")]
-    [SerializeField] int hp = 5;
+    [SerializeField] public int hp = 5;
     [SerializeField] int attackDamage = 1;
     [SerializeField] int bloodlustCharges = 0;
     [SerializeField] int neededBloodlustCharges = 2;

@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        //gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
+        gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
     }
 
     void Start()
@@ -49,12 +49,12 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponentInParent<Animator>();
         currentSpeed = baseSpeed;
-        //gsManager.OnGameStateChange += OnGameStateChanged;
+        gsManager.OnGameStateChange += OnGameStateChanged;
     }
 
     void OnDestroy()
     {
-        //gsManager.OnGameStateChange -= OnGameStateChanged;
+        gsManager.OnGameStateChange -= OnGameStateChanged;
     }
 
     void Update()
@@ -183,4 +183,20 @@ public class PlayerMovement : MonoBehaviour
     {
         enabled = newGameState == GameState.Gameplay;
     }
+
+    public void Save(ref PlayerSaveData data)
+    {
+        data.Position = transform.position;
+    }
+
+    public void Load(PlayerSaveData data)
+    {
+        transform.position = data.Position;
+    }
+}
+
+[System.Serializable]
+public struct PlayerSaveData
+{
+    public Vector3 Position;
 }
