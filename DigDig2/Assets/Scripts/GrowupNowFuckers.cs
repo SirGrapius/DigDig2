@@ -1,18 +1,22 @@
 using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GrowupNowFuckers : MonoBehaviour
 {
-    
-////    void Start()
-////    {
-////        List<GameObject> plants = GameObject.FindGameObjectsWithTag("Plant");
 
-////        for (int i = plants.Count - 1; i >= 0; i--)
-////        {
-////            CottonScript script = p.GetComponent<CottonScript>();
+    void Update()
+    {
+        GameObject[] plants = GameObject.FindGameObjectsWithTag("Plant");
 
-////            script.growthTimer = 91;
-////        }
-////    }
+        foreach (GameObject p in plants)
+        {
+            CottonScript script = p.GetComponent<CottonScript>();
+
+            if (script != null)
+            {
+                script.growthTimer = 89;
+            }
+        }
+    }
 }

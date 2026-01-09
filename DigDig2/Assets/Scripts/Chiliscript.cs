@@ -65,7 +65,7 @@ public class Chiliscript : MonoBehaviour
         }
         if (!growing)
         {
-            GameObject[] enemiesInRange = targeting.Target(maxRange, minTargets);
+            GameObject[] enemiesInRange = targeting.Target(maxRange, minTargets, TargetingPrio.Close);
             if (enemiesInRange != null)
             {
                 baseAnimator.SetBool("Attack", true);

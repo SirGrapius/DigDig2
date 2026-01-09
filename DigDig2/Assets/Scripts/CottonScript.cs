@@ -1,7 +1,11 @@
+using System.Collections;
 using UnityEngine;
+
 
 public class CottonScript : MonoBehaviour
 {
+    [SerializeField] TargetingPrio targetType;
+
     ClosestEnemy targeting;
     [SerializeField] Wiggle animMoving;
     [SerializeField] GameObject Attack;
@@ -21,7 +25,9 @@ public class CottonScript : MonoBehaviour
     [SerializeField] Transform Base;
     public bool ready;
     public bool growing;
-    
+    [SerializeField] bool stunned = false;
+    private Coroutine stunRoutine;
+
     [SerializeField] float maxRange = 20;
 
     public bool isInInventory;
@@ -82,14 +88,14 @@ public class CottonScript : MonoBehaviour
         if (!growing && !isInInventory)
         {
             sellValue -= maxSellValue * 0.01f * Time.deltaTime;
-            if (!ready)
+            if (!ready & !stunned)
             {
                 attackTimer += Time.deltaTime;
             }
             if (attackTimer >= attackFrequency)
             {
                 ready = true;
-                GameObject[] enemiesInRange = targeting.Target(maxRange, 1);
+                GameObject[] enemiesInRange = targeting.Target(maxRange, 1, targetType);
                 if (enemiesInRange != null)
                 {
                     attackTimer += Time.deltaTime;
@@ -112,10 +118,15 @@ public class CottonScript : MonoBehaviour
 
                         }
                         myAnimator.SetBool("Attack", false);
-                        Instantiate(Attack, transform.position, Quaternion.identity);
+                        GameObject projectile = Instantiate(Attack, transform.position, Quaternion.identity);
+                        projectile.GetComponent<CottonParticle>().Spawn(targetPos);
                     }
                 }
             }
+        }
+        if (!baseAnimator.GetBool("Adult"))
+        {
+            myAnimator.SetBool("Attack", false);
         }
     }
     public void BecomeBaby()
@@ -131,8 +142,21 @@ public class CottonScript : MonoBehaviour
     {
         enabled = newGameState == GameState.Gameplay;
     }
-    void OnDestroy()
+
+    public void Stun(float stunDuration)
     {
-        gsManager.OnGameStateChange -= OnGameStateChanged;
+        if (stunRoutine != null)
+            StopCoroutine(stunRoutine);
+
+        stunRoutine = StartCoroutine(StunTimer(stunDuration));
     }
+
+    private IEnumerator StunTimer(float stunDuration)
+    {
+        stunned = true;
+        yield return new WaitForSeconds(stunDuration);
+        stunned = false;
+        stunRoutine = null;
+    }
+
 }
