@@ -1,11 +1,11 @@
 using System.Collections;
 using TMPro;
-using Unity.XR.GoogleVr;
 using UnityEngine;
 
 public class RoundManager : MonoBehaviour
 {
     [SerializeField] GameStateManager gsManager;
+    [SerializeField] bool unpaused;
     [Header("Day Settings")]
     [SerializeField] int day;
     [SerializeField] float time;
@@ -33,6 +33,10 @@ public class RoundManager : MonoBehaviour
     [SerializeField] float fadeDuration;
     [SerializeField] float textDuration;
 
+    [Header("Settings")]
+    [SerializeField] public float sfxVolume;
+    [SerializeField] public float musicVolume;
+
     private void Awake()
     {
         houseObject = GameObject.FindGameObjectWithTag("MainTarget");
@@ -41,6 +45,7 @@ public class RoundManager : MonoBehaviour
 
     void Start()
     {
+        unpaused = true;
         day = 1;
         bool rightLaneOpen = isLaneOpen[0];
         bool leftLaneOpen = isLaneOpen[1];
@@ -56,35 +61,38 @@ public class RoundManager : MonoBehaviour
 
     void Update()
     {
-        if (time < maxRoundTime) //changes time to Time.deltaTime
+        if (unpaused)
         {
-            time += Time.deltaTime;
-        }
-        if (time >= maxRoundTime && numberOfEnemies == 0) //if 5 minutes have passed and all enemies are dead progress to the next day
-        {
-            EndDay();
-        }
-        if (( (60 <= time && time < 61) || (120 <= time && time < 121) || (180 <= time && time < 181) || (240 <= time && time < 241 && day != 10)) && !generatingPoints) //generate enemy points every minute
-        {
-            StartCoroutine(TextFadeCoroutine(new Color(myText.color.r,myText.color.g,myText.color.b,0),new Color(myText.color.r,myText.color.g,myText.color.b,1), "A Wave of Beasts is Coming, Prepare Yourself!"));
-            waveModifier++;
-            StartCoroutine(GenerateEnemyPoints());
-        }
+            if (time < maxRoundTime) //changes time to Time.deltaTime
+            {
+                time += Time.deltaTime;
+            }
+            if (time >= maxRoundTime && numberOfEnemies == 0) //if 5 minutes have passed and all enemies are dead progress to the next day
+            {
+                EndDay();
+            }
+            if (((60 <= time && time < 61) || (120 <= time && time < 121) || (180 <= time && time < 181) || (240 <= time && time < 241 && day != 10)) && !generatingPoints) //generate enemy points every minute
+            {
+                StartCoroutine(TextFadeCoroutine(new Color(myText.color.r, myText.color.g, myText.color.b, 0), new Color(myText.color.r, myText.color.g, myText.color.b, 1), "A Wave of Beasts is Coming, Prepare Yourself!"));
+                waveModifier++;
+                StartCoroutine(GenerateEnemyPoints());
+            }
 
-        if ((240 <= time && time < 241) && day >= 10) //creates special text and spawns a boss on the final wave on all days including and follow the tenth
-        {
-            StartCoroutine(TextFadeCoroutine(new Color(myText.color.r, myText.color.g, myText.color.b, 0), new Color(myText.color.r, myText.color.g, myText.color.b, 1), "A Terrifying Foe Approaches From Below! A Massive Wave of Beasts is Coming!"));
-            StartCoroutine(GenerateEnemyPoints());
-            Instantiate(bossPrefab, lanes[0].transform.position, Quaternion.identity);
-        }
+            if ((240 <= time && time < 241) && day >= 10) //creates special text and spawns a boss on the final wave on all days including and follow the tenth
+            {
+                StartCoroutine(TextFadeCoroutine(new Color(myText.color.r, myText.color.g, myText.color.b, 0), new Color(myText.color.r, myText.color.g, myText.color.b, 1), "A Terrifying Foe Approaches From Below! A Massive Wave of Beasts is Coming!"));
+                StartCoroutine(GenerateEnemyPoints());
+                Instantiate(bossPrefab, lanes[0].transform.position, Quaternion.identity);
+            }
 
-        if (enemyPoints > 0 && !spawningEnemy)
-        {
-            spawningEnemy = true;
-            StartCoroutine(SpawnEnemies());
-        }
+            if (enemyPoints > 0 && !spawningEnemy)
+            {
+                spawningEnemy = true;
+                StartCoroutine(SpawnEnemies());
+            }
 
-        numberOfEnemies = Mathf.RoundToInt(GameObject.FindGameObjectsWithTag("Enemy").Length);
+            numberOfEnemies = Mathf.RoundToInt(GameObject.FindGameObjectsWithTag("Enemy").Length);
+        }
     }
 
     void OpenNewLane()
@@ -213,19 +221,23 @@ public class RoundManager : MonoBehaviour
 
     private void OnGameStateChanged(GameState newGameState)
     {
-        enabled = newGameState == GameState.Gameplay;
+        unpaused = newGameState == GameState.Gameplay;
     }
 
     public void Save(ref RoundData data)
     {
         data.Day = day;
         data.HouseHealth = houseHealth;
+        data.sfxVol = sfxVolume;
+        data.musicVol = musicVolume;
     }
 
     public void Load(RoundData data)
     {
         day = data.Day;
         houseHealth = data.HouseHealth;
+        sfxVolume = data.sfxVol;
+        musicVolume = data.musicVol;
     }
 }
 
@@ -234,4 +246,6 @@ public struct RoundData
 {
     public int Day;
     public int HouseHealth;
+    public float sfxVol;
+    public float musicVol;
 }
