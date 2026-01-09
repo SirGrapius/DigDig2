@@ -11,6 +11,19 @@ public class PlantDeath : MonoBehaviour
     
     float time;
     public RuleTile tileUnderneath;
+    public RuleTile grassUnderneath;
+
+    [SerializeField] GameStateManager gsManager;
+
+    private void Awake()
+    {
+        gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
+    }
+
+    private void Start()
+    {
+        gsManager.OnGameStateChange += OnGameStateChanged;
+    }
 
     public void Damage(int damageValue)
     {
@@ -22,7 +35,9 @@ public class PlantDeath : MonoBehaviour
     }
     public void Decay()
     {
-        daddy.transform.parent.GetComponent<TileScript>().myTilemap.SetTile(Vector3Int.FloorToInt(transform.position / transform.parent.parent.GetComponent<Grid>().cellSize.x * transform.localScale.x), transform.parent.GetComponent<TileScript>().unTilledSoil);
+        daddy.transform.parent.GetComponent<TileScript>().myTilemap.SetTile
+            (Vector3Int.FloorToInt(transform.position / transform.parent.parent.GetComponent<Grid>().cellSize.x * transform.localScale.x), 
+            transform.parent.GetComponent<TileScript>().unTilledSoil);
         myAnimator.SetBool("Death", true);
         decaying = true;
         if (child != null)
@@ -44,5 +59,9 @@ public class PlantDeath : MonoBehaviour
     private void OnGameStateChanged(GameState newGameState)
     {
         enabled = newGameState == GameState.Gameplay;
+    }
+    void OnDestroy()
+    {
+        gsManager.OnGameStateChange -= OnGameStateChanged;
     }
 }

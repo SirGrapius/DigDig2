@@ -1,11 +1,11 @@
 using System.Collections;
 using TMPro;
+using Unity.XR.GoogleVr;
 using UnityEngine;
 
 public class RoundManager : MonoBehaviour
 {
-    //notes for enemy spawning
-    //R × ((10×2^(R ÷ 2))÷100)+1 rounded out = enemy points
+    [SerializeField] GameStateManager gsManager;
     [Header("Day Settings")]
     [SerializeField] int day;
     [SerializeField] float time;
@@ -36,6 +36,7 @@ public class RoundManager : MonoBehaviour
     private void Awake()
     {
         houseObject = GameObject.FindGameObjectWithTag("MainTarget");
+        gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
     }
 
     void Start()
@@ -45,6 +46,12 @@ public class RoundManager : MonoBehaviour
         bool leftLaneOpen = isLaneOpen[1];
         bool upLaneOpen = isLaneOpen[2];
         generatingPoints = false;
+        gsManager.OnGameStateChange += OnGameStateChanged;
+    }
+
+    void OnDestroy()
+    {
+        gsManager.OnGameStateChange -= OnGameStateChanged;
     }
 
     void Update()
@@ -203,4 +210,28 @@ public class RoundManager : MonoBehaviour
         OpenNewLane();
         time = 0;
     }
+
+    private void OnGameStateChanged(GameState newGameState)
+    {
+        enabled = newGameState == GameState.Gameplay;
+    }
+
+    public void Save(ref RoundData data)
+    {
+        data.Day = day;
+        data.HouseHealth = houseHealth;
+    }
+
+    public void Load(RoundData data)
+    {
+        day = data.Day;
+        houseHealth = data.HouseHealth;
+    }
+}
+
+[System.Serializable]
+public struct RoundData
+{
+    public int Day;
+    public int HouseHealth;
 }

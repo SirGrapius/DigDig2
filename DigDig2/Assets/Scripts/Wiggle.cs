@@ -8,10 +8,24 @@ public class Wiggle : MonoBehaviour
     [SerializeField] CottonScript top;
     float time;
 
+    [SerializeField] GameStateManager gsManager;
+
+    private void Awake()
+    {
+        gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
+    }
+
+    private void Start()
+    {
+        gsManager.OnGameStateChange += OnGameStateChanged;
+    }
+
     public void OriginPoint()
     {
         origin = transform.position;
+        time = 0;
     }
+
     void Update()
     {
         if (top.baseAnimator.GetBool("Adult"))
@@ -32,5 +46,9 @@ public class Wiggle : MonoBehaviour
     private void OnGameStateChanged(GameState newGameState)
     {
         enabled = newGameState == GameState.Gameplay;
+    }
+    void OnDestroy()
+    {
+        gsManager.OnGameStateChange -= OnGameStateChanged;
     }
 }
