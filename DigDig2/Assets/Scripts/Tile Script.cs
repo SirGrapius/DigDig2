@@ -7,18 +7,18 @@ public class TileScript : MonoBehaviour
     public Tilemap myTilemap;
     public Tilemap plantTiles;
     public Tilemap grassTiles;
-    [SerializeField] TilemapCollider2D myCollider;
-    [SerializeField] RuleTile myRuleTile;
-    [SerializeField] Tile myTile;
-    [SerializeField] Camera myCamera;
-    [SerializeField] Vector3Int myTilePositionInt;
-    [SerializeField] Vector3 myTilePosition;
+    TilemapCollider2D myCollider;
+    RuleTile myRuleTile;
+    Tile myTile;
+    Camera myCamera;
+    Vector3Int myTilePositionInt;
+    Vector3 myTilePosition;
     [SerializeField] Transform tileSelectBorder;
     [SerializeField] float selectionTimer;
 
     [Header("Planting and Inventory")]
     public bool isInventory;
-    [SerializeField] Tile selectedInventoryTile;
+    Tile selectedInventoryTile;
     public int selectedTool;
     // 1 = hoe
     // 2 = watering can
@@ -37,6 +37,8 @@ public class TileScript : MonoBehaviour
     [SerializeField] Vector3 pickedUpPlantPosition;
 
     [SerializeField] float WateringCanEffect;
+
+    [SerializeField] GameStateManager gsManager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -231,7 +233,7 @@ public class TileScript : MonoBehaviour
                     // Seeing if you are hovering over a plant
                     for (int i = 0; i < plantTiles.transform.childCount; i++)
                     {
-                        if (plantTiles.transform.GetChild(i).transform.position == CheckTile()
+                        if (plantTiles.transform.GetChild(i).position == CheckTile()
                             * (int)transform.parent.GetComponent<Grid>().cellSize.x
                             + new Vector3Int(1, 1, 50))
                         {
@@ -251,7 +253,7 @@ public class TileScript : MonoBehaviour
             for (int i = 0; i < plantTiles.transform.childCount; i++)
             {
                 // seeing if you are hovering over a plant and if so, getting the position of the plant
-                if (plantTiles.transform.GetChild(i).transform.position == CheckTile()
+                if (plantTiles.transform.GetChild(i).position == CheckTile()
                     * (int)transform.parent.GetComponent<Grid>().cellSize.x
                     + new Vector3Int(1, 1, 50)
                     && pickedUpPlant == null)
@@ -281,7 +283,7 @@ public class TileScript : MonoBehaviour
                     pickedUpPlant.transform.position += Vector3.one;
 
                     // killing the left over copy if necessary 
-                    if (plantTiles.transform.GetChild(i).transform.position == CheckTile()
+                    if (plantTiles.transform.GetChild(i).position == CheckTile()
                     * (int)transform.parent.GetComponent<Grid>().cellSize.x
                     + new Vector3Int(1, 1, 50) && plantTiles.transform.GetChild(i) != pickedUpPlant)
                     {
@@ -295,25 +297,13 @@ public class TileScript : MonoBehaviour
             for (int i = 0; i < transform.childCount; i++)
             {
                 // seeing if you are hovering over a plant and if so, getting the position of the plant
-                if (plantTiles.transform.GetChild(i).transform.position == CheckTile()
+                if (plantTiles.transform.GetChild(i).position == CheckTile()
                     * (int)transform.parent.GetComponent<Grid>().cellSize.x
                     + new Vector3Int(1, 1, 50)
                     && pickedUpPlant == null)
                 {
-                    // picking up the plant
-                    pickedUpPlant = Instantiate(plantTiles.transform.GetChild(i).gameObject);
-                    pickedUpPlant.transform.parent = transform;
-
-                    pickedUpPlant.transform.GetChild(0).GetChild(0).GetComponent<CottonScript>().growthTimer
-                     = plantTiles.transform.GetChild(i).GetChild(0).GetChild(0).gameObject.GetComponent<CottonScript>().growthTimer;
-
-                    pickedUpPlant.transform.GetChild(0).GetChild(0).GetComponent<CottonScript>().growing
-                     = false;
-
-                    pickedUpPlantType = myTilemap.GetTile<Tile>(CheckTile());
-
+                    gsManager.heldMoneyAmount += plantTiles.transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<CottonScript>().sellValue;
                     myTilemap.SetTile(CheckTile(), tilledSoil);
-                    pickedUpPlant.transform.position += Vector3.one;
 
                     // killing the left over copy if necessary 
                     if (plantTiles.transform.GetChild(i).transform.position == CheckTile()
@@ -342,5 +332,14 @@ public class TileScript : MonoBehaviour
         Vector3Int tilePositionInt = Vector3Int.FloorToInt(tilePosition);
         tilePositionInt.z = 0;
         return tilePositionInt;
+    }
+    void OnDestroy()
+    {
+        gsManager.OnGameStateChange -= OnGameStateChanged;
+    }
+
+    private void OnGameStateChanged(GameState newGameState)
+    {
+        enabled = newGameState == GameState.Gameplay;
     }
 }
