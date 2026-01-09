@@ -33,6 +33,7 @@ public class CottonScript : MonoBehaviour
     public bool isInInventory;
     public float maxSellValue;
     public float sellValue;
+    private bool becameAdult;
 
     [SerializeField] GameStateManager gsManager;
 
@@ -40,7 +41,7 @@ public class CottonScript : MonoBehaviour
     {
         targeting = GetComponent<ClosestEnemy>();
         growing = true;
-        sellValue = maxSellValue;
+        becameAdult = false;
         gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
     }
 
@@ -105,8 +106,6 @@ public class CottonScript : MonoBehaviour
                         ready = false;
                         attackTimer -= attackFrequency + attackAnim.length;
                         targetPos = enemiesInRange[0].transform.position;
-                        targetPos.x -= transform.position.x;
-                        targetPos.y -= transform.position.y;
                         switch (targetPos.x)
                         {
                             case > 0:
