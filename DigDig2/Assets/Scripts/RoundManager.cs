@@ -217,6 +217,7 @@ public class RoundManager : MonoBehaviour
         waveModifier = 0;
         OpenNewLane();
         time = 0;
+        SaveSystem.Save();
     }
 
     private void OnGameStateChanged(GameState newGameState)

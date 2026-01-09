@@ -52,6 +52,7 @@ public class SceneLoader : MonoBehaviour
         {
             case "Play":
                 {
+                    SaveSystem.Load();
                     StartCoroutine(LoadScene("GameScene"));
                     break;
                 }
@@ -104,7 +105,7 @@ public class SceneLoader : MonoBehaviour
         screenFader.FadeOutCoroutine(fadeDuration);
         yield return new WaitForSeconds(fadeDuration);
 
-
+        SaveSystem.Save();
         SceneManager.LoadScene(sceneName);
     }
 
