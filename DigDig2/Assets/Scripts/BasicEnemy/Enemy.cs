@@ -230,8 +230,10 @@ public class Enemy : MonoBehaviour
         if (plantScript != null && closestPlant.GetComponent<PotatoScript>() != null)
         {
             plantScript.Damage(attackDamage);
-
-            Damage(closestPlant.GetComponent<PotatoScript>().damageValue);
+            if (closestPlant.GetComponent<PotatoScript>() != null)
+            {
+                Damage(closestPlant.GetComponent<PotatoScript>().damageValue);
+            }
         }
         else if (plantScript != null)
         {
