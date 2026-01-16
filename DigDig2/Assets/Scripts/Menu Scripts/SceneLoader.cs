@@ -33,6 +33,7 @@ public class SceneLoader : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Escape))
         {
+            SaveSystem.Save();
             gsManager.SetState(GameState.Paused);
         }
 
@@ -52,7 +53,6 @@ public class SceneLoader : MonoBehaviour
         {
             case "Play":
                 {
-                    SaveSystem.Load();
                     StartCoroutine(LoadScene("GameScene"));
                     break;
                 }
@@ -104,8 +104,6 @@ public class SceneLoader : MonoBehaviour
         source.Play();
         screenFader.FadeOutCoroutine(fadeDuration);
         yield return new WaitForSeconds(fadeDuration);
-
-        SaveSystem.Save();
         SceneManager.LoadScene(sceneName);
     }
 
@@ -113,6 +111,7 @@ public class SceneLoader : MonoBehaviour
     {
         screenFader.FadeCoroutine(new Color(255, 255, 255, 0), new Color(255, 255, 255, 0.5f), 0.25f);
         pauseMenu.transform.position = canvas.transform.position;
+        SaveSystem.Save();
         yield return new WaitForSeconds(0.1f);
         currentMenu = pauseMenu;
         isPaused = true;

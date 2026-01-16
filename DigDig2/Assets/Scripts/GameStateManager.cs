@@ -30,7 +30,12 @@ public class GameStateManager : MonoBehaviour
     public PlayerMovement Player { get; set; }
     public RoundManager RoundManager { get; set; }
 
-
+    private void Awake()
+    {
+        instance = this;
+        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        RoundManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<RoundManager>();
+    }
     void Start()
     {
         if (SceneManager.loadedSceneCount == 0)
@@ -47,6 +52,8 @@ public class GameStateManager : MonoBehaviour
             Rigidbody2D playerRB = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
             playerRB.linearVelocity = Vector3.zero;
         }
+
+        Debug.Log(Player.ToString());
     }
 
     private GameStateManager()
@@ -68,5 +75,6 @@ public class GameStateManager : MonoBehaviour
     private void OnApplicationQuit()
     {
         SaveSystem.Save();
+        Debug.Log("saved");
     }
 }

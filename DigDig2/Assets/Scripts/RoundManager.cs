@@ -41,6 +41,7 @@ public class RoundManager : MonoBehaviour
     {
         houseObject = GameObject.FindGameObjectWithTag("MainTarget");
         gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
+        SaveSystem.Load();
     }
 
     void Start()
