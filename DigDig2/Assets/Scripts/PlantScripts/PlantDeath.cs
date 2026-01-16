@@ -60,16 +60,16 @@ public class PlantDeath : MonoBehaviour
         {
             Destroy(daddy);
         }
-        if (time >= deathAnim.length)
-        {
-            Destroy(daddy);
-        }
     }
     void Update()
     {
         if (myAnimator.GetBool("Death"))
         {
             time += Time.deltaTime;
+        }
+        if (time >= deathAnim.length)
+        {
+            Destroy(daddy);
         }
     }
     private void OnGameStateChanged(GameState newGameState)
