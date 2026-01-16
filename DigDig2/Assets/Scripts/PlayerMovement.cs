@@ -104,6 +104,11 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        if (Input.GetKey(KeyCode.P))
+        {
+            SaveSystem.Save();
+        }
+
         if (chargingAttack && currentShovelCharge < maxShovelCharge) //if charging attack, count time charging
         {
             currentShovelCharge += Time.deltaTime;

@@ -178,6 +178,12 @@ public class TileScript : MonoBehaviour
                             {
                                 plantTiles.transform.GetChild(i).GetComponent<PlantDeath>().grassUnderneath
                                     = grassTiles.GetTile<RuleTile>(CheckTile());
+                                plantTiles.transform.GetChild(i).GetComponent<PlantDeath>().tileUnderneath
+                                    = myTilemap.GetTile<RuleTile>(CheckTile());
+                                if (plantTiles.transform.GetChild(i).GetComponent<PlantDeath>().tileUnderneath == tilledSoil)
+                                {
+                                    plantTiles.transform.GetChild(i).GetComponent<PlantDeath>().tileUnderneath = unTilledSoil;
+                                }
                             }
                         }
                     }
