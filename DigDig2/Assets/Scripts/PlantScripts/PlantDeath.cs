@@ -32,15 +32,15 @@ public class PlantDeath : MonoBehaviour
         hp -= damageValue;
         if (hp <= 0)
         {
-            Decay();
+            Decay(false);
         }
     }
-    public void Decay()
+    public void Decay(bool isChili)
     {
         transform.parent.parent.GetChild(0).GetComponent<TileScript>().myTilemap.SetTile
             (Vector3Int.FloorToInt(new Vector3
             (transform.position.x / transform.parent.parent.GetComponent<Grid>().cellSize.x * transform.localScale.x,
-            transform.position.y / transform.parent.parent.GetComponent<Grid>().cellSize.y * transform.localScale.x, 0)), 
+            transform.position.y / transform.parent.parent.GetComponent<Grid>().cellSize.y * transform.localScale.x, 0)),
             tileUnderneath);
         transform.parent.GetComponent<Tilemap>().SetTile
             (Vector3Int.FloorToInt(new Vector3
@@ -56,7 +56,7 @@ public class PlantDeath : MonoBehaviour
         {
             Destroy(child);
         }   
-        if (time >= deathAnim.length)
+        if (isChili)
         {
             Destroy(daddy);
         }
@@ -66,6 +66,10 @@ public class PlantDeath : MonoBehaviour
         if (myAnimator.GetBool("Death"))
         {
             time += Time.deltaTime;
+        }
+        if (time >= deathAnim.length)
+        {
+            Destroy(daddy);
         }
     }
     private void OnGameStateChanged(GameState newGameState)

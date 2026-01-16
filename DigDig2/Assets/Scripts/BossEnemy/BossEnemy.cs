@@ -35,7 +35,7 @@ public class BossEnemy : MonoBehaviour
             int roll = Random.Range(1, 11);
 
             if (roll <= 7) StunAttack();
-            else if (roll <= 10) DeAgeAttack(); 
+            else if (roll <= 9) DeAgeAttack(); 
             else CrowAttack();
         }
         else
@@ -65,9 +65,12 @@ public class BossEnemy : MonoBehaviour
         {
             if (Vector3.Distance(center.position, p.transform.position) <= stunRadius)
             {
-                CottonScript script = p.GetComponentInChildren<CottonScript>(); 
-                if (script != null) 
-                script.Stun(stunDuration);
+                if (p.GetComponentInChildren<CottonScript>() != null)
+                { CottonScript script = p.GetComponentInChildren<CottonScript>(); script.Stun(stunDuration); }
+                else if (p.GetComponentInChildren<PotatoScript>() != null)
+                { PotatoScript script = p.GetComponentInChildren<PotatoScript>(); script.Stun(stunDuration); }
+                else if (p.GetComponentInChildren<Chiliscript>() != null)
+                { Chiliscript script = p.GetComponentInChildren<Chiliscript>(); script.Stun(stunDuration); }
             }
         }
 
@@ -100,14 +103,10 @@ public class BossEnemy : MonoBehaviour
 
         foreach (GameObject p in plants)
         {
-            CottonScript script = p.GetComponentInChildren<CottonScript>();
-            if (script != null)
-            {
-                GameObject crow = Instantiate(crowPrefab, transform.position, Quaternion.identity); 
-                CrowProjectile crowScript = crow.GetComponent<CrowProjectile>();
-               
-                crowScript.targetplant = p.transform.position;
-            }
+            GameObject crow = Instantiate(crowPrefab, transform.position, Quaternion.identity);
+            CrowProjectile crowScript = crow.GetComponent<CrowProjectile>();
+
+            crowScript.targetplant = p.transform.position;
         }
 
         attackTimer = attackCooldown * 2f; 
@@ -117,7 +116,7 @@ public class BossEnemy : MonoBehaviour
 
 
 
-   // Add relocation, add finding all plant scripts, add boss and raven projectile animations/graphic, apply stun effect on plants hit
+   // Add relocation, add finding all plant scripts, add boss and raven projectile animations/graphic, apply stun effect on plants hit and stun radius effect
 }
 
 
