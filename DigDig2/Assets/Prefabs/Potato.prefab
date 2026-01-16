@@ -216,8 +216,8 @@ MonoBehaviour:
   child: {fileID: 0}
   deathAnim: {fileID: 7400000, guid: c8cbc1f1ca69bca4bad434871ccc7d4a, type: 2}
   myAnimator: {fileID: 4336372680288598635}
-  hp: 10
-  hpMax: 10
+  hp: 25
+  hpMax: 25
   decaying: 0
   tileUnderneath: {fileID: 0}
   grassUnderneath: {fileID: 0}
@@ -339,6 +339,7 @@ MonoBehaviour:
   stage2: 30
   stage3: 45
   damageValue: 1
+  stunned: 0
   gsManager: {fileID: 0}
 --- !u!1 &6326288123912793375
 GameObject:
