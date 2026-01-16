@@ -14,7 +14,7 @@ public class SaveSystem
 
     public static string SaveFileName()
     {
-        string saveFile = Application.persistentDataPath + "/save" + ".save";
+        string saveFile = Application.persistentDataPath + "save" + ".save";
         return saveFile;
     }
 
@@ -23,6 +23,7 @@ public class SaveSystem
         HandleSaveData();
 
         File.WriteAllText(SaveFileName(), JsonUtility.ToJson(saveData, true));
+        Debug.Log("saving");
     }
 
     private static void HandleSaveData()
