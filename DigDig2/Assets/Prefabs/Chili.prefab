@@ -238,6 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63aa05670c6360f428bc46a89d25052d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Chiliscript
+  attackAnim: {fileID: 7400000, guid: ddd5909be8c9a364880f9aab3c41d6eb, type: 2}
   baseAnimator: {fileID: 0}
   maxRange: 4
   growing: 1
@@ -250,6 +251,7 @@ MonoBehaviour:
   stage3: 15
   damageValue: 25
   minTargets: 5
+  stunned: 0
   gsManager: {fileID: 0}
 --- !u!1 &4603472391295838178
 GameObject:
