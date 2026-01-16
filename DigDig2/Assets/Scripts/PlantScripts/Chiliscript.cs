@@ -74,7 +74,6 @@ public class Chiliscript : MonoBehaviour
             GameObject[] enemiesInRange = targeting.Target(maxRange, minTargets, TargetingPrio.Close);
             if (enemiesInRange != null)
             {
-                attackTimer += Time.deltaTime;
                 baseAnimator.SetBool("Attack", true);
                 
                 for (int i = 0; i < enemiesInRange.Length; i++)
@@ -83,9 +82,13 @@ public class Chiliscript : MonoBehaviour
                 }
             }
         }
-        if (attackTimer >= attackAnim.length)
+        if (baseAnimator.GetBool("attack"))
         {
-            Death.Decay(true);
+            attackTimer += Time.deltaTime;
+            if (attackTimer >= attackAnim.length)
+            {
+                Death.Decay(true);
+            }
         }
     }
 
