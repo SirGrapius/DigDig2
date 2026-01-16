@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PotatoScript : MonoBehaviour
@@ -12,6 +13,8 @@ public class PotatoScript : MonoBehaviour
     [SerializeField] float stage2 = 60;
     [SerializeField] float stage3 = 90;
     public int damageValue = 1;
+    [SerializeField] bool stunned = false;
+    private Coroutine stunRoutine;
 
     [SerializeField] GameStateManager gsManager;
 
@@ -74,6 +77,23 @@ public class PotatoScript : MonoBehaviour
     {
         enabled = newGameState == GameState.Gameplay;
     }
+
+    public void Stun(float stunDuration)
+    {
+        if (stunRoutine != null)
+            StopCoroutine(stunRoutine);
+
+        stunRoutine = StartCoroutine(StunTimer(stunDuration));
+    }
+
+    private IEnumerator StunTimer(float stunDuration)
+    {
+        stunned = true;
+        yield return new WaitForSeconds(stunDuration);
+        stunned = false;
+        stunRoutine = null;
+    }
+
     void OnDestroy()
     {
         gsManager.OnGameStateChange -= OnGameStateChanged;
