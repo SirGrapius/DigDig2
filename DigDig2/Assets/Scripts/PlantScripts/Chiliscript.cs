@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Chiliscript : MonoBehaviour
@@ -18,6 +19,8 @@ public class Chiliscript : MonoBehaviour
     [SerializeField] float stage3 = 90;
     [SerializeField] int damageValue = 10;
     [SerializeField] int minTargets = 5;
+    [SerializeField] bool stunned = false;
+    private Coroutine stunRoutine;
 
     [SerializeField] GameStateManager gsManager;
 
@@ -97,6 +100,22 @@ public class Chiliscript : MonoBehaviour
     private void OnGameStateChanged(GameState newGameState)
     {
         enabled = newGameState == GameState.Gameplay;
+    }
+
+    public void Stun(float stunDuration)
+    {
+        if (stunRoutine != null)
+            StopCoroutine(stunRoutine);
+
+        stunRoutine = StartCoroutine(StunTimer(stunDuration));
+    }
+
+    private IEnumerator StunTimer(float stunDuration)
+    {
+        stunned = true;
+        yield return new WaitForSeconds(stunDuration);
+        stunned = false;
+        stunRoutine = null;
     }
 
     void OnDestroy()
