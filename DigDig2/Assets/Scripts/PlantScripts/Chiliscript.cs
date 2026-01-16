@@ -26,6 +26,7 @@ public class Chiliscript : MonoBehaviour
 
     private void Awake()
     {
+        Death = GetComponent<PlantDeath>();
         baseAnimator = GetComponent<Animator>();
         targeting = GetComponent<ClosestEnemy>();
         growing = true;
