@@ -76,15 +76,16 @@ public class Chiliscript : MonoBehaviour
             {
                 attackTimer += Time.deltaTime;
                 baseAnimator.SetBool("Attack", true);
-                if (attackTimer >= attackAnim.length)
-                {
-                    Death.Decay(true);
-                }
+                
                 for (int i = 0; i < enemiesInRange.Length; i++)
                 {
                     enemiesInRange[i].GetComponent<Enemy>().Damage(damageValue);
                 }
             }
+        }
+        if (attackTimer >= attackAnim.length)
+        {
+            Death.Decay(true);
         }
     }
 
