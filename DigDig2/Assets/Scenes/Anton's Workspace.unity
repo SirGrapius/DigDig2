@@ -2108,6 +2108,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Health bar
       objectReference: {fileID: 0}
+    - target: {fileID: 8531504240804444721, guid: ed8dac187b3bac04cb44401920faf23d, type: 3}
+      propertyPath: m_Color.b
+      value: 0.5019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 8531504240804444721, guid: ed8dac187b3bac04cb44401920faf23d, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8531504240804444721, guid: ed8dac187b3bac04cb44401920faf23d, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2165,6 +2177,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2059948047335981141, guid: d5390b8d6a36ea244ad5b0220707a114, type: 3}
+      propertyPath: attackAnim
+      value: 
+      objectReference: {fileID: 7400000, guid: ddd5909be8c9a364880f9aab3c41d6eb, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
