@@ -14,7 +14,7 @@ public class PlantHealthBar : MonoBehaviour
         scale = transform.localScale;
         mySpriteRenderer = GetComponent<SpriteRenderer>();
         negativeHp = new Vector4(1, 0, 0.5f,1);
-        negativeHp = new Vector4(0, 1, 0, 1);
+        positiveHp = new Vector4(0, 1, 0, 1);
 
     }
 
