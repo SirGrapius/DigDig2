@@ -3966,8 +3966,8 @@ MonoBehaviour:
   unTilledSoil: {fileID: 11400000, guid: 6bf0ae32d2a0e214e93d198284104818, type: 2}
   grassSoil: {fileID: 11400000, guid: 2505f1f716bca8b41a3a836dc05f15c5, type: 2}
   myInventory: {fileID: 1986980022}
-  useTimer: 0
-  useTimerMax: 0
+  useTimer: 0.5
+  useTimerMax: 0.5
   pickedUpPlant: {fileID: 0}
   pickedUpPlantType: {fileID: 0}
   pickedUpPlantPosition: {x: 0, y: 0, z: 0}
@@ -8604,6 +8604,14 @@ PrefabInstance:
       propertyPath: m_ChunkCullingBounds.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2021153084740846922, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2021153084740846922, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3169567774243775941, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       propertyPath: m_CellSize.x
       value: 2
@@ -8627,6 +8635,30 @@ PrefabInstance:
     - target: {fileID: 3273251885329537050, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772301809122486453, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772301809122486453, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772301809122486453, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4986928485016131060, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4986928485016131060, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4986928485016131060, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5870436923028195982, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8672,6 +8704,14 @@ PrefabInstance:
       propertyPath: gsManager
       value: 
       objectReference: {fileID: 1735102467}
+    - target: {fileID: 7985221383700181770, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985221383700181770, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

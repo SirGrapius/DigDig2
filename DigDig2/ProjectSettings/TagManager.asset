@@ -11,6 +11,7 @@ TagManager:
   - MainTarget
   - mainTarget
   - SceneManager
+  - PlantList
   layers:
   - Default
   - TransparentFX

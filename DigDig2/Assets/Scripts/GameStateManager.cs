@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class GameStateManager : MonoBehaviour
             }
             if (instance == null)
             {
+                Debug.Log("what");
                 Instantiate(Resources.Load<GameStateManager>("GameManager"));
             }
 
@@ -31,7 +33,10 @@ public class GameStateManager : MonoBehaviour
 
     void Start()
     {
-        
+        if (SceneManager.loadedSceneCount == 0)
+        {
+            SetState(GameState.Gameplay);
+        }
     }
 
     // Update is called once per frame
@@ -58,5 +63,10 @@ public class GameStateManager : MonoBehaviour
 
         CurrentGameState = newGameState;
         OnGameStateChange?.Invoke(newGameState);
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveSystem.Save();
     }
 }
