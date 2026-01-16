@@ -3,8 +3,11 @@ using UnityEngine;
 public class Chiliscript : MonoBehaviour
 {
     ClosestEnemy targeting;
+    PlantDeath Death;
+    [SerializeField] AnimationClip attackAnim;
     public Animator baseAnimator;
     [SerializeField] float maxRange = 4;
+    float attackTimer;
     public bool growing;
     public float growthTimer;
     public float waterAmount = 1;
@@ -68,7 +71,12 @@ public class Chiliscript : MonoBehaviour
             GameObject[] enemiesInRange = targeting.Target(maxRange, minTargets, TargetingPrio.Close);
             if (enemiesInRange != null)
             {
+                attackTimer += Time.deltaTime;
                 baseAnimator.SetBool("Attack", true);
+                if (attackTimer >= attackAnim.length)
+                {
+                    Death.Decay(true);
+                }
                 for (int i = 0; i < enemiesInRange.Length; i++)
                 {
                     enemiesInRange[i].GetComponent<Enemy>().Damage(damageValue);

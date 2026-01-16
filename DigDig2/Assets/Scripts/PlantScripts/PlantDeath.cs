@@ -32,10 +32,10 @@ public class PlantDeath : MonoBehaviour
         hp -= damageValue;
         if (hp <= 0)
         {
-            Decay();
+            Decay(false);
         }
     }
-    public void Decay()
+    public void Decay(bool isChili)
     {
         transform.parent.parent.GetChild(0).GetComponent<TileScript>().myTilemap.SetTile
             (Vector3Int.FloorToInt(new Vector3
@@ -56,10 +56,15 @@ public class PlantDeath : MonoBehaviour
         {
             Destroy(child);
         }   
+        if (isChili)
+        {
+            Destroy(daddy);
+        }
         if (time >= deathAnim.length)
         {
             Destroy(daddy);
         }
+        
     }
     void Update()
     {
