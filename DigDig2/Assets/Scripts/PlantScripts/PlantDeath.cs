@@ -32,39 +32,34 @@ public class PlantDeath : MonoBehaviour
         hp -= damageValue;
         if (hp <= 0)
         {
-            Decay(false);
+            Decay();
         }
     }
-    public void Decay(bool isChili)
+    public void Decay()
     {
-        //transform.parent.parent.GetChild(0).GetComponent<TileScript>().myTilemap.SetTile
-        //    (Vector3Int.FloorToInt(new Vector3
-        //    (transform.position.x / transform.parent.parent.GetComponent<Grid>().cellSize.x * transform.localScale.x,
-        //    transform.position.y / transform.parent.parent.GetComponent<Grid>().cellSize.y * transform.localScale.x, 0)), 
-        //    tileUnderneath);
-        //transform.parent.GetComponent<Tilemap>().SetTile
-        //    (Vector3Int.FloorToInt(new Vector3
-        //    (transform.position.x / transform.parent.parent.GetComponent<Grid>().cellSize.x * transform.localScale.x,
-        //    transform.position.y / transform.parent.parent.GetComponent<Grid>().cellSize.y * transform.localScale.x, 0)),
-        //    null);
-        //Debug.Log((Vector3Int.FloorToInt(new Vector3
-        //    (transform.position.x / transform.parent.parent.GetComponent<Grid>().cellSize.x * transform.localScale.x,
-        //    transform.position.y / transform.parent.parent.GetComponent<Grid>().cellSize.y * transform.localScale.x, 0))));
+        transform.parent.parent.GetChild(0).GetComponent<TileScript>().myTilemap.SetTile
+            (Vector3Int.FloorToInt(new Vector3
+            (transform.position.x / transform.parent.parent.GetComponent<Grid>().cellSize.x * transform.localScale.x,
+            transform.position.y / transform.parent.parent.GetComponent<Grid>().cellSize.y * transform.localScale.x, 0)),
+            tileUnderneath);
+        transform.parent.GetComponent<Tilemap>().SetTile
+            (Vector3Int.FloorToInt(new Vector3
+            (transform.position.x / transform.parent.parent.GetComponent<Grid>().cellSize.x * transform.localScale.x,
+            transform.position.y / transform.parent.parent.GetComponent<Grid>().cellSize.y * transform.localScale.x, 0)),
+            null);
+        Debug.Log((Vector3Int.FloorToInt(new Vector3
+            (transform.position.x / transform.parent.parent.GetComponent<Grid>().cellSize.x * transform.localScale.x,
+            transform.position.y / transform.parent.parent.GetComponent<Grid>().cellSize.y * transform.localScale.x, 0))));
         myAnimator.SetBool("Death", true);
         decaying = true;
         if (child != null)
         {
             Destroy(child);
         }   
-        if (isChili)
-        {
-            Destroy(daddy);
-        }
         if (time >= deathAnim.length)
         {
             Destroy(daddy);
         }
-        
     }
     void Update()
     {
