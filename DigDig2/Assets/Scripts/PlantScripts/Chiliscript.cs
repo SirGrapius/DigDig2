@@ -26,6 +26,7 @@ public class Chiliscript : MonoBehaviour
 
     private void Awake()
     {
+        Death = GetComponent<PlantDeath>();
         baseAnimator = GetComponent<Animator>();
         targeting = GetComponent<ClosestEnemy>();
         growing = true;
@@ -82,7 +83,7 @@ public class Chiliscript : MonoBehaviour
                 }
             }
         }
-        if (baseAnimator.GetBool("attack"))
+        if (baseAnimator.GetBool("Attack"))
         {
             attackTimer += Time.deltaTime;
             if (attackTimer >= attackAnim.length)
