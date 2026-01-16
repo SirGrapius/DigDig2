@@ -82,7 +82,7 @@ public class Chiliscript : MonoBehaviour
                 }
             }
         }
-        if (baseAnimator.GetBool("attack"))
+        if (baseAnimator.GetBool("Attack"))
         {
             attackTimer += Time.deltaTime;
             if (attackTimer >= attackAnim.length)
