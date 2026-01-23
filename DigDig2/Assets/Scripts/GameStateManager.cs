@@ -53,7 +53,7 @@ public class GameStateManager : MonoBehaviour
             playerRB.linearVelocity = Vector3.zero;
         }
 
-        Debug.Log(Player.ToString());
+        //Debug.Log(Player.ToString());
     }
 
     private GameStateManager()

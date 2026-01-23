@@ -4,6 +4,7 @@ using UnityEngine.Tilemaps;
 public class ShopingScript : MonoBehaviour
 {
     [SerializeField] BoxCollider2D myCollider;
+    [SerializeField] GameObject shopOverlay;
     [SerializeField] Tile[] possiblePlantsSold;
     [SerializeField] Tile[] plantsCurrentlySold;
     [SerializeField] int plantsSold;
@@ -21,10 +22,19 @@ public class ShopingScript : MonoBehaviour
     }
     void Update()
     {
-        
+        if (shopOpen)
+        {
+
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        shopOpen = !shopOpen;
+        shopOverlay.SetActive(true);
+        shopOpen = true;
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        shopOverlay.SetActive(false);
+        shopOpen = false;
     }
 }
