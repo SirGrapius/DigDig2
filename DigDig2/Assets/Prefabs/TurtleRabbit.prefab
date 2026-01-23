@@ -350,7 +350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PerformanceFriendlyBasicEnemy
   hp: 6
-  attackDamage: 1
+  attackDamage: 2
   bloodlustCharges: 0
   neededBloodlustCharges: 2
   movementSpeed: 1.5
