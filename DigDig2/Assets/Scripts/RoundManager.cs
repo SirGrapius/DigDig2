@@ -5,6 +5,7 @@ using UnityEngine;
 public class RoundManager : MonoBehaviour
 {
     [SerializeField] GameStateManager gsManager;
+    [SerializeField] SceneLoader sceneLoader;
     [SerializeField] bool unpaused;
     [Header("Day Settings")]
     [SerializeField] int day;
@@ -41,6 +42,7 @@ public class RoundManager : MonoBehaviour
     {
         houseObject = GameObject.FindGameObjectWithTag("MainTarget");
         gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
+        sceneLoader = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneLoader>();
         SaveSystem.Load();
     }
 
@@ -90,6 +92,11 @@ public class RoundManager : MonoBehaviour
             {
                 spawningEnemy = true;
                 StartCoroutine(SpawnEnemies());
+            }
+
+            if (houseHealth <= 0)
+            {
+                PlayerLoss();
             }
 
             numberOfEnemies = Mathf.RoundToInt(GameObject.FindGameObjectsWithTag("Enemy").Length);
@@ -219,6 +226,14 @@ public class RoundManager : MonoBehaviour
         OpenNewLane();
         time = 0;
         SaveSystem.Save();
+    }
+
+    void PlayerLoss()
+    {
+        day = 0;
+        houseHealth = 100;
+        SaveSystem.Save();
+        StartCoroutine(sceneLoader.LoadScene("Death"));
     }
 
     private void OnGameStateChanged(GameState newGameState)

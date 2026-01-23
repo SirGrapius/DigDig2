@@ -17,6 +17,7 @@ public class CameraFollow : MonoBehaviour
     void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        this.transform.position = new Vector3(playerTransform.position.x, playerTransform.position.y, -10);
         zOffset = transform.position - playerTransform.position;
         gsManager.OnGameStateChange += OnGameStateChanged;
     }
