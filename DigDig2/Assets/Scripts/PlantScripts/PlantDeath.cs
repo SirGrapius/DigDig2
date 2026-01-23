@@ -10,6 +10,7 @@ public class PlantDeath : MonoBehaviour
     public int hp;
     public int hpMax;
     public bool decaying;
+    [SerializeField] bool chili;
     
     float time;
     public RuleTile tileUnderneath;
@@ -30,7 +31,7 @@ public class PlantDeath : MonoBehaviour
     public void Damage(int damageValue)
     {
         hp -= damageValue;
-        if (hp <= 0)
+        if (hp <= 0 && !chili)
         {
             Decay(false);
         }
