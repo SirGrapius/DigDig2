@@ -165,7 +165,7 @@ MonoBehaviour:
   hp: 5
   hpMax: 5
   decaying: 0
-  isChili: 1
+  chili: 1
   tileUnderneath: {fileID: 0}
   grassUnderneath: {fileID: 0}
   gsManager: {fileID: 0}

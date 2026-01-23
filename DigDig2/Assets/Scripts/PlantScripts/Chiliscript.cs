@@ -82,15 +82,6 @@ public class Chiliscript : MonoBehaviour
                     enemiesInRange[i].GetComponent<Enemy>().Damage(damageValue);
                 }
             }
-
-            if (baseAnimator.GetBool("Attack"))
-            {
-                attackTimer += Time.deltaTime;
-                if (attackTimer >= attackAnim.length)
-                {
-                    Death.Decay(true);
-                }
-            }
             if (Death.hp <= 0)
             {
                 enemiesInRange = targeting.Target(maxRange, 1, TargetingPrio.Close);
@@ -101,6 +92,14 @@ public class Chiliscript : MonoBehaviour
                     {
                         enemiesInRange[i].GetComponent<Enemy>().Damage(damageValue);
                     }
+                }
+            }
+            if (baseAnimator.GetBool("Attack"))
+            {
+                attackTimer += Time.deltaTime;
+                if (attackTimer >= attackAnim.length)
+                {
+                    Death.Decay(true);
                 }
             }
         }

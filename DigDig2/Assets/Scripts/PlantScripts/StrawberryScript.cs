@@ -7,10 +7,10 @@ public class StrawberryScript : MonoBehaviour
     [SerializeField] GameObject Attack;
     [SerializeField] ClosestEnemy targeting;
     [SerializeField] float attackInterval;
-    float attackSpeed = 1;
+    [SerializeField] float attackSpeed = 1;
     [SerializeField] float attackTimer;
-    float maxRange = 10;
-    float aoe = 1;
+    [SerializeField] float maxRange = 10;
+    [SerializeField] float aoe = 1;
     [SerializeField] int aoeDamage = 1;
     bool ready;
 
@@ -39,9 +39,9 @@ public class StrawberryScript : MonoBehaviour
                 attackTimer -= attackInterval;
                 GameObject projectile = Instantiate(Attack, enemiesInRange[0].transform.position, Quaternion.identity);
                 GameObject[] enemiesInAoe = projectile.GetComponent<ClosestEnemy>().Target(aoe, 1, targetType);
-                for (int i = 1; i < enemiesInAoe.Length; i++)
+                for (int i = 0; i < enemiesInAoe.Length; i++)
                 {
-                    enemiesInRange[i].GetComponent<Enemy>().Damage(aoeDamage);
+                    enemiesInAoe[i].GetComponent<Enemy>().Damage(aoeDamage);
                 }
             }
         }
