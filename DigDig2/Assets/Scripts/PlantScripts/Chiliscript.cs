@@ -82,15 +82,33 @@ public class Chiliscript : MonoBehaviour
                     enemiesInRange[i].GetComponent<Enemy>().Damage(damageValue);
                 }
             }
-        }
-        if (baseAnimator.GetBool("Attack"))
-        {
-            attackTimer += Time.deltaTime;
-            if (attackTimer >= attackAnim.length)
+
+            if (baseAnimator.GetBool("Attack"))
             {
-                Death.Decay(true);
+                attackTimer += Time.deltaTime;
+                if (attackTimer >= attackAnim.length)
+                {
+                    Death.Decay(true);
+                }
+            }
+            if (Death.hp <= 0)
+            {
+                enemiesInRange = targeting.Target(maxRange, 1, TargetingPrio.Close);
+                if (enemiesInRange != null)
+                {
+                    baseAnimator.SetBool("Attack", true);
+                    for (int i = 0; i < enemiesInRange.Length; i++)
+                    {
+                        enemiesInRange[i].GetComponent<Enemy>().Damage(damageValue);
+                    }
+                }
             }
         }
+        if (Death.hp <= 0 && !baseAnimator.GetBool("Attack"))
+        {
+            Death.Decay(false);
+        }
+        
     }
 
     public void BecomeBaby()
