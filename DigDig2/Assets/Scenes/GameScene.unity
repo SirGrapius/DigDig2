@@ -1186,6 +1186,37 @@ Transform:
   - {fileID: 16434781}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &996575063
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 996575064}
+  m_Layer: 0
+  m_Name: Shop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &996575064
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996575063}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8196110101842430662}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1092241309
 GameObject:
   m_ObjectHideFlags: 0
@@ -7654,12 +7685,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e11c0e029d3c85445ae61237dc43d3b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopingScript
+  myCollider: {fileID: 0}
   possiblePlantsSold: []
   plantsCurrentlySold: []
   plantsSold: 0
   possibleItemsSold: 
   itemsCurrentlySold: 
   itemsSold: 0
+  shopOpen: 0
 --- !u!1001 &8196110101842430661
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8718,6 +8751,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5870436923028195982, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1735102466}
+    - targetCorrespondingSourceObject: {fileID: 5870436923028195982, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 996575064}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6b985feb026bc944a80049baae89b73, type: 3}
 --- !u!4 &8196110101842430662 stripped
