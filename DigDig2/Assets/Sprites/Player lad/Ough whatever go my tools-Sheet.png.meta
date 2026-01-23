@@ -1,0 +1,520 @@
+fileFormatVersion: 2
+guid: f3330e9e5a3c0ca4284f0d611cfcfa81
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2960037222779743351
+    second: Ough whatever go my tools-Sheet_0
+  - first:
+      213: 1446236052957286634
+    second: Ough whatever go my tools-Sheet_1
+  - first:
+      213: 7830425628107437042
+    second: Ough whatever go my tools-Sheet_2
+  - first:
+      213: -7017357218321415365
+    second: Ough whatever go my tools-Sheet_3
+  - first:
+      213: 7563001767686606850
+    second: Ough whatever go my tools-Sheet_4
+  - first:
+      213: -4975054347249799197
+    second: Ough whatever go my tools-Sheet_5
+  - first:
+      213: -365967996279652792
+    second: Ough whatever go my tools-Sheet_6
+  - first:
+      213: 5570403390246092453
+    second: Ough whatever go my tools-Sheet_7
+  - first:
+      213: 3210762868830296616
+    second: Ough whatever go my tools-Sheet_8
+  - first:
+      213: 449779929152722749
+    second: Ough whatever go my tools-Sheet_9
+  - first:
+      213: -5017069317258668116
+    second: Ough whatever go my tools-Sheet_10
+  - first:
+      213: 6345332683520387098
+    second: Ough whatever go my tools-Sheet_11
+  - first:
+      213: 658198358938119357
+    second: Ough whatever go my tools-Sheet_12
+  - first:
+      213: -1403367975654439502
+    second: Ough whatever go my tools-Sheet_13
+  - first:
+      213: 3819740595495553
+    second: Ough whatever go my tools-Sheet_14
+  - first:
+      213: -847932264562277842
+    second: Ough whatever go my tools-Sheet_15
+  - first:
+      213: -4248656112448131565
+    second: Ough whatever go my tools-Sheet_16
+  - first:
+      213: -2707420449661694979
+    second: Ough whatever go my tools-Sheet_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Ough whatever go my tools-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 49
+        width: 92
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77c68b1db2a241920800000000000000
+      internalID: 2960037222779743351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ough whatever go my tools-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 29
+        width: 77
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae0d1e51700121410800000000000000
+      internalID: 1446236052957286634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ough whatever go my tools-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 24
+        width: 77
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f375731f924bac60800000000000000
+      internalID: 7830425628107437042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ough whatever go my tools-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 0
+        width: 77
+        height: 136
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b33cdeb1ac65d9e90800000000000000
+      internalID: -7017357218321415365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ough whatever go my tools-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 0
+        width: 77
+        height: 136
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2009c96890e25f860800000000000000
+      internalID: 7563001767686606850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ough whatever go my tools-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 0
+        width: 77
+        height: 136
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3efa9ed1e6e05fab0800000000000000
+      internalID: -4975054347249799197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ough whatever go my tools-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 979
+        y: 29
+        width: 107
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84ef69edb02dbeaf0800000000000000
+      internalID: -365967996279652792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ough whatever go my tools-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 1154
+        y: 39
+        width: 107
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5aeff33ce5c0e4d40800000000000000
+      internalID: 5570403390246092453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ough whatever go my tools-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 1294
+        y: 24
+        width: 102
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82ad4ae51dbee8c20800000000000000
+      internalID: 3210762868830296616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ough whatever go my tools-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 1449
+        y: 19
+        width: 102
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d379f386670fd3600800000000000000
+      internalID: 449779929152722749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ough whatever go my tools-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 1634
+        y: 34
+        width: 82
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca7194b990acf5ab0800000000000000
+      internalID: -5017069317258668116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ough whatever go my tools-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 1774
+        y: 24
+        width: 82
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a18a8e6e4762f0850800000000000000
+      internalID: 6345332683520387098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ough whatever go my tools-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 1929
+        y: 14
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbc60409be3622900800000000000000
+      internalID: 658198358938119357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ough whatever go my tools-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 2129
+        y: 14
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b545f1f24c368ce0800000000000000
+      internalID: -1403367975654439502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ough whatever go my tools-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 2314
+        y: 14
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1822459a8029d0000800000000000000
+      internalID: 3819740595495553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5655063dde9fcb840abb6bc0e2c77c44
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Ough whatever go my tools-Sheet_0: 2960037222779743351
+      Ough whatever go my tools-Sheet_1: 1446236052957286634
+      Ough whatever go my tools-Sheet_10: -5017069317258668116
+      Ough whatever go my tools-Sheet_11: 6345332683520387098
+      Ough whatever go my tools-Sheet_12: 658198358938119357
+      Ough whatever go my tools-Sheet_13: -1403367975654439502
+      Ough whatever go my tools-Sheet_14: 3819740595495553
+      Ough whatever go my tools-Sheet_15: -847932264562277842
+      Ough whatever go my tools-Sheet_16: -4248656112448131565
+      Ough whatever go my tools-Sheet_17: -2707420449661694979
+      Ough whatever go my tools-Sheet_18: -352195787
+      Ough whatever go my tools-Sheet_2: 7830425628107437042
+      Ough whatever go my tools-Sheet_3: -7017357218321415365
+      Ough whatever go my tools-Sheet_4: 7563001767686606850
+      Ough whatever go my tools-Sheet_5: -4975054347249799197
+      Ough whatever go my tools-Sheet_6: -365967996279652792
+      Ough whatever go my tools-Sheet_7: 5570403390246092453
+      Ough whatever go my tools-Sheet_8: 3210762868830296616
+      Ough whatever go my tools-Sheet_9: 449779929152722749
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

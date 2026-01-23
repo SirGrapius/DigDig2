@@ -1,10 +1,14 @@
+using System.Collections;
 using UnityEngine;
 
 public class Chiliscript : MonoBehaviour
 {
     ClosestEnemy targeting;
+    PlantDeath Death;
+    [SerializeField] AnimationClip attackAnim;
     public Animator baseAnimator;
     [SerializeField] float maxRange = 4;
+    float attackTimer;
     public bool growing;
     public float growthTimer;
     public float waterAmount = 1;
@@ -15,11 +19,14 @@ public class Chiliscript : MonoBehaviour
     [SerializeField] float stage3 = 90;
     [SerializeField] int damageValue = 10;
     [SerializeField] int minTargets = 5;
+    [SerializeField] bool stunned = false;
+    private Coroutine stunRoutine;
 
     [SerializeField] GameStateManager gsManager;
 
     private void Awake()
     {
+        Death = GetComponent<PlantDeath>();
         baseAnimator = GetComponent<Animator>();
         targeting = GetComponent<ClosestEnemy>();
         growing = true;
@@ -69,12 +76,39 @@ public class Chiliscript : MonoBehaviour
             if (enemiesInRange != null)
             {
                 baseAnimator.SetBool("Attack", true);
+                
                 for (int i = 0; i < enemiesInRange.Length; i++)
                 {
                     enemiesInRange[i].GetComponent<Enemy>().Damage(damageValue);
                 }
             }
+
+            if (baseAnimator.GetBool("Attack"))
+            {
+                attackTimer += Time.deltaTime;
+                if (attackTimer >= attackAnim.length)
+                {
+                    Death.Decay(true);
+                }
+            }
+            if (Death.hp <= 0)
+            {
+                enemiesInRange = targeting.Target(maxRange, 1, TargetingPrio.Close);
+                if (enemiesInRange != null)
+                {
+                    baseAnimator.SetBool("Attack", true);
+                    for (int i = 0; i < enemiesInRange.Length; i++)
+                    {
+                        enemiesInRange[i].GetComponent<Enemy>().Damage(damageValue);
+                    }
+                }
+            }
         }
+        if (Death.hp <= 0 && !baseAnimator.GetBool("Attack"))
+        {
+            Death.Decay(false);
+        }
+        
     }
 
     public void BecomeBaby()
@@ -89,6 +123,22 @@ public class Chiliscript : MonoBehaviour
     private void OnGameStateChanged(GameState newGameState)
     {
         enabled = newGameState == GameState.Gameplay;
+    }
+
+    public void Stun(float stunDuration)
+    {
+        if (stunRoutine != null)
+            StopCoroutine(stunRoutine);
+
+        stunRoutine = StartCoroutine(StunTimer(stunDuration));
+    }
+
+    private IEnumerator StunTimer(float stunDuration)
+    {
+        stunned = true;
+        yield return new WaitForSeconds(stunDuration);
+        stunned = false;
+        stunRoutine = null;
     }
 
     void OnDestroy()

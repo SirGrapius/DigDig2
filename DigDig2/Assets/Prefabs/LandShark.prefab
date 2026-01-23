@@ -350,12 +350,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PerformanceFriendlyBasicEnemy
   hp: 4
-  attackDamage: 1
+  attackDamage: 3
   bloodlustCharges: 0
   neededBloodlustCharges: 2
   movementSpeed: 3
   attackCooldown: 1.5
-  detectRange: 2.3
+  detectRange: 2.7
   attackRange: 1
   bloodlust: 0
   isAttacking: 0
