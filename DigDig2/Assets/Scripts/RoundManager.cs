@@ -15,6 +15,7 @@ public class RoundManager : MonoBehaviour
     [Header("House Settings")]
     [SerializeField] GameObject houseObject;
     public int houseHealth = 100;
+    [SerializeField] int houseHealthAtDayStart;
 
     [Header("Lane Settings")]
     [SerializeField] GameObject[] lanes; //0 = bottom, 1 = right, 2 = top, 3 = left
@@ -225,6 +226,7 @@ public class RoundManager : MonoBehaviour
         waveModifier = 0;
         OpenNewLane();
         time = 0;
+        houseHealthAtDayStart = houseHealth;
         SaveSystem.Save();
     }
 
@@ -241,28 +243,33 @@ public class RoundManager : MonoBehaviour
         unpaused = newGameState == GameState.Gameplay;
     }
 
-    public void Save(ref RoundData data)
+    public void Save(ref RoundData data, PermRoundData permData)
     {
-        data.Day = day;
-        data.HouseHealth = houseHealth;
-        data.sfxVol = sfxVolume;
-        data.musicVol = musicVolume;
+        data.day = day;
+        data.houseHealth = houseHealthAtDayStart;
+        permData.sfxVol = sfxVolume;
+        permData.musicVol = musicVolume;
     }
 
-    public void Load(RoundData data)
+    public void Load(RoundData data, PermRoundData permData)
     {
-        day = data.Day;
-        houseHealth = data.HouseHealth;
-        sfxVolume = data.sfxVol;
-        musicVolume = data.musicVol;
+        day = data.day;
+        houseHealthAtDayStart = data.houseHealth;
+        sfxVolume = permData.sfxVol;
+        musicVolume = permData.musicVol;
     }
 }
 
 [System.Serializable]
 public struct RoundData
 {
-    public int Day;
-    public int HouseHealth;
+    public int day;
+    public int houseHealth;
+}
+
+[System.Serializable]
+public struct PermRoundData
+{
     public float sfxVol;
     public float musicVol;
 }
