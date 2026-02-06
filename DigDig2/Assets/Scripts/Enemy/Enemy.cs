@@ -188,24 +188,24 @@ public class Enemy : MonoBehaviour
             direction = (mainTarget.transform.position - transform.position).normalized;
         }
 
-        int newDirectionIndex;
+        int newDirection;
 
         if (isAttacking == false && Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
         {
-            newDirectionIndex = direction.x > 0 ? 1 : 3; 
+            newDirection = direction.x > 0 ? 1 : 3; 
         }
         else if(isAttacking == false)
         {
-            newDirectionIndex = direction.y > 0 ? 0 : 2;
+            newDirection = direction.y > 0 ? 0 : 2;
         }
         else
         {
-            newDirectionIndex = 4;
+            newDirection = 4;
         }
 
-        if (newDirectionIndex != currentDirection)
+        if (newDirection != currentDirection)
         {
-            currentDirection = newDirectionIndex;
+            currentDirection = newDirection;
             animator.SetInteger("Direction", currentDirection);
         }
     }
