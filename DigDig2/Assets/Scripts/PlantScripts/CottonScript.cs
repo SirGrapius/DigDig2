@@ -43,6 +43,11 @@ public class CottonScript : MonoBehaviour
         growing = true;
         becameAdult = false;
         gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
+        if (transform.parent.parent.parent.GetComponent<TileScript>().isInventory)
+        {
+            isInInventory = true;
+            growthTimer = stage3;
+        }
     }
 
     void Start()
