@@ -108,7 +108,10 @@ MonoBehaviour:
   Attack: {fileID: 5437543290076464991, guid: e203f3e2027da6749b2e35d3a485f51b, type: 3}
   targeting: {fileID: 0}
   attackInterval: 5
+  attackSpeed: 1
   attackTimer: 0
+  maxRange: 10
+  aoe: 1.5
   aoeDamage: 1
 --- !u!114 &3291973377348936475
 MonoBehaviour:
