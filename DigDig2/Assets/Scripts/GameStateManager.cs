@@ -52,7 +52,7 @@ public class GameStateManager : MonoBehaviour
             Rigidbody2D playerRB = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
             playerRB.linearVelocity = Vector3.zero;
         }
-
+        
         //Debug.Log(Player.ToString());
     }
 
