@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class BossEnemy : MonoBehaviour
 {
@@ -10,19 +11,22 @@ public class BossEnemy : MonoBehaviour
     [SerializeField] float attackTimer = 12;
     [SerializeField] float stunRadius = 9;
     [SerializeField] float stunDuration = 3f;
+    private int lastPoint = -1;
+    private int newPoint;
 
-    private bool isTeleporting = false;
-
+    private bool isRelocating = false;
+    
     [SerializeField] GameObject crowPrefab;
 
-    [SerializeField] List<Collider2D> zones;
-    Collider2D currentZone;
+    [SerializeField] Animator animator;
+
+    [SerializeField] Transform[] points;
 
     private void Update()
     {
         if (relocateTimer <= 0)
         {
-            Relocate();
+            Ascend();
             relocateTimer = relocateCooldown;
         }
         else
@@ -30,28 +34,64 @@ public class BossEnemy : MonoBehaviour
             relocateTimer -= Time.deltaTime;
         }
 
-        if (attackTimer <= 0)
+        if (attackTimer <= 0 && isRelocating != true)
         {
             int roll = Random.Range(1, 11);
 
             if (roll <= 7) StunAttack();
-            else if (roll <= 9) DeAgeAttack(); 
+            else if (roll <= 9) DeAgeAttack();
             else CrowAttack();
         }
-        else
+        else if (isRelocating != true)
         {
             attackTimer -= Time.deltaTime;
         }
     }
 
-    private void Relocate() // Make a temp list with zones, remove current zone from it, and then do a random.range between 0 and list.count. 
+    private void Ascend() 
     {
-        // Use choosepointinzone to get a random point for teleportatiion, set isteleporting to ture and start a quarantine or delay for animation.length before setting it to false
+        isRelocating = true;
+        animator.SetTrigger("Ascend");
+    }
+    
+    private void Descend()
+    {
+        do
+        {
+            newPoint = Random.Range(0, points.Length);
+        }
+        while (newPoint == lastPoint); // Remake and exlude lastPoint from random.range instead of looping
+
+        switch (newPoint)
+        {
+            case 0:
+                    animator.SetInteger("Direction", 0);
+                    break;
+
+            case 1:
+                    animator.SetInteger("Direction", 1);
+                    break;
+
+            case 2:
+                    animator.SetInteger("Direction", 2);
+                    break;
+
+            case 3:
+                    animator.SetInteger("Direction", 3);
+                    break;
+
+        }
+
+        transform.position = points[newPoint].transform.position; 
+
+        lastPoint = newPoint;
+
+        animator.SetTrigger("Descend");
     }
 
-    Vector3 ChoosePointInZone()
+    private void DescendFinished()
     {
-        return new Vector3(1, 1, 1); // Remove this, add Get random point in selected zone 
+        isRelocating = false;
     }
 
     private void StunAttack()
@@ -116,8 +156,9 @@ public class BossEnemy : MonoBehaviour
 
 
 
-   // Add relocation, add finding all plant scripts, add boss and raven projectile animations/graphic, apply stun effect on plants hit and stun radius effect
-}
+   // Add finding all plant scripts, add boss and raven projectile animations/graphic, apply stun effect on plants hit and stun radius effect, add beeing able to hit crows 
+   // Add "ascent" function where it plays the ascend animation, and at the end of animation add keyframe that calls "descent" function, where it selects a random zone or point aside from current zone, teleports, and then plays descend animation. 
+}  // check if already crow flying? make attacks not fully random?
 
 
 
