@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -53,6 +54,19 @@ public class SceneLoader : MonoBehaviour
         {
             case "Play":
                 {
+                    StartCoroutine(LoadScene("GameScene"));
+                    break;
+                }
+
+            case "NewGame":
+                {
+                    UnityEngine.SceneManagement.Scene activeScene = SceneManager.GetActiveScene();
+                    string sceneName = activeScene.name;
+                    if (sceneName == "MainMenu")
+                    {
+                        MainMenu menu = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<MainMenu>();
+                    }
+                    SaveSystem.ClearData();
                     StartCoroutine(LoadScene("GameScene"));
                     break;
                 }
