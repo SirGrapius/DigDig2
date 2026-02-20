@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7993129910887626505}
   - component: {fileID: 162399332705556229}
   - component: {fileID: 3291973377348936475}
+  - component: {fileID: 371161177172346562}
+  - component: {fileID: 1291006218247447410}
   m_Layer: 0
   m_Name: Strawberry
   m_TagString: Plant
@@ -125,3 +127,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04ffcc87a84dec4c90db78f0f127bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClosestEnemy
+--- !u!114 &371161177172346562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6489666689241203594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 653ac7d911572594ba3db6193d929f1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlantDeath
+  daddy: {fileID: 0}
+  child: {fileID: 0}
+  deathAnim: {fileID: 0}
+  myAnimator: {fileID: 1291006218247447410}
+  hp: 1
+  hpMax: 1
+  decaying: 0
+  chili: 0
+  tileUnderneath: {fileID: 0}
+  grassUnderneath: {fileID: 0}
+  gsManager: {fileID: 0}
+--- !u!95 &1291006218247447410
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6489666689241203594}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 87777685e5e0e2241ab639342119eb6e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
