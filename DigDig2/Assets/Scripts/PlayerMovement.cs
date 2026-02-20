@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] AudioClip[] soundEffects;
     [Header("Anim Settings")]
     [SerializeField] Animator animator;
-
+    [SerializeField] string firstDirection;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] GameStateManager gsManager;
 
@@ -69,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (!isMoving)
         {
+            firstDirection = null;
             switch (lastDirection)
             {
                 case 1: //down
@@ -98,7 +99,11 @@ public class PlayerMovement : MonoBehaviour
         if (playerInput.x != 0) //change animations of player if moving up or down.
         {
             isMoving = true;
-            animator.SetBool("WalkS", true);
+            if (firstDirection == null)
+            {
+                animator.SetBool("WalkS", true);
+                firstDirection = "Side";
+            }
             if (rb.linearVelocityX < 0 && !chargingAttack)
             {
                 shovelHitboxObject.transform.rotation = Quaternion.Euler(0, 0, 270);
@@ -114,30 +119,36 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             animator.SetBool("WalkS", false);
+            firstDirection = null;
         }
 
         if (playerInput.y != 0) //change animations of player if moving up or down.
         {
             isMoving = true;
-            if (rb.linearVelocityY < 0 && !chargingAttack)
+            if (rb.linearVelocityY < 0)
             {
-                rb.transform.rotation = Quaternion.Euler(0, 0, 0);
                 shovelHitboxObject.transform.rotation = Quaternion.Euler(0, 0, 0);
-                animator.SetBool("WalkD", true);
-                animator.SetBool("WalkU", false);
+                if (firstDirection == null)
+                {
+                    animator.SetBool("WalkD", true);
+                    firstDirection = "Down";
+                }
                 lastDirection = 1;
             }
-            if (rb.linearVelocityY > 0 && !chargingAttack)
+            if (rb.linearVelocityY > 0)
             {
-                rb.transform.rotation = Quaternion.Euler(0, 0, 0);
                 shovelHitboxObject.transform.rotation = Quaternion.Euler(0, 0, 180);
-                animator.SetBool("WalkU", true);
-                animator.SetBool("WalkD", false);
+                if (firstDirection == null)
+                {
+                    animator.SetBool("WalkU", true);
+                    firstDirection = "Up";
+                }
                 lastDirection = 2;
             }
         }
         else
         {
+            firstDirection = null;
             animator.SetBool("WalkU", false);
             animator.SetBool("WalkD", false);
         }
@@ -163,7 +174,7 @@ public class PlayerMovement : MonoBehaviour
             isMoving = false;
         }
 
-        if (chargingAttack && !isMoving)
+        if (chargingAttack)
         {
             switch (lastDirection)
             {
