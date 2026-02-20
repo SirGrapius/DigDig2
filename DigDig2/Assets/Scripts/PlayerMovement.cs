@@ -163,6 +163,28 @@ public class PlayerMovement : MonoBehaviour
             isMoving = false;
         }
 
+        if (chargingAttack && !isMoving)
+        {
+            switch (lastDirection)
+            {
+                case 1: //down
+                    {
+                        animator.SetBool("ChargingD", true);
+                        break;
+                    }
+                case 2: //up
+                    {
+                        animator.SetBool("ChargingU", true);
+                        break;
+                    }
+                case 3: //side
+                    {
+                        animator.SetBool("ChargingS", true);
+                        break;
+                    }
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.Space)) //use your current tool
         {
             if (inventory.selectedTool == 3 && !onCooldown) //if you're holding the shovel charge attack
