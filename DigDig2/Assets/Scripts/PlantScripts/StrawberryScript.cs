@@ -41,7 +41,12 @@ public class StrawberryScript : MonoBehaviour
                 GameObject[] enemiesInAoe = projectile.GetComponent<ClosestEnemy>().Target(aoe, 1, targetType);
                 for (int i = 0; i < enemiesInAoe.Length; i++)
                 {
-                    enemiesInAoe[i].GetComponent<Enemy>().Damage(aoeDamage);
+                    Enemy iEnemyScript = enemiesInAoe[i].GetComponent<Enemy>();
+                    if (iEnemyScript != null)
+                    {
+                        iEnemyScript.Damage(aoeDamage);
+
+                    }
                 }
             }
         }
