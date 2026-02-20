@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Unity.Mathematics;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -13,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float baseSpeed = 5;
     [SerializeField] public float currentSpeed;
     [SerializeField] bool sprinting;
-    [SerializeField] float lastDirection = 1; //3 = side, 2 = up, 1 = down
+    [SerializeField] string buttonName;
 
     Vector2 playerInput;
 
@@ -40,7 +41,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] AudioClip[] soundEffects;
     [Header("Anim Settings")]
     [SerializeField] Animator animator;
-    [SerializeField] string firstDirection;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] GameStateManager gsManager;
 
@@ -67,43 +67,54 @@ public class PlayerMovement : MonoBehaviour
     {
         playerInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")); //if player presses a movement key the player will move
 
-        if (!isMoving)
-        {
-            firstDirection = null;
-            switch (lastDirection)
-            {
-                case 1: //down
-                    {
-                        animator.SetBool("Idle", true);
-                        break;
-                    }
-                case 2: //up
-                    {
-                        animator.SetBool("IdleU", true);
-                        break;
-                    }
-                case 3: //side
-                    {
-                        animator.SetBool("IdleS", true);
-                        break;
-                    }
-            }
-        }
-        else
+        if (isMoving)
         {
             animator.SetBool("Idle", false);
             animator.SetBool("IdleU", false);
             animator.SetBool("IdleS", false);
         }
 
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            animator.SetBool("WalkU", true);
+            animator.SetBool("WalkS", false);
+            animator.SetBool("WalkD", false);
+            if (chargingAttack)
+            {
+                animator.SetBool("ChargingU", true);
+                animator.SetBool("ChargingD", false);
+                animator.SetBool("ChargingS", false);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            animator.SetBool("WalkD", true);
+            animator.SetBool("WalkS", false);
+            animator.SetBool("WalkU", false);
+            if (chargingAttack)
+            {
+                animator.SetBool("ChargingU", false);
+                animator.SetBool("ChargingD", true);
+                animator.SetBool("ChargingS", false);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.A))
+        {
+            animator.SetBool("WalkS", true);
+            animator.SetBool("WalkU", false);
+            animator.SetBool("WalkD", false);
+            if (chargingAttack)
+            {
+                animator.SetBool("ChargingU", false);
+                animator.SetBool("ChargingD", false);
+                animator.SetBool("ChargingS", true);
+            }
+        }
+
+
         if (playerInput.x != 0) //change animations of player if moving up or down.
         {
             isMoving = true;
-            if (firstDirection == null)
-            {
-                animator.SetBool("WalkS", true);
-                firstDirection = "Side";
-            }
             if (rb.linearVelocityX < 0 && !chargingAttack)
             {
                 shovelHitboxObject.transform.rotation = Quaternion.Euler(0, 0, 270);
@@ -119,7 +130,6 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             animator.SetBool("WalkS", false);
-            firstDirection = null;
         }
 
         if (playerInput.y != 0) //change animations of player if moving up or down.
@@ -128,27 +138,16 @@ public class PlayerMovement : MonoBehaviour
             if (rb.linearVelocityY < 0)
             {
                 shovelHitboxObject.transform.rotation = Quaternion.Euler(0, 0, 0);
-                if (firstDirection == null)
-                {
-                    animator.SetBool("WalkD", true);
-                    firstDirection = "Down";
-                }
                 lastDirection = 1;
             }
             if (rb.linearVelocityY > 0)
             {
                 shovelHitboxObject.transform.rotation = Quaternion.Euler(0, 0, 180);
-                if (firstDirection == null)
-                {
-                    animator.SetBool("WalkU", true);
-                    firstDirection = "Up";
-                }
                 lastDirection = 2;
             }
         }
         else
         {
-            firstDirection = null;
             animator.SetBool("WalkU", false);
             animator.SetBool("WalkD", false);
         }
@@ -174,53 +173,12 @@ public class PlayerMovement : MonoBehaviour
             isMoving = false;
         }
 
-        if (chargingAttack)
-        {
-            switch (lastDirection)
-            {
-                case 1: //down
-                    {
-                        animator.SetBool("ChargingD", true);
-                        break;
-                    }
-                case 2: //up
-                    {
-                        animator.SetBool("ChargingU", true);
-                        break;
-                    }
-                case 3: //side
-                    {
-                        animator.SetBool("ChargingS", true);
-                        break;
-                    }
-            }
-        }
-
         if (Input.GetKeyDown(KeyCode.Space)) //use your current tool
         {
             if (inventory.selectedTool == 3 && !onCooldown) //if you're holding the shovel charge attack
             {
                 chargingAttack = true;
-                animator.SetBool("WalkU", false);
                 shovelSource.PlayOneShot(soundEffects[1]);
-                switch (lastDirection)
-                {
-                    case 1: //down
-                        {
-                            animator.SetBool("ChargingD", true);
-                            break;
-                        }
-                    case 2: //up
-                        {
-                            animator.SetBool("ChargingU", true);
-                            break;
-                        }
-                    case 3: //side
-                        {
-                            animator.SetBool("ChargingS", true);
-                            break;
-                        }
-                }
             }
             if (inventory.selectedTool == 2) //if you're holding the watering can
             {
@@ -244,23 +202,17 @@ public class PlayerMovement : MonoBehaviour
             {
                 chargingAttack = false;
                 shovelSource.PlayOneShot(soundEffects[2]);
-                switch (lastDirection)
+                if (animator.GetBool("ChargingU") == true)
                 {
-                    case 1: //down
-                        {
-                            animator.SetBool("ChargingD", false);
-                            break;
-                        }
-                    case 2: //up
-                        {
-                            animator.SetBool("ChargingU", false);
-                            break;
-                        }
-                    case 3: //side
-                        {
-                            animator.SetBool("ChargingS", false);
-                            break;
-                        }
+                    animator.SetBool("ChargingU", false);
+                }
+                if (animator.GetBool("ChargingD") == true)
+                {
+                    animator.SetBool("ChargingD", false);
+                }
+                if (animator.GetBool("ChargingS") == true)
+                {
+                    animator.SetBool("ChargingS", false);
                 }
                 if (currentEnemy != null)
                 {
@@ -297,6 +249,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy") && inventory.selectedTool == 3) //check if you're attacking and there's an enemy in your hitbox and do damage.
