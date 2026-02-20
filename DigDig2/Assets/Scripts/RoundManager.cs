@@ -26,6 +26,7 @@ public class RoundManager : MonoBehaviour
     [SerializeField] int enemyPoints;
     [SerializeField] GameObject[] enemyPrefabs;
     [SerializeField] GameObject bossPrefab;
+    [SerializeField] GameObject currentBoss;
     [SerializeField] float waveModifier;
     bool generatingPoints;
     bool spawningEnemy;
@@ -86,13 +87,18 @@ public class RoundManager : MonoBehaviour
             {
                 StartCoroutine(TextFadeCoroutine(new Color(myText.color.r, myText.color.g, myText.color.b, 0), new Color(myText.color.r, myText.color.g, myText.color.b, 1), "A Terrifying Foe Approaches From Below! A Massive Wave of Beasts is Coming!"));
                 StartCoroutine(GenerateEnemyPoints());
-                Instantiate(bossPrefab, lanes[0].transform.position, Quaternion.identity);
+                currentBoss = Instantiate(bossPrefab, lanes[0].transform.position, Quaternion.identity);
             }
 
             if (enemyPoints > 0 && !spawningEnemy)
             {
                 spawningEnemy = true;
                 StartCoroutine(SpawnEnemies());
+            }
+
+            if (currentBoss != null && time >= 300 && !spawningEnemy) 
+            {
+                StartCoroutine(bossEnemyWaves());
             }
 
             if (houseHealth <= 0)
@@ -216,6 +222,58 @@ public class RoundManager : MonoBehaviour
             }
         }
         enemyPoints = 0;
+        spawningEnemy = false;
+        yield return null;
+    }
+
+    IEnumerator bossEnemyWaves()
+    {
+        spawningEnemy = true;
+        int summonPoints = Random.Range(3, 8);
+
+        int whatEnemy;
+        int whatLane;
+        float maxLane = 0;
+
+        Vector3[] v = new Vector3[4];
+
+        if (!isLaneOpen[0])
+        {
+            maxLane = 0;
+        }
+        else if (!isLaneOpen[1])
+        {
+            maxLane = 1;
+        }
+        else if (!isLaneOpen[2])
+        {
+            maxLane = 2;
+        }
+        else if (isLaneOpen[2])
+        {
+            maxLane = 3;
+        }
+        for (int i = 0; i < summonPoints; i++)
+        {
+            yield return new WaitForSeconds(Random.Range(1, 4));
+            whatLane = Mathf.RoundToInt(Random.Range(0, maxLane)); //decides what lane the enemy will spawn on
+            whatEnemy = Mathf.RoundToInt(Random.Range(0, 2)); //decides what enemy to spawn
+            BoxCollider2D laneCollider = lanes[whatLane].GetComponent<BoxCollider2D>();
+            float topSide = laneCollider.size.y + lanes[whatLane].transform.position.y;
+            float bottomSide = -laneCollider.size.y + lanes[whatLane].transform.position.y;
+            float rightSide = laneCollider.size.x + lanes[whatLane].transform.position.x;
+            float leftSide = -laneCollider.size.x + lanes[whatLane].transform.position.x;
+            Vector3 spawnPos = new Vector3(Random.Range(leftSide, rightSide), Random.Range(bottomSide, topSide), 0);
+            if (day < 10)
+            {
+                Instantiate(enemyPrefabs[0], spawnPos, Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(enemyPrefabs[whatEnemy], spawnPos, Quaternion.identity);
+            }
+        }
+        yield return new WaitForSeconds(20);
         spawningEnemy = false;
         yield return null;
     }
