@@ -1005,6 +1005,7 @@ MonoBehaviour:
   enemyPoints: 0
   enemyPrefabs: []
   bossPrefab: {fileID: 0}
+  currentBoss: {fileID: 0}
   waveModifier: 0
   myText: {fileID: 0}
   fadeDuration: 0
@@ -2084,6 +2085,56 @@ MonoBehaviour:
   frontCollider: {fileID: 0}
   nearbyPlants: []
   frontColliderPlants: []
+--- !u!1 &2106687758 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6489666689241203594, guid: c0a21e6b67a80844485f90bd5c74b058, type: 3}
+  m_PrefabInstance: {fileID: 5581837360494049256}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2106687763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106687758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 653ac7d911572594ba3db6193d929f1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlantDeath
+  daddy: {fileID: 0}
+  child: {fileID: 0}
+  deathAnim: {fileID: 0}
+  myAnimator: {fileID: 2106687764}
+  hp: 1
+  hpMax: 1
+  decaying: 0
+  chili: 0
+  tileUnderneath: {fileID: 0}
+  grassUnderneath: {fileID: 0}
+  gsManager: {fileID: 0}
+--- !u!95 &2106687764
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106687758}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 87777685e5e0e2241ab639342119eb6e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &2145813646
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2334,7 +2385,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6489666689241203594, guid: c0a21e6b67a80844485f90bd5c74b058, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2106687763}
+    - targetCorrespondingSourceObject: {fileID: 6489666689241203594, guid: c0a21e6b67a80844485f90bd5c74b058, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2106687764}
   m_SourcePrefab: {fileID: 100100000, guid: c0a21e6b67a80844485f90bd5c74b058, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
