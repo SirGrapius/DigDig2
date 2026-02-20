@@ -14,6 +14,8 @@ public class ShopingScript : MonoBehaviour
     [SerializeField] bool shopOpen;
     private void Awake()
     {
+        myCollider = GetComponent<BoxCollider2D>();
+        shopOverlay = Camera.main.transform.GetChild(2).gameObject;
         plantsCurrentlySold = new Tile[plantsSold];
         for (int i = 0; i < plantsSold; i++)
         {
