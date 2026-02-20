@@ -4,6 +4,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using static UnityEngine.SpriteMask;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -34,7 +35,9 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Audio")]
     // audio controller script here
-    [SerializeField] AudioSource walkSource;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioSource shovelSource;
+    [SerializeField] AudioClip[] soundEffects;
     [Header("Anim Settings")]
     [SerializeField] Animator animator;
 
@@ -52,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         currentSpeed = baseSpeed;
         gsManager.OnGameStateChange += OnGameStateChanged;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void OnDestroy()
@@ -138,9 +142,47 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("WalkD", false);
         }
 
+        if (isMoving)
+        {
+
+        }
+        else
+        {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+            else
+            {
+                audioSource.Stop();
+            }
+        }
+
         if (rb.linearVelocity == new Vector2(0, 0))
         {
             isMoving = false;
+        }
+
+        if (chargingAttack && !isMoving)
+        {
+            switch (lastDirection)
+            {
+                case 1: //down
+                    {
+                        animator.SetBool("ChargingD", true);
+                        break;
+                    }
+                case 2: //up
+                    {
+                        animator.SetBool("ChargingU", true);
+                        break;
+                    }
+                case 3: //side
+                    {
+                        animator.SetBool("ChargingS", true);
+                        break;
+                    }
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Space)) //use your current tool
@@ -149,6 +191,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 chargingAttack = true;
                 animator.SetBool("WalkU", false);
+                shovelSource.PlayOneShot(soundEffects[1]);
                 switch (lastDirection)
                 {
                     case 1: //down
@@ -189,6 +232,7 @@ public class PlayerMovement : MonoBehaviour
             if (chargingAttack)
             {
                 chargingAttack = false;
+                shovelSource.PlayOneShot(soundEffects[2]);
                 switch (lastDirection)
                 {
                     case 1: //down
@@ -209,6 +253,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 if (currentEnemy != null)
                 {
+                    shovelSource.PlayOneShot(soundEffects[3]);
                     currentEnemy.Damage(Mathf.RoundToInt(damage * ((1 + currentShovelCharge) / 0.75f)));
                 }
                 currentShovelCharge = 0;
@@ -260,6 +305,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator CooldownDuration() //start cooldown
     {
+        shovelSource.Stop();
         Debug.Log("on cooldown");
         onCooldown = true;
         yield return new WaitForSeconds(cooldown);
