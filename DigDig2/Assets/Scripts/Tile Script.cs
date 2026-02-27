@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -18,7 +19,7 @@ public class TileScript : MonoBehaviour
 
     [Header("Planting and Inventory")]
     public bool isInventory;
-    Tile selectedInventoryTile;
+    [SerializeField] Tile selectedInventoryTile;
     public int selectedTool;
     // 1 = hoe
     // 2 = watering can
@@ -180,15 +181,16 @@ public class TileScript : MonoBehaviour
                                     = grassTiles.GetTile<RuleTile>(CheckTile());
                                 plantTiles.transform.GetChild(i).GetComponent<PlantDeath>().tileUnderneath
                                     = myTilemap.GetTile<RuleTile>(CheckTile());
-                                if (plantTiles.transform.GetChild(i).GetComponent<PlantDeath>().tileUnderneath == tilledSoil)
-                                {
-                                    plantTiles.transform.GetChild(i).GetComponent<PlantDeath>().tileUnderneath = unTilledSoil;
-                                }
+                                //if (plantTiles.transform.GetChild(i).GetComponent<PlantDeath>().tileUnderneath == tilledSoil)
+                                //{
+                                //    plantTiles.transform.GetChild(i).GetComponent<PlantDeath>().tileUnderneath = unTilledSoil;
+                                //}
                             }
                         }
                     }
                     else
                     {
+                        // using a picked up plant
                         selectedInventoryTile = myInventory.GetComponent<TileScript>().selectedInventoryTile;
                         plantTiles.SetTile(myTilePositionInt, pickedUpPlantType);
                         Destroy(plantTiles.transform.GetChild(plantTiles.transform.childCount - 1).gameObject);
@@ -198,6 +200,7 @@ public class TileScript : MonoBehaviour
                         pickedUpPlant.GetComponent<PlantDeath>().tileUnderneath = myTilemap.GetTile<RuleTile>(myTilePositionInt);
                         pickedUpPlant.GetComponent<PlantDeath>().grassUnderneath = grassTiles.GetTile<RuleTile>(CheckTile());
                         grassTiles.SetTile(CheckTile(), grassSoil);
+                        myTilemap.SetTile(CheckTile(), tilledSoil);
                         useTimer = 0;
                         pickedUpPlant = null;
                     }
@@ -265,8 +268,7 @@ public class TileScript : MonoBehaviour
                     && pickedUpPlant == null)
                 {
                     // picking up the plant
-                    pickedUpPlant = Instantiate(plantTiles.transform.GetChild(i).gameObject);
-                    pickedUpPlant.transform.parent = plantTiles.transform;
+                    pickedUpPlant = Instantiate(plantTiles.transform.GetChild(i).gameObject, plantTiles.transform);
 
                     pickedUpPlant.transform.GetChild(0).GetChild(0).GetComponent<CottonScript>().growthTimer
                      = plantTiles.transform.GetChild(i).GetChild(0).GetChild(0).gameObject.GetComponent<CottonScript>().growthTimer;
@@ -300,15 +302,16 @@ public class TileScript : MonoBehaviour
         }
         else if (selectedTool == 3 && pickedUpPlant == null && Input.GetKey(KeyCode.LeftControl))
         {
-            for (int i = 0; i < transform.childCount; i++)
+            for (int i = 0; i < plantTiles.transform.childCount; i++)
             {
                 // seeing if you are hovering over a plant and if so, getting the position of the plant
                 if (plantTiles.transform.GetChild(i).position == CheckTile()
                     * (int)transform.parent.GetComponent<Grid>().cellSize.x
                     + new Vector3Int(1, 1, 50)
                     && pickedUpPlant == null)
-                {
-                    gsManager.heldMoneyAmount += plantTiles.transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<CottonScript>().sellValue;
+                {                    
+                    gsManager.heldMoneyAmount += plantTiles.gameObject.transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<CottonScript>().sellValue;
+                    gsManager.moneyUI.GetComponent<TextMeshPro>().text = gsManager.heldMoneyAmount.ToString();
                     myTilemap.SetTile(CheckTile(), tilledSoil);
 
                     // killing the left over copy if necessary 
