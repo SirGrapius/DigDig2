@@ -73,6 +73,13 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("IdleU", false);
             animator.SetBool("IdleS", false);
         }
+        else
+        {
+            switch (animator.GetBool("WalkU"))
+            {
+
+            }
+        }
 
         if (Input.GetKeyDown(KeyCode.W))
         {
@@ -125,7 +132,6 @@ public class PlayerMovement : MonoBehaviour
                 shovelHitboxObject.transform.rotation = Quaternion.Euler(0, 0, 90);
                 rb.transform.rotation = Quaternion.Euler(0, 180, 0);
             }
-            lastDirection = 3;
         }
         else
         {
@@ -138,12 +144,10 @@ public class PlayerMovement : MonoBehaviour
             if (rb.linearVelocityY < 0)
             {
                 shovelHitboxObject.transform.rotation = Quaternion.Euler(0, 0, 0);
-                lastDirection = 1;
             }
             if (rb.linearVelocityY > 0)
             {
                 shovelHitboxObject.transform.rotation = Quaternion.Euler(0, 0, 180);
-                lastDirection = 2;
             }
         }
         else
