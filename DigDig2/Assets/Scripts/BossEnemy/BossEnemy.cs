@@ -56,11 +56,9 @@ public class BossEnemy : MonoBehaviour
     
     private void Descend()
     {
-        do
-        {
-            newPoint = Random.Range(0, points.Length);
-        }
-        while (newPoint == lastPoint); // Remake and exlude lastPoint from random.range instead of looping
+        int newPoint = Random.Range(0, points.Length - 1);
+
+        if (newPoint >= lastPoint) newPoint++;
 
         switch (newPoint)
         {
@@ -146,7 +144,7 @@ public class BossEnemy : MonoBehaviour
             GameObject crow = Instantiate(crowPrefab, transform.position, Quaternion.identity);
             CrowProjectile crowScript = crow.GetComponent<CrowProjectile>();
 
-            crowScript.targetplant = p.transform.position;
+            crowScript.targetplant = p;
         }
 
         attackTimer = attackCooldown * 2f; 
@@ -156,8 +154,7 @@ public class BossEnemy : MonoBehaviour
 
 
 
-   // Add finding all plant scripts, add boss and raven projectile animations/graphic, apply stun effect on plants hit and stun radius effect, add beeing able to hit crows 
-   // Add "ascent" function where it plays the ascend animation, and at the end of animation add keyframe that calls "descent" function, where it selects a random zone or point aside from current zone, teleports, and then plays descend animation. 
+   // Add finding all plant scripts, add graphics and effects? 
 }  // check if already crow flying? make attacks not fully random?
 
 

@@ -420,6 +420,7 @@ GameObject:
   - component: {fileID: 6765443855941341142}
   - component: {fileID: 8865439386366426737}
   - component: {fileID: -5153899466286299918}
+  - component: {fileID: -6724907053204478825}
   m_Layer: 2
   m_Name: Cotton
   m_TagString: Plant
@@ -616,6 +617,19 @@ MonoBehaviour:
   hp: 5
   hpMax: 5
   decaying: 0
+  chili: 0
   tileUnderneath: {fileID: 0}
   grassUnderneath: {fileID: 0}
   gsManager: {fileID: 0}
+--- !u!114 &-6724907053204478825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8495913010246796608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a42a5bb9e0c573845b2ed582ac8fb531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnyPlant
