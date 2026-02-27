@@ -195,6 +195,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlantHealthBar
   HealthScript: {fileID: -5153899466286299918}
+  daddy: {fileID: -6724907053204478825}
+  healthbar: {fileID: 945380043195750095}
 --- !u!1 &5747944567935534073
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,9 +249,9 @@ MonoBehaviour:
   waterAmount: 1
   waterAmountMin: 1
   waterLoss: 1
-  stage1: 20
-  stage2: 40
-  stage3: 60
+  stage1: 50
+  stage2: 100
+  stage3: 150
   attackFrequency: 2
   myAnimator: {fileID: 7585556059168892396}
   baseAnimator: {fileID: 8865439386366426737}
@@ -260,8 +262,8 @@ MonoBehaviour:
   stunned: 0
   maxRange: 20
   isInInventory: 0
-  maxSellValue: 0
-  sellValue: 0
+  maxSellValue: 75
+  sellValue: 25
   gsManager: {fileID: 0}
 --- !u!114 &7010418909444613086
 MonoBehaviour:
@@ -633,3 +635,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a42a5bb9e0c573845b2ed582ac8fb531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnyPlant
+  typeCotton: {fileID: 5899832665033984898}
+  typePotato: {fileID: 0}
+  typeChili: {fileID: 0}

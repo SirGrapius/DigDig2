@@ -8,6 +8,7 @@ public class GameStateManager : MonoBehaviour
     public delegate void GameStateChangeHandler(GameState newGameState);
     public event GameStateChangeHandler OnGameStateChange;
     public float heldMoneyAmount;
+    public GameObject moneyUI;
     private static GameStateManager instance;
     public static GameStateManager Instance
     {

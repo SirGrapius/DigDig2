@@ -2,15 +2,9 @@ using UnityEngine;
 
 public class AnyPlant : MonoBehaviour
 {
-    CottonScript typeCotton;
-    PotatoScript typePotato;
-    Chiliscript typeChili;
-    void Start()
-    {
-        typeCotton = gameObject.GetComponent<CottonScript>();
-        typePotato = gameObject.GetComponent<PotatoScript>();
-        typeChili = gameObject.GetComponent<Chiliscript>();
-    }
+    [SerializeField] CottonScript typeCotton;
+    [SerializeField] PotatoScript typePotato;
+    [SerializeField] Chiliscript typeChili;
 
     public bool IsGrowing()
     {
@@ -23,6 +17,22 @@ public class AnyPlant : MonoBehaviour
             return true;
         }
         if (typeChili != null && typeChili.growing)
+        {
+            return true;
+        }
+        return false;
+    }
+    public bool IsInInventory()
+    {
+        if (typeCotton != null && typeCotton.isInInventory)
+        {
+            return true;
+        }
+        if (typePotato != null && false)
+        {
+            return true;
+        }
+        if (typeChili != null && false)
         {
             return true;
         }
