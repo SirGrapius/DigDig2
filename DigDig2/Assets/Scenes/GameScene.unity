@@ -1764,6 +1764,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &731613006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 731613007}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &731613007
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731613006}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8196110101842430662}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &834918577
 GameObject:
   m_ObjectHideFlags: 0
@@ -10560,6 +10591,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5870436923028195982, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       insertIndex: -1
       addedObject: {fileID: 996575064}
+    - targetCorrespondingSourceObject: {fileID: 5870436923028195982, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 731613007}
     - targetCorrespondingSourceObject: {fileID: 2307374216104780081, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       insertIndex: -1
       addedObject: {fileID: 261568610}
