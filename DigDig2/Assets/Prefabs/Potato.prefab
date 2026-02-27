@@ -337,9 +337,9 @@ MonoBehaviour:
   waterAmount: 1
   waterAmountMin: 1
   waterLoss: 1
-  stage1: 15
-  stage2: 30
-  stage3: 45
+  stage1: 20
+  stage2: 40
+  stage3: 60
   damageValue: 1
   stunned: 0
   gsManager: {fileID: 0}

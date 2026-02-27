@@ -247,9 +247,9 @@ MonoBehaviour:
   waterAmount: 1
   waterAmountMin: 1
   waterLoss: 1
-  stage1: 20
-  stage2: 40
-  stage3: 60
+  stage1: 50
+  stage2: 100
+  stage3: 150
   attackFrequency: 2
   myAnimator: {fileID: 7585556059168892396}
   baseAnimator: {fileID: 8865439386366426737}
