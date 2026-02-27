@@ -18,7 +18,7 @@ public class AnyPlant : MonoBehaviour
         {
             return true;
         }
-        if (typeChili != null && typeChili)
+        if (typeChili != null && typeChili.growing)
         {
             return true;
         }
