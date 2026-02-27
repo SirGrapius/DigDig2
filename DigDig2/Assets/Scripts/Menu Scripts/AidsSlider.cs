@@ -12,11 +12,25 @@ public class AidsSlider : MonoBehaviour
     [SerializeField] bool sfxSlider;
     [SerializeField] bool musicSlider;
 
+    private void Awake()
+    {
+        
+    }
+
     void Start()
     {
         mySlider = GetComponent<Slider>();
         text = GetComponentInChildren<TextMeshProUGUI>();
         roundManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<RoundManager>();
+
+        if (sfxSlider)
+        {
+            mySlider.value = roundManager.sfxVolume * 10;
+        }
+        if (musicSlider)
+        {
+            mySlider.value = roundManager.musicVolume * 10;
+        }
     }
 
     
@@ -26,11 +40,11 @@ public class AidsSlider : MonoBehaviour
 
         if ( sfxSlider )
         {
-            roundManager.sfxVolume = mySlider.value;
+            roundManager.sfxVolume = mySlider.value/10;
         }
         if ( musicSlider )
         {
-            roundManager.musicVolume = mySlider.value;
+            roundManager.musicVolume = mySlider.value/10;
         }
     }
 

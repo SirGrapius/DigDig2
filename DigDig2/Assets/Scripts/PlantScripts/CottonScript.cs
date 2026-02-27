@@ -43,7 +43,7 @@ public class CottonScript : MonoBehaviour
         growing = true;
         becameAdult = false;
         gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
-        if (transform.parent.parent.parent.GetComponent<TileScript>().isInventory)
+        if (transform.parent.parent.parent.parent.GetChild(0).gameObject.GetComponent<TileScript>().isInventory == true)
         {
             isInInventory = true;
             growthTimer = stage3;
@@ -80,6 +80,8 @@ public class CottonScript : MonoBehaviour
                 Base.gameObject.tag = "Plant";
                 growing = false;
                 animMoving.OriginPoint();
+
+                sellValue = maxSellValue;
             }
             else if (growthTimer >= stage2)
             {

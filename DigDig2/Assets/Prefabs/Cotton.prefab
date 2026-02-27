@@ -262,8 +262,8 @@ MonoBehaviour:
   stunned: 0
   maxRange: 20
   isInInventory: 0
-  maxSellValue: 0
-  sellValue: 0
+  maxSellValue: 75
+  sellValue: 25
   gsManager: {fileID: 0}
 --- !u!114 &7010418909444613086
 MonoBehaviour:
