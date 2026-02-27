@@ -2,15 +2,26 @@ using UnityEngine;
 
 public class AnyPlant : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    CottonScript typeCotton;
+    PotatoScript typePotato;
+    Chiliscript typeChili;
+    public bool IsGrowing()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        typeCotton = gameObject.GetComponent<CottonScript>();
+        typePotato = gameObject.GetComponent<PotatoScript>();
+        typeChili = gameObject.GetComponent<Chiliscript>();
+        if (typeCotton != null && typeCotton.growing)
+        {
+            return true;
+        }
+        if (typePotato != null && typePotato.growing)
+        {
+            return true;
+        }
+        if (typeChili != null && typeChili)
+        {
+            return true;
+        }
+        return false;
     }
 }
