@@ -5,11 +5,15 @@ public class AnyPlant : MonoBehaviour
     CottonScript typeCotton;
     PotatoScript typePotato;
     Chiliscript typeChili;
-    public bool IsGrowing()
+    void Start()
     {
         typeCotton = gameObject.GetComponent<CottonScript>();
         typePotato = gameObject.GetComponent<PotatoScript>();
         typeChili = gameObject.GetComponent<Chiliscript>();
+    }
+
+    public bool IsGrowing()
+    {
         if (typeCotton != null && typeCotton.growing)
         {
             return true;
