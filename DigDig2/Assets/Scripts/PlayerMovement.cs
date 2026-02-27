@@ -9,6 +9,8 @@ using static UnityEngine.SpriteMask;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] RoundManager roundManager;
+
     [Header("Movement Settings")]
     [SerializeField] bool isMoving;
     [SerializeField] float baseSpeed = 5;
@@ -48,8 +50,9 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
+        roundManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<RoundManager>();
     }
-
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -67,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         playerInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")); //if player presses a movement key the player will move
-
+        audioSource.volume == roundManager.sfxVolume;
         if (isMoving)
         {
             animator.SetBool("Idle", false);
