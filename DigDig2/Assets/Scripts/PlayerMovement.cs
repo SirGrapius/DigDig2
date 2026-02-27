@@ -43,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] GameStateManager gsManager;
+    [SerializeField] string lastWalkAnim;
 
     private void Awake()
     {
@@ -75,59 +76,91 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            switch (animator.GetBool("WalkU"))
+            switch (lastWalkAnim)
             {
-
+                case "WalkU":
+                    {
+                        animator.SetBool("WalkU", false);
+                        animator.SetBool("IdleU", true);
+                        break;
+                    }
+                case "WalkD":
+                    {
+                        animator.SetBool("WalkD", false);
+                        animator.SetBool("Idle", true);
+                        break;
+                    }
+                case "WalkS":
+                    {
+                        animator.SetBool("WalkS", false);
+                        animator.SetBool("IdleS", true);
+                        break;
+                    }
+            }
+        }
+        if (chargingAttack)
+        {
+            switch (lastWalkAnim)
+            {
+                case "WalkU":
+                    {
+                        animator.SetBool("ChargingU", true);
+                        animator.SetBool("ChargingD", false);
+                        animator.SetBool("ChargingS", false);
+                        break;
+                    }
+                case "WalkD":
+                    {
+                        animator.SetBool("ChargingU", false);
+                        animator.SetBool("ChargingD", true);
+                        animator.SetBool("ChargingS", false);
+                        break;
+                    }
+                case "WalkS":
+                    {
+                        animator.SetBool("ChargingU", false);
+                        animator.SetBool("ChargingD", false);
+                        animator.SetBool("ChargingS", true);
+                        break;
+                    }
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKey(KeyCode.W))
         {
             animator.SetBool("WalkU", true);
             animator.SetBool("WalkS", false);
             animator.SetBool("WalkD", false);
-            if (chargingAttack)
-            {
-                animator.SetBool("ChargingU", true);
-                animator.SetBool("ChargingD", false);
-                animator.SetBool("ChargingS", false);
-            }
+            lastWalkAnim = null;
+            lastWalkAnim = "WalkU";
         }
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKey(KeyCode.S))
         {
             animator.SetBool("WalkD", true);
             animator.SetBool("WalkS", false);
             animator.SetBool("WalkU", false);
-            if (chargingAttack)
-            {
-                animator.SetBool("ChargingU", false);
-                animator.SetBool("ChargingD", true);
-                animator.SetBool("ChargingS", false);
-            }
+            lastWalkAnim = null;
+            lastWalkAnim = "WalkD";
         }
-        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
         {
             animator.SetBool("WalkS", true);
             animator.SetBool("WalkU", false);
             animator.SetBool("WalkD", false);
-            if (chargingAttack)
-            {
-                animator.SetBool("ChargingU", false);
-                animator.SetBool("ChargingD", false);
-                animator.SetBool("ChargingS", true);
-            }
+            lastWalkAnim = null;
+            lastWalkAnim = "WalkS";
         }
 
 
         if (playerInput.x != 0) //change animations of player if moving up or down.
         {
             isMoving = true;
-            if (rb.linearVelocityX < 0 && !chargingAttack)
+            if (rb.linearVelocityX < 0)
             {
                 shovelHitboxObject.transform.rotation = Quaternion.Euler(0, 0, 270);
                 rb.transform.rotation = Quaternion.Euler(0, 0, 0);
             }
-            if (rb.linearVelocityX > 0 && !chargingAttack)
+            if (rb.linearVelocityX > 0)
             {
                 shovelHitboxObject.transform.rotation = Quaternion.Euler(0, 0, 90);
                 rb.transform.rotation = Quaternion.Euler(0, 180, 0);
@@ -273,12 +306,16 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator CooldownDuration() //start cooldown
     {
-        shovelSource.Stop();
-        Debug.Log("on cooldown");
         onCooldown = true;
+        yield return new WaitForSeconds(0.5f);
+        if (currentEnemy != null)
+        {
+            shovelSource.PlayOneShot(soundEffects[3]);
+            currentEnemy.Damage(Mathf.RoundToInt(damage * ((1 + currentShovelCharge) / 0.75f)));
+        }
+        shovelSource.Stop();
         yield return new WaitForSeconds(cooldown);
         onCooldown = false;
-        Debug.Log("off cooldown");
         yield return null;
     }
 
