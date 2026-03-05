@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float attackRange = 1.5f;
     [SerializeField] bool bloodlust = false;
     [SerializeField] bool isAttacking = false;
+    [SerializeField] bool isFlying = false;
 
     int currentDirection = -1;
     float closestPlantDist;
@@ -79,23 +80,13 @@ public class Enemy : MonoBehaviour
         Vector2 closestPoint = mainTargetCollider.ClosestPoint(transform.position); // Calculates the closest point on the houses collider relative to the enemy
         float mainTargetDist = Vector2.Distance(transform.position, closestPoint);  // Calculates the distance between the enemy and the house colliders closest point
 
-        if (mainTarget != null && mainTargetDist <= attackRange) // If the house colliders closest point is within attack range, attack the house
+        if (mainTarget != null && mainTargetDist <= attackRange || closestPlant != null && closestPlantDist <= attackRange) // If the house colliders closest point is within attack range, attack the house
         {
             isAttacking = true;
 
             if (attackTimer <= 0f)
             {
-                AttackMainTarget();
-                attackTimer = attackCooldown;
-            }
-        }
-        else if (closestPlant != null && closestPlantDist <= attackRange) // Else if the closest plant is within attack range, attack that plant
-        {
-            isAttacking = true;
-
-            if (attackTimer <= 0f)
-            {
-                AttackClosestPlant();
+                animator.SetTrigger("Attack");
                 attackTimer = attackCooldown;
             }
         }
@@ -220,6 +211,19 @@ public class Enemy : MonoBehaviour
     }
 
     #region AttackLogic
+
+    void Attack() // Checked which target to attack here instead of the start, since the event at the end of the enemys attack animation is what triggers the attack function
+    {
+        if (mainTarget != null && mainTargetDist <= attackRange) // If the house colliders closest point is within attack range, attack the house
+        {
+             AttackMainTarget();
+        }
+        else if (closestPlant != null && closestPlantDist <= attackRange) // Else if the closest plant is within attack range, attack that plant
+        {
+             AttackClosestPlant();
+        }
+    }
+
     void AttackMainTarget()
     {
         roundManagerScript.houseHealth -= attackDamage;

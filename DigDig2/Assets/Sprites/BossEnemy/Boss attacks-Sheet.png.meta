@@ -1,22 +1,40 @@
 fileFormatVersion: 2
-guid: a27b59ac92e71c146a8a917140a930bd
+guid: 062b0d47e0ef4954f9cbbccebdd0a63e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3260542805161607544
-    second: BackCatAttack_0
+      213: 6094334343734911011
+    second: Boss attacks-Sheet_0
   - first:
-      213: -2515373748271583603
-    second: BackCatAttack_1
+      213: -8245681405809050523
+    second: Boss attacks-Sheet_1
   - first:
-      213: 4203245349061382237
-    second: BackCatAttack_2
+      213: -2598307800302147787
+    second: Boss attacks-Sheet_2
   - first:
-      213: -5456164818077850411
-    second: BackCatAttack_3
+      213: -622510837216838561
+    second: Boss attacks-Sheet_3
   - first:
-      213: -1237171037833614319
-    second: BackCatAttack_4
+      213: -4905130427721348144
+    second: Boss attacks-Sheet_4
+  - first:
+      213: -3207486205329489147
+    second: Boss attacks-Sheet_5
+  - first:
+      213: 8060526122819076852
+    second: Boss attacks-Sheet_6
+  - first:
+      213: -4844710758993495310
+    second: Boss attacks-Sheet_7
+  - first:
+      213: -7233955405000872338
+    second: Boss attacks-Sheet_8
+  - first:
+      213: -590412779674539000
+    second: Boss attacks-Sheet_9
+  - first:
+      213: -7576365954623784730
+    second: Boss attacks-Sheet_10
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -112,177 +130,243 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BackCatAttack_0
+      name: Boss attacks-Sheet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 96
-        width: 46
-        height: 32
+        x: 11
+        y: 4
+        width: 21
+        height: 18
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 88ef263089930c2d0800000000000000
-      internalID: -3260542805161607544
+      spriteID: 32068c4ebcc639450800000000000000
+      internalID: 6094334343734911011
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BackCatAttack_1
+      name: Boss attacks-Sheet_1
       rect:
         serializedVersion: 2
-        x: 46
-        y: 96
-        width: 46
-        height: 32
+        x: 33
+        y: 2
+        width: 26
+        height: 18
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d8eede827e8971dd0800000000000000
-      internalID: -2515373748271583603
+      spriteID: 56c35bbe274719d80800000000000000
+      internalID: -8245681405809050523
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BackCatAttack_2
+      name: Boss attacks-Sheet_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
-        width: 46
-        height: 32
+        x: 67
+        y: 13
+        width: 22
+        height: 13
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d50dd9e006de45a30800000000000000
-      internalID: 4203245349061382237
+      spriteID: 5372dd172d4f0fbd0800000000000000
+      internalID: -2598307800302147787
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BackCatAttack_3
+      name: Boss attacks-Sheet_3
       rect:
         serializedVersion: 2
-        x: 46
-        y: 64
-        width: 46
-        height: 32
+        x: 102
+        y: 14
+        width: 21
+        height: 12
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5d46c76810fc744b0800000000000000
-      internalID: -5456164818077850411
+      spriteID: f5cfbd611b56c57f0800000000000000
+      internalID: -622510837216838561
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BackCatAttack_4
+      name: Boss attacks-Sheet_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
-        width: 46
-        height: 32
+        x: 127
+        y: 13
+        width: 33
+        height: 19
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 11ca683fe7fa4dee0800000000000000
-      internalID: -1237171037833614319
+      spriteID: 0db85be4dd97debb0800000000000000
+      internalID: -4905130427721348144
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BackCatAttack_5
+      name: Boss attacks-Sheet_5
       rect:
         serializedVersion: 2
-        x: 46
-        y: 32
-        width: 46
-        height: 32
+        x: 130
+        y: 3
+        width: 24
+        height: 18
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 888794fbcf82e1d498874d9af1820d89
-      internalID: -1045311562
+      spriteID: 503ce5d4a48bc73d0800000000000000
+      internalID: -3207486205329489147
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BackCatAttack_6
+      name: Boss attacks-Sheet_6
       rect:
         serializedVersion: 2
-        x: 0
+        x: 155
         y: 0
-        width: 46
+        width: 36
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 4df89986728ef0449a09b0f85700aaab
-      internalID: -2097866589
+      spriteID: 4f2436d5dcdbcdf60800000000000000
+      internalID: 8060526122819076852
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BackCatAttack_7
+      name: Boss attacks-Sheet_7
       rect:
         serializedVersion: 2
-        x: 46
+        x: 191
         y: 0
-        width: 46
+        width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: eff449b229bd6854abed1727d6a2764a
-      internalID: -2058060885
+      spriteID: 2fafdaaab3124ccb0800000000000000
+      internalID: -4844710758993495310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss attacks-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 11
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6ee7e3e2e3db9b90800000000000000
+      internalID: -7233955405000872338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss attacks-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 0
+        width: 33
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80ce5ac74be6ec7f0800000000000000
+      internalID: -590412779674539000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss attacks-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 12
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e8394a3e475bd690800000000000000
+      internalID: -7576365954623784730
       vertices: []
       indices: 
       edges: []
@@ -291,7 +375,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: b376478084d870f438a90b668048c305
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -299,18 +383,19 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":2.0,"y":4.0},"gridSpriteSize":{"x":46.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      BackCatAttack_0: -3260542805161607544
-      BackCatAttack_1: -2515373748271583603
-      BackCatAttack_2: 4203245349061382237
-      BackCatAttack_3: -5456164818077850411
-      BackCatAttack_4: -1237171037833614319
-      BackCatAttack_5: -1045311562
-      BackCatAttack_6: -2097866589
-      BackCatAttack_7: -2058060885
+      Boss attacks-Sheet_0: 6094334343734911011
+      Boss attacks-Sheet_1: -8245681405809050523
+      Boss attacks-Sheet_10: -7576365954623784730
+      Boss attacks-Sheet_2: -2598307800302147787
+      Boss attacks-Sheet_3: -622510837216838561
+      Boss attacks-Sheet_4: -4905130427721348144
+      Boss attacks-Sheet_5: -3207486205329489147
+      Boss attacks-Sheet_6: 8060526122819076852
+      Boss attacks-Sheet_7: -4844710758993495310
+      Boss attacks-Sheet_8: -7233955405000872338
+      Boss attacks-Sheet_9: -590412779674539000
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

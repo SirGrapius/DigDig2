@@ -352,12 +352,12 @@ MonoBehaviour:
   hp: 4
   attackDamage: 3
   bloodlustCharges: 0
-  neededBloodlustCharges: 2
+  neededBloodlustCharges: 1
   movementSpeed: 3
-  attackCooldown: 1.5
+  attackCooldown: 2
   detectRange: 2.7
   attackRange: 1
-  bloodlust: 0
+  bloodlust: 1
   isAttacking: 0
   detectCollider: {fileID: 2192622558226609957}
   animator: {fileID: 1310158651308162461}
