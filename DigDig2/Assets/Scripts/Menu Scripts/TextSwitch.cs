@@ -15,22 +15,26 @@ public class TextSwitch : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Escape))
         {
-            Destroy(transform.parent.parent);
+            Close();
         }
     }
 
-    void Next()
+    public void Next()
     {
         if (currect != texts.Length-1)
         {
             currect++;
         }
     }
-    void Previous()
+    public void Previous()
     {
         if (currect != 0)
         {
             currect--;
         }
+    }
+    public void Close()
+    {
+        Destroy(transform.parent.parent.gameObject);
     }
 }
