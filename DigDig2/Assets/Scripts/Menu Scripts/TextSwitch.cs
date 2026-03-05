@@ -9,10 +9,6 @@ public class TextSwitch : MonoBehaviour
     void Update()
     {
         display.text = texts[currect];   
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            Next();
-        }
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             Close();
