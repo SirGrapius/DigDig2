@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -22,12 +23,15 @@ public class Enemy : MonoBehaviour
     
     Vector2 direction;
 
+    private Coroutine damageFlashRoutine;
+
 
     [Header("References")]
     [SerializeField] CircleCollider2D detectCollider;
     [SerializeField] Animator animator;
     [SerializeField] Transform frontColliderTransform;
     [SerializeField] BoxCollider2D frontCollider;
+    [SerializeField] SpriteRenderer spriteRenderer;
 
     BoxCollider2D mainTargetCollider;
     RoundManager roundManagerScript;
@@ -269,10 +273,45 @@ public class Enemy : MonoBehaviour
     public void Damage(int damageValue)
     {
         hp -= damageValue;
+
+        DamageFlash();
+
         if (hp <= 0)
         {
             Die();
         }
+    }
+
+    void DamageFlash()
+    {
+        if (damageFlashRoutine != null)
+        {
+            StopCoroutine(damageFlashRoutine);
+        }
+
+        damageFlashRoutine = StartCoroutine(FlashRed());
+    }
+
+    private IEnumerator FlashRed()
+    {
+        Color originalColor = spriteRenderer.color;
+        Color takeDamageColor = new Color32(244, 61, 61, 255);
+
+        spriteRenderer.color = takeDamageColor;
+
+        float duration = 1.2f;
+        float t = 0;
+
+        while(t < duration)
+        {
+            t += Time.deltaTime;
+
+            spriteRenderer.color = Color.Lerp(takeDamageColor, originalColor, t / duration);
+
+            yield return null; 
+        }
+
+        spriteRenderer.color = originalColor;
     }
 
     void Die()

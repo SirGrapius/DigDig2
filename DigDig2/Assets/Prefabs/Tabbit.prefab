@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 7597524563141409593}
   - component: {fileID: -81466769291496127}
   m_Layer: 0
-  m_Name: TurtleRabbit
+  m_Name: Tabbit
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -363,6 +363,7 @@ MonoBehaviour:
   animator: {fileID: 1310158651308162461}
   frontColliderTransform: {fileID: 6704705294099058074}
   frontCollider: {fileID: 6194016403738622880}
+  spriteRenderer: {fileID: 7206875081165226953}
   nearbyPlants: []
   frontColliderPlants: []
 --- !u!50 &-81466769291496127
