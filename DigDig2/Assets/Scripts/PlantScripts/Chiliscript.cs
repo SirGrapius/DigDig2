@@ -24,6 +24,10 @@ public class Chiliscript : MonoBehaviour
 
     [SerializeField] GameStateManager gsManager;
 
+    public bool isInInventory;
+    public float maxSellValue;
+    public float sellValue;
+
     private void Awake()
     {
         Death = GetComponent<PlantDeath>();
@@ -31,6 +35,13 @@ public class Chiliscript : MonoBehaviour
         targeting = GetComponent<ClosestEnemy>();
         growing = true;
         gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
+
+        if (transform.parent.parent.GetChild(0).gameObject.GetComponent<TileScript>().isInventory == true)
+        {
+            isInInventory = true;
+            growthTimer = stage3;
+            baseAnimator.SetBool("Inventory", true);
+        }
     }
 
     private void Start()
