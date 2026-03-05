@@ -28,11 +28,11 @@ public class AnyPlant : MonoBehaviour
         {
             return true;
         }
-        if (typePotato != null && false)
+        if (typePotato != null && typePotato.isInInventory)
         {
             return true;
         }
-        if (typeChili != null && false)
+        if (typeChili != null && typeChili.isInInventory)
         {
             return true;
         }

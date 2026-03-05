@@ -23,7 +23,7 @@ public class ClosestEnemy : MonoBehaviour
         for (int i = 0; i < enemies.Length; i++)
         {
             Vector3 centered = enemies[i].transform.position - transform.position;
-            if (centered.sqrMagnitude < maxRange * maxRange)
+            if (centered.sqrMagnitude <= maxRange * maxRange)
             {
                 enemiesInRange[counter] = enemies[i];
                 counter++;
@@ -41,11 +41,6 @@ public class ClosestEnemy : MonoBehaviour
             {
                 Vector3 vj = enemies[j].transform.position - transform.position;
                 Vector3 vi = enemies[i].transform.position - transform.position;
-                if (priority == TargetingPrio.NearHouse)
-                {
-                    vj = enemies[j].transform.position;
-                    vi = enemies[i].transform.position;
-                }
                 switch (priority)
                 {
                     case TargetingPrio.Close:
@@ -89,6 +84,16 @@ public class ClosestEnemy : MonoBehaviour
                         }
                         else if (vj.sqrMagnitude > vi.sqrMagnitude && 
                             enemies[j].GetComponent<Enemy>().hp == enemies[i].GetComponent<Enemy>().hp)
+                        {
+                            temp = enemies[j];
+                            enemies[j] = enemies[i];
+                            enemies[i] = temp;
+                        }
+                        break;
+                    case TargetingPrio.NearHouse:
+                        vj = enemies[j].transform.position;
+                        vi = enemies[i].transform.position;
+                        if (vj.sqrMagnitude > vi.sqrMagnitude)
                         {
                             temp = enemies[j];
                             enemies[j] = enemies[i];
