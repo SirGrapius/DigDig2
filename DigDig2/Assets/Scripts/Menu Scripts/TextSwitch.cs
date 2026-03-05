@@ -6,6 +6,18 @@ public class TextSwitch : MonoBehaviour
     [SerializeField] string[] texts;
     [SerializeField] TextMeshProUGUI display;
     [SerializeField] int currect;
+    [SerializeField] GameStateManager gsManager;
+
+    private void Awake()
+    {
+        gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
+    }
+
+    private void Start()
+    {
+        gsManager.SetState(GameState.Paused);
+    }
+
     void Update()
     {
         display.text = texts[currect];   
@@ -31,6 +43,7 @@ public class TextSwitch : MonoBehaviour
     }
     public void Close()
     {
+        gsManager.SetState(GameState.Gameplay);
         Destroy(transform.parent.parent.gameObject);
     }
 }
