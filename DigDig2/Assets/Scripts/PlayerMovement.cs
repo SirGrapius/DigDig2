@@ -220,14 +220,6 @@ public class PlayerMovement : MonoBehaviour
                 chargingAttack = true;
                 shovelSource.PlayOneShot(soundEffects[1]);
             }
-            if (inventory.selectedTool == 2) //if you're holding the watering can
-            {
-                usingTool = true;
-            }
-            if (inventory.selectedTool == 1) //if you're using the hoe
-            {
-                usingTool = true;
-            }
         }
 
         if (chargingAttack && currentShovelCharge < maxShovelCharge) //if charging attack, count time charging
