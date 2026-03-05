@@ -246,7 +246,18 @@ public class TileScript : MonoBehaviour
                             * (int)transform.parent.GetComponent<Grid>().cellSize.x
                             + new Vector3Int(1, 1, 50))
                         {
-                            plantTiles.transform.GetChild(i).GetChild(0).GetChild(0).gameObject.GetComponent<CottonScript>().waterAmount = WateringCanEffect;
+                            if (plantTiles.transform.GetChild(i).childCount > 1)
+                            {
+                                plantTiles.transform.GetChild(i).GetChild(0).GetChild(0).gameObject.GetComponent<CottonScript>().waterAmount = WateringCanEffect;
+                            }
+                            else if (plantTiles.transform.GetChild(i).gameObject.GetComponent<PotatoScript>() != null)
+                            {
+                                plantTiles.transform.GetChild(i).gameObject.GetComponent<PotatoScript>().waterAmount = WateringCanEffect;
+                            }
+                            else 
+                            {
+                                plantTiles.transform.GetChild(i).gameObject.GetComponent<Chiliscript>().waterAmount = WateringCanEffect;
+                            }
                         }
                     }
                     useTimer = 0;

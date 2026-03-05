@@ -18,12 +18,23 @@ public class PotatoScript : MonoBehaviour
 
     [SerializeField] GameStateManager gsManager;
 
+    public bool isInInventory;
+    public float maxSellValue;
+    public float sellValue;
+
     private void Awake()
     {
         baseAnimator = GetComponent<Animator>();    
         gameObject.tag = "GrowingPlant";
         growing = true;
         gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
+
+        if (transform.parent.parent.GetChild(0).gameObject.GetComponent<TileScript>().isInventory == true)
+        {
+            isInInventory = true;
+            growthTimer = stage3;
+            baseAnimator.SetBool("Inventory", true);
+        }
     }
 
     private void Start()

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Potato
+  m_Name: Chili
   m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.Tilemaps.Tile
-  m_Sprite: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -8931987936351103585, guid: 4aef39da9011bd44f861149998ccba87, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_Transform:
     e00: 1
     e01: 0
@@ -31,6 +31,6 @@ MonoBehaviour:
     e31: 0
     e32: 0
     e33: 1
-  m_InstancedGameObject: {fileID: 5232526431699805897, guid: ed8dac187b3bac04cb44401920faf23d, type: 3}
+  m_InstancedGameObject: {fileID: 710222631786175790, guid: d5390b8d6a36ea244ad5b0220707a114, type: 3}
   m_Flags: -1
   m_ColliderType: 1
