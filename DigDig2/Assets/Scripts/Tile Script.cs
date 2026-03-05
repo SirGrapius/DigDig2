@@ -12,7 +12,7 @@ public class TileScript : MonoBehaviour
     RuleTile myRuleTile;
     Tile myTile;
     Camera myCamera;
-    Vector3Int myTilePositionInt;
+    [SerializeField] Vector3Int myTilePositionInt;
     Vector3 myTilePosition;
     [SerializeField] Transform tileSelectBorder;
     [SerializeField] float selectionTimer;
@@ -323,7 +323,7 @@ public class TileScript : MonoBehaviour
                 {                    
                     gsManager.heldMoneyAmount += plantTiles.gameObject.transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<CottonScript>().sellValue;
                     gsManager.moneyUI.GetComponent<TextMeshPro>().text = gsManager.heldMoneyAmount.ToString();
-                    myTilemap.SetTile(CheckTile(), tilledSoil);
+                    plantTiles.SetTile(CheckTile(), null);
 
                     // killing the left over copy if necessary 
                     if (plantTiles.transform.GetChild(i).transform.position == CheckTile()
