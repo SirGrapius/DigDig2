@@ -186,6 +186,7 @@ MonoBehaviour:
   attackRange: 1
   bloodlust: 0
   isAttacking: 0
+  isFlying: 1
   detectCollider: {fileID: 2335918887986836362}
   animator: {fileID: 8387705924397615995}
   frontColliderTransform: {fileID: 9084786279265210438}

@@ -55,7 +55,7 @@ public class Enemy : MonoBehaviour
         mainTarget = GameObject.FindGameObjectWithTag("MainTarget");
         mainTargetCollider = mainTarget.GetComponent<BoxCollider2D>();
 
-        roundManagerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<RoundManager>(); // add nullcheck
+        roundManagerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<RoundManager>(); 
         gsManager.OnGameStateChange += OnGameStateChanged;
     }
 
@@ -145,18 +145,27 @@ public class Enemy : MonoBehaviour
 
     public void OnChildTriggerEnter(Collider2D other) // Adds any plants within a childs collider to a list
     {
+        if (isFlying && other.GetComponent<PotatoScript>() != null || isFlying && other.GetComponent<Chiliscript>() != null)
+            return;
+
         if (other.CompareTag("Plant") && !nearbyPlants.Contains(other.gameObject))
             nearbyPlants.Add(other.gameObject);
     }
 
     public void OnChildTriggerExit(Collider2D other)
     {
+        if (isFlying && other.GetComponent<PotatoScript>() != null || isFlying && other.GetComponent<Chiliscript>() != null)
+            return;
+
         if (other.CompareTag("Plant"))
             nearbyPlants.Remove(other.gameObject);
     }
 
     public void GetFrontColliderEntries(Collider2D other) // Adds any plants within another childs collider to a list using that childs script aswell as this
     {
+        if (isFlying && other.GetComponent<PotatoScript>() != null || isFlying && other.GetComponent<Chiliscript>() != null)
+            return;
+
         if (other.CompareTag("Plant") && !frontColliderPlants.Contains(other.gameObject))
         {
             frontColliderPlants.Add(other.gameObject);
@@ -165,6 +174,9 @@ public class Enemy : MonoBehaviour
 
     public void GetFrontColliderExits(Collider2D other)
     {
+        if (isFlying && other.GetComponent<PotatoScript>() != null || isFlying && other.GetComponent<Chiliscript>() != null)
+            return;
+
         if (other.CompareTag("Plant"))
         {
             frontColliderPlants.Remove(other.gameObject);
