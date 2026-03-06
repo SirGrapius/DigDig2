@@ -21,7 +21,7 @@ public class CrowProjectile : MonoBehaviour
         Collider2D targetPlantCollider = targetplant.GetComponent<Collider2D>();
         Vector2 plantClosestPoint = targetPlantCollider.ClosestPoint(transform.position);
 
-        if (Vector2.Distance(transform.position, plantClosestPoint) < attackRange || plantScript != null || plantScript.IsGrowing()) 
+        if (Vector2.Distance(transform.position, plantClosestPoint) < attackRange && plantScript != null && plantScript.IsGrowing()) 
         {
             if (eatTimer >= eatTime) 
             {
@@ -32,7 +32,7 @@ public class CrowProjectile : MonoBehaviour
                 eatTimer += Time.deltaTime;
             }
         }
-        else if (plantScript != null || plantScript.IsGrowing())
+        else if (plantScript != null && plantScript.IsGrowing())
         {
             transform.position = Vector2.MoveTowards(transform.position, targetplant.transform.position, movementSpeed * Time.deltaTime);
         }

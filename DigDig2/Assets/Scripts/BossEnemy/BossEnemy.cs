@@ -14,7 +14,7 @@ public class BossEnemy : MonoBehaviour
     private int lastPoint = -1;
     private int newPoint;
 
-    private bool isRelocating = false;
+    [SerializeField] bool isRelocating = false;
 
     [SerializeField] GameObject crowPrefab;
 
@@ -37,6 +37,8 @@ public class BossEnemy : MonoBehaviour
         if (attackTimer <= 0 && isRelocating != true)
         {
             int roll = Random.Range(1, 11);
+
+            animator.SetTrigger("Attack");
 
             if (roll <= 7) StunAttack();
             else if (roll <= 9) DeAgeAttack();

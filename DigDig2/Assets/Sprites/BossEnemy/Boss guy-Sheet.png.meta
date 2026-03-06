@@ -145,12 +145,12 @@ TextureImporter:
       name: Boss guy-Sheet_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 29
-        width: 64
-        height: 63
+        x: 0
+        y: 0
+        width: 98
+        height: 111
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -167,12 +167,12 @@ TextureImporter:
       name: Boss guy-Sheet_1
       rect:
         serializedVersion: 2
-        x: 114
-        y: 28
-        width: 64
-        height: 77
+        x: 98
+        y: 0
+        width: 98
+        height: 111
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -189,12 +189,12 @@ TextureImporter:
       name: Boss guy-Sheet_2
       rect:
         serializedVersion: 2
-        x: 211
-        y: 32
-        width: 66
-        height: 56
+        x: 196
+        y: 0
+        width: 98
+        height: 111
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -211,12 +211,12 @@ TextureImporter:
       name: Boss guy-Sheet_3
       rect:
         serializedVersion: 2
-        x: 306
-        y: 30
-        width: 72
-        height: 51
+        x: 294
+        y: 0
+        width: 98
+        height: 111
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -233,12 +233,12 @@ TextureImporter:
       name: Boss guy-Sheet_4
       rect:
         serializedVersion: 2
-        x: 408
-        y: 29
-        width: 64
-        height: 63
+        x: 392
+        y: 0
+        width: 98
+        height: 111
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -255,12 +255,12 @@ TextureImporter:
       name: Boss guy-Sheet_5
       rect:
         serializedVersion: 2
-        x: 506
-        y: 29
-        width: 64
-        height: 63
+        x: 490
+        y: 0
+        width: 98
+        height: 111
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -277,12 +277,12 @@ TextureImporter:
       name: Boss guy-Sheet_6
       rect:
         serializedVersion: 2
-        x: 604
-        y: 29
-        width: 64
-        height: 71
+        x: 588
+        y: 0
+        width: 98
+        height: 111
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -299,12 +299,12 @@ TextureImporter:
       name: Boss guy-Sheet_7
       rect:
         serializedVersion: 2
-        x: 702
-        y: 29
-        width: 64
-        height: 76
+        x: 686
+        y: 0
+        width: 98
+        height: 111
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -321,12 +321,12 @@ TextureImporter:
       name: Boss guy-Sheet_8
       rect:
         serializedVersion: 2
-        x: 800
-        y: 29
-        width: 64
-        height: 54
+        x: 784
+        y: 0
+        width: 98
+        height: 111
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -343,12 +343,12 @@ TextureImporter:
       name: Boss guy-Sheet_9
       rect:
         serializedVersion: 2
-        x: 893
-        y: 29
-        width: 74
-        height: 52
+        x: 882
+        y: 0
+        width: 98
+        height: 111
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -365,12 +365,12 @@ TextureImporter:
       name: Boss guy-Sheet_10
       rect:
         serializedVersion: 2
-        x: 995
-        y: 44
-        width: 66
-        height: 37
+        x: 980
+        y: 0
+        width: 98
+        height: 111
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -387,12 +387,12 @@ TextureImporter:
       name: Boss guy-Sheet_11
       rect:
         serializedVersion: 2
-        x: 1105
-        y: 39
-        width: 42
-        height: 42
+        x: 1078
+        y: 0
+        width: 98
+        height: 111
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -409,12 +409,12 @@ TextureImporter:
       name: Boss guy-Sheet_12
       rect:
         serializedVersion: 2
-        x: 1211
-        y: 58
-        width: 26
-        height: 23
+        x: 1176
+        y: 0
+        width: 98
+        height: 111
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -431,12 +431,12 @@ TextureImporter:
       name: Boss guy-Sheet_13
       rect:
         serializedVersion: 2
-        x: 1309
-        y: 58
-        width: 26
-        height: 23
+        x: 1274
+        y: 0
+        width: 98
+        height: 111
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -453,12 +453,12 @@ TextureImporter:
       name: Boss guy-Sheet_14
       rect:
         serializedVersion: 2
-        x: 1408
-        y: 66
-        width: 215
-        height: 36
+        x: 1372
+        y: 0
+        width: 98
+        height: 111
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -471,11 +471,55 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Boss guy-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 1470
+        y: 0
+        width: 98
+        height: 111
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abd68b8bd77a70a4a8c93241f2f5102a
+      internalID: -2048259174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss guy-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 1568
+        y: 0
+        width: 98
+        height: 111
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74525daa10752bc46ae1a761c5e988f3
+      internalID: -1292304840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: ae9818422b47c7945ba3cf40bd418e90
     internalID: 0
     vertices: []
     indices: 
@@ -483,7 +527,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":17.0,"y":1.0},"gridSpriteSize":{"x":98.0,"y":111.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       Boss guy-Sheet_0: 340391889368244954
       Boss guy-Sheet_1: 7784016807397299219
@@ -492,6 +538,8 @@ TextureImporter:
       Boss guy-Sheet_12: 2935904190563108826
       Boss guy-Sheet_13: 8571862011762368442
       Boss guy-Sheet_14: 673504907122599030
+      Boss guy-Sheet_15: -2048259174
+      Boss guy-Sheet_16: -1292304840
       Boss guy-Sheet_2: 1755773356105865413
       Boss guy-Sheet_3: 5629390930265316224
       Boss guy-Sheet_4: -8669747569044690836
