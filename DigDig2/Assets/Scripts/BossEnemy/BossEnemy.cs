@@ -11,8 +11,10 @@ public class BossEnemy : MonoBehaviour
     [SerializeField] float attackTimer = 12;
     [SerializeField] float stunRadius = 9;
     [SerializeField] float stunDuration = 3f;
+    private bool lastAttackWasCrow = false;
     private int lastPoint = -1;
     private int newPoint;
+    
 
     [SerializeField] bool isRelocating = false;
 
@@ -24,6 +26,7 @@ public class BossEnemy : MonoBehaviour
 
     private void Update()
     {
+
         if (relocateTimer <= 0)
         {
             Ascend();
@@ -39,10 +42,18 @@ public class BossEnemy : MonoBehaviour
             int roll = Random.Range(1, 11);
 
             animator.SetTrigger("Attack");
-
-            if (roll <= 7) StunAttack();
-            else if (roll <= 9) DeAgeAttack();
-            else CrowAttack();
+            
+            if (lastAttackWasCrow)
+            {
+                if (roll <= 7) StunAttack();
+                else if (roll <= 9) DeAgeAttack();
+                else CrowAttack();
+            }
+            else
+            {
+                if (roll <= 7) StunAttack();
+                else DeAgeAttack();
+            }
         }
         else if (isRelocating != true)
         {
@@ -113,6 +124,7 @@ public class BossEnemy : MonoBehaviour
         }
 
         attackTimer = attackCooldown * 1f;
+        lastAttackWasCrow = false;
     }
 
     private void DeAgeAttack() 
@@ -159,6 +171,7 @@ public class BossEnemy : MonoBehaviour
         }
 
         attackTimer = attackCooldown * 1.4f;
+        lastAttackWasCrow = false;
     }
 
     private void CrowAttack()
@@ -173,7 +186,8 @@ public class BossEnemy : MonoBehaviour
             crowScript.targetplant = p;
         }
 
-        attackTimer = attackCooldown * 2f; 
+        attackTimer = attackCooldown * 2f;
+        lastAttackWasCrow = true;
     }
 }  
 

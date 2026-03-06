@@ -133,12 +133,12 @@ TextureImporter:
       name: Boss attacks-Sheet_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 4
-        width: 21
-        height: 18
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -155,12 +155,12 @@ TextureImporter:
       name: Boss attacks-Sheet_1
       rect:
         serializedVersion: 2
-        x: 33
-        y: 2
-        width: 26
-        height: 18
+        x: 32
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -177,12 +177,12 @@ TextureImporter:
       name: Boss attacks-Sheet_2
       rect:
         serializedVersion: 2
-        x: 67
-        y: 13
-        width: 22
-        height: 13
+        x: 64
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -199,12 +199,12 @@ TextureImporter:
       name: Boss attacks-Sheet_3
       rect:
         serializedVersion: 2
-        x: 102
-        y: 14
-        width: 21
-        height: 12
+        x: 96
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -221,12 +221,12 @@ TextureImporter:
       name: Boss attacks-Sheet_4
       rect:
         serializedVersion: 2
-        x: 127
-        y: 13
-        width: 33
-        height: 19
+        x: 128
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -243,12 +243,12 @@ TextureImporter:
       name: Boss attacks-Sheet_5
       rect:
         serializedVersion: 2
-        x: 130
-        y: 3
-        width: 24
-        height: 18
+        x: 160
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -265,12 +265,12 @@ TextureImporter:
       name: Boss attacks-Sheet_6
       rect:
         serializedVersion: 2
-        x: 155
+        x: 192
         y: 0
-        width: 36
+        width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -287,12 +287,12 @@ TextureImporter:
       name: Boss attacks-Sheet_7
       rect:
         serializedVersion: 2
-        x: 191
+        x: 224
         y: 0
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -305,77 +305,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Boss attacks-Sheet_8
-      rect:
-        serializedVersion: 2
-        x: 202
-        y: 11
-        width: 11
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e6ee7e3e2e3db9b90800000000000000
-      internalID: -7233955405000872338
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Boss attacks-Sheet_9
-      rect:
-        serializedVersion: 2
-        x: 223
-        y: 0
-        width: 33
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 80ce5ac74be6ec7f0800000000000000
-      internalID: -590412779674539000
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Boss attacks-Sheet_10
-      rect:
-        serializedVersion: 2
-        x: 233
-        y: 12
-        width: 11
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6e8394a3e475bd690800000000000000
-      internalID: -7576365954623784730
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0d7b83cf0c2a6fc4199f85b230dd8372
     internalID: 0
     vertices: []
     indices: 
@@ -383,19 +317,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":8.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       Boss attacks-Sheet_0: 6094334343734911011
       Boss attacks-Sheet_1: -8245681405809050523
-      Boss attacks-Sheet_10: -7576365954623784730
       Boss attacks-Sheet_2: -2598307800302147787
       Boss attacks-Sheet_3: -622510837216838561
       Boss attacks-Sheet_4: -4905130427721348144
       Boss attacks-Sheet_5: -3207486205329489147
       Boss attacks-Sheet_6: 8060526122819076852
       Boss attacks-Sheet_7: -4844710758993495310
-      Boss attacks-Sheet_8: -7233955405000872338
-      Boss attacks-Sheet_9: -590412779674539000
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

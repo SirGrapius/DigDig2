@@ -5,10 +5,10 @@ public class CrowProjectile : MonoBehaviour
     public GameObject targetplant;
     private float movementSpeed = 3f;
     private float attackRange = 1f;
-    private float eatTime = 5f;
-    private float eatTimer = 0f;
     private AnyPlant plantScript;
     private PlantDeath plantDeathScript;
+
+    [SerializeField] Animator animator;
 
     private void Start()
     {
@@ -23,14 +23,7 @@ public class CrowProjectile : MonoBehaviour
 
         if (Vector2.Distance(transform.position, plantClosestPoint) < attackRange && plantScript != null && plantScript.IsGrowing()) 
         {
-            if (eatTimer >= eatTime) 
-            {
-                plantDeathScript.Decay(false);
-            }
-            else
-            {
-                eatTimer += Time.deltaTime;
-            }
+            animator.SetTrigger("Arrived");
         }
         else if (plantScript != null && plantScript.IsGrowing())
         {
@@ -41,6 +34,11 @@ public class CrowProjectile : MonoBehaviour
             Death();
         }
             
+    }
+
+    void FinishedPlant()
+    {
+        plantDeathScript.Decay(false);
     }
 
     void Death()
