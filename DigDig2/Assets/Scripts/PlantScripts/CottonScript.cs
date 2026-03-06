@@ -46,6 +46,7 @@ public class CottonScript : MonoBehaviour
             isInInventory = true;
             growthTimer = stage3;
             baseAnimator.SetBool("Inventory", true);
+            Base.gameObject.tag = "InInventory";
         }
     }
 
