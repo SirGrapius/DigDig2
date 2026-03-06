@@ -49802,6 +49802,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1783063981}
     - target: {fileID: 3070243134995748040, guid: 1b421ef2a7f92814ebb24ec84918d831, type: 3}
+      propertyPath: bossPrefab
+      value: 
+      objectReference: {fileID: 3678224588601085730, guid: 3a6292d55c0778845a056012369f1bcf, type: 3}
+    - target: {fileID: 3070243134995748040, guid: 1b421ef2a7f92814ebb24ec84918d831, type: 3}
       propertyPath: 'lanes.Array.data[0]'
       value: 
       objectReference: {fileID: 1166736165}
@@ -49817,6 +49821,22 @@ PrefabInstance:
       propertyPath: 'lanes.Array.data[3]'
       value: 
       objectReference: {fileID: 2022109765}
+    - target: {fileID: 3070243134995748040, guid: 1b421ef2a7f92814ebb24ec84918d831, type: 3}
+      propertyPath: enemyPrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3070243134995748040, guid: 1b421ef2a7f92814ebb24ec84918d831, type: 3}
+      propertyPath: 'enemyPrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8747119926708553890, guid: 152fb8415f20e7348a97fb699deea6b9, type: 3}
+    - target: {fileID: 3070243134995748040, guid: 1b421ef2a7f92814ebb24ec84918d831, type: 3}
+      propertyPath: 'enemyPrefabs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8747119926708553890, guid: 25f29ba933c1bb34289318be31152e25, type: 3}
+    - target: {fileID: 3070243134995748040, guid: 1b421ef2a7f92814ebb24ec84918d831, type: 3}
+      propertyPath: 'enemyPrefabs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 541183534367639117, guid: 5780ef38b78423a4798c3855c364b1a9, type: 3}
     - target: {fileID: 7145855150614608177, guid: 1b421ef2a7f92814ebb24ec84918d831, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -51544,7 +51564,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3189034598644913236, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3216835854308710170, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       propertyPath: m_Name
