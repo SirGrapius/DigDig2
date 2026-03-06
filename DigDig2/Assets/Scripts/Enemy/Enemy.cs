@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -14,6 +15,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float attackRange = 1.5f;
     [SerializeField] bool bloodlust = false;
     [SerializeField] bool isAttacking = false;
+    [SerializeField] bool isFlying = false;
 
     int currentDirection = -1;
     float closestPlantDist;
@@ -22,12 +24,15 @@ public class Enemy : MonoBehaviour
     
     Vector2 direction;
 
+    private Coroutine damageFlashRoutine;
+
 
     [Header("References")]
     [SerializeField] CircleCollider2D detectCollider;
     [SerializeField] Animator animator;
     [SerializeField] Transform frontColliderTransform;
     [SerializeField] BoxCollider2D frontCollider;
+    [SerializeField] SpriteRenderer spriteRenderer;
 
     BoxCollider2D mainTargetCollider;
     RoundManager roundManagerScript;
@@ -50,7 +55,7 @@ public class Enemy : MonoBehaviour
         mainTarget = GameObject.FindGameObjectWithTag("MainTarget");
         mainTargetCollider = mainTarget.GetComponent<BoxCollider2D>();
 
-        roundManagerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<RoundManager>(); // add nullcheck
+        roundManagerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<RoundManager>(); 
         gsManager.OnGameStateChange += OnGameStateChanged;
     }
 
@@ -75,23 +80,13 @@ public class Enemy : MonoBehaviour
         Vector2 closestPoint = mainTargetCollider.ClosestPoint(transform.position); // Calculates the closest point on the houses collider relative to the enemy
         float mainTargetDist = Vector2.Distance(transform.position, closestPoint);  // Calculates the distance between the enemy and the house colliders closest point
 
-        if (mainTarget != null && mainTargetDist <= attackRange) // If the house colliders closest point is within attack range, attack the house
+        if (mainTarget != null && mainTargetDist <= attackRange || closestPlant != null && closestPlantDist <= attackRange) // If the house colliders closest point is within attack range, attack the house
         {
             isAttacking = true;
 
             if (attackTimer <= 0f)
             {
-                AttackMainTarget();
-                attackTimer = attackCooldown;
-            }
-        }
-        else if (closestPlant != null && closestPlantDist <= attackRange) // Else if the closest plant is within attack range, attack that plant
-        {
-            isAttacking = true;
-
-            if (attackTimer <= 0f)
-            {
-                AttackClosestPlant();
+                animator.SetTrigger("Attack");
                 attackTimer = attackCooldown;
             }
         }
@@ -150,18 +145,27 @@ public class Enemy : MonoBehaviour
 
     public void OnChildTriggerEnter(Collider2D other) // Adds any plants within a childs collider to a list
     {
+        if (isFlying && other.GetComponent<PotatoScript>() != null || isFlying && other.GetComponent<Chiliscript>() != null)
+            return;
+
         if (other.CompareTag("Plant") && !nearbyPlants.Contains(other.gameObject))
             nearbyPlants.Add(other.gameObject);
     }
 
     public void OnChildTriggerExit(Collider2D other)
     {
+        if (isFlying && other.GetComponent<PotatoScript>() != null || isFlying && other.GetComponent<Chiliscript>() != null)
+            return;
+
         if (other.CompareTag("Plant"))
             nearbyPlants.Remove(other.gameObject);
     }
 
     public void GetFrontColliderEntries(Collider2D other) // Adds any plants within another childs collider to a list using that childs script aswell as this
     {
+        if (isFlying && other.GetComponent<PotatoScript>() != null || isFlying && other.GetComponent<Chiliscript>() != null)
+            return;
+
         if (other.CompareTag("Plant") && !frontColliderPlants.Contains(other.gameObject))
         {
             frontColliderPlants.Add(other.gameObject);
@@ -170,6 +174,9 @@ public class Enemy : MonoBehaviour
 
     public void GetFrontColliderExits(Collider2D other)
     {
+        if (isFlying && other.GetComponent<PotatoScript>() != null || isFlying && other.GetComponent<Chiliscript>() != null)
+            return;
+
         if (other.CompareTag("Plant"))
         {
             frontColliderPlants.Remove(other.gameObject);
@@ -216,6 +223,19 @@ public class Enemy : MonoBehaviour
     }
 
     #region AttackLogic
+
+    void Attack() // Checked which target to attack here instead of the start, since the event at the end of the enemys attack animation is what triggers the attack function
+    {
+        if (mainTarget != null && mainTargetDist <= attackRange) // If the house colliders closest point is within attack range, attack the house
+        {
+             AttackMainTarget();
+        }
+        else if (closestPlant != null && closestPlantDist <= attackRange) // Else if the closest plant is within attack range, attack that plant
+        {
+             AttackClosestPlant();
+        }
+    }
+
     void AttackMainTarget()
     {
         roundManagerScript.houseHealth -= attackDamage;
@@ -269,10 +289,45 @@ public class Enemy : MonoBehaviour
     public void Damage(int damageValue)
     {
         hp -= damageValue;
+
+        DamageFlash();
+
         if (hp <= 0)
         {
             Die();
         }
+    }
+
+    void DamageFlash()
+    {
+        if (damageFlashRoutine != null)
+        {
+            StopCoroutine(damageFlashRoutine);
+        }
+
+        damageFlashRoutine = StartCoroutine(FlashRed());
+    }
+
+    private IEnumerator FlashRed()
+    {
+        Color originalColor = spriteRenderer.color;
+        Color takeDamageColor = new Color32(244, 61, 61, 255);
+
+        spriteRenderer.color = takeDamageColor;
+
+        float duration = 1.2f;
+        float t = 0;
+
+        while(t < duration)
+        {
+            t += Time.deltaTime;
+
+            spriteRenderer.color = Color.Lerp(takeDamageColor, originalColor, t / duration);
+
+            yield return null; 
+        }
+
+        spriteRenderer.color = originalColor;
     }
 
     void Die()

@@ -15,7 +15,7 @@ public class BossEnemy : MonoBehaviour
     private int newPoint;
 
     private bool isRelocating = false;
-    
+
     [SerializeField] GameObject crowPrefab;
 
     [SerializeField] Animator animator;
@@ -105,8 +105,6 @@ public class BossEnemy : MonoBehaviour
             {
                 if (p.GetComponentInChildren<CottonScript>() != null)
                 { CottonScript script = p.GetComponentInChildren<CottonScript>(); script.Stun(stunDuration); }
-                else if (p.GetComponentInChildren<PotatoScript>() != null)
-                { PotatoScript script = p.GetComponentInChildren<PotatoScript>(); script.Stun(stunDuration); }
                 else if (p.GetComponentInChildren<Chiliscript>() != null)
                 { Chiliscript script = p.GetComponentInChildren<Chiliscript>(); script.Stun(stunDuration); }
             }
@@ -126,10 +124,36 @@ public class BossEnemy : MonoBehaviour
         {
             int randomIndex = Random.Range(0, plants.Count); 
             GameObject p = plants[randomIndex];
-            CottonScript script = p.GetComponentInChildren<CottonScript>(); 
-            if (script != null)
-            script.BecomeBaby();
-            plants.Remove(p);
+            if (p.GetComponentInChildren<CottonScript>() != null)
+            {
+                CottonScript script = p.GetComponentInChildren<CottonScript>();
+
+                if (script != null)
+                {
+                    script.BecomeBaby();
+                    plants.Remove(p);
+                }
+            }
+            else if (p.GetComponentInChildren<Chiliscript>() != null)
+            {
+                Chiliscript script = p.GetComponentInChildren<Chiliscript>();
+
+                if (script != null)
+                {
+                    script.BecomeBaby();
+                    plants.Remove(p);
+                }
+            }
+            else if (p.GetComponentInChildren<PotatoScript>() != null)
+            {
+                PotatoScript script = p.GetComponentInChildren<PotatoScript>();
+
+                if (script != null)
+                {
+                    script.BecomeBaby();
+                    plants.Remove(p);
+                }
+            }
         }
 
         attackTimer = attackCooldown * 1.4f;
@@ -149,13 +173,7 @@ public class BossEnemy : MonoBehaviour
 
         attackTimer = attackCooldown * 2f; 
     }
-
-
-
-
-
-   // Add finding all plant scripts, add graphics and effects? 
-}  // check if already crow flying? make attacks not fully random?
+}  
 
 
 

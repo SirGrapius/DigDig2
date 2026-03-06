@@ -352,17 +352,18 @@ MonoBehaviour:
   hp: 4
   attackDamage: 3
   bloodlustCharges: 0
-  neededBloodlustCharges: 2
+  neededBloodlustCharges: 1
   movementSpeed: 3
-  attackCooldown: 1.5
+  attackCooldown: 2
   detectRange: 2.7
   attackRange: 1
-  bloodlust: 0
+  bloodlust: 1
   isAttacking: 0
   detectCollider: {fileID: 2192622558226609957}
   animator: {fileID: 1310158651308162461}
   frontColliderTransform: {fileID: 6704705294099058074}
   frontCollider: {fileID: 6194016403738622880}
+  spriteRenderer: {fileID: 7206875081165226953}
   nearbyPlants: []
   frontColliderPlants: []
 --- !u!50 &-81466769291496127
