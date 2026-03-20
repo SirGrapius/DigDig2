@@ -8,13 +8,13 @@ public class TileScript : MonoBehaviour
     public Tilemap myTilemap;
     public Tilemap plantTiles;
     public Tilemap grassTiles;
-    TilemapCollider2D myCollider;
     RuleTile myRuleTile;
     Tile myTile;
     Camera myCamera;
     [SerializeField] Vector3Int myTilePositionInt;
-    Vector3 myTilePosition;
     [SerializeField] Transform tileSelectBorder;
+    [SerializeField] Transform progressBar;
+    [SerializeField] Vector3 progressFill;
     [SerializeField] float selectionTimer;
 
     [Header("Planting and Inventory")]
@@ -47,7 +47,6 @@ public class TileScript : MonoBehaviour
         // setting variables to components
         myTilemap = GetComponent<Tilemap>();
         plantTiles = transform.parent.GetChild(1).GetComponent<Tilemap>();
-        myCollider = GetComponent<TilemapCollider2D>();
         myCamera = Camera.main;
         gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
     }
@@ -89,6 +88,10 @@ public class TileScript : MonoBehaviour
             {
                 tileSelectBorder.position += new Vector3(1000, 1000, 0);
             }
+            if (useTimer <= 0 && !isInventory)
+            {
+                progressBar.position += new Vector3(1000, 1000, 0);
+            }
             // flipping tools to the left
             if (Input.GetKeyDown(KeyCode.Q) && pickedUpPlant == null)
             {
@@ -118,6 +121,12 @@ public class TileScript : MonoBehaviour
             {
                 useTimer = 0;
             }
+        }
+        if (useTimer < useTimerMax && useTimer > 0)
+        {
+            progressBar.position = myCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 9));
+            progressFill.x = useTimer / useTimerMax;
+            progressBar.GetChild(1).localScale = progressFill;
         }
     }
 
@@ -157,8 +166,9 @@ public class TileScript : MonoBehaviour
             // using a tool or plant on a tile
             if (!isInventory)
             {
+                selectedInventoryTile = myInventory.GetComponent<TileScript>().selectedInventoryTile;
                 // if you can plant a seed or picked up plant you will
-                if ((myRuleTile == tilledSoil && plantTiles.GetTile(CheckTile()) == null) || pickedUpPlant != null)
+                if (((myRuleTile == tilledSoil && plantTiles.GetTile(CheckTile()) == null) || pickedUpPlant != null) && selectedInventoryTile != null)
                 {
                     if (useTimer == 0)
                     {
@@ -169,13 +179,13 @@ public class TileScript : MonoBehaviour
                     {
                         useTimer += Time.deltaTime;
                     }
+
                     // uses the seed or plant on the tile if you have waited long enough
-                    if (useTimer > useTimerMax)
+                    if (useTimer > useTimerMax && selectedInventoryTile != null)
                     {
                         // using a seed
                         if (pickedUpPlant == null)
                         {
-                            selectedInventoryTile = myInventory.GetComponent<TileScript>().selectedInventoryTile;
                             plantTiles.SetTile(myTilePositionInt, selectedInventoryTile);
                             useTimer = 0;
                             for (int i = 0; i < plantTiles.transform.childCount; i++)
