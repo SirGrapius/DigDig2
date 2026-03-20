@@ -12,7 +12,7 @@ public class TileScript : MonoBehaviour
     RuleTile myRuleTile;
     Tile myTile;
     Camera myCamera;
-    Vector3Int myTilePositionInt;
+    [SerializeField] Vector3Int myTilePositionInt;
     Vector3 myTilePosition;
     [SerializeField] Transform tileSelectBorder;
     [SerializeField] float selectionTimer;
@@ -49,142 +49,224 @@ public class TileScript : MonoBehaviour
         plantTiles = transform.parent.GetChild(1).GetComponent<Tilemap>();
         myCollider = GetComponent<TilemapCollider2D>();
         myCamera = Camera.main;
+        gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!isInventory)
+        if (gsManager.CurrentGameState == GameState.Gameplay)
         {
-            switch (selectedTool)
+            if (!isInventory)
             {
-                // changing that Icon in the inventory to show your tool
-                case 1:
-                    myInventory.transform.parent.GetChild(1).gameObject.SetActive(true);
-                    myInventory.transform.parent.GetChild(2).gameObject.SetActive(false);
-                    myInventory.transform.parent.GetChild(3).gameObject.SetActive(false);
-                    break;
-                case 2:
-                    myInventory.transform.parent.GetChild(1).gameObject.SetActive(false);
-                    myInventory.transform.parent.GetChild(2).gameObject.SetActive(true);
-                    myInventory.transform.parent.GetChild(3).gameObject.SetActive(false);
-                    break;
-                case 3:
-                    myInventory.transform.parent.GetChild(1).gameObject.SetActive(false);
-                    myInventory.transform.parent.GetChild(2).gameObject.SetActive(false);
-                    myInventory.transform.parent.GetChild(3).gameObject.SetActive(true);
-                    break;
+                switch (selectedTool)
+                {
+                    // changing that Icon in the inventory to show your tool
+                    case 1:
+                        myInventory.transform.parent.GetChild(1).gameObject.SetActive(true);
+                        myInventory.transform.parent.GetChild(2).gameObject.SetActive(false);
+                        myInventory.transform.parent.GetChild(3).gameObject.SetActive(false);
+                        break;
+                    case 2:
+                        myInventory.transform.parent.GetChild(1).gameObject.SetActive(false);
+                        myInventory.transform.parent.GetChild(2).gameObject.SetActive(true);
+                        myInventory.transform.parent.GetChild(3).gameObject.SetActive(false);
+                        break;
+                    case 3:
+                        myInventory.transform.parent.GetChild(1).gameObject.SetActive(false);
+                        myInventory.transform.parent.GetChild(2).gameObject.SetActive(false);
+                        myInventory.transform.parent.GetChild(3).gameObject.SetActive(true);
+                        break;
+                }
             }
-        }
-        if (pickedUpPlant != null)
-        {
-            pickedUpPlant.transform.position = myCamera.ScreenToWorldPoint(Input.mousePosition);
-        }
-        // making it so that the border disapears if the timer ends
-        selectionTimer -= Time.deltaTime;
-        if (selectionTimer <= 0 && !isInventory)
-        {
-            tileSelectBorder.position += new Vector3(1000, 1000, 0);
-        }
-        // flipping tools to the left
-        if (Input.GetKeyDown(KeyCode.Q) && pickedUpPlant == null)
-        {
-            if (selectedTool > 1)
+            if (pickedUpPlant != null)
             {
-                selectedTool -= 1;
+                pickedUpPlant.transform.position = myCamera.ScreenToWorldPoint(Input.mousePosition);
             }
-            else
+            // making it so that the border disapears if the timer ends
+            selectionTimer -= Time.deltaTime;
+            if (selectionTimer <= 0 && !isInventory)
             {
-                selectedTool = 3;
+                tileSelectBorder.position += new Vector3(1000, 1000, 0);
             }
-        }
-        // flipping tools to the right
-        else if (Input.GetKeyDown(KeyCode.E) && pickedUpPlant == null)
-        {
-            if (selectedTool < 3)
+            // flipping tools to the left
+            if (Input.GetKeyDown(KeyCode.Q) && pickedUpPlant == null)
             {
-                selectedTool += 1;
+                if (selectedTool > 1)
+                {
+                    selectedTool -= 1;
+                }
+                else
+                {
+                    selectedTool = 3;
+                }
             }
-            else
+            // flipping tools to the right
+            else if (Input.GetKeyDown(KeyCode.E) && pickedUpPlant == null)
             {
-                selectedTool = 1;
+                if (selectedTool < 3)
+                {
+                    selectedTool += 1;
+                }
+                else
+                {
+                    selectedTool = 1;
+                }
             }
-        }
-        // decreasing use timer when you stop using a tool
-        if (Input.GetMouseButtonUp(0))
-        {
-            useTimer = 0;
+            // decreasing use timer when you stop using a tool
+            if (Input.GetMouseButtonUp(0))
+            {
+                useTimer = 0;
+            }
         }
     }
 
     private void OnMouseOver()
     {
-        // selecting a tile to change
-        if (!isInventory)
+        if (gsManager.CurrentGameState == GameState.Gameplay)
         {
-            myTilePositionInt = CheckTile();
-            tileSelectBorder.position = myTilePositionInt * (int)transform.parent.GetComponent<Grid>().cellSize.x;
-            selectionTimer = 0.1f;
-            if (myRuleTile != myTilemap.GetTile<RuleTile>(myTilePositionInt))
+            // selecting a tile to change
+            if (!isInventory)
             {
-                useTimer = 0;
-                myRuleTile = myTilemap.GetTile<RuleTile>(myTilePositionInt);
-            }
-            else if (myTile != myTilemap.GetTile<Tile>(myTilePositionInt))
-            {
-                useTimer = 0;
-                myTile = myTilemap.GetTile<Tile>(myTilePositionInt);
+                myTilePositionInt = CheckTile();
+                tileSelectBorder.position = myTilePositionInt * (int)transform.parent.GetComponent<Grid>().cellSize.x;
+                selectionTimer = 0.1f;
+                if (myRuleTile != myTilemap.GetTile<RuleTile>(myTilePositionInt))
+                {
+                    useTimer = 0;
+                    myRuleTile = myTilemap.GetTile<RuleTile>(myTilePositionInt);
+                }
+                else if (myTile != myTilemap.GetTile<Tile>(myTilePositionInt))
+                {
+                    useTimer = 0;
+                    myTile = myTilemap.GetTile<Tile>(myTilePositionInt);
+                }
             }
         }
     }
     private void OnMouseDrag()
     {
-        // selecting a tile from the isInventory
-        if (isInventory)
+        if (gsManager.CurrentGameState == GameState.Gameplay)
         {
-            myTilePositionInt = Vector3Int.FloorToInt(CheckInventoryTile());
-            selectedInventoryTile = myTilemap.GetTile<Tile>(myTilePositionInt);
-        }
-        // using a tool or plant on a tile
-        if (!isInventory)
-        {
-            // if you can plant a seed or picked up plant you will
-            if ((myRuleTile == tilledSoil && plantTiles.GetTile(CheckTile()) == null) || pickedUpPlant != null)
+            // selecting a tile from the isInventory
+            if (isInventory)
             {
-                if (useTimer == 0)
+                myTilePositionInt = Vector3Int.FloorToInt(CheckInventoryTile());
+                selectedInventoryTile = myTilemap.GetTile<Tile>(myTilePositionInt);
+            }
+            // using a tool or plant on a tile
+            if (!isInventory)
+            {
+                // if you can plant a seed or picked up plant you will
+                if ((myRuleTile == tilledSoil && plantTiles.GetTile(CheckTile()) == null) || pickedUpPlant != null)
                 {
-                    myTilePositionInt = CheckTile();
-                    useTimer += Time.deltaTime;                
+                    if (useTimer == 0)
+                    {
+                        myTilePositionInt = CheckTile();
+                        useTimer += Time.deltaTime;
+                    }
+                    else if (useTimer < useTimerMax && useTimer > 0)
+                    {
+                        useTimer += Time.deltaTime;
+                    }
+                    // uses the seed or plant on the tile if you have waited long enough
+                    if (useTimer > useTimerMax)
+                    {
+                        // using a seed
+                        if (pickedUpPlant == null)
+                        {
+                            selectedInventoryTile = myInventory.GetComponent<TileScript>().selectedInventoryTile;
+                            plantTiles.SetTile(myTilePositionInt, selectedInventoryTile);
+                            useTimer = 0;
+                            for (int i = 0; i < plantTiles.transform.childCount; i++)
+                            {
+                                // getting the position of the plant
+                                if (plantTiles.transform.GetChild(i).transform.position == CheckTile()
+                                    * (int)transform.parent.GetComponent<Grid>().cellSize.x
+                                    + new Vector3Int(1, 1, 50)
+                                    && pickedUpPlant == null)
+                                {
+                                    plantTiles.transform.GetChild(i).GetComponent<PlantDeath>().grassUnderneath
+                                        = grassTiles.GetTile<RuleTile>(CheckTile());
+                                    plantTiles.transform.GetChild(i).GetComponent<PlantDeath>().tileUnderneath
+                                        = myTilemap.GetTile<RuleTile>(CheckTile());
+                                    //if (plantTiles.transform.GetChild(i).GetComponent<PlantDeath>().tileUnderneath == tilledSoil)
+                                    //{
+                                    //    plantTiles.transform.GetChild(i).GetComponent<PlantDeath>().tileUnderneath = unTilledSoil;
+                                    //}
+                                }
+                            }
+                        }
+                        else
+                        {
+                            // using a picked up plant
+                            selectedInventoryTile = myInventory.GetComponent<TileScript>().selectedInventoryTile;
+                            plantTiles.SetTile(myTilePositionInt, pickedUpPlantType);
+                            Destroy(plantTiles.transform.GetChild(plantTiles.transform.childCount - 1).gameObject);
+                            pickedUpPlantPosition = CheckTile() * (int)transform.parent.GetComponent<Grid>().cellSize.x + new Vector3Int(1, 1, 50);
+                            pickedUpPlant.transform.position = pickedUpPlantPosition;
+                            pickedUpPlant.transform.GetChild(0).GetChild(0).GetComponent<CottonScript>().growing = true;
+                            pickedUpPlant.GetComponent<PlantDeath>().tileUnderneath = myTilemap.GetTile<RuleTile>(myTilePositionInt);
+                            pickedUpPlant.GetComponent<PlantDeath>().grassUnderneath = grassTiles.GetTile<RuleTile>(CheckTile());
+                            grassTiles.SetTile(CheckTile(), grassSoil);
+                            myTilemap.SetTile(CheckTile(), tilledSoil);
+                            useTimer = 0;
+                            pickedUpPlant = null;
+                        }
+                    }
                 }
-                else if (useTimer < useTimerMax && useTimer > 0)
+                // using a hoe on untilled soil
+                else if (selectedTool == 1 && myRuleTile == unTilledSoil)
                 {
-                    useTimer += Time.deltaTime;
-                }
-                // uses the seed or plant on the tile if you have waited long enough
-                if (useTimer > useTimerMax)
-                {
-                    // using a seed
-                    if (pickedUpPlant == null)
+                    if (useTimer == 0)
+                    {
+                        myTilePositionInt = CheckTile();
+                        useTimer += Time.deltaTime;
+                    }
+                    else if (useTimer < useTimerMax && useTimer > 0)
+                    {
+                        useTimer += Time.deltaTime;
+                    }
+                    if (useTimer > useTimerMax)
                     {
                         selectedInventoryTile = myInventory.GetComponent<TileScript>().selectedInventoryTile;
-                        plantTiles.SetTile(myTilePositionInt, selectedInventoryTile);
+                        myTilemap.SetTile(myTilePositionInt, tilledSoil);
                         useTimer = 0;
+                    }
+                }
+                // using a watering can
+                else if (selectedTool == 2)
+                {
+                    if (useTimer == 0)
+                    {
+                        myTilePositionInt = CheckTile();
+                        useTimer += Time.deltaTime;
+                    }
+                    else if (useTimer < useTimerMax && useTimer > 0)
+                    {
+                        useTimer += Time.deltaTime;
+                    }
+                    if (useTimer > useTimerMax)
+                    {
+                        // Seeing if you are hovering over a plant
                         for (int i = 0; i < plantTiles.transform.childCount; i++)
                         {
-                            // getting the position of the plant
-                            if (plantTiles.transform.GetChild(i).transform.position == CheckTile()
+                            if (plantTiles.transform.GetChild(i).position == CheckTile()
                                 * (int)transform.parent.GetComponent<Grid>().cellSize.x
-                                + new Vector3Int(1, 1, 50)
-                                && pickedUpPlant == null)
+                                + new Vector3Int(1, 1, 50))
                             {
-                                plantTiles.transform.GetChild(i).GetComponent<PlantDeath>().grassUnderneath
-                                    = grassTiles.GetTile<RuleTile>(CheckTile());
-                                plantTiles.transform.GetChild(i).GetComponent<PlantDeath>().tileUnderneath
-                                    = myTilemap.GetTile<RuleTile>(CheckTile());
-                                //if (plantTiles.transform.GetChild(i).GetComponent<PlantDeath>().tileUnderneath == tilledSoil)
-                                //{
-                                //    plantTiles.transform.GetChild(i).GetComponent<PlantDeath>().tileUnderneath = unTilledSoil;
-                                //}
+                                if (plantTiles.transform.GetChild(i).childCount > 1)
+                                {
+                                    plantTiles.transform.GetChild(i).GetChild(0).GetChild(0).gameObject.GetComponent<CottonScript>().waterAmount = WateringCanEffect;
+                                }
+                                else if (plantTiles.transform.GetChild(i).gameObject.GetComponent<PotatoScript>() != null)
+                                {
+                                    plantTiles.transform.GetChild(i).gameObject.GetComponent<PotatoScript>().waterAmount = WateringCanEffect;
+                                }
+                                else
+                                {
+                                    plantTiles.transform.GetChild(i).gameObject.GetComponent<Chiliscript>().waterAmount = WateringCanEffect;
+                                }
                             }
                         }
                     }
@@ -206,7 +288,6 @@ public class TileScript : MonoBehaviour
                         grassTiles.SetTile(CheckTile(), grassSoil);
                         myTilemap.SetTile(CheckTile(), tilledSoil);
                         useTimer = 0;
-                        pickedUpPlant = null;
                     }
                 }
             }
@@ -271,10 +352,10 @@ public class TileScript : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        // using your shovel
-        if (selectedTool == 3 && pickedUpPlant == null && !Input.GetKey(KeyCode.LeftControl))
+        if (gsManager.CurrentGameState == GameState.Gameplay)
         {
-            for (int i = 0; i < plantTiles.transform.childCount; i++)
+            // using your shovel
+            if (selectedTool == 3 && pickedUpPlant == null && !Input.GetKey(KeyCode.LeftControl))
             {
                 // seeing if you are hovering over a plant and if so, getting the position of the plant
                 if (plantTiles.transform.GetChild(i).position == CheckTile()
@@ -329,34 +410,64 @@ public class TileScript : MonoBehaviour
 
                     // killing the left over copy if necessary 
                     if (plantTiles.transform.GetChild(i).position == CheckTile()
-                    * (int)transform.parent.GetComponent<Grid>().cellSize.x
-                    + new Vector3Int(1, 1, 50) && plantTiles.transform.GetChild(i) != pickedUpPlant)
+                        * (int)transform.parent.GetComponent<Grid>().cellSize.x
+                        + new Vector3Int(1, 1, 50)
+                        && pickedUpPlant == null)
                     {
-                        Destroy(plantTiles.transform.GetChild(i).gameObject);
+                        // picking up the plant
+                        pickedUpPlant = Instantiate(plantTiles.transform.GetChild(i).gameObject, plantTiles.transform);
+
+                        pickedUpPlant.transform.GetChild(0).GetChild(0).GetComponent<CottonScript>().growthTimer
+                         = plantTiles.transform.GetChild(i).GetChild(0).GetChild(0).gameObject.GetComponent<CottonScript>().growthTimer;
+
+                        pickedUpPlant.transform.GetChild(0).GetChild(0).GetComponent<CottonScript>().growing
+                         = false;
+
+                        pickedUpPlantType = plantTiles.GetTile<Tile>(CheckTile());
+                        plantTiles.SetTile(CheckTile(), null);
+                        if (pickedUpPlant.GetComponent<PlantDeath>().tileUnderneath != null)
+                        {
+                            myTilemap.SetTile(CheckTile(), pickedUpPlant.GetComponent<PlantDeath>().tileUnderneath);
+                        }
+                        else
+                        {
+                            myTilemap.SetTile(CheckTile(), tilledSoil);
+                        }
+                        grassTiles.SetTile(CheckTile(), pickedUpPlant.GetComponent<PlantDeath>().grassUnderneath);
+
+                        pickedUpPlant.transform.position += Vector3.one;
+
+                        // killing the left over copy if necessary 
+                        if (plantTiles.transform.GetChild(i).position == CheckTile()
+                        * (int)transform.parent.GetComponent<Grid>().cellSize.x
+                        + new Vector3Int(1, 1, 50) && plantTiles.transform.GetChild(i) != pickedUpPlant)
+                        {
+                            Destroy(plantTiles.transform.GetChild(i).gameObject);
+                        }
                     }
                 }
             }
-        }
-        else if (selectedTool == 3 && pickedUpPlant == null && Input.GetKey(KeyCode.LeftControl))
-        {
-            for (int i = 0; i < plantTiles.transform.childCount; i++)
+            else if (selectedTool == 3 && pickedUpPlant == null && Input.GetKey(KeyCode.LeftControl))
             {
-                // seeing if you are hovering over a plant and if so, getting the position of the plant
-                if (plantTiles.transform.GetChild(i).position == CheckTile()
-                    * (int)transform.parent.GetComponent<Grid>().cellSize.x
-                    + new Vector3Int(1, 1, 50)
-                    && pickedUpPlant == null)
-                {                    
-                    gsManager.heldMoneyAmount += plantTiles.gameObject.transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<CottonScript>().sellValue;
-                    gsManager.moneyUI.GetComponent<TextMeshPro>().text = gsManager.heldMoneyAmount.ToString();
-                    myTilemap.SetTile(CheckTile(), tilledSoil);
-
-                    // killing the left over copy if necessary 
-                    if (plantTiles.transform.GetChild(i).transform.position == CheckTile()
-                    * (int)transform.parent.GetComponent<Grid>().cellSize.x
-                    + new Vector3Int(1, 1, 50) && plantTiles.transform.GetChild(i) != pickedUpPlant)
+                for (int i = 0; i < plantTiles.transform.childCount; i++)
+                {
+                    // seeing if you are hovering over a plant and if so, getting the position of the plant
+                    if (plantTiles.transform.GetChild(i).position == CheckTile()
+                        * (int)transform.parent.GetComponent<Grid>().cellSize.x
+                        + new Vector3Int(1, 1, 50)
+                        && pickedUpPlant == null)
                     {
-                        Destroy(plantTiles.transform.GetChild(i).gameObject);
+                        gsManager.heldMoneyAmount += plantTiles.gameObject.transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<CottonScript>().sellValue;
+                        gsManager.moneyUI.GetComponent<TextMeshPro>().text = gsManager.heldMoneyAmount.ToString();
+                        plantTiles.SetTile(CheckTile(), null);
+
+                        // killing the left over copy if necessary 
+                        if (plantTiles.transform.GetChild(i).transform.position == CheckTile()
+                        * (int)transform.parent.GetComponent<Grid>().cellSize.x
+                        + new Vector3Int(1, 1, 50) && plantTiles.transform.GetChild(i) != pickedUpPlant)
+                        {
+                            Destroy(plantTiles.transform.GetChild(i).gameObject);
+                        }
                     }
                 }
             }

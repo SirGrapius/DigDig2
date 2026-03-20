@@ -41,6 +41,7 @@ public class ChilliScript : MonoBehaviour
             isInInventory = true;
             growthTimer = stage3;
             baseAnimator.SetBool("Inventory", true);
+            gameObject.tag = "InInventory";
         }
     }
 

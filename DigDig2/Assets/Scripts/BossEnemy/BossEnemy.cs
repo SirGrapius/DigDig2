@@ -7,15 +7,17 @@ public class BossEnemy : MonoBehaviour
 {
     [SerializeField] float relocateCooldown = 30;
     [SerializeField] float relocateTimer = 30;
-    [SerializeField] float attackCooldown = 12;
+    [SerializeField] float baseAttackCooldown = 12;
     [SerializeField] float attackTimer = 12;
     [SerializeField] float stunRadius = 9;
     [SerializeField] float stunDuration = 3f;
+    private bool lastAttackWasCrow = false;
     private int lastPoint = -1;
     private int newPoint;
-
-    private bool isRelocating = false;
     
+
+    [SerializeField] bool isRelocating = false;
+
     [SerializeField] GameObject crowPrefab;
 
     [SerializeField] Animator animator;
@@ -24,6 +26,7 @@ public class BossEnemy : MonoBehaviour
 
     private void Update()
     {
+
         if (relocateTimer <= 0)
         {
             Ascend();
@@ -38,9 +41,19 @@ public class BossEnemy : MonoBehaviour
         {
             int roll = Random.Range(1, 11);
 
-            if (roll <= 7) StunAttack();
-            else if (roll <= 9) DeAgeAttack();
-            else CrowAttack();
+            animator.SetTrigger("Attack");
+            
+            if (lastAttackWasCrow == true)
+            {
+                if (roll <= 7) StunAttack();
+                else if (roll <= 9) DeAgeAttack();
+                else CrowAttack();
+            }
+            else if (lastAttackWasCrow == false)
+            {
+                if (roll <= 7) StunAttack();
+                else DeAgeAttack();
+            }
         }
         else if (isRelocating != true)
         {
@@ -87,7 +100,7 @@ public class BossEnemy : MonoBehaviour
         animator.SetTrigger("Descend");
     }
 
-    private void DescendFinished()
+    public void DescendFinished()
     {
         isRelocating = false;
     }
@@ -95,7 +108,21 @@ public class BossEnemy : MonoBehaviour
     private void StunAttack()
     {
         GameObject[] plants = GameObject.FindGameObjectsWithTag("Plant");
-        if (plants.Length == 0) return;
+        if (plants.Length == 0)
+        {
+            if (lastAttackWasCrow == true)
+            {
+                DeAgeAttack();
+            }
+            else if (lastAttackWasCrow == false)
+            {
+                int roll = Random.Range(1, 11);
+
+                if (roll <= 7) DeAgeAttack();
+                else DeAgeAttack();
+            }
+            return;
+        }
 
         Transform center = plants[Random.Range(0, plants.Length)].transform;
 
@@ -104,15 +131,18 @@ public class BossEnemy : MonoBehaviour
             if (Vector3.Distance(center.position, p.transform.position) <= stunRadius)
             {
                 if (p.GetComponentInChildren<CottonScript>() != null)
-                { CottonScript script = p.GetComponentInChildren<CottonScript>(); script.Stun(stunDuration); }
+                {
+                    CottonScript script = p.GetComponentInChildren<CottonScript>(); script.Stun(stunDuration); }
+                else if (p.GetComponentInChildren<Chiliscript>() != null)
+                { Chiliscript script = p.GetComponentInChildren<Chiliscript>(); script.Stun(stunDuration); }
                 else if (p.GetComponentInChildren<PotatoScript>() != null)
                 { PotatoScript script = p.GetComponentInChildren<PotatoScript>(); script.Stun(stunDuration); }
-                else if (p.GetComponentInChildren<ChilliScript>() != null)
-                { ChilliScript script = p.GetComponentInChildren<ChilliScript>(); script.Stun(stunDuration); }
+
             }
         }
 
-        attackTimer = attackCooldown * 1f;
+        attackTimer = baseAttackCooldown * 1f;
+        lastAttackWasCrow = false;
     }
 
     private void DeAgeAttack() 
@@ -126,13 +156,40 @@ public class BossEnemy : MonoBehaviour
         {
             int randomIndex = Random.Range(0, plants.Count); 
             GameObject p = plants[randomIndex];
-            CottonScript script = p.GetComponentInChildren<CottonScript>(); 
-            if (script != null)
-            script.BecomeBaby();
-            plants.Remove(p);
+            if (p.GetComponentInChildren<CottonScript>() != null)
+            {
+                CottonScript script = p.GetComponentInChildren<CottonScript>();
+
+                if (script != null)
+                {
+                    script.BecomeBaby();
+                    plants.Remove(p);
+                }
+            }
+            else if (p.GetComponentInChildren<Chiliscript>() != null)
+            {
+                Chiliscript script = p.GetComponentInChildren<Chiliscript>();
+
+                if (script != null)
+                {
+                    script.BecomeBaby();
+                    plants.Remove(p);
+                }
+            }
+            else if (p.GetComponentInChildren<PotatoScript>() != null)
+            {
+                PotatoScript script = p.GetComponentInChildren<PotatoScript>();
+
+                if (script != null)
+                {
+                    script.BecomeBaby();
+                    plants.Remove(p);
+                }
+            }
         }
 
-        attackTimer = attackCooldown * 1.4f;
+        attackTimer = baseAttackCooldown * 1.4f;
+        lastAttackWasCrow = false;
     }
 
     private void CrowAttack()
@@ -147,15 +204,10 @@ public class BossEnemy : MonoBehaviour
             crowScript.targetplant = p;
         }
 
-        attackTimer = attackCooldown * 2f; 
+        attackTimer = baseAttackCooldown * 2f;
+        lastAttackWasCrow = true;
     }
-
-
-
-
-
-   // Add finding all plant scripts, add graphics and effects? 
-}  // check if already crow flying? make attacks not fully random?
+}  
 
 
 

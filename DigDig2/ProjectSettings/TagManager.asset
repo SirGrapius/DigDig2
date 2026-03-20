@@ -12,6 +12,7 @@ TagManager:
   - mainTarget
   - SceneManager
   - PlantList
+  - InInventory
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Player
   - Water
   - UI
-  - 
+  - Potato
   - 
   - 
   - 

@@ -279,6 +279,11 @@ public class PlayerMovement : MonoBehaviour
         {
             currentSpeed = baseSpeed;
         }
+
+        if (roundManager == !enabled)
+        {
+            roundManager.enabled = true;
+        }
     }
 
     
