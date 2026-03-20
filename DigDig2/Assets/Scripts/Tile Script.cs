@@ -196,7 +196,11 @@ public class TileScript : MonoBehaviour
                         Destroy(plantTiles.transform.GetChild(plantTiles.transform.childCount - 1).gameObject);
                         pickedUpPlantPosition = CheckTile() * (int)transform.parent.GetComponent<Grid>().cellSize.x + new Vector3Int(1, 1, 50);
                         pickedUpPlant.transform.position = pickedUpPlantPosition;
-                        pickedUpPlant.transform.GetChild(0).GetChild(0).GetComponent<CottonScript>().growing = true;
+                        if (pickedUpPlant.GetComponent<AnyPlant>().IsGrowing())
+                        {
+                            pickedUpPlant.transform.GetChild(0).GetChild(0).GetComponent<CottonScript>().growing = true;
+                        }
+
                         pickedUpPlant.GetComponent<PlantDeath>().tileUnderneath = myTilemap.GetTile<RuleTile>(myTilePositionInt);
                         pickedUpPlant.GetComponent<PlantDeath>().grassUnderneath = grassTiles.GetTile<RuleTile>(CheckTile());
                         grassTiles.SetTile(CheckTile(), grassSoil);
@@ -256,7 +260,7 @@ public class TileScript : MonoBehaviour
                             }
                             else 
                             {
-                                plantTiles.transform.GetChild(i).gameObject.GetComponent<Chiliscript>().waterAmount = WateringCanEffect;
+                                plantTiles.transform.GetChild(i).gameObject.GetComponent<ChilliScript>().waterAmount = WateringCanEffect;
                             }
                         }
                     }
@@ -276,16 +280,36 @@ public class TileScript : MonoBehaviour
                 if (plantTiles.transform.GetChild(i).position == CheckTile()
                     * (int)transform.parent.GetComponent<Grid>().cellSize.x
                     + new Vector3Int(1, 1, 50)
-                    && pickedUpPlant == null)
+                    && pickedUpPlant == null 
+                    && plantTiles.transform.GetChild(i).GetComponent<PlantDeath>().movable)
                 {
                     // picking up the plant
                     pickedUpPlant = Instantiate(plantTiles.transform.GetChild(i).gameObject, plantTiles.transform);
 
-                    pickedUpPlant.transform.GetChild(0).GetChild(0).GetComponent<CottonScript>().growthTimer
-                     = plantTiles.transform.GetChild(i).GetChild(0).GetChild(0).gameObject.GetComponent<CottonScript>().growthTimer;
+                    if (pickedUpPlant.transform.childCount > 1)
+                    {
+                        pickedUpPlant.transform.GetChild(0).GetChild(0).GetComponent<CottonScript>().growthTimer
+                         = plantTiles.transform.GetChild(i).GetChild(0).GetChild(0).gameObject.GetComponent<CottonScript>().growthTimer;
 
-                    pickedUpPlant.transform.GetChild(0).GetChild(0).GetComponent<CottonScript>().growing
-                     = false;
+                        pickedUpPlant.transform.GetChild(0).GetChild(0).GetComponent<CottonScript>().growing
+                         = false;
+                    }
+                    else if (pickedUpPlant.GetComponent<PotatoScript>() != null)
+                    {
+                        pickedUpPlant.transform.GetComponent<PotatoScript>().growthTimer
+                         = plantTiles.transform.GetChild(i).gameObject.GetComponent<PotatoScript>().growthTimer;
+
+                        pickedUpPlant.transform.GetComponent<PotatoScript>().growing
+                         = false;
+                    }
+                    else 
+                    {
+                        pickedUpPlant.transform.GetComponent<ChilliScript>().growthTimer
+                             = plantTiles.transform.GetChild(i).gameObject.GetComponent<ChilliScript>().growthTimer;
+
+                        pickedUpPlant.transform.GetComponent<ChilliScript>().growing
+                         = false;
+                    }
 
                     pickedUpPlantType = plantTiles.GetTile<Tile>(CheckTile());
                     plantTiles.SetTile(CheckTile(), null);
@@ -298,6 +322,8 @@ public class TileScript : MonoBehaviour
                         myTilemap.SetTile(CheckTile(), tilledSoil);
                     }
                     grassTiles.SetTile(CheckTile(), pickedUpPlant.GetComponent<PlantDeath>().grassUnderneath);
+
+                    pickedUpPlant.GetComponent<PlantDeath>().movable = false;
 
                     pickedUpPlant.transform.position += Vector3.one;
 

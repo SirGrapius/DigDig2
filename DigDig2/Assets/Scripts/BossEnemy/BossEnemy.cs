@@ -107,8 +107,8 @@ public class BossEnemy : MonoBehaviour
                 { CottonScript script = p.GetComponentInChildren<CottonScript>(); script.Stun(stunDuration); }
                 else if (p.GetComponentInChildren<PotatoScript>() != null)
                 { PotatoScript script = p.GetComponentInChildren<PotatoScript>(); script.Stun(stunDuration); }
-                else if (p.GetComponentInChildren<Chiliscript>() != null)
-                { Chiliscript script = p.GetComponentInChildren<Chiliscript>(); script.Stun(stunDuration); }
+                else if (p.GetComponentInChildren<ChilliScript>() != null)
+                { ChilliScript script = p.GetComponentInChildren<ChilliScript>(); script.Stun(stunDuration); }
             }
         }
 

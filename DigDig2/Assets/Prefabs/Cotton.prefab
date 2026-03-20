@@ -622,6 +622,7 @@ MonoBehaviour:
   chili: 0
   tileUnderneath: {fileID: 0}
   grassUnderneath: {fileID: 0}
+  movable: 1
   gsManager: {fileID: 0}
 --- !u!114 &-6724907053204478825
 MonoBehaviour:

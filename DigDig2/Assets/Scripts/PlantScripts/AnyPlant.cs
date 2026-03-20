@@ -4,7 +4,7 @@ public class AnyPlant : MonoBehaviour
 {
     [SerializeField] CottonScript typeCotton;
     [SerializeField] PotatoScript typePotato;
-    [SerializeField] Chiliscript typeChili;
+    [SerializeField] ChilliScript typeChili;
 
     public bool IsGrowing()
     {

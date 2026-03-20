@@ -225,6 +225,7 @@ MonoBehaviour:
   chili: 0
   tileUnderneath: {fileID: 0}
   grassUnderneath: {fileID: 0}
+  movable: 1
   gsManager: {fileID: 0}
 --- !u!95 &4336372680288598635
 Animator:
@@ -345,6 +346,9 @@ MonoBehaviour:
   damageValue: 1
   stunned: 0
   gsManager: {fileID: 0}
+  isInInventory: 0
+  maxSellValue: 0
+  sellValue: 0
 --- !u!114 &1416898804824746610
 MonoBehaviour:
   m_ObjectHideFlags: 0
