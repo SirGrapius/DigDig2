@@ -15,6 +15,7 @@ public class PlantDeath : MonoBehaviour
     float time;
     public RuleTile tileUnderneath;
     public RuleTile grassUnderneath;
+    public bool movable;
 
     [SerializeField] GameStateManager gsManager;
 

@@ -12,6 +12,7 @@ TagManager:
   - mainTarget
   - SceneManager
   - PlantList
+  - InInventory
   layers:
   - Default
   - TransparentFX

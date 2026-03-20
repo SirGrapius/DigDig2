@@ -1,6 +1,5 @@
 using NUnit.Framework;
 using System.Collections.Generic;
-using UnityEditor.Rendering;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -134,8 +133,8 @@ public class BossEnemy : MonoBehaviour
                 if (p.GetComponentInChildren<CottonScript>() != null)
                 {
                     CottonScript script = p.GetComponentInChildren<CottonScript>(); script.Stun(stunDuration); }
-                else if (p.GetComponentInChildren<Chiliscript>() != null)
-                { Chiliscript script = p.GetComponentInChildren<Chiliscript>(); script.Stun(stunDuration); }
+                else if (p.GetComponentInChildren<ChilliScript>() != null)
+                { ChilliScript script = p.GetComponentInChildren<ChilliScript>(); script.Stun(stunDuration); }
                 else if (p.GetComponentInChildren<PotatoScript>() != null)
                 { PotatoScript script = p.GetComponentInChildren<PotatoScript>(); script.Stun(stunDuration); }
 
@@ -167,9 +166,9 @@ public class BossEnemy : MonoBehaviour
                     plants.Remove(p);
                 }
             }
-            else if (p.GetComponentInChildren<Chiliscript>() != null)
+            else if (p.GetComponentInChildren<ChilliScript>() != null)
             {
-                Chiliscript script = p.GetComponentInChildren<Chiliscript>();
+                ChilliScript script = p.GetComponentInChildren<ChilliScript>();
 
                 if (script != null)
                 {

@@ -94,7 +94,6 @@ public class SceneLoader : MonoBehaviour
             case "Resume":
                 {
                     currentMenu.transform.position = new Vector3(30000, 30000, 0);
-                    Time.timeScale = 1;
                     if (currentMenu == settingsMenu)
                     {
                         currentMenu = pauseMenu;
