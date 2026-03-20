@@ -51507,6 +51507,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 292507328394417620, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: myInventory
+      value: 
+      objectReference: {fileID: 1986980022}
+    - target: {fileID: 292507328394417620, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       propertyPath: tileSelectBorder
       value: 
       objectReference: {fileID: 2105509256}
