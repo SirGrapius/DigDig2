@@ -48,4 +48,27 @@ public class AidsSlider : MonoBehaviour
         }
     }
 
+    public void Save(sfxData sfxData, musicData musicData)
+    {
+        if (sfxSlider)
+        {
+            sfxData.sfxVolD = mySlider.value / 10;
+        }
+        if (musicSlider)
+        {
+            musicData.musicVolD = mySlider.value / 10;
+        }
+    }
+}
+
+[System.Serializable]
+
+public struct sfxData
+{
+    public float sfxVolD;
+}
+
+public struct musicData
+{
+    public float musicVolD;
 }

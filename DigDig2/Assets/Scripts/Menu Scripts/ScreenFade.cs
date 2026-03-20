@@ -5,10 +5,21 @@ using UnityEngine.UI;
 public class ScreenFade : MonoBehaviour
 {
     [SerializeField] SpriteRenderer mySprite;
+    [SerializeField] GameStateManager gsManager;
 
     void Awake()
     {
         mySprite = GetComponent<SpriteRenderer>();
+        gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
+    }
+
+    void Update()
+    {
+
+        if (Input.GetKey(KeyCode.L))
+        {
+            StartCoroutine(FadeOutCoroutine(1));
+        }
     }
 
     public IEnumerator FadeInCoroutine(float duration)
@@ -17,8 +28,6 @@ public class ScreenFade : MonoBehaviour
         Color targetColor = new Color(mySprite.color.r, mySprite.color.g, mySprite.color.b, 0);
 
         yield return FadeCoroutine(startColor, targetColor, duration);
-
-        gameObject.SetActive(false);
     }
 
     public IEnumerator FadeOutCoroutine(float duration)
@@ -27,9 +36,6 @@ public class ScreenFade : MonoBehaviour
         Color targetColor = new Color(mySprite.color.r, mySprite.color.g, mySprite.color.b, 1);
 
         yield return FadeCoroutine(startColor, targetColor, duration);
-
-        gameObject.SetActive(false);
-
     }
 
     public IEnumerator FadeCoroutine(Color startColor, Color targetColor, float duration)

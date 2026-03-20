@@ -301,20 +301,18 @@ public class RoundManager : MonoBehaviour
         unpaused = newGameState == GameState.Gameplay;
     }
 
-    public void Save(ref RoundData data, PermRoundData permData)
+    public void Save(ref RoundData data)
     {
         data.day = day;
         data.houseHealth = houseHealthAtDayStart;
-        permData.sfxVol = sfxVolume;
-        permData.musicVol = musicVolume;
     }
 
-    public void Load(RoundData data, PermRoundData permData)
+    public void Load(RoundData data)
     {
         day = data.day;
         houseHealthAtDayStart = data.houseHealth;
-        sfxVolume = permData.sfxVol;
-        musicVolume = permData.musicVol;
+        sfxVolume = SaveSystem.sfxVol;
+        musicVolume = SaveSystem.musicVol;
     }
 }
 
@@ -323,11 +321,4 @@ public struct RoundData
 {
     public int day;
     public int houseHealth;
-}
-
-[System.Serializable]
-public struct PermRoundData
-{
-    public float sfxVol;
-    public float musicVol;
 }
