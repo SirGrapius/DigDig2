@@ -37,15 +37,29 @@ public class AidsSlider : MonoBehaviour
     void Update()
     {
         text.text = sliderText + mySlider.value.ToString();
-
-        if ( sfxSlider )
-        {
-            roundManager.sfxVolume = mySlider.value/10;
-        }
-        if ( musicSlider )
-        {
-            roundManager.musicVolume = mySlider.value/10;
-        }
     }
 
+    public void Save(sfxData sfxData, musicData musicData)
+    {
+        if (sfxSlider)
+        {
+            sfxData.sfxVolD = mySlider.value / 10;
+        }
+        if (musicSlider)
+        {
+            musicData.musicVolD = mySlider.value / 10;
+        }
+    }
+}
+
+[System.Serializable]
+
+public struct sfxData
+{
+    public float sfxVolD;
+}
+
+public struct musicData
+{
+    public float musicVolD;
 }
