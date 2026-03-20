@@ -80,7 +80,7 @@ public class Enemy : MonoBehaviour
         Vector2 closestPoint = mainTargetCollider.ClosestPoint(transform.position); // Calculates the closest point on the houses collider relative to the enemy
         float mainTargetDist = Vector2.Distance(transform.position, closestPoint);  // Calculates the distance between the enemy and the house colliders closest point
 
-        if (mainTarget != null && mainTargetDist <= attackRange || closestPlant != null && closestPlantDist <= attackRange) // If the house colliders closest point is within attack range, attack the house
+        if (mainTarget != null && mainTargetDist <= attackRange || closestPlant != null && closestPlantDist <= attackRange)
         {
             isAttacking = true;
 
@@ -90,7 +90,7 @@ public class Enemy : MonoBehaviour
                 attackTimer = attackCooldown;
             }
         }
-        else if (closestPlant != null && closestPlantDist <= detectRange && closestPlantDist < mainTargetDist) // Else if the closest plant is within detect range and closer than the house, move towards that plant
+        else if (closestPlant != null && closestPlantDist <= detectRange && closestPlantDist < mainTargetDist) 
         {
             isAttacking = false;
 
@@ -98,7 +98,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            if (mainTarget != null) // Else move towards the house
+            if (mainTarget != null)
             {
                 isAttacking = false;
 
@@ -224,7 +224,7 @@ public class Enemy : MonoBehaviour
 
     #region AttackLogic
 
-    void Attack() // Checked which target to attack here instead of the start, since the event at the end of the enemys attack animation is what triggers the attack function
+    void Attack()
     {
         if (mainTarget != null && mainTargetDist <= attackRange) // If the house colliders closest point is within attack range, attack the house
         {
@@ -232,7 +232,7 @@ public class Enemy : MonoBehaviour
         }
         else if (closestPlant != null && closestPlantDist <= attackRange) // Else if the closest plant is within attack range, attack that plant
         {
-             AttackClosestPlant();
+             AttackClosestPlant(); 
         }
     }
 

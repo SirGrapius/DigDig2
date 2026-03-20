@@ -509,11 +509,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4dd7c62a30cfdc4a9b18a7c164623b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  roundManager: {fileID: 0}
   isMoving: 0
   baseSpeed: 5
   currentSpeed: 0
   sprinting: 0
-  lastDirection: 1
+  buttonName: 
   damage: 2.5
   hitbox: {fileID: 3830479466187428648}
   cooldown: 1
@@ -535,6 +536,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   rb: {fileID: 0}
   gsManager: {fileID: 0}
+  lastWalkAnim: 
 --- !u!82 &3037182006946035679
 AudioSource:
   m_ObjectHideFlags: 0
