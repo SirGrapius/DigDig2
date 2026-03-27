@@ -36,10 +36,6 @@ public class RoundManager : MonoBehaviour
     [SerializeField] float fadeDuration;
     [SerializeField] float textDuration;
 
-    [Header("Settings")]
-    [SerializeField] public float sfxVolume;
-    [SerializeField] public float musicVolume;
-
     private void Awake()
     {
         houseObject = GameObject.FindGameObjectWithTag("MainTarget");
@@ -311,8 +307,6 @@ public class RoundManager : MonoBehaviour
     {
         day = data.day;
         houseHealthAtDayStart = data.houseHealth;
-        sfxVolume = SaveSystem.sfxVol;
-        musicVolume = SaveSystem.musicVol;
     }
 }
 
