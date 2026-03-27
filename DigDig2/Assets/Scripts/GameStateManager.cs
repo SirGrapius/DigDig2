@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,7 +9,7 @@ public class GameStateManager : MonoBehaviour
     public delegate void GameStateChangeHandler(GameState newGameState);
     public event GameStateChangeHandler OnGameStateChange;
     public float heldMoneyAmount;
-    public GameObject moneyUI;
+    public TextMeshPro moneyUI;
     private static GameStateManager instance;
 
     [Header("Settings")]
@@ -95,6 +96,7 @@ public class GameStateManager : MonoBehaviour
         sfxVolume = sfxData.sfxVol;
         musicVolume = sfxData.musicVol;
         heldMoneyAmount = moneyData.money;
+        moneyUI.text = ((int)heldMoneyAmount).ToString();
     }
 }
 
