@@ -124,10 +124,15 @@ public class TileScript : MonoBehaviour
                 useTimer = 0;
             }
         }
-        if (useTimer < useTimerMax && useTimer > 0)
+
+        if (useTimer < useTimerMax && useTimer > 0 )
         {
-            selectionBarEscapeTimer = 0.1f;
-            progressBar.position = myCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 9));
+            selectionBarEscapeTimer = 0.25f;
+        }
+
+        if (selectionBarEscapeTimer > 0)
+        {
+            progressBar.position = myCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 7));
             progressFill.x = useTimer / useTimerMax;
             progressBar.GetChild(1).localScale = progressFill;
         }
