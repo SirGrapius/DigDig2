@@ -37,7 +37,6 @@ public class SaveSystem
 
         File.WriteAllText(SaveFileName(), JsonUtility.ToJson(saveData, true));
         File.WriteAllText(SettingsDataFileName(), JsonUtility.ToJson(settingsData, true));
-        Debug.Log("saving");
     }
 
     private static void HandleSaveData()

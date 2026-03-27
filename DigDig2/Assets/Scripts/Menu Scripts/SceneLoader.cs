@@ -140,7 +140,7 @@ public class SceneLoader : MonoBehaviour
 
     public IEnumerator UnpauseGame()
     {
-        StartCoroutine(screenFader.FadeCoroutine(new Color(255, 255, 255, 0.5f), new Color(255, 255, 255, 0f), 0.25f));
+        StartCoroutine(screenFader.FadeCoroutine(new Color(0, 0, 0, 0.5f), new Color(0, 0, 0, 0f), 0.25f));
         pauseMenu.transform.position = new Vector3(10000,10000,0);
         yield return new WaitForSeconds(0.1f);
         isPaused = false;

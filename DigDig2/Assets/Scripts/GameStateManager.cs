@@ -106,6 +106,7 @@ public struct MoneyData
     public float money;
 }
 
+[System.Serializable]
 public struct SoundData
 {
     public float sfxVol;
