@@ -456,8 +456,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.014, y: 1.014, z: 1.014}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -729,7 +729,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 500762346456813997, guid: c72de59e833bd844bb67c742260316a5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -164
+      value: -111
       objectReference: {fileID: 0}
     - target: {fileID: 500762346456813997, guid: c72de59e833bd844bb67c742260316a5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -806,6 +806,14 @@ PrefabInstance:
     - target: {fileID: 7714274083303136633, guid: c72de59e833bd844bb67c742260316a5, type: 3}
       propertyPath: m_CullTransparentMesh
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116113987685428801, guid: c72de59e833bd844bb67c742260316a5, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116113987685428801, guid: c72de59e833bd844bb67c742260316a5, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.5681818
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
