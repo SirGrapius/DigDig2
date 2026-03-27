@@ -27,6 +27,7 @@ public class SceneLoader : MonoBehaviour
         source = GetComponent<AudioSource>();
         gsManager = GetComponent<GameStateManager>();
         screenFader = GetComponentInChildren<ScreenFade>();
+        StartCoroutine(screenFader.FadeInCoroutine(fadeDuration));
     }
 
     void Update()
@@ -72,7 +73,7 @@ public class SceneLoader : MonoBehaviour
 
             case "Options":
                 {
-                    settingsMenu.transform.position = canvas.transform.position;
+                    settingsMenu.transform.position = new Vector3(canvas.transform.position.x, canvas.transform.position.y, -5);
                     currentMenu = settingsMenu;
                     pauseMenu.transform.position = new Vector3(30000, 30000, 0);
                     break;
@@ -80,7 +81,7 @@ public class SceneLoader : MonoBehaviour
 
             case "MainMenu":
                 {
-                    StartCoroutine(LoadScene("MainMenu"));
+                    StartCoroutine(LoadScene("Main Menu"));
                     break;
                 }
 
@@ -97,7 +98,7 @@ public class SceneLoader : MonoBehaviour
                     if (currentMenu == settingsMenu)
                     {
                         currentMenu = pauseMenu;
-                        pauseMenu.transform.position = canvas.transform.position;
+                        pauseMenu.transform.position = new Vector3(canvas.transform.position.x, canvas.transform.position.y, -5);
                     }
                     else
                     {
@@ -112,17 +113,24 @@ public class SceneLoader : MonoBehaviour
 
     public IEnumerator LoadScene(string sceneName)
     {
-        source.clip = audioList[0];
-        source.Play();
-        screenFader.FadeOutCoroutine(fadeDuration);
-        yield return new WaitForSeconds(fadeDuration);
-        SceneManager.LoadScene(sceneName);
+        if (gsManager.CurrentGameState == GameState.Paused)
+        {
+            StartCoroutine(screenFader.FadeCoroutine(new Color(0, 0, 0, 0.5f), new Color(0, 0, 0, 1f), 0.25f));
+            yield return new WaitForSeconds(fadeDuration);
+            SceneManager.LoadScene(sceneName);
+        }
+        else
+        {
+            StartCoroutine(screenFader.FadeOutCoroutine(fadeDuration));
+            yield return new WaitForSeconds(fadeDuration);
+            SceneManager.LoadScene(sceneName);
+        }
     }
 
     public IEnumerator PauseGame()
     {
-        screenFader.FadeCoroutine(new Color(255, 255, 255, 0), new Color(255, 255, 255, 0.5f), 0.25f);
-        pauseMenu.transform.position = canvas.transform.position;
+        StartCoroutine(screenFader.FadeCoroutine(new Color(0, 0, 0, 0), new Color(0, 0, 0, 0.5f), 0.25f));
+        pauseMenu.transform.position = new Vector3(canvas.transform.position.x, canvas.transform.position.y, -5);
         SaveSystem.Save();
         yield return new WaitForSeconds(0.1f);
         currentMenu = pauseMenu;
@@ -132,7 +140,7 @@ public class SceneLoader : MonoBehaviour
 
     public IEnumerator UnpauseGame()
     {
-        screenFader.FadeCoroutine(new Color(255, 255, 255, 0.5f), new Color(255, 255, 255, 0f), 0.25f);
+        StartCoroutine(screenFader.FadeCoroutine(new Color(255, 255, 255, 0.5f), new Color(255, 255, 255, 0f), 0.25f));
         pauseMenu.transform.position = new Vector3(10000,10000,0);
         yield return new WaitForSeconds(0.1f);
         isPaused = false;
@@ -143,7 +151,7 @@ public class SceneLoader : MonoBehaviour
     {
         source.clip = audioList[0];
         source.Play();
-        screenFader.FadeOutCoroutine(fadeDuration);
+        StartCoroutine(screenFader.FadeOutCoroutine(fadeDuration));
         yield return new WaitForSeconds(fadeDuration);
 
         Application.Quit();

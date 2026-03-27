@@ -169,6 +169,7 @@ MonoBehaviour:
   chili: 1
   tileUnderneath: {fileID: 0}
   grassUnderneath: {fileID: 0}
+  movable: 1
   gsManager: {fileID: 0}
 --- !u!61 &1759131427889201029
 BoxCollider2D:

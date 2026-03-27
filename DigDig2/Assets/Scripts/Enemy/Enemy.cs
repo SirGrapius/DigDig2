@@ -145,7 +145,7 @@ public class Enemy : MonoBehaviour
 
     public void OnChildTriggerEnter(Collider2D other) // Adds any plants within a childs collider to a list
     {
-        if (isFlying && other.GetComponent<PotatoScript>() != null || isFlying && other.GetComponent<Chiliscript>() != null)
+        if (isFlying && other.GetComponent<PotatoScript>() != null || isFlying && other.GetComponent<ChilliScript>() != null)
             return;
 
         if (other.CompareTag("Plant") && !nearbyPlants.Contains(other.gameObject))
@@ -154,7 +154,7 @@ public class Enemy : MonoBehaviour
 
     public void OnChildTriggerExit(Collider2D other)
     {
-        if (isFlying && other.GetComponent<PotatoScript>() != null || isFlying && other.GetComponent<Chiliscript>() != null)
+        if (isFlying && other.GetComponent<PotatoScript>() != null || isFlying && other.GetComponent<ChilliScript>() != null)
             return;
 
         if (other.CompareTag("Plant"))
@@ -163,7 +163,7 @@ public class Enemy : MonoBehaviour
 
     public void GetFrontColliderEntries(Collider2D other) // Adds any plants within another childs collider to a list using that childs script aswell as this
     {
-        if (isFlying && other.GetComponent<PotatoScript>() != null || isFlying && other.GetComponent<Chiliscript>() != null)
+        if (isFlying && other.GetComponent<PotatoScript>() != null || isFlying && other.GetComponent<ChilliScript>() != null)
             return;
 
         if (other.CompareTag("Plant") && !frontColliderPlants.Contains(other.gameObject))
@@ -174,7 +174,7 @@ public class Enemy : MonoBehaviour
 
     public void GetFrontColliderExits(Collider2D other)
     {
-        if (isFlying && other.GetComponent<PotatoScript>() != null || isFlying && other.GetComponent<Chiliscript>() != null)
+        if (isFlying && other.GetComponent<PotatoScript>() != null || isFlying && other.GetComponent<ChilliScript>() != null)
             return;
 
         if (other.CompareTag("Plant"))

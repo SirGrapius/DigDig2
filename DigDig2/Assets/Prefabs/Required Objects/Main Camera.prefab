@@ -3621,6 +3621,10 @@ PrefabInstance:
       propertyPath: settingsMenu
       value: 
       objectReference: {fileID: 2255576724984121346}
+    - target: {fileID: 1282918492269735889, guid: 410fab1e8b08fea48841682a333ddcb3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -105
+      objectReference: {fileID: 0}
     - target: {fileID: 1294742512791497474, guid: 410fab1e8b08fea48841682a333ddcb3, type: 3}
       propertyPath: m_Camera
       value: 
@@ -3785,7 +3789,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 99
   m_Sprite: {fileID: -8972404864283803777, guid: 7c058ab64d48e654fb339a71d9b55db3, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_FlipX: 0

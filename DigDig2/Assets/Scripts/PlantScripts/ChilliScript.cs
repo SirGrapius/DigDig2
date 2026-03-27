@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Chiliscript : MonoBehaviour
+public class ChilliScript : MonoBehaviour
 {
     ClosestEnemy targeting;
     PlantDeath Death;

@@ -5,6 +5,8 @@ public class SaveSystem
 {
     private static SaveData saveData = new SaveData();
     private static SettingsData settingsData = new SettingsData();
+    public static float musicVol;
+    public static float sfxVol;
 
     [System.Serializable] public struct SaveData
     {
@@ -14,7 +16,8 @@ public class SaveSystem
 
     [System.Serializable] public struct SettingsData 
     {
-        public PermRoundData PermRoundData;
+        public sfxData sfxData;
+        public musicData musicData;
     }
 
     public static string SaveFileName()
@@ -40,7 +43,7 @@ public class SaveSystem
     private static void HandleSaveData()
     {
         GameStateManager.Instance.Player.Save(ref saveData.PlayerData);
-        GameStateManager.Instance.RoundManager.Save(ref saveData.RoundData, settingsData.PermRoundData);
+        GameStateManager.Instance.RoundManager.Save(ref saveData.RoundData);
     }
 
     public static void ClearData()
