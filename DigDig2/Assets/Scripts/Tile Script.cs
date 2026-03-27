@@ -16,6 +16,7 @@ public class TileScript : MonoBehaviour
     [SerializeField] Transform progressBar;
     [SerializeField] Vector3 progressFill;
     [SerializeField] float selectionTimer;
+    [SerializeField] float selectionBarEscapeTimer;
 
     [Header("Planting and Inventory")]
     public bool isInventory;
@@ -84,11 +85,12 @@ public class TileScript : MonoBehaviour
             }
             // making it so that the border disapears if the timer ends
             selectionTimer -= Time.deltaTime;
+            selectionBarEscapeTimer -= Time.deltaTime;
             if (selectionTimer <= 0 && !isInventory)
             {
                 tileSelectBorder.position += new Vector3(1000, 1000, 0);
             }
-            if (useTimer <= 0 && !isInventory)
+            if (useTimer <= 0 && !isInventory && selectionBarEscapeTimer < 0)
             {
                 progressBar.position += new Vector3(1000, 1000, 0);
             }
@@ -124,6 +126,7 @@ public class TileScript : MonoBehaviour
         }
         if (useTimer < useTimerMax && useTimer > 0)
         {
+            selectionBarEscapeTimer = 0.1f;
             progressBar.position = myCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 9));
             progressFill.x = useTimer / useTimerMax;
             progressBar.GetChild(1).localScale = progressFill;
@@ -471,7 +474,7 @@ public class TileScript : MonoBehaviour
                         && pickedUpPlant == null)
                     {
                         gsManager.heldMoneyAmount += plantTiles.gameObject.transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<CottonScript>().sellValue;
-                        gsManager.moneyUI.GetComponent<TextMeshPro>().text = gsManager.heldMoneyAmount.ToString();
+                        gsManager.moneyUI.GetComponent<TextMeshPro>().text = ((int)gsManager.heldMoneyAmount).ToString();
                         plantTiles.SetTile(CheckTile(), null);
 
                         // killing the left over copy if necessary 

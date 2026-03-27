@@ -12,12 +12,12 @@ public class SaveSystem
     {
         public PlayerSaveData PlayerData;
         public RoundData RoundData;
+        public MoneyData MoneyData;
     }
 
     [System.Serializable] public struct SettingsData 
     {
-        public sfxData sfxData;
-        public musicData musicData;
+        public SoundData SoundData;
     }
 
     public static string SaveFileName()
@@ -44,6 +44,7 @@ public class SaveSystem
     {
         GameStateManager.Instance.Player.Save(ref saveData.PlayerData);
         GameStateManager.Instance.RoundManager.Save(ref saveData.RoundData);
+        GameStateManager.Instance.Save(settingsData.SoundData, saveData.MoneyData);
     }
 
     public static void ClearData()
@@ -64,6 +65,7 @@ public class SaveSystem
     private static void HandleLoadData()
     {
         GameStateManager.Instance.Player.Load(saveData.PlayerData);
-        GameStateManager.Instance.RoundManager.Load(saveData.RoundData, settingsData.PermRoundData);
+        GameStateManager.Instance.RoundManager.Load(saveData.RoundData);
+        GameStateManager.Instance.Load(settingsData.SoundData, saveData.MoneyData);
     }
 }
