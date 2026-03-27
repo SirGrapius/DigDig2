@@ -76,6 +76,10 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("Idle", false);
             animator.SetBool("IdleU", false);
             animator.SetBool("IdleS", false);
+            if (!audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(soundEffects[0]);
+            }
         }
         else
         {
@@ -99,6 +103,10 @@ public class PlayerMovement : MonoBehaviour
                         animator.SetBool("IdleS", true);
                         break;
                     }
+            }
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
             }
         }
         if (chargingAttack)
@@ -190,22 +198,6 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("WalkU", false);
             animator.SetBool("WalkD", false);
-        }
-
-        if (isMoving)
-        {
-
-        }
-        else
-        {
-            if (!audioSource.isPlaying)
-            {
-                audioSource.Play();
-            }
-            else
-            {
-                audioSource.Stop();
-            }
         }
 
         if (rb.linearVelocity == new Vector2(0, 0))
@@ -332,7 +324,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Save(ref PlayerSaveData data)
     {
-        Debug.Log("fucking save!!");
         data.Position = transform.position;
     }
 

@@ -5974,6 +5974,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3037182006946035679, guid: c5684a12af0e8ca4f9efd58a088e8b3d, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3555575249437600807, guid: c5684a12af0e8ca4f9efd58a088e8b3d, type: 3}
       propertyPath: inventory
       value: 
@@ -6176,7 +6180,10 @@ MonoBehaviour:
   grassTiles: {fileID: 1092241312}
   myTilePositionInt: {x: 0, y: 0, z: 0}
   tileSelectBorder: {fileID: 2105509256}
+  progressBar: {fileID: 552649886}
+  progressFill: {x: 0, y: 0, z: 0}
   selectionTimer: 0
+  selectionBarEscapeTimer: 0
   isInventory: 0
   selectedInventoryTile: {fileID: 0}
   selectedTool: 1

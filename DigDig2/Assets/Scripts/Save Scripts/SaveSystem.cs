@@ -44,7 +44,7 @@ public class SaveSystem
     {
         GameStateManager.Instance.Player.Save(ref saveData.PlayerData);
         GameStateManager.Instance.RoundManager.Save(ref saveData.RoundData);
-        GameStateManager.Instance.Save(settingsData.SoundData, saveData.MoneyData);
+        GameStateManager.Instance.Save(ref settingsData.SoundData, saveData.MoneyData);
     }
 
     public static void ClearData()
