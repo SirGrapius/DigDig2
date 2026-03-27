@@ -83,14 +83,14 @@ public class GameStateManager : MonoBehaviour
         Debug.Log("saved");
     }
 
-    public void Save(soundData sfxData, moneyData moneyData)
+    public void Save(SoundData sfxData, MoneyData moneyData)
     {
+        moneyData.money = heldMoneyAmount;
         sfxData.sfxVol = sfxVolume;
         sfxData.musicVol = musicVolume;
-        moneyData.money = heldMoneyAmount;
     }
 
-    public void Load(soundData sfxData, moneyData moneyData)
+    public void Load(SoundData sfxData, MoneyData moneyData)
     {
         sfxVolume = sfxData.sfxVol;
         musicVolume = sfxData.musicVol;
