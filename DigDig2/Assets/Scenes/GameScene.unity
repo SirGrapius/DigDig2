@@ -50710,6 +50710,7 @@ GameObject:
   - component: {fileID: 2144244203}
   - component: {fileID: 2144244202}
   - component: {fileID: 2144244201}
+  - component: {fileID: 2144244205}
   m_Layer: 0
   m_Name: Shop
   m_TagString: Untagged
@@ -50884,6 +50885,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2144244205
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144244199}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a09f75da77ab833498e209cfcd24f856, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &8196110101842430661
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51942,7 +51965,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3189034598644913236, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3216835854308710170, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       propertyPath: m_Name
