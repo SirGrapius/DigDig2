@@ -6,6 +6,7 @@ public class RoundManager : MonoBehaviour
 {
     [SerializeField] GameStateManager gsManager;
     [SerializeField] SceneLoader sceneLoader;
+    [SerializeField] bool tutorialDone;
     [SerializeField] bool unpaused;
     [Header("Day Settings")]
     [SerializeField] int day;
@@ -306,12 +307,14 @@ public class RoundManager : MonoBehaviour
 
     public void Save(ref RoundData data)
     {
+        data.playedTutorial = tutorialDone;
         data.day = day;
         data.houseHealth = houseHealthAtDayStart;
     }
 
     public void Load(RoundData data)
     {
+        tutorialDone = data.playedTutorial;
         day = data.day;
         houseHealthAtDayStart = data.houseHealth;
     }
@@ -320,6 +323,7 @@ public class RoundManager : MonoBehaviour
 [System.Serializable]
 public struct RoundData
 {
+    public bool playedTutorial;
     public int day;
     public int houseHealth;
 }

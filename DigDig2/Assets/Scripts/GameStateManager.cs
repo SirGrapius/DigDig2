@@ -39,8 +39,11 @@ public class GameStateManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
-        RoundManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<RoundManager>();
+        if (SceneManager.GetSceneByName("Main Menu") != SceneManager.GetActiveScene())
+        {
+            Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+            RoundManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<RoundManager>();
+        }
     }
     void Start()
     {
@@ -53,7 +56,7 @@ public class GameStateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (CurrentGameState == GameState.Paused)
+        if (CurrentGameState == GameState.Paused && SceneManager.GetSceneByName("MainMenu") != SceneManager.GetActiveScene())
         {
             Rigidbody2D playerRB = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
             playerRB.linearVelocity = Vector3.zero;
