@@ -978,11 +978,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.2642913, y: 0.17111948}
   m_EdgeRadius: 0
---- !u!1 &201008616 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7381644185165826045, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+--- !u!114 &201008618 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1659731799356299345, guid: e6b985feb026bc944a80049baae89b73, type: 3}
   m_PrefabInstance: {fileID: 8196110101842430661}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshPro
 --- !u!1 &261568609
 GameObject:
   m_ObjectHideFlags: 0
@@ -1609,7 +1615,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 6
   m_Sprite: {fileID: -6544866431568191171, guid: ec873bc29c42b8d41b5ad601c49df2c7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1716,7 +1722,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 6
   m_Sprite: {fileID: 3083189066084269702, guid: 7a38b5b7da501d841bc46b70e502041a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5997,7 +6003,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 6
   m_Sprite: {fileID: -1735141961333917383, guid: 50d42a251ec7ab54aae163a3d334dd4f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -51968,7 +51974,7 @@ PrefabInstance:
     - target: {fileID: 8859078107317585885, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       propertyPath: moneyUI
       value: 
-      objectReference: {fileID: 201008616}
+      objectReference: {fileID: 201008618}
     - target: {fileID: 8859078107317585885, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       propertyPath: heldMoneyAmount
       value: 100
