@@ -59,6 +59,7 @@ public class GameStateManager : MonoBehaviour
             playerRB.linearVelocity = Vector3.zero;
         }
         
+
         //Debug.Log(Player.ToString());
     }
 
@@ -96,7 +97,7 @@ public class GameStateManager : MonoBehaviour
         sfxVolume = sfxData.sfxVol;
         musicVolume = sfxData.musicVol;
         heldMoneyAmount = moneyData.money;
-        moneyUI.text = ((int)heldMoneyAmount).ToString();
+        moneyUI.text = ((int)moneyData.money).ToString();
     }
 }
 
