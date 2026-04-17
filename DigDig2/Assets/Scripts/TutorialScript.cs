@@ -9,7 +9,7 @@ public class TutorialScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (true)
+        if (false)
         {
             roundManager.gameObject.SetActive(false);
         }
