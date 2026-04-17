@@ -1,11 +1,13 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RoundManager : MonoBehaviour
 {
     [SerializeField] GameStateManager gsManager;
     [SerializeField] SceneLoader sceneLoader;
+    [SerializeField] bool tutorialDone;
     [SerializeField] bool unpaused;
     [Header("Day Settings")]
     [SerializeField] int day;
@@ -16,6 +18,7 @@ public class RoundManager : MonoBehaviour
     [SerializeField] GameObject houseObject;
     public int houseHealth = 100;
     [SerializeField] int houseHealthAtDayStart;
+    [SerializeField] Slider houseHealthBar;
 
     [Header("Lane Settings")]
     [SerializeField] GameObject[] lanes; //0 = bottom, 1 = right, 2 = top, 3 = left
@@ -41,6 +44,7 @@ public class RoundManager : MonoBehaviour
         houseObject = GameObject.FindGameObjectWithTag("MainTarget");
         gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
         sceneLoader = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneLoader>();
+        houseHealthBar = GameObject.FindGameObjectWithTag("HouseHPBar").GetComponent<Slider>();
         SaveSystem.Load();
     }
 
@@ -110,6 +114,7 @@ public class RoundManager : MonoBehaviour
             }
 
             numberOfEnemies = Mathf.RoundToInt(GameObject.FindGameObjectsWithTag("Enemy").Length);
+            houseHealthBar.value = houseHealth;
         }
     }
 
@@ -306,12 +311,14 @@ public class RoundManager : MonoBehaviour
 
     public void Save(ref RoundData data)
     {
+        data.playedTutorial = tutorialDone;
         data.day = day;
         data.houseHealth = houseHealthAtDayStart;
     }
 
     public void Load(RoundData data)
     {
+        tutorialDone = data.playedTutorial;
         day = data.day;
         houseHealthAtDayStart = data.houseHealth;
     }
@@ -320,6 +327,7 @@ public class RoundManager : MonoBehaviour
 [System.Serializable]
 public struct RoundData
 {
+    public bool playedTutorial;
     public int day;
     public int houseHealth;
 }
