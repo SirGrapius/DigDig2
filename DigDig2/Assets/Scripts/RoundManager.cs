@@ -47,12 +47,19 @@ public class RoundManager : MonoBehaviour
     void Start()
     {
         unpaused = true;
-        day = 1;
+        if (day == 0)
+        {
+            day = 1;
+        }
         bool rightLaneOpen = isLaneOpen[0];
         bool leftLaneOpen = isLaneOpen[1];
         bool upLaneOpen = isLaneOpen[2];
         generatingPoints = false;
         gsManager.OnGameStateChange += OnGameStateChanged;
+        if (day == 1 && gsManager.heldMoneyAmount < 100)
+        {
+            gsManager.heldMoneyAmount = 100;
+        }
     }
 
     void OnDestroy()
