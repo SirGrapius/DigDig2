@@ -39,6 +39,7 @@ public class Enemy : MonoBehaviour
     GameStateManager gsManager;
     GameObject closestPlant;
     GameObject mainTarget;
+    GameObject minimap;
 
 
     [Header("Lists")]
@@ -55,6 +56,12 @@ public class Enemy : MonoBehaviour
         mainTarget = GameObject.FindGameObjectWithTag("MainTarget");
         mainTargetCollider = mainTarget.GetComponent<BoxCollider2D>();
 
+        if (GameObject.FindGameObjectWithTag("Minimap") != null)
+        {
+            Minimap manager = GameObject.FindGameObjectWithTag("Minimap").GetComponent<Minimap>();
+            manager.RegisterEnemy(transform);
+        }
+        
         roundManagerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<RoundManager>(); 
         gsManager.OnGameStateChange += OnGameStateChanged;
     }
@@ -240,7 +247,7 @@ public class Enemy : MonoBehaviour
     {
         roundManagerScript.houseHealth -= attackDamage;
     }
-
+    
     void AttackClosestPlant()
     {
         if (closestPlant == null) return;

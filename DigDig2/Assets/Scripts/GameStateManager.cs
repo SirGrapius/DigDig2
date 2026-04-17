@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,8 +9,12 @@ public class GameStateManager : MonoBehaviour
     public delegate void GameStateChangeHandler(GameState newGameState);
     public event GameStateChangeHandler OnGameStateChange;
     public float heldMoneyAmount;
-    public GameObject moneyUI;
+    public TextMeshPro moneyUI;
     private static GameStateManager instance;
+
+    [Header("Settings")]
+    [SerializeField] public float sfxVolume;
+    [SerializeField] public float musicVolume;
     public static GameStateManager Instance
     {
         get
@@ -78,4 +83,34 @@ public class GameStateManager : MonoBehaviour
         SaveSystem.Save();
         Debug.Log("saved");
     }
+
+    public void Save(ref SoundData sfxData, MoneyData moneyData)
+    {
+        moneyData.money = heldMoneyAmount;
+        sfxData.sfxVol = sfxVolume;
+        sfxData.musicVol = musicVolume;
+    }
+
+    public void Load(SoundData sfxData, MoneyData moneyData)
+    {
+        sfxVolume = sfxData.sfxVol;
+        musicVolume = sfxData.musicVol;
+        heldMoneyAmount = moneyData.money;
+        moneyUI.text = ((int)heldMoneyAmount).ToString();
+    }
+}
+
+
+
+[System.Serializable]
+public struct MoneyData
+{
+    public float money;
+}
+
+[System.Serializable]
+public struct SoundData
+{
+    public float sfxVol;
+    public float musicVol;
 }

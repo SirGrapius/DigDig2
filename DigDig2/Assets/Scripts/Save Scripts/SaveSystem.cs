@@ -5,16 +5,19 @@ public class SaveSystem
 {
     private static SaveData saveData = new SaveData();
     private static SettingsData settingsData = new SettingsData();
+    public static float musicVol;
+    public static float sfxVol;
 
     [System.Serializable] public struct SaveData
     {
         public PlayerSaveData PlayerData;
         public RoundData RoundData;
+        public MoneyData MoneyData;
     }
 
     [System.Serializable] public struct SettingsData 
     {
-        public PermRoundData PermRoundData;
+        public SoundData SoundData;
     }
 
     public static string SaveFileName()
@@ -34,13 +37,13 @@ public class SaveSystem
 
         File.WriteAllText(SaveFileName(), JsonUtility.ToJson(saveData, true));
         File.WriteAllText(SettingsDataFileName(), JsonUtility.ToJson(settingsData, true));
-        Debug.Log("saving");
     }
 
     private static void HandleSaveData()
     {
         GameStateManager.Instance.Player.Save(ref saveData.PlayerData);
-        GameStateManager.Instance.RoundManager.Save(ref saveData.RoundData, settingsData.PermRoundData);
+        GameStateManager.Instance.RoundManager.Save(ref saveData.RoundData);
+        GameStateManager.Instance.Save(ref settingsData.SoundData, saveData.MoneyData);
     }
 
     public static void ClearData()
@@ -61,6 +64,7 @@ public class SaveSystem
     private static void HandleLoadData()
     {
         GameStateManager.Instance.Player.Load(saveData.PlayerData);
-        GameStateManager.Instance.RoundManager.Load(saveData.RoundData, settingsData.PermRoundData);
+        GameStateManager.Instance.RoundManager.Load(saveData.RoundData);
+        GameStateManager.Instance.Load(settingsData.SoundData, saveData.MoneyData);
     }
 }

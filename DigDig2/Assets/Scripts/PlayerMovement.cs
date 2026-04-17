@@ -70,35 +70,67 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         playerInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")); //if player presses a movement key the player will move
-        audioSource.volume = roundManager.sfxVolume;
+        audioSource.volume = gsManager.sfxVolume;
         if (isMoving)
         {
             animator.SetBool("Idle", false);
             animator.SetBool("IdleU", false);
             animator.SetBool("IdleS", false);
-        }
-        else
-        {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(soundEffects[0]);
+            }
             switch (lastWalkAnim)
             {
                 case "WalkU":
                     {
+                        animator.SetBool("WalkU", true);
+                        animator.SetBool("WalkD", false);
+                        animator.SetBool("WalkS", false);
+                        break;
+                    }
+                case "WalkD":
+                    {
                         animator.SetBool("WalkU", false);
+                        animator.SetBool("WalkD", true);
+                        animator.SetBool("WalkS", false);
+                        break;
+                    }
+                case "WalkS":
+                    {
+                        animator.SetBool("WalkU", false);
+                        animator.SetBool("WalkD", false);
+                        animator.SetBool("WalkS", true);
+                        break;
+                    }
+            }
+        }
+        else
+        {
+            animator.SetBool("WalkU", false);
+            animator.SetBool("WalkD", false);
+            animator.SetBool("WalkS", false);
+            switch (lastWalkAnim)
+            {
+                case "WalkU":
+                    {
                         animator.SetBool("IdleU", true);
                         break;
                     }
                 case "WalkD":
                     {
-                        animator.SetBool("WalkD", false);
                         animator.SetBool("Idle", true);
                         break;
                     }
                 case "WalkS":
                     {
-                        animator.SetBool("WalkS", false);
                         animator.SetBool("IdleS", true);
                         break;
                     }
+            }
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
             }
         }
         if (chargingAttack)
@@ -129,33 +161,24 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W))
         {
-            animator.SetBool("WalkU", true);
-            animator.SetBool("WalkS", false);
-            animator.SetBool("WalkD", false);
             lastWalkAnim = null;
             lastWalkAnim = "WalkU";
         }
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S))
         {
-            animator.SetBool("WalkD", true);
-            animator.SetBool("WalkS", false);
-            animator.SetBool("WalkU", false);
             lastWalkAnim = null;
             lastWalkAnim = "WalkD";
         }
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.A))
         {
-            animator.SetBool("WalkS", true);
-            animator.SetBool("WalkU", false);
-            animator.SetBool("WalkD", false);
             lastWalkAnim = null;
             lastWalkAnim = "WalkS";
         }
 
 
-        if (playerInput.x != 0) //change animations of player if moving up or down.
+        if (playerInput.x != 0) //change animations of player if moving left or right.
         {
             isMoving = true;
             if (rb.linearVelocityX < 0)
@@ -172,6 +195,14 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             animator.SetBool("WalkS", false);
+            if (rb.linearVelocityY < 0)
+            {
+                animator.SetBool("WalkD", true);
+            }
+            if (rb.linearVelocityY > 0)
+            {
+                animator.SetBool("WalkU", true);
+            }
         }
 
         if (playerInput.y != 0) //change animations of player if moving up or down.
@@ -190,21 +221,9 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("WalkU", false);
             animator.SetBool("WalkD", false);
-        }
-
-        if (isMoving)
-        {
-
-        }
-        else
-        {
-            if (!audioSource.isPlaying)
+            if (rb.linearVelocityX != 0)
             {
-                audioSource.Play();
-            }
-            else
-            {
-                audioSource.Stop();
+                animator.SetBool("WalkS", true);
             }
         }
 
@@ -332,7 +351,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Save(ref PlayerSaveData data)
     {
-        Debug.Log("fucking save!!");
         data.Position = transform.position;
     }
 

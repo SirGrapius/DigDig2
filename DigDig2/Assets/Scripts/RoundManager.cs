@@ -36,10 +36,6 @@ public class RoundManager : MonoBehaviour
     [SerializeField] float fadeDuration;
     [SerializeField] float textDuration;
 
-    [Header("Settings")]
-    [SerializeField] public float sfxVolume;
-    [SerializeField] public float musicVolume;
-
     private void Awake()
     {
         houseObject = GameObject.FindGameObjectWithTag("MainTarget");
@@ -51,12 +47,19 @@ public class RoundManager : MonoBehaviour
     void Start()
     {
         unpaused = true;
-        day = 1;
+        if (day == 0)
+        {
+            day = 1;
+        }
         bool rightLaneOpen = isLaneOpen[0];
         bool leftLaneOpen = isLaneOpen[1];
         bool upLaneOpen = isLaneOpen[2];
         generatingPoints = false;
         gsManager.OnGameStateChange += OnGameStateChanged;
+        if (day == 1 && gsManager.heldMoneyAmount < 100)
+        {
+            gsManager.heldMoneyAmount = 100;
+        }
     }
 
     void OnDestroy()
@@ -301,20 +304,16 @@ public class RoundManager : MonoBehaviour
         unpaused = newGameState == GameState.Gameplay;
     }
 
-    public void Save(ref RoundData data, PermRoundData permData)
+    public void Save(ref RoundData data)
     {
         data.day = day;
         data.houseHealth = houseHealthAtDayStart;
-        permData.sfxVol = sfxVolume;
-        permData.musicVol = musicVolume;
     }
 
-    public void Load(RoundData data, PermRoundData permData)
+    public void Load(RoundData data)
     {
         day = data.day;
         houseHealthAtDayStart = data.houseHealth;
-        sfxVolume = permData.sfxVol;
-        musicVolume = permData.musicVol;
     }
 }
 
@@ -323,11 +322,4 @@ public struct RoundData
 {
     public int day;
     public int houseHealth;
-}
-
-[System.Serializable]
-public struct PermRoundData
-{
-    public float sfxVol;
-    public float musicVol;
 }

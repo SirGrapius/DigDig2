@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class AidsSlider : MonoBehaviour
 {
-    [SerializeField] RoundManager roundManager;
+    [SerializeField] GameStateManager gsManager;
     [SerializeField] TextMeshProUGUI text;
     [SerializeField] Slider mySlider;
     [SerializeField] string sliderText;
@@ -21,15 +21,15 @@ public class AidsSlider : MonoBehaviour
     {
         mySlider = GetComponent<Slider>();
         text = GetComponentInChildren<TextMeshProUGUI>();
-        roundManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<RoundManager>();
+        gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
 
         if (sfxSlider)
         {
-            mySlider.value = roundManager.sfxVolume * 10;
+            mySlider.value = gsManager.sfxVolume * 10;
         }
         if (musicSlider)
         {
-            mySlider.value = roundManager.musicVolume * 10;
+            mySlider.value = gsManager.musicVolume * 10;
         }
     }
 
@@ -37,15 +37,13 @@ public class AidsSlider : MonoBehaviour
     void Update()
     {
         text.text = sliderText + mySlider.value.ToString();
-
-        if ( sfxSlider )
+        if (sfxSlider)
         {
-            roundManager.sfxVolume = mySlider.value/10;
+            gsManager.sfxVolume = mySlider.value / 10;
         }
-        if ( musicSlider )
+        if (musicSlider)
         {
-            roundManager.musicVolume = mySlider.value/10;
+            gsManager.musicVolume = mySlider.value / 10;
         }
     }
-
 }

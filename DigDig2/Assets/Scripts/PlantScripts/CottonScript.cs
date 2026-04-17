@@ -11,14 +11,10 @@ public class CottonScript : MonoBehaviour
     [SerializeField] GameObject Attack;
     Vector2 targetPos;
     float attackTimer;
-    public float growthTimer;
-    public float waterAmount = 1;
-    public float waterAmountMin = 1;
-    public float waterLoss = 1;
-    [SerializeField] float stage1 = 30;
-    [SerializeField] float stage2 = 60;
-    [SerializeField] float stage3 = 90;
     [SerializeField] float attackFrequency;
+    public float growthTimer;
+    public float waterAmount = 1, waterAmountMin = 1, waterLoss = 1;
+    [SerializeField] float stage1 = 30, stage2 = 60, stage3 = 90;
     [SerializeField] Animator myAnimator;
     public Animator baseAnimator;
     [SerializeField] AnimationClip attackAnim;
@@ -31,8 +27,7 @@ public class CottonScript : MonoBehaviour
     [SerializeField] float maxRange = 20;
 
     public bool isInInventory;
-    public float maxSellValue;
-    public float sellValue;
+    public float maxSellValue, sellValue;
 
     [SerializeField] GameStateManager gsManager;
 

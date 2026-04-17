@@ -8,14 +8,15 @@ public class TileScript : MonoBehaviour
     public Tilemap myTilemap;
     public Tilemap plantTiles;
     public Tilemap grassTiles;
-    TilemapCollider2D myCollider;
     RuleTile myRuleTile;
     Tile myTile;
     Camera myCamera;
     [SerializeField] Vector3Int myTilePositionInt;
-    Vector3 myTilePosition;
     [SerializeField] Transform tileSelectBorder;
+    [SerializeField] Transform progressBar;
+    [SerializeField] Vector3 progressFill;
     [SerializeField] float selectionTimer;
+    [SerializeField] float selectionBarEscapeTimer;
 
     [Header("Planting and Inventory")]
     public bool isInventory;
@@ -47,7 +48,6 @@ public class TileScript : MonoBehaviour
         // setting variables to components
         myTilemap = GetComponent<Tilemap>();
         plantTiles = transform.parent.GetChild(1).GetComponent<Tilemap>();
-        myCollider = GetComponent<TilemapCollider2D>();
         myCamera = Camera.main;
         gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
     }
@@ -85,9 +85,14 @@ public class TileScript : MonoBehaviour
             }
             // making it so that the border disapears if the timer ends
             selectionTimer -= Time.deltaTime;
+            selectionBarEscapeTimer -= Time.deltaTime;
             if (selectionTimer <= 0 && !isInventory)
             {
                 tileSelectBorder.position += new Vector3(1000, 1000, 0);
+            }
+            if (useTimer <= 0 && !isInventory && selectionBarEscapeTimer < 0)
+            {
+                progressBar.position += new Vector3(1000, 1000, 0);
             }
             // flipping tools to the left
             if (Input.GetKeyDown(KeyCode.Q) && pickedUpPlant == null)
@@ -118,6 +123,18 @@ public class TileScript : MonoBehaviour
             {
                 useTimer = 0;
             }
+        }
+
+        if (useTimer < useTimerMax && useTimer > 0 )
+        {
+            selectionBarEscapeTimer = 0.25f;
+        }
+
+        if (selectionBarEscapeTimer > 0)
+        {
+            progressBar.position = myCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 7));
+            progressFill.x = useTimer / useTimerMax;
+            progressBar.GetChild(1).localScale = progressFill;
         }
     }
 
@@ -157,8 +174,9 @@ public class TileScript : MonoBehaviour
             // using a tool or plant on a tile
             if (!isInventory)
             {
+                selectedInventoryTile = myInventory.GetComponent<TileScript>().selectedInventoryTile;
                 // if you can plant a seed or picked up plant you will
-                if ((myRuleTile == tilledSoil && plantTiles.GetTile(CheckTile()) == null) || pickedUpPlant != null)
+                if (((myRuleTile == tilledSoil && plantTiles.GetTile(CheckTile()) == null) || pickedUpPlant != null) && selectedInventoryTile != null)
                 {
                     if (useTimer == 0)
                     {
@@ -169,13 +187,13 @@ public class TileScript : MonoBehaviour
                     {
                         useTimer += Time.deltaTime;
                     }
+
                     // uses the seed or plant on the tile if you have waited long enough
-                    if (useTimer > useTimerMax)
+                    if (useTimer > useTimerMax && selectedInventoryTile != null)
                     {
                         // using a seed
                         if (pickedUpPlant == null)
                         {
-                            selectedInventoryTile = myInventory.GetComponent<TileScript>().selectedInventoryTile;
                             plantTiles.SetTile(myTilePositionInt, selectedInventoryTile);
                             useTimer = 0;
                             for (int i = 0; i < plantTiles.transform.childCount; i++)
@@ -461,7 +479,7 @@ public class TileScript : MonoBehaviour
                         && pickedUpPlant == null)
                     {
                         gsManager.heldMoneyAmount += plantTiles.gameObject.transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<CottonScript>().sellValue;
-                        gsManager.moneyUI.GetComponent<TextMeshPro>().text = gsManager.heldMoneyAmount.ToString();
+                        gsManager.moneyUI.GetComponent<TextMeshPro>().text = ((int)gsManager.heldMoneyAmount).ToString();
                         plantTiles.SetTile(CheckTile(), null);
 
                         // killing the left over copy if necessary 
