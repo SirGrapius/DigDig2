@@ -15,6 +15,7 @@ TagManager:
   - InInventory
   - Minimap
   - HouseHPBar
+  - PlayerSprite
   layers:
   - Default
   - TransparentFX
