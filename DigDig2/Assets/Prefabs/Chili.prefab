@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 6187965524351758273}
   - component: {fileID: 1759131427889201029}
   - component: {fileID: 8481417771294364246}
-  - component: {fileID: 2059948047335981141}
   - component: {fileID: 1361503778246009529}
+  - component: {fileID: 6906960526718560204}
   m_Layer: 0
   m_Name: Chili
   m_TagString: Plant
@@ -201,7 +201,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -229,36 +229,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04ffcc87a84dec4c90db78f0f127bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClosestEnemy
---- !u!114 &2059948047335981141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 710222631786175790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63aa05670c6360f428bc46a89d25052d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Chiliscript
-  attackAnim: {fileID: 7400000, guid: ddd5909be8c9a364880f9aab3c41d6eb, type: 2}
-  baseAnimator: {fileID: 0}
-  maxRange: 4
-  growing: 1
-  growthTimer: 0
-  waterAmount: 1
-  waterAmountMin: 1
-  waterLoss: 1
-  stage1: 5
-  stage2: 10
-  stage3: 15
-  damageValue: 25
-  minTargets: 5
-  stunned: 0
-  gsManager: {fileID: 0}
-  isInInventory: 0
-  maxSellValue: 0
-  sellValue: 0
 --- !u!114 &1361503778246009529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,7 +243,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnyPlant
   typeCotton: {fileID: 0}
   typePotato: {fileID: 0}
-  typeChili: {fileID: 2059948047335981141}
+  typeChili: {fileID: 0}
+--- !u!114 &6906960526718560204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710222631786175790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 212503fb871587f42a473e338d5c1400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChilliScript
+  attackAnim: {fileID: 0}
+  baseAnimator: {fileID: 0}
+  maxRange: 4
+  growing: 0
+  growthTimer: 0
+  waterAmount: 1
+  waterAmountMin: 1
+  waterLoss: 1
+  stage1: 10
+  stage2: 20
+  stage3: 30
+  damageValue: 10
+  minTargets: 5
+  stunned: 0
+  gsManager: {fileID: 0}
+  isInInventory: 0
+  maxSellValue: 0
+  sellValue: 0
 --- !u!1 &4603472391295838178
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,7 +406,7 @@ Transform:
   m_GameObject: {fileID: 5072797503713401130}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.16, y: 1.51, z: 0}
+  m_LocalPosition: {x: 0, y: -0.6, z: 0}
   m_LocalScale: {x: 1, y: 0.19999999, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
