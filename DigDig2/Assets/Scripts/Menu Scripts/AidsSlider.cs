@@ -25,11 +25,11 @@ public class AidsSlider : MonoBehaviour
 
         if (sfxSlider)
         {
-            mySlider.value = gsManager.sfxVolume * 10;
+            mySlider.value = gsManager.sfxVolume * 100;
         }
         if (musicSlider)
         {
-            mySlider.value = gsManager.musicVolume * 10;
+            mySlider.value = gsManager.musicVolume * 100;
         }
     }
 
@@ -39,11 +39,11 @@ public class AidsSlider : MonoBehaviour
         text.text = sliderText + mySlider.value.ToString();
         if (sfxSlider)
         {
-            gsManager.sfxVolume = mySlider.value / 10;
+            gsManager.sfxVolume = mySlider.value / 100;
         }
         if (musicSlider)
         {
-            gsManager.musicVolume = mySlider.value / 10;
+            gsManager.musicVolume = mySlider.value / 100;
         }
     }
 }
