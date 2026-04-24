@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class RoundManager : MonoBehaviour
 {
     [SerializeField] GameStateManager gsManager;
+    [SerializeField] ShopingScript shop;
     [SerializeField] SceneLoader sceneLoader;
     [SerializeField] bool tutorialDone;
     [SerializeField] bool unpaused;
@@ -87,6 +88,7 @@ public class RoundManager : MonoBehaviour
             {
                 StartCoroutine(TextFadeCoroutine(new Color(myText.color.r, myText.color.g, myText.color.b, 0), new Color(myText.color.r, myText.color.g, myText.color.b, 1), "A Wave of Beasts is Coming, Prepare Yourself!"));
                 waveModifier++;
+                shop.DespawnShop();
                 StartCoroutine(GenerateEnemyPoints());
             }
 
@@ -294,6 +296,7 @@ public class RoundManager : MonoBehaviour
         time = 0;
         houseHealthAtDayStart = houseHealth;
         SaveSystem.Save();
+        shop.SpawnShop();
     }
 
     void PlayerLoss()

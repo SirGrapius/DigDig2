@@ -1367,6 +1367,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7393141728496161741, guid: 47952ed94acb2cd418f6be1add6f6250, type: 3}
   m_PrefabInstance: {fileID: 201039479}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &231090584
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 231090585}
+  m_Layer: 0
+  m_Name: ShopSpawnPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &231090585
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231090584}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.83432, y: -11.9521, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &258792642
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52500,8 +52531,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3070243134995748040, guid: 1b421ef2a7f92814ebb24ec84918d831, type: 3}
       propertyPath: day
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3070243134995748040, guid: 1b421ef2a7f92814ebb24ec84918d831, type: 3}
+      propertyPath: shop
+      value: 
+      objectReference: {fileID: 2144244201}
     - target: {fileID: 3070243134995748040, guid: 1b421ef2a7f92814ebb24ec84918d831, type: 3}
       propertyPath: myText
       value: 
@@ -53463,6 +53498,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopingScript
   myCollider: {fileID: 0}
   shopOverlay: {fileID: 0}
+  shopLocation: {fileID: 231090584}
   possiblePlantsSold: []
   plantsCurrentlySold: []
   plantsSold: 0
@@ -55125,3 +55161,4 @@ SceneRoots:
   - {fileID: 1795504294}
   - {fileID: 1236561928}
   - {fileID: 390384106}
+  - {fileID: 231090585}
