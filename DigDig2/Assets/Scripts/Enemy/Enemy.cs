@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Enemy : MonoBehaviour
 {
@@ -208,7 +209,7 @@ public class Enemy : MonoBehaviour
         {
             newDirection = direction.x > 0 ? 1 : 3; 
         }
-        else if(isAttacking == false)
+        else if (isAttacking == false)
         {
             newDirection = direction.y > 0 ? 0 : 2;
         }
@@ -221,7 +222,9 @@ public class Enemy : MonoBehaviour
         {
             currentDirection = newDirection;
             animator.SetInteger("Direction", currentDirection);
+            animator.SetTrigger("ChangeDirection");
         }
+
     }
 
     void MoveTowardsTarget(Vector2 targetPos)
