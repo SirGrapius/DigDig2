@@ -359,11 +359,13 @@ MonoBehaviour:
   attackRange: 1
   bloodlust: 0
   isAttacking: 0
+  isFlying: 0
   detectCollider: {fileID: 2192622558226609957}
   animator: {fileID: 1310158651308162461}
   frontColliderTransform: {fileID: 6704705294099058074}
   frontCollider: {fileID: 6194016403738622880}
   spriteRenderer: {fileID: 7206875081165226953}
+  explosionPrefab: {fileID: 1446246048912720928, guid: d90e8a8374dbe3e41b9fd9ec54f3a4f7, type: 3}
   nearbyPlants: []
   frontColliderPlants: []
 --- !u!50 &-81466769291496127

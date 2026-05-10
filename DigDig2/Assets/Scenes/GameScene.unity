@@ -52416,6 +52416,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shop icons (cotton)
       objectReference: {fileID: 0}
+    - target: {fileID: 5475067525651132240, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5475067525651132240, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5475067525651132240, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5537356725024785526, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5537356725024785526, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5870436923028195982, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

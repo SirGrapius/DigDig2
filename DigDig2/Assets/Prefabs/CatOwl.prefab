@@ -192,6 +192,7 @@ MonoBehaviour:
   frontColliderTransform: {fileID: 9084786279265210438}
   frontCollider: {fileID: 703645690262940481}
   spriteRenderer: {fileID: 6457849646449358105}
+  explosionPrefab: {fileID: 1446246048912720928, guid: d90e8a8374dbe3e41b9fd9ec54f3a4f7, type: 3}
   nearbyPlants: []
   frontColliderPlants: []
 --- !u!50 &6813038150260938519

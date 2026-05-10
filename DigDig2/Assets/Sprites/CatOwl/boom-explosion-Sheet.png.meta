@@ -1,0 +1,616 @@
+fileFormatVersion: 2
+guid: c386ba97884e7e645881b76ea908e2d9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5102936638710841892
+    second: boom-explosion-Sheet_0
+  - first:
+      213: 913707397762224048
+    second: boom-explosion-Sheet_1
+  - first:
+      213: -5989284182110718302
+    second: boom-explosion-Sheet_2
+  - first:
+      213: -5946721969878859204
+    second: boom-explosion-Sheet_3
+  - first:
+      213: 2042211435077063414
+    second: boom-explosion-Sheet_4
+  - first:
+      213: 149137152483861037
+    second: boom-explosion-Sheet_5
+  - first:
+      213: -5122497611368166778
+    second: boom-explosion-Sheet_6
+  - first:
+      213: -5051229914120048760
+    second: boom-explosion-Sheet_7
+  - first:
+      213: 5185894674657564281
+    second: boom-explosion-Sheet_8
+  - first:
+      213: -4659798367859415733
+    second: boom-explosion-Sheet_9
+  - first:
+      213: 4328291695559234040
+    second: boom-explosion-Sheet_10
+  - first:
+      213: -9027257543055283677
+    second: boom-explosion-Sheet_11
+  - first:
+      213: -1209921185470413375
+    second: boom-explosion-Sheet_12
+  - first:
+      213: 8245933658484169419
+    second: boom-explosion-Sheet_13
+  - first:
+      213: -8129505708384007281
+    second: boom-explosion-Sheet_14
+  - first:
+      213: 1686043409106335167
+    second: boom-explosion-Sheet_15
+  - first:
+      213: -1670462895380233628
+    second: boom-explosion-Sheet_16
+  - first:
+      213: -6784112524636680201
+    second: boom-explosion-Sheet_17
+  - first:
+      213: 4005163342784728426
+    second: boom-explosion-Sheet_18
+  - first:
+      213: -305850870504578296
+    second: boom-explosion-Sheet_19
+  - first:
+      213: -1397934035648411993
+    second: boom-explosion-Sheet_20
+  - first:
+      213: -2899006268061942936
+    second: boom-explosion-Sheet_21
+  - first:
+      213: 1331437803847490046
+    second: boom-explosion-Sheet_22
+  - first:
+      213: 751633173097991756
+    second: boom-explosion-Sheet_23
+  - first:
+      213: 7506788311359219157
+    second: boom-explosion-Sheet_24
+  - first:
+      213: 2529008499002931454
+    second: boom-explosion-Sheet_25
+  - first:
+      213: 7959026649270995611
+    second: boom-explosion-Sheet_26
+  - first:
+      213: 877124245975700542
+    second: boom-explosion-Sheet_27
+  - first:
+      213: 6316025660017732895
+    second: boom-explosion-Sheet_28
+  - first:
+      213: 4307498765893774573
+    second: boom-explosion-Sheet_29
+  - first:
+      213: 4614630325535795166
+    second: boom-explosion-Sheet_30
+  - first:
+      213: -2486356808745459599
+    second: boom-explosion-Sheet_31
+  - first:
+      213: -2710975390804710446
+    second: boom-explosion-Sheet_32
+  - first:
+      213: -571162150461223473
+    second: boom-explosion-Sheet_33
+  - first:
+      213: -909959932081451972
+    second: boom-explosion-Sheet_34
+  - first:
+      213: 7612033716582032876
+    second: boom-explosion-Sheet_35
+  - first:
+      213: -6515485044387817906
+    second: boom-explosion-Sheet_36
+  - first:
+      213: 1108415890070307052
+    second: boom-explosion-Sheet_37
+  - first:
+      213: -7987362050934134161
+    second: boom-explosion-Sheet_38
+  - first:
+      213: 8128878187468392200
+    second: boom-explosion-Sheet_39
+  - first:
+      213: 1977829193445113191
+    second: boom-explosion-Sheet_40
+  - first:
+      213: -6680123207044653388
+    second: boom-explosion-Sheet_41
+  - first:
+      213: 1221162189917755942
+    second: boom-explosion-Sheet_42
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: boom-explosion-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdd7052e92abe29b0800000000000000
+      internalID: -5102936638710841892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boom-explosion-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bf834889042eac00800000000000000
+      internalID: 913707397762224048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boom-explosion-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a6bc6ad4c9c1eca0800000000000000
+      internalID: -5989284182110718302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boom-explosion-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c320c5f10eff87da0800000000000000
+      internalID: -5946721969878859204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boom-explosion-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f25208ea74675c10800000000000000
+      internalID: 2042211435077063414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boom-explosion-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d222d943377d11200800000000000000
+      internalID: 149137152483861037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boom-explosion-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68a0d97009b39e8b0800000000000000
+      internalID: -5122497611368166778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boom-explosion-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88f2c0ad72d66e9b0800000000000000
+      internalID: -5051229914120048760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boom-explosion-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 976dd850bbff7f740800000000000000
+      internalID: 5185894674657564281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boom-explosion-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b456bc6b212155fb0800000000000000
+      internalID: -4659798367859415733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boom-explosion-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 1760
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f1d4166d5e211c30800000000000000
+      internalID: 4328291695559234040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boom-explosion-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32a6932d71db8b280800000000000000
+      internalID: -9027257543055283677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boom-explosion-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 2080
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c501dd971f753fe0800000000000000
+      internalID: -1209921185470413375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boom-explosion-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bcad26b39f07f6270800000000000000
+      internalID: 8245933658484169419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boom-explosion-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8bc24451a13e2f80800000000000000
+      internalID: -8129505708384007281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boom-explosion-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb5fbab2c87066710800000000000000
+      internalID: 1686043409106335167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 1f95f51c8a8068d4588e7745bfdbfa65
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":17.0,"y":1.0},"gridSpriteSize":{"x":160.0,"y":160.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      boom-explosion-Sheet_0: -5102936638710841892
+      boom-explosion-Sheet_1: 913707397762224048
+      boom-explosion-Sheet_10: 4328291695559234040
+      boom-explosion-Sheet_11: -9027257543055283677
+      boom-explosion-Sheet_12: -1209921185470413375
+      boom-explosion-Sheet_13: 8245933658484169419
+      boom-explosion-Sheet_14: -8129505708384007281
+      boom-explosion-Sheet_15: 1686043409106335167
+      boom-explosion-Sheet_2: -5989284182110718302
+      boom-explosion-Sheet_3: -5946721969878859204
+      boom-explosion-Sheet_4: 2042211435077063414
+      boom-explosion-Sheet_5: 149137152483861037
+      boom-explosion-Sheet_6: -5122497611368166778
+      boom-explosion-Sheet_7: -5051229914120048760
+      boom-explosion-Sheet_8: 5185894674657564281
+      boom-explosion-Sheet_9: -4659798367859415733
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
