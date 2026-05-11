@@ -49,6 +49,7 @@ public class SaveSystem
     public static void ClearData()
     {
         File.WriteAllText(SaveFileName(), JsonUtility.ToJson(null, true));
+        Debug.Log("erased old data");
     }
 
     public static void Load()
