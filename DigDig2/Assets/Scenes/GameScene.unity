@@ -53466,7 +53466,14 @@ MonoBehaviour:
   end: {x: 0.9375, y: 0, z: 0}
   current: {x: 0, y: 0, z: 0}
   back: {fileID: 909956741}
+  timedPos: 0
   timeMulti: 0.1
+  dayTime: 300
+  scale: {x: 0, y: 0, z: 0}
+  dayNightSprites:
+  - {fileID: 1675373462390500913, guid: 4f92110722f19cf45be529d80e2e606d, type: 3}
+  - {fileID: -8930032316952095649, guid: 4f92110722f19cf45be529d80e2e606d, type: 3}
+  flipspeed: 4
 --- !u!212 &2116605342
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -55065,9 +55072,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2307374216104780081, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       insertIndex: -1
       addedObject: {fileID: 909956743}
-    - targetCorrespondingSourceObject: {fileID: 4792230691396148407, guid: e6b985feb026bc944a80049baae89b73, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 673213984}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5119835746095210428, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       insertIndex: -1
