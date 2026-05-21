@@ -34,10 +34,8 @@ public class SceneLoader : MonoBehaviour
 
     void Update()
     {
-        if (!gsManager.enabled)
-        {
-            gsManager.enabled = true;
-        }
+        gsManager.enabled = true;
+
         source.volume = gsManager.musicVolume;
 
         if (SceneManager.GetActiveScene().name == "Main Menu")
@@ -52,7 +50,6 @@ public class SceneLoader : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Escape))
         {
-            SaveSystem.Save();
             gsManager.SetState(GameState.Paused);
         }
 
@@ -111,20 +108,15 @@ public class SceneLoader : MonoBehaviour
             case "Resume":
                 {
                     currentMenu.transform.position = new Vector3(30000, 30000, 0);
-                    if (currentMenu == settingsMenu && SceneManager.GetActiveScene().name != "Main Menu")
+                    if (currentMenu == settingsMenu)
                     {
                         currentMenu = pauseMenu;
                         pauseMenu.transform.position = new Vector3(canvas.transform.position.x, canvas.transform.position.y, -5);
-                        SaveSystem.SaveSettings();
                     }
                     else
                     {
                         screenFader.FadeCoroutine(new Color(255, 255, 255, 0.5f), new Color(255, 255, 255, 0), 0.25f);
                         gsManager.SetState(GameState.Gameplay);
-                    }
-                    if (currentMenu == settingsMenu && SceneManager.GetActiveScene().name == "Main Menu")
-                    {
-                        SaveSystem.SaveSettings();
                     }
                         break;
                 }
@@ -163,6 +155,7 @@ public class SceneLoader : MonoBehaviour
     {
         StartCoroutine(screenFader.FadeCoroutine(new Color(0, 0, 0, 0.5f), new Color(0, 0, 0, 0f), 0.25f));
         pauseMenu.transform.position = new Vector3(10000,10000,0);
+        SaveSystem.Save();
         yield return new WaitForSeconds(0.1f);
         isPaused = false;
         yield return null;
@@ -171,8 +164,8 @@ public class SceneLoader : MonoBehaviour
     IEnumerator QuitGame()
     {
         StartCoroutine(screenFader.FadeOutCoroutine(fadeDuration));
+        SaveSystem.Save();
         yield return new WaitForSeconds(fadeDuration);
-
         Application.Quit();
     }
 }

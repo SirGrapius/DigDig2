@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,6 +17,9 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] public float sfxVolume;
     [SerializeField] public float musicVolume;
 
+    public PlayerMovement Player { get; set; }
+    public RoundManager RoundManager { get; set; }
+
     public static GameStateManager Instance
     {
         get
@@ -27,20 +31,17 @@ public class GameStateManager : MonoBehaviour
             if (instance == null)
             {
                 Debug.Log("what");
-                Instantiate(Resources.Load<GameStateManager>("GameManager"));
+                instance = Resources.Load<GameStateManager>("GameManager");
             }
 
             return instance;
         }
     }
 
-    public PlayerMovement Player { get; set; }
-    public RoundManager RoundManager { get; set; }
-
     private void Awake()
     {
         SaveSystem.Load();
-        instance = this;
+        instance = this.GetComponent<GameStateManager>();
         if (SceneManager.GetSceneByName("Main Menu") != SceneManager.GetActiveScene())
         {
             Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
@@ -90,13 +91,9 @@ public class GameStateManager : MonoBehaviour
         Debug.Log("saved");
     }
 
-    public void Save(ref MoneyData moneyData)
+    public void Save(ref SoundData sfxData, MoneyData moneyData)
     {
         moneyData.money = heldMoneyAmount;
-    }
-
-    public void SaveSettings(ref SoundData sfxData)
-    {
         sfxData.sfxVol = sfxVolume;
         sfxData.musicVol = musicVolume;
     }

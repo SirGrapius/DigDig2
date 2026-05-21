@@ -2,12 +2,13 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class RoundManager : MonoBehaviour
 {
     [SerializeField] GameStateManager gsManager;
-    [SerializeField] ShopingScript shop;
+    [SerializeField] GameObject shop;
     [SerializeField] SceneLoader sceneLoader;
     public bool tutorialDone;
     [SerializeField] bool unpaused;
@@ -52,7 +53,7 @@ public class RoundManager : MonoBehaviour
         gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
         sceneLoader = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneLoader>();
         houseHealthBar = GameObject.FindGameObjectWithTag("HouseHPBar").GetComponent<Slider>();
-        shop = GameObject.FindGameObjectWithTag("Shop").GetComponent<ShopingScript>();
+        shop = GameObject.FindGameObjectWithTag("Shop");
         SaveSystem.Load();
     }
 
@@ -82,17 +83,13 @@ public class RoundManager : MonoBehaviour
 
     void Update()
     {
-        if (!gsManager.enabled)
-        {
-            gsManager.enabled = true;
-        }
         musicSource.volume = gsManager.musicVolume;
-        if (musicSource.isPlaying == false)
+        if (musicSource.isPlaying == false && SceneManager.GetActiveScene().name != "Main Menu")
         {
             musicSource.Play();
         }
 
-        if (!unpaused)
+        if (!unpaused && SceneManager.GetActiveScene().name != "Main Menu")
         {
             musicSource.clip = osts[0];
         }
@@ -109,9 +106,9 @@ public class RoundManager : MonoBehaviour
             }
             if (((60 <= time && time < 61) || (120 <= time && time < 121) || (180 <= time && time < 181) || (240 <= time && time < 241 && day != 10)) && !generatingPoints) //generate enemy points every minute
             {
+                shop.SetActive(false);
                 StartCoroutine(TextFadeCoroutine(new Color(myText.color.r, myText.color.g, myText.color.b, 0), new Color(myText.color.r, myText.color.g, myText.color.b, 1), "A Wave of Beasts is Coming, Prepare Yourself!"));
                 waveModifier++;
-                shop.DespawnShop();
                 StartCoroutine(GenerateEnemyPoints());
             }
 
@@ -138,16 +135,16 @@ public class RoundManager : MonoBehaviour
                 PlayerLoss();
             }
 
-            if (numberOfEnemies > 0 && currentBoss == null && !shop.shopOpen)
+            if (numberOfEnemies > 0 && currentBoss == null && !shop.activeSelf)
             {
                 musicSource.clip = osts[1];
             }
-            else if (currentBoss != null && !shop.shopOpen)
+            else if (currentBoss != null && !shop.activeSelf)
             {
                 musicSource.clip = osts[2];
             }
 
-            if (shop.shopOpen)
+            if (shop.activeSelf)
             {
                 musicSource.clip = osts[3];
             }
@@ -338,7 +335,7 @@ public class RoundManager : MonoBehaviour
         houseHealthAtDayStart = houseHealth;
         musicSource.clip = osts[0];
         SaveSystem.Save();
-        shop.SpawnShop();
+        shop.SetActive(true);
     }
 
     void PlayerLoss()

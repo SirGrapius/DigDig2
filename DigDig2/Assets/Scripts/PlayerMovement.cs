@@ -69,10 +69,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (!roundManager.enabled)
-        {
-            roundManager.enabled = true;
-        }
         playerInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")); //if player presses a movement key the player will move
         audioSource.volume = gsManager.sfxVolume;
         if (isMoving)
@@ -303,7 +299,7 @@ public class PlayerMovement : MonoBehaviour
             currentSpeed = baseSpeed;
         }
 
-        if (roundManager == !enabled)
+        if (!roundManager.enabled)
         {
             roundManager.enabled = true;
         }
@@ -355,17 +351,17 @@ public class PlayerMovement : MonoBehaviour
 
     public void Save(ref PlayerSaveData data)
     {
-        data.Position = transform.position;
+        data.position = transform.position;
     }
 
     public void Load(PlayerSaveData data)
     {
-        transform.position = data.Position;
+        transform.position = data.position;
     }
 }
 
 [System.Serializable]
 public struct PlayerSaveData
 {
-    public Vector3 Position;
+    public Vector3 position;
 }

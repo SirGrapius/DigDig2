@@ -22,39 +22,30 @@ public class SaveSystem
 
     public static string SaveFileName()
     {
-        string saveFile = Application.persistentDataPath + "save" + ".save";
+        string saveFile = Application.persistentDataPath + "save" + ".json";
         return saveFile;
     }
     public static string SettingsDataFileName()
     {
-        string settingsFile = Application.persistentDataPath + "settings" + ".save";
+        string settingsFile = Application.persistentDataPath + "settings" + ".json";
         return settingsFile;
     }
 
     public static void Save()
     {
+        Debug.Log("starting save");
         HandleSaveData();
 
         File.WriteAllText(SaveFileName(), JsonUtility.ToJson(saveData, true));
+        File.WriteAllText(SettingsDataFileName(), JsonUtility.ToJson(settingsData, true));
     }
 
     private static void HandleSaveData()
     {
+        Debug.Log("saving");
         GameStateManager.Instance.Player.Save(ref saveData.PlayerData);
         GameStateManager.Instance.RoundManager.Save(ref saveData.RoundData);
-        GameStateManager.Instance.Save(ref saveData.MoneyData);
-    }
-
-    public static void SaveSettings()
-    {
-        HandleSaveData();
-
-        File.WriteAllText(SettingsDataFileName(), JsonUtility.ToJson(settingsData, true));
-    }
-
-    public static void HandleSaveSettings()
-    {
-        GameStateManager.Instance.SaveSettings(ref settingsData.SoundData);
+        GameStateManager.Instance.Save(ref settingsData.SoundData, saveData.MoneyData);
     }
 
     public static void ClearData()
@@ -65,7 +56,6 @@ public class SaveSystem
 
     public static void Load()
     {
-        Debug.Log("loading");
         string saveContent = File.ReadAllText(SaveFileName());
         string settingsContent = File.ReadAllText(SettingsDataFileName());
 

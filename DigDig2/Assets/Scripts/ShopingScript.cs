@@ -24,10 +24,7 @@ public class ShopingScript : MonoBehaviour
     }
     void Update()
     {
-        if (shopOpen)
-        {
 
-        }
     }
 
     public void SpawnShop()
