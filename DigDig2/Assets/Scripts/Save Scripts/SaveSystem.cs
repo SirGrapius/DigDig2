@@ -36,14 +36,25 @@ public class SaveSystem
         HandleSaveData();
 
         File.WriteAllText(SaveFileName(), JsonUtility.ToJson(saveData, true));
-        File.WriteAllText(SettingsDataFileName(), JsonUtility.ToJson(settingsData, true));
     }
 
     private static void HandleSaveData()
     {
         GameStateManager.Instance.Player.Save(ref saveData.PlayerData);
         GameStateManager.Instance.RoundManager.Save(ref saveData.RoundData);
-        GameStateManager.Instance.Save(ref settingsData.SoundData, saveData.MoneyData);
+        GameStateManager.Instance.Save(ref saveData.MoneyData);
+    }
+
+    public static void SaveSettings()
+    {
+        HandleSaveData();
+
+        File.WriteAllText(SettingsDataFileName(), JsonUtility.ToJson(settingsData, true));
+    }
+
+    public static void HandleSaveSettings()
+    {
+        GameStateManager.Instance.SaveSettings(ref settingsData.SoundData);
     }
 
     public static void ClearData()
@@ -54,6 +65,7 @@ public class SaveSystem
 
     public static void Load()
     {
+        Debug.Log("loading");
         string saveContent = File.ReadAllText(SaveFileName());
         string settingsContent = File.ReadAllText(SettingsDataFileName());
 

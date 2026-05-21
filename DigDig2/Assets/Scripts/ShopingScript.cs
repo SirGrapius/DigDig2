@@ -12,7 +12,7 @@ public class ShopingScript : MonoBehaviour
     [SerializeField] int[] possibleItemsSold;
     [SerializeField] int[] itemsCurrentlySold;
     [SerializeField] int itemsSold;
-    [SerializeField] bool shopOpen;
+    [SerializeField] public bool shopOpen;
     private void Awake()
     {
         myCollider = GetComponent<BoxCollider2D>();

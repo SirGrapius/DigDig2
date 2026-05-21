@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class RoundManager : MonoBehaviour
@@ -35,6 +36,10 @@ public class RoundManager : MonoBehaviour
     bool generatingPoints;
     bool spawningEnemy;
 
+    [Header("Music Settings")]
+    [SerializeField] AudioSource musicSource;
+    [SerializeField] AudioClip[] osts; //0 = intermission, 1 = combat, 2 = boss, 3 = shop
+
     [Header("Text Settings")]
     [SerializeField] TextMeshProUGUI myText;
     [SerializeField] float fadeDuration;
@@ -42,10 +47,12 @@ public class RoundManager : MonoBehaviour
 
     private void Awake()
     {
+        musicSource = GetComponent<AudioSource>();
         houseObject = GameObject.FindGameObjectWithTag("MainTarget");
         gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
         sceneLoader = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneLoader>();
         houseHealthBar = GameObject.FindGameObjectWithTag("HouseHPBar").GetComponent<Slider>();
+        shop = GameObject.FindGameObjectWithTag("Shop").GetComponent<ShopingScript>();
         SaveSystem.Load();
     }
 
@@ -65,6 +72,7 @@ public class RoundManager : MonoBehaviour
         {
             gsManager.heldMoneyAmount = 100;
         }
+        musicSource.clip = osts[0];
     }
 
     void OnDestroy()
@@ -74,6 +82,21 @@ public class RoundManager : MonoBehaviour
 
     void Update()
     {
+        if (!gsManager.enabled)
+        {
+            gsManager.enabled = true;
+        }
+        musicSource.volume = gsManager.musicVolume;
+        if (musicSource.isPlaying == false)
+        {
+            musicSource.Play();
+        }
+
+        if (!unpaused)
+        {
+            musicSource.clip = osts[0];
+        }
+        
         if (unpaused)
         {
             if (time < maxRoundTime) //changes time to Time.deltaTime
@@ -115,7 +138,25 @@ public class RoundManager : MonoBehaviour
                 PlayerLoss();
             }
 
-            numberOfEnemies = Mathf.RoundToInt(GameObject.FindGameObjectsWithTag("Enemy").Length);
+            if (numberOfEnemies > 0 && currentBoss == null && !shop.shopOpen)
+            {
+                musicSource.clip = osts[1];
+            }
+            else if (currentBoss != null && !shop.shopOpen)
+            {
+                musicSource.clip = osts[2];
+            }
+
+            if (shop.shopOpen)
+            {
+                musicSource.clip = osts[3];
+            }
+            else if (numberOfEnemies == 0 && currentBoss == null)
+            {
+                musicSource.clip = osts[0];
+            }
+
+                numberOfEnemies = Mathf.RoundToInt(GameObject.FindGameObjectsWithTag("Enemy").Length);
             houseHealthBar.value = houseHealth;
         }
     }
@@ -295,6 +336,7 @@ public class RoundManager : MonoBehaviour
         OpenNewLane();
         time = 0;
         houseHealthAtDayStart = houseHealth;
+        musicSource.clip = osts[0];
         SaveSystem.Save();
         shop.SpawnShop();
     }

@@ -15,6 +15,7 @@ public class GameStateManager : MonoBehaviour
     [Header("Settings")]
     [SerializeField] public float sfxVolume;
     [SerializeField] public float musicVolume;
+
     public static GameStateManager Instance
     {
         get
@@ -38,6 +39,7 @@ public class GameStateManager : MonoBehaviour
 
     private void Awake()
     {
+        SaveSystem.Load();
         instance = this;
         if (SceneManager.GetSceneByName("Main Menu") != SceneManager.GetActiveScene())
         {
@@ -88,9 +90,13 @@ public class GameStateManager : MonoBehaviour
         Debug.Log("saved");
     }
 
-    public void Save(ref SoundData sfxData, MoneyData moneyData)
+    public void Save(ref MoneyData moneyData)
     {
         moneyData.money = heldMoneyAmount;
+    }
+
+    public void SaveSettings(ref SoundData sfxData)
+    {
         sfxData.sfxVol = sfxVolume;
         sfxData.musicVol = musicVolume;
     }

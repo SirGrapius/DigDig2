@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,7 +14,7 @@ public class SceneLoader : MonoBehaviour
     [SerializeField] AudioSource source;
     [SerializeField] ScreenFade screenFader;
 
-    [SerializeField] List<AudioClip> audioList;
+    [SerializeField] AudioClip[] audioList;
 
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject settingsMenu;
@@ -32,6 +34,22 @@ public class SceneLoader : MonoBehaviour
 
     void Update()
     {
+        if (!gsManager.enabled)
+        {
+            gsManager.enabled = true;
+        }
+        source.volume = gsManager.musicVolume;
+
+        if (SceneManager.GetActiveScene().name == "Main Menu")
+        {
+            source.clip = audioList[0];
+        }
+
+        if (!source.isPlaying)
+        {
+            source.Play();
+        }
+
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             SaveSystem.Save();
@@ -87,25 +105,28 @@ public class SceneLoader : MonoBehaviour
 
             case "Quit":
                 {
-                    source.clip = audioList[0];
-                    source.Play();
                     StartCoroutine(QuitGame());
                     break;
                 }
             case "Resume":
                 {
                     currentMenu.transform.position = new Vector3(30000, 30000, 0);
-                    if (currentMenu == settingsMenu)
+                    if (currentMenu == settingsMenu && SceneManager.GetActiveScene().name != "Main Menu")
                     {
                         currentMenu = pauseMenu;
                         pauseMenu.transform.position = new Vector3(canvas.transform.position.x, canvas.transform.position.y, -5);
+                        SaveSystem.SaveSettings();
                     }
                     else
                     {
                         screenFader.FadeCoroutine(new Color(255, 255, 255, 0.5f), new Color(255, 255, 255, 0), 0.25f);
                         gsManager.SetState(GameState.Gameplay);
-                    } 
-                    break;
+                    }
+                    if (currentMenu == settingsMenu && SceneManager.GetActiveScene().name == "Main Menu")
+                    {
+                        SaveSystem.SaveSettings();
+                    }
+                        break;
                 }
         }
 
@@ -149,8 +170,6 @@ public class SceneLoader : MonoBehaviour
 
     IEnumerator QuitGame()
     {
-        source.clip = audioList[0];
-        source.Play();
         StartCoroutine(screenFader.FadeOutCoroutine(fadeDuration));
         yield return new WaitForSeconds(fadeDuration);
 

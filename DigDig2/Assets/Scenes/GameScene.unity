@@ -53541,7 +53541,7 @@ GameObject:
   - component: {fileID: 2144244205}
   m_Layer: 0
   m_Name: Shop
-  m_TagString: Untagged
+  m_TagString: Shop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55065,9 +55065,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2307374216104780081, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       insertIndex: -1
       addedObject: {fileID: 909956743}
-    - targetCorrespondingSourceObject: {fileID: 4792230691396148407, guid: e6b985feb026bc944a80049baae89b73, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 673213984}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5119835746095210428, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       insertIndex: -1

@@ -16,6 +16,7 @@ TagManager:
   - Minimap
   - HouseHPBar
   - PlayerSprite
+  - Shop
   layers:
   - Default
   - TransparentFX
