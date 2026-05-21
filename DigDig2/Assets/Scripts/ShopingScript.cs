@@ -12,7 +12,6 @@ public class ShopingScript : MonoBehaviour
     [SerializeField] int[] possibleItemsSold;
     [SerializeField] int[] itemsCurrentlySold;
     [SerializeField] int itemsSold;
-    [SerializeField] public bool shopOpen;
     private void Awake()
     {
         myCollider = GetComponent<BoxCollider2D>();
@@ -43,11 +42,9 @@ public class ShopingScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         shopOverlay.SetActive(true);
-        shopOpen = true;
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         shopOverlay.SetActive(false);
-        shopOpen = false;
     }
 }

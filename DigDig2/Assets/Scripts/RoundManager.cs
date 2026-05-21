@@ -9,7 +9,7 @@ public class RoundManager : MonoBehaviour
     [SerializeField] GameStateManager gsManager;
     [SerializeField] ShopingScript shop;
     [SerializeField] SceneLoader sceneLoader;
-    [SerializeField] bool tutorialDone;
+    public bool tutorialDone;
     [SerializeField] bool unpaused;
     [Header("Day Settings")]
     [SerializeField] int day;
