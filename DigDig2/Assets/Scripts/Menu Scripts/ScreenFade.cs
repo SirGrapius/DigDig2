@@ -13,15 +13,6 @@ public class ScreenFade : MonoBehaviour
         gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
     }
 
-    void Update()
-    {
-
-        if (Input.GetKey(KeyCode.L))
-        {
-            StartCoroutine(FadeOutCoroutine(1));
-        }
-    }
-
     public IEnumerator FadeInCoroutine(float duration)
     {
         Color startColor = new Color(mySprite.color.r, mySprite.color.g, mySprite.color.b, 1);
