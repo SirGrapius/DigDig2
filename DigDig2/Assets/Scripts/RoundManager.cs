@@ -54,11 +54,11 @@ public class RoundManager : MonoBehaviour
         sceneLoader = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneLoader>();
         houseHealthBar = GameObject.FindGameObjectWithTag("HouseHPBar").GetComponent<Slider>();
         shop = GameObject.FindGameObjectWithTag("Shop");
-        SaveSystem.Load();
     }
 
     void Start()
     {
+        SaveSystem.Load();
         unpaused = true;
         if (day == 0)
         {

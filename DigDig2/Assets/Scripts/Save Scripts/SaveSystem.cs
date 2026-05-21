@@ -56,6 +56,7 @@ public class SaveSystem
 
     public static void Load()
     {
+        Debug.Log("load started");
         string saveContent = File.ReadAllText(SaveFileName());
         string settingsContent = File.ReadAllText(SettingsDataFileName());
 
@@ -66,6 +67,7 @@ public class SaveSystem
 
     private static void HandleLoadData()
     {
+        Debug.Log("loading");
         GameStateManager.Instance.Player.Load(saveData.PlayerData);
         GameStateManager.Instance.RoundManager.Load(saveData.RoundData);
         GameStateManager.Instance.Load(settingsData.SoundData, saveData.MoneyData);
