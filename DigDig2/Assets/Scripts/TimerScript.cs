@@ -47,11 +47,11 @@ public class TimerScript : MonoBehaviour
         {
             night = !night;
             flipping = true;
+            timer = 0;
         }
         if (flipping)
         {
             timedPos -= Time.deltaTime * end.x * (flipspeed / 2);
-            timer = 0;
             if (!night)
             {
                 roundManager.time = 0;
