@@ -80,8 +80,8 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 340391889368244954, guid: 1e536936156f43b469697fe84a01f3be, type: 3}
+  m_SortingOrder: -1
+  m_Sprite: {fileID: 7163374461896701620, guid: b9c57a3ac10a8da48b0935abc04a1609, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -128,11 +128,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossEnemy
   relocateCooldown: 30
   relocateTimer: 30
-  attackCooldown: 9
+  baseAttackCooldown: 12
   attackTimer: 9
   stunRadius: 3
   stunDuration: 3
-  crowAttackCooldown: 6
   isRelocating: 0
   crowPrefab: {fileID: 5923951500463139431, guid: 48bb3adc11bf889408c0ca937e99eef2, type: 3}
   animator: {fileID: 8547964071704286715}
