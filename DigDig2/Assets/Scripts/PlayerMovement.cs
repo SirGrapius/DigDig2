@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
         gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
         roundManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<RoundManager>();
     }
-    
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -71,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
     {
         playerInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")); //if player presses a movement key the player will move
         audioSource.volume = gsManager.sfxVolume;
+        shovelSource.volume = gsManager.sfxVolume;
         if (isMoving)
         {
             animator.SetBool("Idle", false);
@@ -305,7 +306,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy") && inventory.selectedTool == 3) //check if you're attacking and there's an enemy in your hitbox and do damage.

@@ -8,14 +8,16 @@ public class SaveSystem
     public static float musicVol;
     public static float sfxVol;
 
-    [System.Serializable] public struct SaveData
+    [System.Serializable]
+    public struct SaveData
     {
         public PlayerSaveData PlayerData;
         public RoundData RoundData;
         public MoneyData MoneyData;
     }
 
-    [System.Serializable] public struct SettingsData 
+    [System.Serializable]
+    public struct SettingsData
     {
         public SoundData SoundData;
     }
