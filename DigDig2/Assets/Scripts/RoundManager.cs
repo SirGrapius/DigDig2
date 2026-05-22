@@ -100,11 +100,6 @@ public class RoundManager : MonoBehaviour
             if (shop.shopOverlay == enabled)
             {
                 musicSource.clip = osts[3];
-                houseHealthBar.gameObject.SetActive(false);
-            }
-            else if (houseHealthBar.gameObject != enabled)
-            {
-                houseHealthBar.gameObject.SetActive(true);
             }
             else if (numberOfEnemies == 0)
             {

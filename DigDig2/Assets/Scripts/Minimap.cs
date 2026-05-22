@@ -58,14 +58,6 @@ public class Minimap : MonoBehaviour
     void Update()
     {
         UpdateIcons();
-        if (shop.shopOverlay == enabled && mapRect.gameObject == enabled)
-        {
-            mapRect.gameObject.SetActive(false);
-        }
-        else if (mapRect.gameObject != enabled)
-        {
-            mapRect.gameObject.SetActive(true);
-        }
     }
 
     void LateUpdate()
