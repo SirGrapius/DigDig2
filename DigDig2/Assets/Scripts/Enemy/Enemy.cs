@@ -34,6 +34,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] Transform frontColliderTransform;
     [SerializeField] BoxCollider2D frontCollider;
     [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] GameObject explosionPrefab;
 
     BoxCollider2D mainTargetCollider;
     RoundManager roundManagerScript;
@@ -86,7 +87,7 @@ public class Enemy : MonoBehaviour
         }
 
         Vector2 closestPoint = mainTargetCollider.ClosestPoint(transform.position); // Calculates the closest point on the houses collider relative to the enemy
-        float mainTargetDist = Vector2.Distance(transform.position, closestPoint);  // Calculates the distance between the enemy and the house colliders closest point
+        mainTargetDist = Vector2.Distance(transform.position, closestPoint);  // Calculates the distance between the enemy and the house colliders closest point
 
         if (mainTarget != null && mainTargetDist <= attackRange || closestPlant != null && closestPlantDist <= attackRange)
         {
@@ -113,6 +114,7 @@ public class Enemy : MonoBehaviour
                 MoveTowardsTarget(mainTarget.transform.position);
             }
         }
+        
     }
 
     #region DetectionLogic
@@ -129,7 +131,7 @@ public class Enemy : MonoBehaviour
     void FindClosestPlant() // Finds the closest plant out of those in the nearbyPlants list
     {
         closestPlant = null;
-        closestPlantDist = Mathf.Infinity;
+        closestPlantDist = Mathf.Infinity; // Fix correct plant distance
 
         List<GameObject> plantsToSearch = bloodlust ? frontColliderPlants : nearbyPlants;
 
@@ -242,7 +244,7 @@ public class Enemy : MonoBehaviour
         }
         else if (closestPlant != null && closestPlantDist <= attackRange) // Else if the closest plant is within attack range, attack that plant
         {
-             AttackClosestPlant(); 
+             AttackClosestPlant();
         }
     }
 
@@ -344,6 +346,7 @@ public class Enemy : MonoBehaviour
     {
         gsManager.heldMoneyAmount += 2;
         gsManager.moneyUI.text = ((int)gsManager.heldMoneyAmount).ToString();
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
