@@ -342,6 +342,8 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
+        gsManager.heldMoneyAmount += 2;
+        gsManager.moneyUI.text = ((int)gsManager.heldMoneyAmount).ToString();
         Destroy(gameObject);
     }
 

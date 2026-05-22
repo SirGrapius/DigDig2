@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class GameStateManager : MonoBehaviour
 {
-    public GameState CurrentGameState {  get; private set; }
+    public GameState CurrentGameState { get; private set; }
 
     public delegate void GameStateChangeHandler(GameState newGameState);
     public event GameStateChangeHandler OnGameStateChange;
@@ -61,7 +61,7 @@ public class GameStateManager : MonoBehaviour
             Rigidbody2D playerRB = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
             playerRB.linearVelocity = Vector3.zero;
         }
-        
+
 
         //Debug.Log(Player.ToString());
     }
