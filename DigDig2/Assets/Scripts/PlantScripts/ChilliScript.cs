@@ -42,6 +42,7 @@ public class ChilliScript : MonoBehaviour
             growthTimer = stage3;
             baseAnimator.SetBool("Inventory", true);
             gameObject.tag = "InInventory";
+            gameObject.GetComponent<SpriteRenderer>().sortingOrder = 5;
         }
     }
 
@@ -82,7 +83,7 @@ public class ChilliScript : MonoBehaviour
                 baseAnimator.SetBool("Child", true);
             }
         }
-        if (!growing)
+        if (!growing && !isInInventory)
         {
             GameObject[] enemiesInRange = targeting.Target(maxRange, minTargets, TargetingPrio.Close);
             if (enemiesInRange != null)

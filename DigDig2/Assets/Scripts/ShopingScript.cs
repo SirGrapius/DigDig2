@@ -4,7 +4,7 @@ using UnityEngine.Tilemaps;
 public class ShopingScript : MonoBehaviour
 {
     [SerializeField] BoxCollider2D myCollider;
-    [SerializeField] GameObject shopOverlay;
+    [SerializeField] public GameObject shopOverlay;
     [SerializeField] GameObject shopLocation;
     [SerializeField] Tile[] possiblePlantsSold;
     [SerializeField] Tile[] plantsCurrentlySold;
@@ -22,13 +22,9 @@ public class ShopingScript : MonoBehaviour
             plantsCurrentlySold[i] = possiblePlantsSold[i];
         }
     }
-    public void SpawnShop()
+    void Update()
     {
-        this.transform.position = shopLocation.transform.position;
-    }
-    public void DespawnShop()
-    {
-        this.transform.position = new Vector3(10000, 10000, 0);
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -9,6 +9,7 @@ public class Minimap : MonoBehaviour
     [SerializeField] RectTransform mapRect;
     [SerializeField] GameObject iconPrefab;
     [SerializeField] Camera minimapCamera;
+    [SerializeField] ShopingScript shop;
 
     [Header("Settings")]
     [SerializeField] float mapRadiusMultiplier = 1f;
@@ -38,6 +39,7 @@ public class Minimap : MonoBehaviour
 
     void Start()
     {
+        shop = GameObject.FindGameObjectWithTag("Shop").GetComponent<ShopingScript>();
         GameObject obj = Instantiate(iconPrefab, mapRect);
         playerIcon = obj.GetComponent<RectTransform>();
 
@@ -56,6 +58,14 @@ public class Minimap : MonoBehaviour
     void Update()
     {
         UpdateIcons();
+        if (shop.shopOverlay == enabled && mapRect.gameObject == enabled)
+        {
+            mapRect.gameObject.SetActive(false);
+        }
+        else if (mapRect.gameObject != enabled)
+        {
+            mapRect.gameObject.SetActive(true);
+        }
     }
 
     void LateUpdate()

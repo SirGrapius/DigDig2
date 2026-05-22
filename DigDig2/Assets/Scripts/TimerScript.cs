@@ -3,23 +3,31 @@ using UnityEngine;
 public class TimerScript : MonoBehaviour
 {
     [SerializeField] Vector3 start, end, current;
-    [SerializeField] GameObject back;
+    [SerializeField] GameObject back, MainCamera;
     [SerializeField] float timedPos;
+    [SerializeField] float timer;
     [SerializeField] float timeMulti = 0.1f;
     [SerializeField] float dayTime = 300;
-    [SerializeField] Vector3 scale;
+    [SerializeField] Vector3 flipslide, flippening, done, positionAdjustment;
     [SerializeField] Sprite[] dayNightSprites;
-    bool night;
-    bool fliped;
+    [SerializeField] bool night;
+    [SerializeField] bool fliped;
     bool flipping;
-    [SerializeField]float flipspeed;
+    [SerializeField] float flipspeed;
+    [SerializeField] Vector4 currentColor, nightColor, dayColor;
+    [SerializeField] SpriteRenderer nightCover;
+    [SerializeField] GameStateManager gsManager;
+    [SerializeField] RoundManager roundManager;
+
 
     void Start()
     {
-        scale = Vector3.one;
+        currentColor = dayColor;
         current = back.transform.position + start;
         current.z = 90;
         timeMulti = end.x / dayTime;
+        flipspeed = flippening.y / 0.5f;
+        gsManager.OnGameStateChange += OnGameStateChanged;
     }
 
     // Update is called once per frame
@@ -29,8 +37,9 @@ public class TimerScript : MonoBehaviour
         if (!flipping) 
         {
             timedPos += Time.deltaTime * timeMulti;
+            timer = timedPos;
         }
-        current.x = ((start.x + (timedPos * 2)) * scale.x) + back.transform.position.x;
+        current.x = start.x + (timedPos * 2) + back.transform.position.x;
         current.y = back.transform.position.y;
         transform.position = current;
 
@@ -42,54 +51,147 @@ public class TimerScript : MonoBehaviour
         if (flipping)
         {
             timedPos -= Time.deltaTime * end.x * (flipspeed / 2);
+            timer = 0;
+            if (!night)
+            {
+                roundManager.time = 0;
+                timeMulti = end.x / dayTime;
+            }
         }
         if (timedPos < 0)
         {
             timedPos = 0;
             flipping = false;
         }
+        ColorChange();
+        done = MainCamera.transform.position + positionAdjustment;
         if (night)
         {
+             
             if (!fliped)
             {
-                scale.x -= Time.deltaTime * flipspeed;
+                flipslide.y += Time.deltaTime * flipspeed;
             }
-            if (scale.x < 0)
+            if (MainCamera.transform.position.y + flipslide.y > done.y + flippening.y)
             {
-                scale.x = 0;
+                flipslide.y = done.y - MainCamera.transform.position.y + flippening.y;
                 back.GetComponent<SpriteRenderer>().sprite = dayNightSprites[1];
                 fliped = true;
             }
             if (fliped)
             {
-                scale.x += Time.deltaTime * flipspeed;
+                flipslide.y -= Time.deltaTime * flipspeed;
             }
-            if (scale.x > 1)
+            if (flipslide.y < done.y - MainCamera.transform.position.y)
             {
-                scale.x = 1;
+                flipslide.y = done.y - MainCamera.transform.position.y;
             }
         }
         else
         {
             if (fliped)
             {
-                scale.x -= Time.deltaTime * flipspeed;
+                flipslide.y += Time.deltaTime * flipspeed;
             }
-            if (scale.x < 0)
+            if (MainCamera.transform.position.y + flipslide.y > done.y + flippening.y)
             {
-                scale.x = 0;
+                flipslide.y = done.y - MainCamera.transform.position.y + flippening.y;
                 back.GetComponent<SpriteRenderer>().sprite = dayNightSprites[0];
                 fliped = false;
             }
-            if (fliped)
+            if (!fliped)
             {
-                scale.x += Time.deltaTime * flipspeed;
+                flipslide.y -= Time.deltaTime * flipspeed;
             }
-            if (scale.x > 1)
+            if (flipslide.y < done.y - MainCamera.transform.position.y)
             {
-                scale.x = 1;
+                flipslide.y = done.y - MainCamera.transform.position.y;
             }
         }
-        back.transform.localScale = scale;
+        back.transform.position = MainCamera.transform.position + flipslide;
+        nightCover.color = currentColor;
+        if (night && timer >= 1)
+        {
+            roundManager.EndDay();
+        }
+    }
+    public void SetDay()
+    {
+        night = false;
+        flipping = true;
+        timeMulti = 1;
+    }
+    void ColorChange()
+    {
+        if (!night && timer > 0.7f)
+        {
+            currentColor.w = nightColor.w * Mathf.Pow((timer - 0.7f) / 0.3f, 3);
+            if (currentColor.w > nightColor.w)
+            {
+                currentColor.w = nightColor.w;
+            }
+            currentColor.y = dayColor.y - ((timer - 0.7f) / 0.15f);
+            if (currentColor.y < nightColor.y)
+            {
+                currentColor.y = nightColor.y;
+            }
+            if (timer > 0.85f)
+            {
+                currentColor.x = dayColor.x - (timer - 0.85f) / 0.15f;
+                if (currentColor.x < nightColor.x)
+                {
+                    currentColor.x = nightColor.x;
+                }
+                currentColor.z = nightColor.z * ((timer - 0.85f) / 0.15f);
+                if (currentColor.z > nightColor.z)
+                {
+                    currentColor.z = nightColor.z;
+                }
+            }
+        }
+        if (!night && timer < 0.7f)
+        {
+            currentColor = dayColor;
+        }
+        if (night && timer > 0.7f)
+        {
+            currentColor.w = nightColor.w - (dayColor.w + nightColor.w) * Mathf.Pow((timer - 0.7f) / 0.3f, 1f/3);
+            if (currentColor.w < dayColor.w)
+            {
+                currentColor.w = dayColor.w;
+            }
+            currentColor.x = nightColor.x + (dayColor.x - nightColor.x) * ((timer - 0.7f) / 0.15f);
+            if (currentColor.x > dayColor.x)
+            {
+                currentColor.x = dayColor.x;
+            }
+            currentColor.z = nightColor.z - (dayColor.z + nightColor.z) * ((timer - 0.7f) / 0.15f);
+            if (currentColor.z < dayColor.z)
+            {
+                currentColor.z = dayColor.z;
+            }
+            if (timer > 0.85)
+            {
+                
+                currentColor.y = (timer - 0.85f) / 0.15f;
+                if (currentColor.y > dayColor.y)
+                {
+                    currentColor.y = dayColor.y;
+                }
+            }
+        }
+        if (night && timer < 0.7f)
+        {
+            currentColor = nightColor;
+        }
+    }
+    private void OnGameStateChanged(GameState newGameState)
+    {
+        enabled = newGameState == GameState.Gameplay;
+    }
+
+    void OnDestroy()
+    {
+        gsManager.OnGameStateChange -= OnGameStateChanged;
     }
 }
