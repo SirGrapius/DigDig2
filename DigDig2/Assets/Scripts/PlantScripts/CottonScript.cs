@@ -42,6 +42,7 @@ public class CottonScript : MonoBehaviour
             growthTimer = stage3;
             baseAnimator.SetBool("Inventory", true);
             Base.gameObject.tag = "InInventory";
+            Base.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 5;
         }
     }
 
