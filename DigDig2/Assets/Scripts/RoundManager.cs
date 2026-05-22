@@ -50,6 +50,7 @@ public class RoundManager : MonoBehaviour
         gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
         sceneLoader = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneLoader>();
         houseHealthBar = GameObject.FindGameObjectWithTag("HouseHPBar").GetComponent<Slider>();
+        musicSource = GetComponent<AudioSource>();
         SaveSystem.Load();
     }
 
