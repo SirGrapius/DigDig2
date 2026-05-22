@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,7 +12,7 @@ public class SceneLoader : MonoBehaviour
     [SerializeField] AudioSource source;
     [SerializeField] ScreenFade screenFader;
 
-    [SerializeField] AudioClip[] audioList;
+    [SerializeField] List<AudioClip> audioList;
 
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject settingsMenu;
@@ -34,22 +32,9 @@ public class SceneLoader : MonoBehaviour
 
     void Update()
     {
-        gsManager.enabled = true;
-
-        source.volume = gsManager.musicVolume;
-
-        if (SceneManager.GetActiveScene().name == "Main Menu")
-        {
-            source.clip = audioList[0];
-        }
-
-        if (!source.isPlaying)
-        {
-            source.Play();
-        }
-
         if (Input.GetKeyUp(KeyCode.Escape))
         {
+            SaveSystem.Save();
             gsManager.SetState(GameState.Paused);
         }
 
@@ -102,6 +87,8 @@ public class SceneLoader : MonoBehaviour
 
             case "Quit":
                 {
+                    source.clip = audioList[0];
+                    source.Play();
                     StartCoroutine(QuitGame());
                     break;
                 }
@@ -118,7 +105,7 @@ public class SceneLoader : MonoBehaviour
                         screenFader.FadeCoroutine(new Color(255, 255, 255, 0.5f), new Color(255, 255, 255, 0), 0.25f);
                         gsManager.SetState(GameState.Gameplay);
                     }
-                        break;
+                    break;
                 }
         }
 
@@ -154,8 +141,7 @@ public class SceneLoader : MonoBehaviour
     public IEnumerator UnpauseGame()
     {
         StartCoroutine(screenFader.FadeCoroutine(new Color(0, 0, 0, 0.5f), new Color(0, 0, 0, 0f), 0.25f));
-        pauseMenu.transform.position = new Vector3(10000,10000,0);
-        SaveSystem.Save();
+        pauseMenu.transform.position = new Vector3(10000, 10000, 0);
         yield return new WaitForSeconds(0.1f);
         isPaused = false;
         yield return null;
@@ -163,9 +149,11 @@ public class SceneLoader : MonoBehaviour
 
     IEnumerator QuitGame()
     {
+        source.clip = audioList[0];
+        source.Play();
         StartCoroutine(screenFader.FadeOutCoroutine(fadeDuration));
-        SaveSystem.Save();
         yield return new WaitForSeconds(fadeDuration);
+
         Application.Quit();
     }
 }

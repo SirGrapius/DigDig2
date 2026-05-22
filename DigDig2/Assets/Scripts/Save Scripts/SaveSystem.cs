@@ -8,32 +8,33 @@ public class SaveSystem
     public static float musicVol;
     public static float sfxVol;
 
-    [System.Serializable] public struct SaveData
+    [System.Serializable]
+    public struct SaveData
     {
         public PlayerSaveData PlayerData;
         public RoundData RoundData;
         public MoneyData MoneyData;
     }
 
-    [System.Serializable] public struct SettingsData 
+    [System.Serializable]
+    public struct SettingsData
     {
         public SoundData SoundData;
     }
 
     public static string SaveFileName()
     {
-        string saveFile = Application.persistentDataPath + "save" + ".json";
+        string saveFile = Application.persistentDataPath + "save" + ".save";
         return saveFile;
     }
     public static string SettingsDataFileName()
     {
-        string settingsFile = Application.persistentDataPath + "settings" + ".json";
+        string settingsFile = Application.persistentDataPath + "settings" + ".save";
         return settingsFile;
     }
 
     public static void Save()
     {
-        Debug.Log("starting save");
         HandleSaveData();
 
         File.WriteAllText(SaveFileName(), JsonUtility.ToJson(saveData, true));
@@ -42,7 +43,6 @@ public class SaveSystem
 
     private static void HandleSaveData()
     {
-        Debug.Log("saving");
         GameStateManager.Instance.Player.Save(ref saveData.PlayerData);
         GameStateManager.Instance.RoundManager.Save(ref saveData.RoundData);
         GameStateManager.Instance.Save(ref settingsData.SoundData, saveData.MoneyData);
@@ -56,7 +56,6 @@ public class SaveSystem
 
     public static void Load()
     {
-        Debug.Log("load started");
         string saveContent = File.ReadAllText(SaveFileName());
         string settingsContent = File.ReadAllText(SettingsDataFileName());
 
@@ -67,7 +66,6 @@ public class SaveSystem
 
     private static void HandleLoadData()
     {
-        Debug.Log("loading");
         GameStateManager.Instance.Player.Load(saveData.PlayerData);
         GameStateManager.Instance.RoundManager.Load(saveData.RoundData);
         GameStateManager.Instance.Load(settingsData.SoundData, saveData.MoneyData);

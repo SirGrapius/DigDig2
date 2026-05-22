@@ -1,11 +1,10 @@
-using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameStateManager : MonoBehaviour
 {
-    public GameState CurrentGameState {  get; private set; }
+    public GameState CurrentGameState { get; private set; }
 
     public delegate void GameStateChangeHandler(GameState newGameState);
     public event GameStateChangeHandler OnGameStateChange;
@@ -16,10 +15,6 @@ public class GameStateManager : MonoBehaviour
     [Header("Settings")]
     [SerializeField] public float sfxVolume;
     [SerializeField] public float musicVolume;
-
-    public PlayerMovement Player { get; set; }
-    public RoundManager RoundManager { get; set; }
-
     public static GameStateManager Instance
     {
         get
@@ -31,17 +26,19 @@ public class GameStateManager : MonoBehaviour
             if (instance == null)
             {
                 Debug.Log("what");
-                instance = Resources.Load<GameStateManager>("GameManager");
+                Instantiate(Resources.Load<GameStateManager>("GameManager"));
             }
 
             return instance;
         }
     }
 
+    public PlayerMovement Player { get; set; }
+    public RoundManager RoundManager { get; set; }
+
     private void Awake()
     {
-        SaveSystem.Load();
-        instance = this.GetComponent<GameStateManager>();
+        instance = this;
         if (SceneManager.GetSceneByName("Main Menu") != SceneManager.GetActiveScene())
         {
             Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
@@ -64,7 +61,7 @@ public class GameStateManager : MonoBehaviour
             Rigidbody2D playerRB = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
             playerRB.linearVelocity = Vector3.zero;
         }
-        
+
 
         //Debug.Log(Player.ToString());
     }

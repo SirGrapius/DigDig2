@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
         gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
         roundManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<RoundManager>();
     }
-    
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -299,13 +299,13 @@ public class PlayerMovement : MonoBehaviour
             currentSpeed = baseSpeed;
         }
 
-        if (!roundManager.enabled)
+        if (roundManager == !enabled)
         {
             roundManager.enabled = true;
         }
     }
 
-    
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy") && inventory.selectedTool == 3) //check if you're attacking and there's an enemy in your hitbox and do damage.
@@ -351,17 +351,17 @@ public class PlayerMovement : MonoBehaviour
 
     public void Save(ref PlayerSaveData data)
     {
-        data.position = transform.position;
+        data.Position = transform.position;
     }
 
     public void Load(PlayerSaveData data)
     {
-        transform.position = data.position;
+        transform.position = data.Position;
     }
 }
 
 [System.Serializable]
 public struct PlayerSaveData
 {
-    public Vector3 position;
+    public Vector3 Position;
 }

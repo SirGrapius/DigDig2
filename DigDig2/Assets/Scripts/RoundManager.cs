@@ -1,16 +1,14 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class RoundManager : MonoBehaviour
 {
     [SerializeField] GameStateManager gsManager;
-    [SerializeField] GameObject shop;
+    [SerializeField] ShopingScript shop;
     [SerializeField] SceneLoader sceneLoader;
-    public bool tutorialDone;
+    [SerializeField] public bool tutorialDone;
     [SerializeField] bool unpaused;
     [Header("Day Settings")]
     [SerializeField] int day;
@@ -37,28 +35,27 @@ public class RoundManager : MonoBehaviour
     bool generatingPoints;
     bool spawningEnemy;
 
-    [Header("Music Settings")]
-    [SerializeField] AudioSource musicSource;
-    [SerializeField] AudioClip[] osts; //0 = intermission, 1 = combat, 2 = boss, 3 = shop
-
     [Header("Text Settings")]
     [SerializeField] TextMeshProUGUI myText;
     [SerializeField] float fadeDuration;
     [SerializeField] float textDuration;
 
+    [Header("Music Settings")]
+    [SerializeField] AudioSource musicSource;
+    [SerializeField] AudioClip[] osts; //0 = intermission, 1 = combat, 2 = boss, 3 = shop
+
     private void Awake()
     {
-        musicSource = GetComponent<AudioSource>();
         houseObject = GameObject.FindGameObjectWithTag("MainTarget");
         gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
         sceneLoader = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneLoader>();
         houseHealthBar = GameObject.FindGameObjectWithTag("HouseHPBar").GetComponent<Slider>();
-        shop = GameObject.FindGameObjectWithTag("Shop");
+        SaveSystem.Load();
     }
 
     void Start()
     {
-        SaveSystem.Load();
+        musicSource.clip = osts[0];
         unpaused = true;
         if (day == 0)
         {
@@ -73,7 +70,6 @@ public class RoundManager : MonoBehaviour
         {
             gsManager.heldMoneyAmount = 100;
         }
-        musicSource.clip = osts[0];
     }
 
     void OnDestroy()
@@ -83,19 +79,27 @@ public class RoundManager : MonoBehaviour
 
     void Update()
     {
-        musicSource.volume = gsManager.musicVolume;
-        if (musicSource.isPlaying == false && SceneManager.GetActiveScene().name != "Main Menu")
+        if (!musicSource.isPlaying)
         {
             musicSource.Play();
         }
 
-        if (!unpaused && SceneManager.GetActiveScene().name != "Main Menu")
+        if (!unpaused)
         {
             musicSource.clip = osts[0];
         }
-        
+
         if (unpaused)
         {
+            if (shop.shopOverlay == enabled)
+            {
+                musicSource.clip = osts[3];
+            }
+            else if (numberOfEnemies == 0)
+            {
+                musicSource.clip = osts[0];
+            }
+
             if (time < maxRoundTime) //changes time to Time.deltaTime
             {
                 time += Time.deltaTime;
@@ -106,9 +110,9 @@ public class RoundManager : MonoBehaviour
             }
             if (((60 <= time && time < 61) || (120 <= time && time < 121) || (180 <= time && time < 181) || (240 <= time && time < 241 && day != 10)) && !generatingPoints) //generate enemy points every minute
             {
-                shop.SetActive(false);
                 StartCoroutine(TextFadeCoroutine(new Color(myText.color.r, myText.color.g, myText.color.b, 0), new Color(myText.color.r, myText.color.g, myText.color.b, 1), "A Wave of Beasts is Coming, Prepare Yourself!"));
                 waveModifier++;
+                shop.gameObject.SetActive(false);
                 StartCoroutine(GenerateEnemyPoints());
             }
 
@@ -125,7 +129,7 @@ public class RoundManager : MonoBehaviour
                 StartCoroutine(SpawnEnemies());
             }
 
-            if (currentBoss != null && time >= 300 && !spawningEnemy) 
+            if (currentBoss != null && time >= 300 && !spawningEnemy)
             {
                 StartCoroutine(bossEnemyWaves());
             }
@@ -135,22 +139,13 @@ public class RoundManager : MonoBehaviour
                 PlayerLoss();
             }
 
-            if (numberOfEnemies > 0 && currentBoss == null && !shop.activeSelf)
+            if (numberOfEnemies > 0 && currentBoss == null)
             {
                 musicSource.clip = osts[1];
             }
-            else if (currentBoss != null && !shop.activeSelf)
+            else if (currentBoss != null)
             {
                 musicSource.clip = osts[2];
-            }
-
-            if (shop.activeSelf)
-            {
-                musicSource.clip = osts[3];
-            }
-            else if (numberOfEnemies == 0 && currentBoss == null)
-            {
-                musicSource.clip = osts[0];
             }
 
                 numberOfEnemies = Mathf.RoundToInt(GameObject.FindGameObjectsWithTag("Enemy").Length);
@@ -165,7 +160,7 @@ public class RoundManager : MonoBehaviour
             isLaneOpen[0] = true;
             StartCoroutine(TextFadeCoroutine(new Color(myText.color.r, myText.color.g, myText.color.b, 0), new Color(myText.color.r, myText.color.g, myText.color.b, 1), "The Beasts Have Opened a New Path, They Can Come From The Right Side Now..."));
         }
-        
+
         if (day == 5) //opens the top lane on the fifth day
         {
             isLaneOpen[1] = true;
@@ -219,7 +214,7 @@ public class RoundManager : MonoBehaviour
     IEnumerator GenerateEnemyPoints()
     {
         generatingPoints = true;
-        enemyPoints = Mathf.RoundToInt((day * (day * Mathf.Pow(2, day / 2) / 10) + day + waveModifier) * (1 + (waveModifier/10)))-1;
+        enemyPoints = Mathf.RoundToInt((day * (day * Mathf.Pow(2, day / 2) / 10) + day + waveModifier) * (1 + (waveModifier / 10))) - 1;
         yield return new WaitForSeconds(2);
         generatingPoints = false;
         yield return null;
@@ -332,10 +327,10 @@ public class RoundManager : MonoBehaviour
         waveModifier = 0;
         OpenNewLane();
         time = 0;
-        houseHealthAtDayStart = houseHealth;
         musicSource.clip = osts[0];
+        houseHealthAtDayStart = houseHealth;
         SaveSystem.Save();
-        shop.SetActive(true);
+        shop.gameObject.SetActive(true);
     }
 
     void PlayerLoss()
