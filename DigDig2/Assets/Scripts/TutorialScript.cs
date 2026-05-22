@@ -28,6 +28,7 @@ public class TutorialScript : MonoBehaviour
     {
         if (roundManager.gameObject.activeSelf == false)
         {
+            Debug.Log("FUCK");
             dialogbox.text = tutorialText[currentDialogText];
             switch (currentDialogText)
             {
