@@ -7183,11 +7183,11 @@ Transform:
   m_GameObject: {fileID: 1210147678}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.3, y: 1.31, z: 1}
+  m_LocalPosition: {x: -7.21, y: 1.51, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 8196110101842430662}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1210147680
 SpriteRenderer:
@@ -53817,7 +53817,7 @@ Transform:
   m_GameObject: {fileID: 2144244199}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.89588, y: -11.73101, z: 0}
+  m_LocalPosition: {x: 8.7, y: -11.73101, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -53878,17 +53878,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.84893537, y: 0.16499233}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.5, y: 2.5}
+    oldSize: {x: 2.1333334, y: 2.1333334}
     newSize: {x: 2.5, y: 2.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.552793, y: 1.8714981}
   m_EdgeRadius: 0
 --- !u!50 &2144244203
 Rigidbody2D:
@@ -53964,7 +53964,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1294996483803803245, guid: d961be5e48993b549938c77e604b99da, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f50fe777759190e4282d1de2fc06b402, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -55110,6 +55110,14 @@ PrefabInstance:
       propertyPath: m_CameraType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1464312173579607218, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 1464312173579607218, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.04
+      objectReference: {fileID: 0}
     - target: {fileID: 1484413578125183433, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       propertyPath: m_ChunkCullingBounds.x
       value: 0
@@ -55118,6 +55126,14 @@ PrefabInstance:
       propertyPath: m_ChunkCullingBounds.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1704075785703195180, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1704075785703195180, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.04
+      objectReference: {fileID: 0}
     - target: {fileID: 2021153084740846922, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -55125,6 +55141,14 @@ PrefabInstance:
     - target: {fileID: 2021153084740846922, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2528996018439571654, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2528996018439571654, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.62
       objectReference: {fileID: 0}
     - target: {fileID: 2603624009759724845, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       propertyPath: m_SortingOrder
@@ -55149,6 +55173,14 @@ PrefabInstance:
     - target: {fileID: 2847548361909137265, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       propertyPath: m_Name
       value: Shop icons (pepper)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852150283505509409, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852150283505509409, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.96
       objectReference: {fileID: 0}
     - target: {fileID: 3024172933756651267, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       propertyPath: m_Sprite
@@ -55190,6 +55222,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shop icons (potato)
       objectReference: {fileID: 0}
+    - target: {fileID: 3257588607993090997, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3257588607993090997, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.96
+      objectReference: {fileID: 0}
     - target: {fileID: 3273251885329537050, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -55214,6 +55254,22 @@ PrefabInstance:
       propertyPath: roundManager
       value: 
       objectReference: {fileID: 1895653452}
+    - target: {fileID: 4172679297715827725, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.71000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172679297715827725, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 4200637584803017499, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 4200637584803017499, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.53999996
+      objectReference: {fileID: 0}
     - target: {fileID: 4772301809122486453, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -55241,6 +55297,14 @@ PrefabInstance:
     - target: {fileID: 5119835746095210428, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       propertyPath: m_Name
       value: Shop icons (cotton)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244792985351146232, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.71000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244792985351146232, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.53999996
       objectReference: {fileID: 0}
     - target: {fileID: 5475067525651132240, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       propertyPath: m_AnchorMax.x
@@ -55302,6 +55366,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5885797571674338976, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 5885797571674338976, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 6309656586454026430, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6309656586454026430, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.53999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225862118752966712, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 85adbfcc4b956f8488a3d2f9e362aa65, type: 3}
     - target: {fileID: 7433820279200945902, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       propertyPath: gsManager
       value: 
@@ -55339,6 +55423,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2307374216104780081, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       insertIndex: -1
       addedObject: {fileID: 909956743}
+    - targetCorrespondingSourceObject: {fileID: 2528996018439571654, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1210147679}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5119835746095210428, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       insertIndex: -1
@@ -55353,6 +55440,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+--- !u!4 &8196110101842430662 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2528996018439571654, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+  m_PrefabInstance: {fileID: 8196110101842430661}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8196110101842430663 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2307374216104780081, guid: e6b985feb026bc944a80049baae89b73, type: 3}
@@ -55508,4 +55600,3 @@ SceneRoots:
   - {fileID: 1236561928}
   - {fileID: 390384106}
   - {fileID: 231090585}
-  - {fileID: 1210147679}
