@@ -39,6 +39,10 @@ public class TimerScript : MonoBehaviour
             timedPos += Time.deltaTime * timeMulti;
             timer = timedPos;
         }
+        if (night && timer >= 1)
+        {
+            roundManager.EndDay();
+        }
         current.x = start.x + (timedPos * 2) + back.transform.position.x;
         current.y = back.transform.position.y;
         transform.position = current;
@@ -58,6 +62,7 @@ public class TimerScript : MonoBehaviour
                 timeMulti = end.x / dayTime;
             }
         }
+        
         if (timedPos < 0)
         {
             timedPos = 0;
@@ -112,10 +117,7 @@ public class TimerScript : MonoBehaviour
         }
         back.transform.position = MainCamera.transform.position + flipslide;
         nightCover.color = currentColor;
-        if (night && timer >= 1)
-        {
-            roundManager.EndDay();
-        }
+        
     }
     public void SetDay()
     {
