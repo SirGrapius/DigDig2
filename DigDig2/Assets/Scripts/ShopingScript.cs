@@ -29,7 +29,10 @@ public class ShopingScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        shopOverlay.SetActive(true);
+        if (collision.CompareTag("Player"))
+        {
+            shopOverlay.SetActive(true);
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
