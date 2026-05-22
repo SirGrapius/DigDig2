@@ -35,6 +35,7 @@ public class PotatoScript : MonoBehaviour
             growthTimer = stage3;
             baseAnimator.SetBool("Inventory", true);
             gameObject.tag = "InInventory";
+            gameObject.GetComponent<SpriteRenderer>().sortingOrder = 5;
         }
     }
 
