@@ -327,7 +327,7 @@ public class Enemy : MonoBehaviour
 
         spriteRenderer.color = takeDamageColor;
 
-        float duration = 1.2f;
+        float duration = 0.5f;
         float t = 0;
 
         while(t < duration)
