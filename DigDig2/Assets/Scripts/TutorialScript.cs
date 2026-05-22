@@ -13,6 +13,7 @@ public class TutorialScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        roundManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<RoundManager>();
         if (roundManager.tutorialDone == false)
         {
             roundManager.gameObject.SetActive(false);
@@ -37,6 +38,7 @@ public class TutorialScript : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.Y))
                     {
                         roundManager.gameObject.SetActive(true);
+                        roundManager.GetComponent<RoundManager>().enabled = true;
                         roundManager.tutorialDone = true;
                         gameObject.SetActive(false);
                     }

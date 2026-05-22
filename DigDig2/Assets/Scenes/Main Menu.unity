@@ -1134,6 +1134,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7519919013957378898, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+      propertyPath: dialogbox
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7985221383700181770, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1153,6 +1157,7 @@ PrefabInstance:
     - {fileID: 1555241242816957025, guid: e6b985feb026bc944a80049baae89b73, type: 3}
     - {fileID: 5331492488153591340, guid: e6b985feb026bc944a80049baae89b73, type: 3}
     - {fileID: 6010525412573695485, guid: e6b985feb026bc944a80049baae89b73, type: 3}
+    - {fileID: 8025538449427928753, guid: e6b985feb026bc944a80049baae89b73, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4792230691396148407, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       insertIndex: -1
