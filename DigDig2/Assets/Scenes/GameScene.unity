@@ -52629,6 +52629,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3678224588601085730, guid: 3a6292d55c0778845a056012369f1bcf, type: 3}
     - target: {fileID: 3070243134995748040, guid: 1b421ef2a7f92814ebb24ec84918d831, type: 3}
+      propertyPath: dayNightTimer
+      value: 
+      objectReference: {fileID: 2116605341}
+    - target: {fileID: 3070243134995748040, guid: 1b421ef2a7f92814ebb24ec84918d831, type: 3}
       propertyPath: 'lanes.Array.data[0]'
       value: 
       objectReference: {fileID: 1166736165}
@@ -53611,6 +53615,8 @@ MonoBehaviour:
   nightColor: {x: 0.011764706, y: 0, z: 0.11764706, w: 0.9137255}
   dayColor: {x: 1, y: 1, z: 0, w: 0}
   nightCover: {fileID: 1519310314}
+  gsManager: {fileID: 0}
+  roundManager: {fileID: 1895653452}
 --- !u!212 &2116605342
 SpriteRenderer:
   m_ObjectHideFlags: 0

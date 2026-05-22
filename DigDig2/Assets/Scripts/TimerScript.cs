@@ -16,6 +16,9 @@ public class TimerScript : MonoBehaviour
     [SerializeField] float flipspeed;
     [SerializeField] Vector4 currentColor, nightColor, dayColor;
     [SerializeField] SpriteRenderer nightCover;
+    [SerializeField] GameStateManager gsManager;
+    [SerializeField] RoundManager roundManager;
+
 
     void Start()
     {
@@ -24,6 +27,7 @@ public class TimerScript : MonoBehaviour
         current.z = 90;
         timeMulti = end.x / dayTime;
         flipspeed = flippening.y / 0.5f;
+        gsManager.OnGameStateChange += OnGameStateChanged;
     }
 
     // Update is called once per frame
@@ -43,12 +47,16 @@ public class TimerScript : MonoBehaviour
         {
             night = !night;
             flipping = true;
-            //timeMulti = end.x / dayTime;
         }
         if (flipping)
         {
             timedPos -= Time.deltaTime * end.x * (flipspeed / 2);
             timer = 0;
+            if (!night)
+            {
+                roundManager.time = 0;
+                timeMulti = end.x / dayTime;
+            }
         }
         if (timedPos < 0)
         {
@@ -102,6 +110,10 @@ public class TimerScript : MonoBehaviour
         }
         back.transform.position = MainCamera.transform.position + flipslide;
         nightCover.color = currentColor;
+        if (night && timer >= 1)
+        {
+            roundManager.EndDay();
+        }
     }
     public void SetDay()
     {
@@ -172,5 +184,14 @@ public class TimerScript : MonoBehaviour
         {
             currentColor = nightColor;
         }
+    }
+    private void OnGameStateChanged(GameState newGameState)
+    {
+        enabled = newGameState == GameState.Gameplay;
+    }
+
+    void OnDestroy()
+    {
+        gsManager.OnGameStateChange -= OnGameStateChanged;
     }
 }
