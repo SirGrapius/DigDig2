@@ -80,6 +80,7 @@ public class RoundManager : MonoBehaviour
 
     void Update()
     {
+        musicSource.volume = gsManager.musicVolume;
         if (!musicSource.isPlaying)
         {
             musicSource.Play();

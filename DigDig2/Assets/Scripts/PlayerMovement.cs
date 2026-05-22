@@ -71,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
     {
         playerInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")); //if player presses a movement key the player will move
         audioSource.volume = gsManager.sfxVolume;
+        shovelSource.volume = gsManager.sfxVolume;
         if (isMoving)
         {
             animator.SetBool("Idle", false);
