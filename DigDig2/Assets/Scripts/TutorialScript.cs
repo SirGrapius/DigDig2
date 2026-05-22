@@ -36,6 +36,7 @@ public class TutorialScript : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.Y))
                     {
                         roundManager.gameObject.SetActive(true);
+                        roundManager.tutorialDone = true;
                         gameObject.SetActive(false);
                     }
                     break;

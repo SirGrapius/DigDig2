@@ -22,14 +22,6 @@ public class ShopingScript : MonoBehaviour
             plantsCurrentlySold[i] = possiblePlantsSold[i];
         }
     }
-    void Update()
-    {
-        if (shopOpen)
-        {
-
-        }
-    }
-
     public void SpawnShop()
     {
         this.transform.position = shopLocation.transform.position;
