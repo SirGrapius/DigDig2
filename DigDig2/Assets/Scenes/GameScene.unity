@@ -2401,7 +2401,7 @@ Transform:
   m_GameObject: {fileID: 552649884}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -11, z: 0}
+  m_LocalPosition: {x: 1000, y: -11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -53837,7 +53837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopingScript
   myCollider: {fileID: 0}
   shopOverlay: {fileID: 0}
-  shopLocation: {fileID: 231090584}
+  shopLocation: {fileID: 0}
   possiblePlantsSold: []
   plantsCurrentlySold: []
   plantsSold: 0
