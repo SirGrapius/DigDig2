@@ -11,8 +11,8 @@ public class RoundManager : MonoBehaviour
     [SerializeField] public bool tutorialDone;
     [SerializeField] bool unpaused;
     [Header("Day Settings")]
-    [SerializeField] int day;
-    [SerializeField] float time;
+    public int day;
+    public float time;
     [SerializeField] float maxRoundTime = 300;
 
     [Header("House Settings")]
@@ -43,6 +43,9 @@ public class RoundManager : MonoBehaviour
     [Header("Music Settings")]
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioClip[] osts; //0 = intermission, 1 = combat, 2 = boss, 3 = shop
+
+    [Header("DayNight Timer")]
+    [SerializeField] TimerScript dayNightTimer;
 
     private void Awake()
     {
@@ -323,7 +326,7 @@ public class RoundManager : MonoBehaviour
         yield return null;
     }
 
-    void EndDay()
+    public void EndDay()
     {
         day++;
         waveModifier = 0;
@@ -333,6 +336,7 @@ public class RoundManager : MonoBehaviour
         houseHealthAtDayStart = houseHealth;
         SaveSystem.Save();
         shop.gameObject.SetActive(true);
+        dayNightTimer.SetDay();
     }
 
     void PlayerLoss()
