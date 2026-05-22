@@ -44,6 +44,9 @@ public class RoundManager : MonoBehaviour
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioClip[] osts; //0 = intermission, 1 = combat, 2 = boss, 3 = shop
 
+    [Header("DayNightTimer")]
+    [SerializeField] TimerScript dayNightTimer;
+
     private void Awake()
     {
         houseObject = GameObject.FindGameObjectWithTag("MainTarget");
