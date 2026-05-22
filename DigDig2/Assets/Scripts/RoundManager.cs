@@ -106,10 +106,7 @@ public class RoundManager : MonoBehaviour
                 musicSource.clip = osts[0];
             }
 
-            if (time < maxRoundTime) //changes time to Time.deltaTime
-            {
-                time += Time.deltaTime;
-            }
+            
             if (time >= maxRoundTime && numberOfEnemies == 0) //if 5 minutes have passed and all enemies are dead progress to the next day
             {
                 EndDay();

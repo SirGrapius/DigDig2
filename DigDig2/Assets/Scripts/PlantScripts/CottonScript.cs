@@ -91,7 +91,10 @@ public class CottonScript : MonoBehaviour
 
         if (!growing && !isInInventory)
         {
-            sellValue -= maxSellValue * 0.01f * Time.deltaTime;
+            if (sellValue > 0)
+            {
+                sellValue -= maxSellValue * 0.01f * Time.deltaTime;
+            }
             if (!ready & !stunned)
             {
                 attackTimer += Time.deltaTime;

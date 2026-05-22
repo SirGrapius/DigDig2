@@ -219,8 +219,8 @@ MonoBehaviour:
   child: {fileID: 0}
   deathAnim: {fileID: 7400000, guid: c8cbc1f1ca69bca4bad434871ccc7d4a, type: 2}
   myAnimator: {fileID: 4336372680288598635}
-  hp: 25
-  hpMax: 25
+  hp: 50
+  hpMax: 50
   decaying: 0
   chili: 0
   tileUnderneath: {fileID: 0}
