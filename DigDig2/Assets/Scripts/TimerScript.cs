@@ -119,8 +119,6 @@ public class TimerScript : MonoBehaviour
     }
     public void SetDay()
     {
-        night = false;
-        flipping = true;
         timeMulti = 1;
     }
     void ColorChange()
