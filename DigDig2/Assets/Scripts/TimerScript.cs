@@ -39,20 +39,20 @@ public class TimerScript : MonoBehaviour
             timedPos += Time.deltaTime * timeMulti;
             timer = timedPos;
         }
-        if (night && timer >= 1)
-        {
-            roundManager.EndDay();
-        }
+        
         current.x = start.x + (timedPos * 2) + back.transform.position.x;
         current.y = back.transform.position.y;
         transform.position = current;
 
         if(timedPos >= 1)
         {
+            if (night && timeMulti != 1)
+            {
+                roundManager.EndDay();
+            }
+            timer = 0;
             night = !night;
             flipping = true;
-            timer = 0;
-            roundManager.time = 300;
         }
         if (flipping)
         {
@@ -72,7 +72,14 @@ public class TimerScript : MonoBehaviour
         done = MainCamera.transform.position + positionAdjustment;
         if (night)
         {
-             
+            if (timeMulti != 1)
+            {
+                roundManager.time = 300;
+            }
+            else
+            {
+                roundManager.time = 0;
+            }
             if (!fliped)
             {
                 flipslide.y += Time.deltaTime * flipspeed;
