@@ -114,7 +114,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 48
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -167,9 +167,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 60
         width: 160
-        height: 160
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -189,9 +189,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 160
-        y: 0
+        y: 60
         width: 160
-        height: 160
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -211,9 +211,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 0
+        y: 60
         width: 160
-        height: 160
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -233,9 +233,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 480
-        y: 0
+        y: 60
         width: 160
-        height: 160
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -255,9 +255,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 640
-        y: 0
-        width: 160
-        height: 160
+        y: 60
+        width: 150
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -276,10 +276,10 @@ TextureImporter:
       name: Mr shop overworld-Sheet_5
       rect:
         serializedVersion: 2
-        x: 800
-        y: 0
-        width: 160
-        height: 160
+        x: 790
+        y: 60
+        width: 170
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -299,9 +299,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 960
-        y: 0
-        width: 160
-        height: 160
+        y: 60
+        width: 159
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -320,10 +320,10 @@ TextureImporter:
       name: Mr shop overworld-Sheet_7
       rect:
         serializedVersion: 2
-        x: 1120
-        y: 0
-        width: 160
-        height: 160
+        x: 1119
+        y: 60
+        width: 161
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -343,9 +343,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1280
-        y: 0
+        y: 60
         width: 160
-        height: 160
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -365,9 +365,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1440
-        y: 0
+        y: 60
         width: 160
-        height: 160
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -387,9 +387,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1600
-        y: 0
+        y: 60
         width: 160
-        height: 160
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -409,9 +409,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1760
-        y: 0
+        y: 60
         width: 160
-        height: 160
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -431,9 +431,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1920
-        y: 0
+        y: 60
         width: 160
-        height: 160
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -453,9 +453,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2080
-        y: 0
+        y: 60
         width: 160
-        height: 160
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -475,9 +475,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2240
-        y: 0
+        y: 60
         width: 160
-        height: 160
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -497,9 +497,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2400
-        y: 0
+        y: 60
         width: 160
-        height: 160
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -519,9 +519,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2560
-        y: 0
+        y: 60
         width: 160
-        height: 160
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

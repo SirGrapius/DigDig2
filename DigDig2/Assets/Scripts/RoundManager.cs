@@ -49,6 +49,7 @@ public class RoundManager : MonoBehaviour
 
     private void Awake()
     {
+        shop = GameObject.FindGameObjectWithTag("Shop").GetComponent<ShopingScript>();
         houseObject = GameObject.FindGameObjectWithTag("MainTarget");
         gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
         sceneLoader = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneLoader>();
@@ -99,6 +100,11 @@ public class RoundManager : MonoBehaviour
             if (shop.shopOverlay == enabled)
             {
                 musicSource.clip = osts[3];
+                houseHealthBar.gameObject.SetActive(false);
+            }
+            else if (houseHealthBar.gameObject != enabled)
+            {
+                houseHealthBar.gameObject.SetActive(true);
             }
             else if (numberOfEnemies == 0)
             {
