@@ -88,7 +88,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e08a3780e00f94e8454fb290c85203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScreenFade
-  myImage: {fileID: 8032795853441487312}
+  mySprite: {fileID: 0}
+  gsManager: {fileID: 0}
 --- !u!1 &4311704568968316490
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,7 +144,9 @@ MonoBehaviour:
   screenFader: {fileID: 0}
   audioList: []
   pauseMenu: {fileID: 5937643064011169568}
+  settingsMenu: {fileID: 0}
   gsManager: {fileID: 0}
+  currentMenu: {fileID: 0}
 --- !u!82 &7863863706369135939
 AudioSource:
   m_ObjectHideFlags: 0
@@ -253,6 +256,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe4a58a88db83d843a343419bf9be46e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameStateManager
+  heldMoneyAmount: 0
+  moneyUI: {fileID: 0}
+  sfxVolume: 0
+  musicVolume: 0
 --- !u!1001 &206109184848980682
 PrefabInstance:
   m_ObjectHideFlags: 0
