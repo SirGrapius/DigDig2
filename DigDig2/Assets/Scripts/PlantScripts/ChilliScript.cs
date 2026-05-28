@@ -28,6 +28,8 @@ public class ChilliScript : MonoBehaviour
     public float maxSellValue;
     public float sellValue;
 
+    TimerScript timer;
+
     private void Awake()
     {
         Death = GetComponent<PlantDeath>();
@@ -35,6 +37,7 @@ public class ChilliScript : MonoBehaviour
         targeting = GetComponent<ClosestEnemy>();
         growing = true;
         gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
+        timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<TimerScript>();
 
         if (transform.parent.parent.GetChild(0).gameObject.GetComponent<TileScript>().isInventory == true)
         {
@@ -53,7 +56,7 @@ public class ChilliScript : MonoBehaviour
 
     void Update()
     {
-        if (growing)
+        if (growing && !timer.night)
         {
             if (waterAmount > waterAmountMin)
             {
@@ -70,14 +73,17 @@ public class ChilliScript : MonoBehaviour
                 baseAnimator.SetBool("Adult", true);
                 baseAnimator.SetBool("Young", true);
                 baseAnimator.SetBool("Child", true);
-                gameObject.tag = "Plant";
+                if (!gameObject.CompareTag("InInventory"))
+                {
+                    gameObject.tag = "Plant";
+                }
                 growing = false;
             }
             else if (growthTimer >= stage2)
             {
                 baseAnimator.SetBool("Young", true);
                 baseAnimator.SetBool("Child", true);
-                            }
+            }
             else if (growthTimer >= stage1)
             {
                 baseAnimator.SetBool("Child", true);

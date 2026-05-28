@@ -18,6 +18,7 @@ TagManager:
   - PlayerSprite
   - Shop
   - GameStateManager
+  - Timer
   layers:
   - Default
   - TransparentFX

@@ -53919,10 +53919,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6075749559002312994, guid: e6b985feb026bc944a80049baae89b73, type: 3}
-      propertyPath: m_TagString
-      value: Timer
-      objectReference: {fileID: 0}
     - target: {fileID: 6309656586454026430, guid: e6b985feb026bc944a80049baae89b73, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.06

@@ -22,12 +22,15 @@ public class PotatoScript : MonoBehaviour
     public float maxSellValue;
     public float sellValue;
 
+    TimerScript timer;
+
     private void Awake()
     {
         baseAnimator = GetComponent<Animator>();    
         gameObject.tag = "GrowingPlant";
         growing = true;
         gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
+        timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<TimerScript>();
 
         if (transform.parent.parent.GetChild(0).gameObject.GetComponent<TileScript>().isInventory == true)
         {
@@ -46,7 +49,7 @@ public class PotatoScript : MonoBehaviour
 
     void Update()
     {
-        if (growing)
+        if (growing && !timer.night)
         {
             if (waterAmount > waterAmountMin)
             {
@@ -64,7 +67,10 @@ public class PotatoScript : MonoBehaviour
                 baseAnimator.SetBool("Young", true);
                 baseAnimator.SetBool("Child", true);
 
-                gameObject.tag = "Plant";
+                if (!gameObject.CompareTag("InInventory"))
+                {
+                    gameObject.tag = "Plant";
+                }
                 growing = false;
             }
             else if (growthTimer >= stage2)

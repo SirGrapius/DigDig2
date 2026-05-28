@@ -10,7 +10,7 @@ public class TimerScript : MonoBehaviour
     [SerializeField] float dayTime = 300;
     [SerializeField] Vector3 flipslide, flippening, done, positionAdjustment;
     [SerializeField] Sprite[] dayNightSprites;
-    [SerializeField] bool night;
+    public bool night;
     [SerializeField] bool fliped;
     bool flipping;
     [SerializeField] float flipspeed;
@@ -132,64 +132,68 @@ public class TimerScript : MonoBehaviour
     }
     void ColorChange()
     {
-        if (!night && timer > 0.7f)
+        if (!night)
         {
-            currentColor.w = nightColor.w * Mathf.Pow((timer - 0.7f) / 0.3f, 3);
-            if (currentColor.w > nightColor.w)
+            if (timer > 0.7f)
             {
-                currentColor.w = nightColor.w;
+                currentColor.w = nightColor.w * Mathf.Pow((timer - 0.7f) / 0.3f, 3);
+                if (currentColor.w > nightColor.w)
+                {
+                    currentColor.w = nightColor.w;
+                }
+                currentColor.y = dayColor.y - ((timer - 0.7f) / 0.15f);
+                if (currentColor.y < nightColor.y)
+                {
+                    currentColor.y = nightColor.y;
+                }
+                if (timer > 0.85f)
+                {
+                    currentColor.x = dayColor.x - (timer - 0.85f) / 0.15f;
+                    if (currentColor.x < nightColor.x)
+                    {
+                        currentColor.x = nightColor.x;
+                    }
+                    currentColor.z = nightColor.z * ((timer - 0.85f) / 0.15f);
+                    if (currentColor.z > nightColor.z)
+                    {
+                        currentColor.z = nightColor.z;
+                    }
+                }
             }
-            currentColor.y = dayColor.y - ((timer - 0.7f) / 0.15f);
-            if (currentColor.y < nightColor.y)
+            if (timer < 0.7f && timer > 0.3f)
             {
+                currentColor = dayColor;
+            }
+            if (timer < 0.3f)
+            {
+                currentColor.w = nightColor.w * Mathf.Pow((-timer + 0.3f) / 0.3f, 3);
+                if (currentColor.w < dayColor.w)
+                {
+                    currentColor.w = dayColor.w;
+                }
+                currentColor.x = nightColor.x + (dayColor.x - nightColor.x) * (timer / 0.15f);
+                if (currentColor.x > dayColor.x)
+                {
+                    currentColor.x = dayColor.x;
+                }
+                currentColor.z = nightColor.z - (dayColor.z + nightColor.z) * (timer / 0.15f);
+                if (currentColor.z < dayColor.z)
+                {
+                    currentColor.z = dayColor.z;
+                }
                 currentColor.y = nightColor.y;
-            }
-            if (timer > 0.85f)
-            {
-                currentColor.x = dayColor.x - (timer - 0.85f) / 0.15f;
-                if (currentColor.x < nightColor.x)
+                if (timer > 0.15)
                 {
-                    currentColor.x = nightColor.x;
-                }
-                currentColor.z = nightColor.z * ((timer - 0.85f) / 0.15f);
-                if (currentColor.z > nightColor.z)
-                {
-                    currentColor.z = nightColor.z;
+
+                    currentColor.y = (timer - 0.15f) / 0.15f;
+                    if (currentColor.y > dayColor.y)
+                    {
+                        currentColor.y = dayColor.y;
+                    }
                 }
             }
         }
-        if (!night && timer < 0.7f)
-        {
-            currentColor = dayColor;
-        }
-        if (night && timer > 0.7f)
-        {
-            currentColor.w = nightColor.w - (dayColor.w + nightColor.w) * Mathf.Pow((timer - 0.7f) / 0.3f, 1f/3);
-            if (currentColor.w < dayColor.w)
-            {
-                currentColor.w = dayColor.w;
-            }
-            currentColor.x = nightColor.x + (dayColor.x - nightColor.x) * ((timer - 0.7f) / 0.15f);
-            if (currentColor.x > dayColor.x)
-            {
-                currentColor.x = dayColor.x;
-            }
-            currentColor.z = nightColor.z - (dayColor.z + nightColor.z) * ((timer - 0.7f) / 0.15f);
-            if (currentColor.z < dayColor.z)
-            {
-                currentColor.z = dayColor.z;
-            }
-            if (timer > 0.85)
-            {
-                
-                currentColor.y = (timer - 0.85f) / 0.15f;
-                if (currentColor.y > dayColor.y)
-                {
-                    currentColor.y = dayColor.y;
-                }
-            }
-        }
-        if (night && timer < 0.7f)
+        if (night)
         {
             currentColor = nightColor;
         }

@@ -243,7 +243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnyPlant
   typeCotton: {fileID: 0}
   typePotato: {fileID: 0}
-  typeChili: {fileID: 0}
+  typeChili: {fileID: 6906960526718560204}
 --- !u!114 &6906960526718560204
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -31,30 +31,37 @@ public class CottonScript : MonoBehaviour
 
     [SerializeField] GameStateManager gsManager;
 
+    TimerScript timer;
+
     void Awake()
     {
         targeting = GetComponent<ClosestEnemy>();
         growing = true;
         gsManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameStateManager>();
+        timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<TimerScript>();
         if (transform.parent.parent.parent.parent.GetChild(0).gameObject.GetComponent<TileScript>().isInventory == true)
         {
             isInInventory = true;
             growthTimer = stage3;
             baseAnimator.SetBool("Inventory", true);
             Base.gameObject.tag = "InInventory";
+            
             Base.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 5;
         }
     }
 
     void Start()
     {
-        Base.gameObject.tag = "GrowingPlant";
+        if (!Base.gameObject.CompareTag("InInventory"))
+        {
+            Base.gameObject.tag = "GrowingPlant";
+        }
         gsManager.OnGameStateChange += OnGameStateChanged;
     }
 
     void Update()
     {
-        if (growing)
+        if (growing && !timer.night)
         {
             if (waterAmount > waterAmountMin)
             {
@@ -72,7 +79,10 @@ public class CottonScript : MonoBehaviour
                 baseAnimator.SetBool("Young", true);
                 baseAnimator.SetBool("Child", true);
 
+                if (!Base.gameObject.CompareTag("InInventory"))
+                {
                 Base.gameObject.tag = "Plant";
+                }
                 growing = false;
                 animMoving.OriginPoint();
 
@@ -95,7 +105,7 @@ public class CottonScript : MonoBehaviour
             {
                 sellValue -= maxSellValue * 0.01f * Time.deltaTime;
             }
-            if (!ready & !stunned)
+            if (!ready && !stunned)
             {
                 attackTimer += Time.deltaTime;
             }
@@ -126,6 +136,11 @@ public class CottonScript : MonoBehaviour
                         GameObject projectile = Instantiate(Attack, transform.position, Quaternion.identity);
                         projectile.GetComponent<CottonParticle>().Spawn(targetPos);
                     }
+                }
+                else
+                {
+                    myAnimator.SetBool("Attack", false);
+                    attackTimer = attackFrequency;
                 }
             }
         }
